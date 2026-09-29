@@ -118,7 +118,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -138,6 +138,44 @@ const customStyles = {
 | `item` | 单个图标单元项容器 | - |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 图标墙主标题 |
+| `description` | `{ description }` | 图标墙副标题说明 |
+| `items` | `{ items }` | 图标徽章卡片列表，可自定义图标尺寸与悬浮动效 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <IconWallBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-3xl font-bold text-center mb-3">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义副标题 -->
+    <template #description="{ description }">
+      <p class="text-base text-center text-gray-500 mb-10">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义图标卡片列表 -->
+    <template #items="{ items }">
+      <div class="flex flex-wrap gap-4 justify-center">
+        <div v-for="(item, idx) in items" :key="idx" class="px-5 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center gap-3">
+          <span class="text-2xl">{{ item.icon }}</span>
+          <span class="font-medium text-sm">{{ item.text }}</span>
+        </div>
+      </div>
+    </template>
+  </IconWallBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

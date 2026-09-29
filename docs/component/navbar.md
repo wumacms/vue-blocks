@@ -217,7 +217,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -240,6 +240,57 @@ const customStyles = {
 | `mobileMenu` | 移动端展开菜单面板 | `md:hidden border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 pt-2 pb-6 space-y-2` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `brand` | `{ data }` | Logo 与品牌标识区域，可替换为自定义 SVG Logo 或品牌链接组件 |
+| `nav` | `{ navLinks }` | 桌面端导航菜单列表，支持接入 Vue Router 的 RouterLink 或第三方菜单 |
+| `actions` | `{ buttons }` | 右侧行动按钮组与操作区，可放置登录/注册按钮、主题切换开关或多语言选择器 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <NavbarBlock>
+    <!-- 1. 自定义品牌标识与 Logo -->
+    <template #brand="{ data }">
+      <div class="flex items-center gap-3 cursor-pointer">
+        <span class="text-3xl">🚀</span>
+        <span class="font-extrabold text-2xl bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+          {{ data.brandName || 'VueBlocks' }}
+        </span>
+      </div>
+    </template>
+
+    <!-- 2. 自定义桌面端主导航菜单 -->
+    <template #nav="{ navLinks }">
+      <nav class="hidden md:flex items-center gap-6">
+        <a
+          v-for="(item, idx) in navLinks"
+          :key="idx"
+          :href="item.link || '#'"
+          class="text-sm font-medium hover:text-indigo-600 transition"
+        >
+          {{ item.text }}
+        </a>
+      </nav>
+    </template>
+
+    <!-- 3. 自定义右侧操作区（如多语言切换、用户中心等） -->
+    <template #actions="{ buttons }">
+      <div class="flex items-center gap-3">
+        <button class="px-4 py-2 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">
+          进入工作台
+        </button>
+      </div>
+    </template>
+  </NavbarBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

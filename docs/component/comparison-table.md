@@ -215,7 +215,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -236,6 +236,43 @@ const customStyles = {
 | `tdValue` | 对比值数据单元格 `<td>` 样式（居中、字体规范） | `px-6 py-4 text-gray-600 dark:text-gray-300 whitespace-nowrap` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 版本对比区块主标题 |
+| `description` | `{ description }` | 版本对比区块副标题说明 |
+| `table` | `{ data }` | 对比表格主体，可自定义表格行、打勾图标与差异高亮样式 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <ComparisonTableBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-3xl font-extrabold text-center mb-3">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义副标题描述 -->
+    <template #description="{ description }">
+      <p class="text-base text-center text-gray-500 mb-8">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义对比表格主体 -->
+    <template #table="{ data }">
+      <div class="overflow-x-auto rounded-2xl border shadow-lg">
+        <table class="w-full text-left text-sm">
+          <!-- 自定义渲染对比表格 -->
+        </table>
+      </div>
+    </template>
+  </ComparisonTableBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

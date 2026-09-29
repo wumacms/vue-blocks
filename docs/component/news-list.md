@@ -145,7 +145,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -170,6 +170,45 @@ const customStyles = {
 | `bottomMore` | 底部“查看更多”按钮外层容器 | `text-center mt-12` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 新闻资讯列表主标题 |
+| `description` | `{ description }` | 新闻资讯列表副标题描述 |
+| `news` | `{ news }` | 新闻资讯卡片列表网格，可自定义时间戳格式与跳转链接 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <NewsListBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-black text-center mb-3">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义副标题 -->
+    <template #description="{ description }">
+      <p class="text-lg text-center text-gray-500 mb-10">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义新闻卡片列表 -->
+    <template #news="{ news }">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article v-for="(item, idx) in news" :key="idx" class="border rounded-2xl p-5 bg-white dark:bg-gray-800 shadow-md">
+          <img :src="item.image" :alt="item.title" class="w-full h-44 object-cover rounded-xl mb-4" />
+          <h3 class="font-bold text-lg mb-2">{{ item.title }}</h3>
+          <p class="text-sm text-gray-400">{{ item.date }}</p>
+        </article>
+      </div>
+    </template>
+  </NewsListBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

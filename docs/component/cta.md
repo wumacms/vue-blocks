@@ -107,7 +107,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -124,6 +124,43 @@ const customStyles = {
 | `contentWrapper` | 文字与按钮内容的居中排版包裹层 | - |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 行动号召区块主标题 |
+| `description` | `{ description }` | 行动号召区块副标题描述 |
+| `actions` | `{ buttons }` | 行动按钮组，可自定义按钮交互、弹窗触发等 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <CtaBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-extrabold text-white mb-4">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义描述文案 -->
+    <template #description="{ description }">
+      <p class="text-lg text-indigo-100 max-w-2xl mx-auto mb-8">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义行动按钮 -->
+    <template #actions="{ buttons }">
+      <div class="flex gap-4 justify-center">
+        <button class="px-8 py-3.5 bg-white text-indigo-600 font-bold rounded-xl shadow-xl hover:bg-gray-50 transition">
+          免费注册体验
+        </button>
+      </div>
+    </template>
+  </CtaBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

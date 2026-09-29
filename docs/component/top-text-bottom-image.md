@@ -87,7 +87,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -102,6 +102,41 @@ const customStyles = {
 | `image` | 全景大图样式（大圆角、深阴影与外边框） | `rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 w-full h-auto object-cover` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 顶部居中大标题 |
+| `description` | `{ description }` | 顶部副标题描述文案 |
+| `media` | `{ image, imageAlt }` | 底部全宽/超宽大图或视频展示区域 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <TopTextBottomImageBlock>
+    <!-- 1. 自定义顶部主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-black text-center text-gray-900 dark:text-white mb-3">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义顶部副标题 -->
+    <template #description="{ description }">
+      <p class="text-lg text-center text-gray-500 max-w-2xl mx-auto mb-10">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义底部媒体展示区 -->
+    <template #media="{ image, imageAlt }">
+      <div class="max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
+        <img :src="image" :alt="imageAlt" class="w-full object-cover" />
+      </div>
+    </template>
+  </TopTextBottomImageBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

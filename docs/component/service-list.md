@@ -225,7 +225,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -247,6 +247,45 @@ const customStyles = {
 | `link` | 了解详情跳转链接样式 | `text-indigo-600 dark:text-indigo-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 mt-auto` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 服务项目区块主标题 |
+| `description` | `{ description }` | 服务项目区块副标题描述 |
+| `services` | `{ services }` | 服务卡片网格列表，可自定义服务详情跳转或弹窗咨询 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <ServiceListBlock>
+    <!-- 1. 自定义服务主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-black text-center mb-3">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义服务副标题 -->
+    <template #description="{ description }">
+      <p class="text-lg text-center text-gray-500 mb-12">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义服务卡片列表 -->
+    <template #services="{ services }">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div v-for="(svc, idx) in services" :key="idx" class="p-8 rounded-2xl border bg-white dark:bg-gray-800 shadow hover:shadow-xl transition">
+          <div class="text-4xl mb-4">{{ svc.icon }}</div>
+          <h3 class="font-bold text-xl mb-2">{{ svc.title }}</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{{ svc.description }}</p>
+        </div>
+      </div>
+    </template>
+  </ServiceListBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

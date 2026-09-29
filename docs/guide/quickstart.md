@@ -112,3 +112,47 @@ const featuresStyles = {
   <FeaturesBlock :styles="featuresStyles" />
 </template>
 ```
+
+### 自定义插槽覆盖 (`slots`)
+
+当默认的 DOM 结构无法满足需求时，可通过具名作用域插槽（Scoped Slots）替换任意子区域，插槽会暴露对应的数据上下文（Slot Props）：
+
+```vue
+<script setup lang="ts">
+import { HeroBlock } from 'vue-blocks'
+
+function handleGetStarted() {
+  alert('点击了自定义行动按钮！')
+}
+</script>
+
+<template>
+  <HeroBlock>
+    <!-- 1. 替换标题：自定义渐变文字样式 -->
+    <template #title="{ title }">
+      <h1 class="text-5xl font-black bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent mb-6">
+        {{ title }}
+      </h1>
+    </template>
+
+    <!-- 2. 替换按钮组：注入自定义事件与第三方 UI 库组件 -->
+    <template #actions="{ buttons }">
+      <div class="flex gap-4">
+        <button
+          @click="handleGetStarted"
+          class="px-8 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition"
+        >
+          立即体验
+        </button>
+      </div>
+    </template>
+
+    <!-- 3. 替换媒体区域：将静态图片替换为自定义视频或其他媒体 -->
+    <template #media="{ image, imageAlt }">
+      <div class="mt-12 rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
+        <img :src="image" :alt="imageAlt" class="w-full object-cover" />
+      </div>
+    </template>
+  </HeroBlock>
+</template>
+```

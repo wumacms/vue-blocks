@@ -117,7 +117,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -135,6 +135,45 @@ const customStyles = {
 | `role` | 成员职位头衔文本样式 | `text-sm text-indigo-600 dark:text-indigo-400 font-medium mt-1` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 团队成员区块主标题 |
+| `description` | `{ description }` | 团队成员区块副标题说明 |
+| `grid` | `{ members }` | 团队成员卡片列表网格，支持自定义社交媒体链接图标与介绍 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <TeamBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-black text-center text-gray-900 dark:text-white mb-3">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义副标题 -->
+    <template #description="{ description }">
+      <p class="text-lg text-center text-gray-500 mb-12">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义成员卡片网格 -->
+    <template #grid="{ members }">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div v-for="(m, idx) in members" :key="idx" class="text-center p-6 rounded-2xl border bg-white dark:bg-gray-900 shadow-sm">
+          <img :src="m.avatar" :alt="m.name" class="w-28 h-28 rounded-full mx-auto object-cover mb-4 ring-4 ring-indigo-50" />
+          <h3 class="font-bold text-lg text-gray-900 dark:text-white">{{ m.name }}</h3>
+          <p class="text-indigo-600 text-sm font-medium mt-1">{{ m.role }}</p>
+        </div>
+      </div>
+    </template>
+  </TeamBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

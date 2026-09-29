@@ -238,7 +238,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -264,6 +264,45 @@ const customStyles = {
 | `button` | 产品操作/购买按钮样式 | `bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-full transition shadow-sm` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 产品中心区块主标题 |
+| `description` | `{ description }` | 产品中心区块副标题描述 |
+| `products` | `{ products }` | 产品卡片网格列表，可自定义购物车按钮、价格标签或快速预览弹窗 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <ProductListBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-black text-center mb-3">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义副标题 -->
+    <template #description="{ description }">
+      <p class="text-lg text-center text-gray-500 mb-12">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义产品卡片列表 -->
+    <template #products="{ products }">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div v-for="(prod, idx) in products" :key="idx" class="rounded-2xl border p-5 shadow-lg bg-white dark:bg-gray-800">
+          <img :src="prod.image" :alt="prod.name" class="w-full h-52 object-cover rounded-xl mb-4" />
+          <h3 class="font-bold text-lg mb-1">{{ prod.name }}</h3>
+          <p class="text-indigo-600 font-extrabold text-xl">{{ prod.price }}</p>
+        </div>
+      </div>
+    </template>
+  </ProductListBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

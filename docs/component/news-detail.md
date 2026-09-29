@@ -113,7 +113,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -132,6 +132,51 @@ const customStyles = {
 | `tag` | 单个话题标签药丸样式 | `bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-medium` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 新闻详情文章主标题 |
+| `media` | `{ image, imageAlt }` | 文章主视觉封面大图 |
+| `body` | `{ body }` | 新闻正文区域，支持替换为第三方富文本或 Markdown 渲染组件 |
+| `tags` | `{ tags }` | 文章关联分类与标签徽章 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <NewsDetailBlock>
+    <!-- 1. 自定义大标题 -->
+    <template #title="{ title }">
+      <h1 class="text-4xl font-black text-gray-900 dark:text-white mb-6">{{ title }}</h1>
+    </template>
+
+    <!-- 2. 自定义封面图片 -->
+    <template #media="{ image, imageAlt }">
+      <div class="rounded-2xl overflow-hidden shadow-xl mb-8">
+        <img :src="image" :alt="imageAlt" class="w-full max-h-[480px] object-cover" />
+      </div>
+    </template>
+
+    <!-- 3. 自定义正文区域（支持富文本/Markdown 渲染） -->
+    <template #body="{ body }">
+      <div class="prose prose-indigo max-w-none dark:prose-invert" v-html="body" />
+    </template>
+
+    <!-- 4. 自定义底部标签 -->
+    <template #tags="{ tags }">
+      <div class="flex gap-2 mt-8 pt-6 border-t">
+        <span v-for="(t, idx) in tags" :key="idx" class="px-3 py-1 rounded-full bg-gray-100 text-xs font-medium">
+          #{{ t }}
+        </span>
+      </div>
+    </template>
+  </NewsDetailBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

@@ -106,7 +106,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -125,6 +125,51 @@ const customStyles = {
 | `image` | 大图图片元素样式（大圆角、阴影与边框） | `rounded-2xl shadow-xl w-full h-auto object-cover border border-gray-100 dark:border-gray-800` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 左侧主标题 |
+| `description` | `{ description }` | 左侧正文描述文本 |
+| `tags` | `{ tags }` | 特性标签与徽章列表 |
+| `media` | `{ image, imageAlt }` | 右侧图片与媒体展示区域 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <RightImageLeftTextBlock>
+    <!-- 1. 自定义左侧主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-extrabold text-indigo-600 mb-4">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义左侧正文描述 -->
+    <template #description="{ description }">
+      <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义特性标签列表 -->
+    <template #tags="{ tags }">
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span v-for="(tag, idx) in tags" :key="idx" class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-semibold">
+          {{ tag }}
+        </span>
+      </div>
+    </template>
+
+    <!-- 4. 自定义右侧媒体展示区 -->
+    <template #media="{ image, imageAlt }">
+      <div class="rounded-3xl overflow-hidden shadow-2xl border">
+        <img :src="image" :alt="imageAlt" class="w-full h-auto object-cover" />
+      </div>
+    </template>
+  </RightImageLeftTextBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

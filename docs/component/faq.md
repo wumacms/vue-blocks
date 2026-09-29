@@ -112,7 +112,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -132,6 +132,38 @@ const customStyles = {
 | `content` | 展开后显示的回答详细内容正文区域（带顶部分割线） | `mt-4 text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base border-t border-gray-100 dark:border-gray-700/60 pt-4` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 常见问题区块主标题 |
+| `faqs` | `{ faqs }` | 常见问题折叠面板列表，可接入第三方手风琴组件或自定义展开动效 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <FaqBlock>
+    <!-- 1. 自定义标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-black text-center text-gray-900 dark:text-white mb-10">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义 FAQ 折叠面板列表 -->
+    <template #faqs="{ faqs }">
+      <div class="space-y-4 max-w-3xl mx-auto">
+        <details v-for="(item, idx) in faqs" :key="idx" class="p-5 rounded-2xl border bg-white dark:bg-gray-900 shadow-sm">
+          <summary class="font-semibold text-lg cursor-pointer">{{ item.question }}</summary>
+          <p class="mt-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{{ item.answer }}</p>
+        </details>
+      </div>
+    </template>
+  </FaqBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

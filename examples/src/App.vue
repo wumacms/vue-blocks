@@ -30,6 +30,8 @@ const themeMode = ref('light')
 const heroVariant = ref('1')
 const activePopup = ref(null)
 const floatingBarRef = ref(null)
+const footerEl = ref(null)
+const bottomOffset = ref(24)
 
 const heroVariants = [
   { id: '1', name: 'SaaS 现代风格', desc: '科技产品落地页' },
@@ -80,6 +82,18 @@ function handleOutsideClick(event) {
   }
 }
 
+function updateBottomOffset() {
+  if (!footerEl.value) return
+  const rect = footerEl.value.getBoundingClientRect()
+  const windowHeight = window.innerHeight
+  if (rect.top < windowHeight) {
+    const visibleFooterHeight = windowHeight - rect.top
+    bottomOffset.value = Math.max(24, visibleFooterHeight + 16)
+  } else {
+    bottomOffset.value = 24
+  }
+}
+
 onMounted(() => {
   const saved = localStorage.getItem('vb-theme')
   if (saved && ['light', 'dark', 'system'].includes(saved)) {
@@ -90,10 +104,15 @@ onMounted(() => {
     isDark.value = hasDarkClass
   }
   document.addEventListener('click', handleOutsideClick)
+  window.addEventListener('scroll', updateBottomOffset, { passive: true })
+  window.addEventListener('resize', updateBottomOffset, { passive: true })
+  updateBottomOffset()
 })
 
 onUnmounted(() => {
   document.removeEventListener('click', handleOutsideClick)
+  window.removeEventListener('scroll', updateBottomOffset)
+  window.removeEventListener('resize', updateBottomOffset)
 })
 
 // Custom data override example for Hero
@@ -115,8 +134,9 @@ function handleContactSubmit(formData) {
 <template>
   <div
     class="min-h-screen font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-    <!-- 悬浮控制台：纵向连体按钮与弹出菜单 -->
-    <div ref="floatingBarRef" class="fixed bottom-24 right-6 z-50 flex items-end">
+    <!-- 悬浮控制台：纵向连体按钮与弹出菜单（自动避让页脚） -->
+    <div ref="floatingBarRef" class="fixed right-6 z-50 flex items-end transition-[bottom] duration-150 ease-out"
+      :style="{ bottom: `${bottomOffset}px` }">
       <!-- 弹出选择项菜单 -->
       <transition enter-active-class="transition duration-150 ease-out"
         enter-from-class="opacity-0 translate-x-2 scale-95" enter-to-class="opacity-100 translate-x-0 scale-100"
@@ -302,6 +322,8 @@ function handleContactSubmit(formData) {
     <ContactFormBlock @submit="handleContactSubmit" />
 
     <!-- 22. 页脚区块 -->
-    <FooterBlock />
+    <div ref="footerEl">
+      <FooterBlock />
+    </div>
   </div>
 </template>

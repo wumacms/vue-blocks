@@ -84,7 +84,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -98,6 +98,40 @@ const customStyles = {
 | `copyright` | 版权声明文字小字样式 | `text-sm text-gray-400 text-center md:text-right` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `brand` | `{ data }` | 页脚品牌与 Logo 区域 |
+| `copyright` | `{ copyright }` | 页脚底部版权文案及备案信息区域 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <FooterBlock>
+    <!-- 1. 自定义品牌 Logo 区域 -->
+    <template #brand="{ data }">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl font-black text-indigo-600">⚡ {{ data.brandName }}</span>
+      </div>
+    </template>
+
+    <!-- 2. 自定义版权与备案链接 -->
+    <template #copyright="{ copyright }">
+      <div class="text-center text-sm text-gray-400">
+        <p>{{ copyright }}</p>
+        <a href="https://beian.miit.gov.cn" target="_blank" class="hover:underline mt-1 inline-block">
+          京ICP备xxxxxxxx号
+        </a>
+      </div>
+    </template>
+  </FooterBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

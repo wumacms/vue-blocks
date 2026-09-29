@@ -256,7 +256,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -291,6 +291,47 @@ const customStyles = {
 | `moreLink` | 底部按钮样式 | - |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 课程列表主标题 |
+| `description` | `{ description }` | 课程列表副标题说明 |
+| `courses` | `{ courses }` | 课程卡片列表网格，可自定义讲师标签、课时展示与报名按钮 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <CourseListBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-black text-center text-gray-900 dark:text-white mb-3">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义副标题 -->
+    <template #description="{ description }">
+      <p class="text-lg text-center text-gray-500 mb-12">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义课程卡片列表 -->
+    <template #courses="{ courses }">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div v-for="(c, idx) in courses" :key="idx" class="rounded-2xl border overflow-hidden bg-white dark:bg-gray-800 shadow-lg">
+          <img :src="c.cover" :alt="c.title" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <h3 class="font-bold text-lg mb-2">{{ c.title }}</h3>
+            <p class="text-indigo-600 font-extrabold text-xl">{{ c.price }}</p>
+          </div>
+        </div>
+      </div>
+    </template>
+  </CourseListBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

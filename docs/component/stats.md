@@ -104,7 +104,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -118,6 +118,32 @@ const customStyles = {
 | `label` | 指标描述标签文本样式 | `text-sm md:text-base text-gray-600 dark:text-gray-400 font-medium mt-2` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `stats` | `{ stats }` | 数据统计指标网格列表，支持接入数字滚动动效库（如 CountUp 等） |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <StatsBlock>
+    <!-- 1. 自定义统计指标网格 -->
+    <template #stats="{ stats }">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div v-for="(item, idx) in stats" :key="idx" class="p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-lg">
+          <div class="text-4xl font-black text-indigo-600 mb-2">{{ item.value }}</div>
+          <div class="text-sm font-medium text-gray-500">{{ item.label }}</div>
+        </div>
+      </div>
+    </template>
+  </StatsBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

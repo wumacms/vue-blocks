@@ -117,7 +117,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -135,6 +135,53 @@ const customStyles = {
 | `cardDescription` | 特性卡片内详细描述文本样式 | `text-gray-600 dark:text-gray-400 text-sm leading-relaxed` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 特性介绍区块主标题 |
+| `description` | `{ description }` | 特性介绍区块副标题描述 |
+| `grid` | `{ features }` | 整个特性卡片网格列表，支持完全重写卡片排列与展示方式 |
+| `icon` | `{ icon, index }` | 单个特性卡片中的图标节点，支持注入第三方 Icon 图标库（如 Lucide、Iconify 等） |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <FeaturesBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-extrabold text-center text-indigo-600 mb-3">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义副标题描述 -->
+    <template #description="{ description }">
+      <p class="text-lg text-center text-gray-500 mb-12">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义单个卡片的图标节点（局部细粒度定制） -->
+    <template #icon="{ icon, index }">
+      <span class="inline-flex p-3 rounded-2xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 text-2xl shadow-sm">
+        {{ icon }}
+      </span>
+    </template>
+
+    <!-- 4. 若需完全重写网格列表，也可使用 grid 插槽：
+    <template #grid="{ features }">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div v-for="(item, idx) in features" :key="idx" class="p-6 rounded-2xl border">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      </div>
+    </template>
+    -->
+  </FeaturesBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

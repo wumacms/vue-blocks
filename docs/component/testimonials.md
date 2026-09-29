@@ -123,7 +123,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -144,6 +144,50 @@ const customStyles = {
 | `authorRole` | 评价人职位与公司名浅色小字样式 | `text-xs text-gray-500 dark:text-gray-400` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 客户好评区块主标题 |
+| `description` | `{ description }` | 客户好评区块副标题说明 |
+| `testimonials` | `{ testimonials }` | 评价卡片列表，可自定义卡片评分星级、头像样式或接入轮播组件 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <TestimonialsBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-4xl font-black text-center text-gray-900 dark:text-white mb-3">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义副标题 -->
+    <template #description="{ description }">
+      <p class="text-lg text-center text-gray-500 mb-12">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义评价卡片列表 -->
+    <template #testimonials="{ testimonials }">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div v-for="(item, idx) in testimonials" :key="idx" class="p-6 rounded-2xl border bg-white dark:bg-gray-900 shadow-md">
+          <p class="text-gray-600 dark:text-gray-300 italic mb-6">“{{ item.content }}”</p>
+          <div class="flex items-center gap-3">
+            <img :src="item.avatar" :alt="item.name" class="w-12 h-12 rounded-full object-cover" />
+            <div>
+              <div class="font-bold text-sm">{{ item.name }}</div>
+              <div class="text-xs text-gray-400">{{ item.role }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </TestimonialsBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

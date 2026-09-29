@@ -119,7 +119,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -136,6 +136,41 @@ const customStyles = {
 | `logoName` | 辅助无障碍的企业名称样式 | `text-xs text-gray-400 mt-1` |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 合作伙伴与信任背书主标题 |
+| `description` | `{ description }` | 副标题说明 |
+| `partners` | `{ partners }` | 品牌 Logo 网格列表，可接入无缝滚动跑马灯 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <PartnersBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h2 class="text-2xl font-bold text-center text-gray-500 mb-2">{{ title }}</h2>
+    </template>
+
+    <!-- 2. 自定义副标题说明 -->
+    <template #description="{ description }">
+      <p class="text-sm text-center text-gray-400 mb-8">{{ description }}</p>
+    </template>
+
+    <!-- 3. 自定义合作伙伴 Logo 列表 -->
+    <template #partners="{ partners }">
+      <div class="flex flex-wrap items-center justify-center gap-10 opacity-75">
+        <img v-for="(p, idx) in partners" :key="idx" :src="p.logo" :alt="p.name" class="h-8 object-contain" />
+      </div>
+    </template>
+  </PartnersBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 

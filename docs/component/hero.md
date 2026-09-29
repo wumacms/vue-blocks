@@ -180,7 +180,7 @@ const customStyles = {
 
 ---
 
-## 🎨 样式字段规范 (Styles Slots)
+## 🎨 样式类名规范 (Styles Classes)
 
 组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
@@ -200,6 +200,55 @@ const customStyles = {
 | `overlay` | 变体4背景暗色半透明遮罩层 | - |
 
 ---
+
+## 🧩 插槽规范 (Slots)
+
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+
+| 插槽名 | 作用域参数 (Slot Props) | 说明 |
+|---|---|---|
+| `title` | `{ title }` | 主标题区域，支持替换为动态渐变字、带徽标组合或任意富文本 |
+| `description` | `{ description }` | 副标题/核心价值主张描述文本区域 |
+| `actions` | `{ buttons }` | 行动按钮操作区，支持接入第三方按钮组件、自定义弹窗或交互事件 |
+| `media` | `{ image, imageAlt }` | 视觉媒体展示区，支持替换为视频播放器、3D Canvas 或产品交互原型 |
+
+### 插槽使用示例
+
+```vue
+<template>
+  <HeroBlock>
+    <!-- 1. 自定义主标题 -->
+    <template #title="{ title }">
+      <h1 class="text-5xl font-black bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-6">
+        {{ title }}
+      </h1>
+    </template>
+
+    <!-- 2. 自定义副标题与描述 -->
+    <template #description="{ description }">
+      <p class="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-8">
+        {{ description }}
+      </p>
+    </template>
+
+    <!-- 3. 自定义行动按钮组 -->
+    <template #actions="{ buttons }">
+      <div class="flex gap-4 justify-center">
+        <button class="px-8 py-3.5 rounded-full bg-indigo-600 text-white font-semibold shadow-lg hover:bg-indigo-700 transition">
+          立即免费体验
+        </button>
+      </div>
+    </template>
+
+    <!-- 4. 自定义视觉媒体展示区 -->
+    <template #media="{ image, imageAlt }">
+      <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
+        <img :src="image" :alt="imageAlt" class="w-full h-auto object-cover" />
+      </div>
+    </template>
+  </HeroBlock>
+</template>
+```
 
 ## 🧩 基础属性 (Props)
 
