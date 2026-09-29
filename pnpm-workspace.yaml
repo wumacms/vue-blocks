@@ -1,0 +1,12 @@
+packages:
+  # 组件库的文档
+  - 'docs'
+  # 组件库的测试项目
+  - 'examples'
+  # 组件库打包工程
+  - 'build'
+  # packages 下面的每个子文件夹，都是组件包
+  - 'packages/*'
+
+# 开启此配置项之后，pnpm 允许拉取和安装本地工作区中的包
+linkWorkspacePackages: true

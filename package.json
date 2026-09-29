@@ -1,0 +1,39 @@
+{
+  "name": "vue-blocks-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Vue 3 + Tailwind CSS 4 Enterprise Landing Page Block Components Library",
+  "scripts": {
+    "dev": "pnpm -C examples dev",
+    "build": "pnpm -C examples build",
+    "build:lib": "pnpm -C build start",
+    "build:examples": "pnpm -C examples build",
+    "build:docs": "pnpm -C docs docs:build",
+    "build:all": "pnpm run build:lib && pnpm run build:examples && pnpm run build:docs",
+    "build:pages": "pnpm run build:all && node -e \"const fs = require('fs'); fs.cpSync('examples/dist', 'docs/.vitepress/dist/examples', { recursive: true });\"",
+    "docs:dev": "pnpm -C docs docs:dev",
+    "docs:build": "pnpm -C docs docs:build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue3",
+    "tailwindcss",
+    "blocks",
+    "landing-page",
+    "components"
+  ],
+  "license": "MIT",
+  "packageManager": "pnpm@10.17.1",
+  "dependencies": {
+    "@vue-blocks/components": "workspace:^",
+    "@vue-blocks/utils": "workspace:^",
+    "clsx": "^2.1.1",
+    "defu": "^6.1.7",
+    "tailwind-merge": "^3.7.0",
+    "vue": "^3.5.21"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

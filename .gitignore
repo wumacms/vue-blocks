@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+vue-blocks/
+packages/dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.*
+!.env.development
+!.env.example
+
+# Logs & redundant locks
+*.log
+npm-debug.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+
+# Legacy / test artifacts
+escook-ui
+build/test
+
+# VitePress build output
+docs/.vitepress/dist/
+docs/.vitepress/cache/

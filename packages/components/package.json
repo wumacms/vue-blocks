@@ -1,0 +1,16 @@
+{
+  "name": "@vue-blocks/components",
+  "version": "1.0.0",
+  "description": "Block components for landing pages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@vue-blocks/utils": "workspace:^",
+    "vue": "^3.5.21"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

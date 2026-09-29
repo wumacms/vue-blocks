@@ -1,0 +1,24 @@
+{
+  "name": "build",
+  "version": "1.0.0",
+  "description": "Build pipeline for vue-blocks",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp -f gulpfile.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "16.0.3",
+    "@vitejs/plugin-vue": "6.0.1",
+    "del": "8.0.1",
+    "fast-glob": "3.3.3",
+    "gulp": "5.0.1",
+    "rollup": "4.53.4",
+    "rollup-plugin-esbuild": "6.2.1"
+  }
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "模块标题",
+    "default": "无缝沟通，跨越部门"
+  },
+  {
+    "name": "description",
+    "type": "textarea",
+    "label": "模块描述",
+    "default": "打破信息孤岛，通过话题群组、私聊和富媒体分享，让每个人都能快速找到所需信息。集成企业目录，一键联系同事。"
+  },
+  {
+    "name": "image",
+    "type": "image",
+    "label": "封面图片",
+    "default": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=30",
+    "help": "建议尺寸 1200x900px (4:3)"
+  },
+  {
+    "name": "imageAlt",
+    "type": "text",
+    "label": "图片描述",
+    "default": "三位年轻职场人士在开放式办公室使用笔记本电脑进行团队讨论",
+    "help": "用于无障碍访问和搜索引擎优化"
+  },
+  {
+    "name": "tags",
+    "type": "repeater",
+    "label": "标签列表",
+    "fields": [
+      {
+        "name": "text",
+        "type": "text",
+        "label": "标签文字"
+      }
+    ],
+    "default": [
+      {
+        "text": "✓ 端到端加密"
+      },
+      {
+        "text": "✓ 无限历史记录"
+      }
+    ]
+  }
+]

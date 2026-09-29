@@ -1,0 +1,36 @@
+{
+  "name": "vue-blocks",
+  "version": "1.0.0",
+  "description": "Vue 3 + Tailwind CSS 4 Enterprise Landing Page Block Components Library",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "index.d.ts",
+  "files": [
+    "dist",
+    "es",
+    "lib",
+    "index.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Vue3",
+    "TailwindCSS",
+    "LandingPage",
+    "BlockComponents",
+    "UI"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@vue-blocks/components": "workspace:^",
+    "@vue-blocks/utils": "workspace:^",
+    "clsx": "^2.1.1",
+    "defu": "^6.1.7",
+    "tailwind-merge": "^3.7.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.21"
+  }
+}

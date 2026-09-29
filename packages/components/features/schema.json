@@ -1,0 +1,58 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "模块标题",
+    "default": "专为商务打造的特性"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "模块描述",
+    "default": "从安全到效率，面面俱到"
+  },
+  {
+    "name": "features",
+    "type": "repeater",
+    "label": "特性列表",
+    "fields": [
+      {
+        "name": "icon",
+        "type": "text",
+        "label": "图标 (Emoji)"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "特性标题"
+      },
+      {
+        "name": "description",
+        "type": "textarea",
+        "label": "特性描述"
+      }
+    ],
+    "default": [
+      {
+        "icon": "🔒",
+        "title": "企业级安全",
+        "description": "端到端加密、SSO、DLP策略，满足合规需求。"
+      },
+      {
+        "icon": "⚡",
+        "title": "实时同步",
+        "description": "毫秒级延迟，跨设备已读回执与状态。"
+      },
+      {
+        "icon": "🧩",
+        "title": "无限集成",
+        "description": "连接200+企业应用，自定义机器人。"
+      },
+      {
+        "icon": "📊",
+        "title": "分析洞察",
+        "description": "团队活跃度、响应时间数据可视化。"
+      }
+    ]
+  }
+]

@@ -1,0 +1,55 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "标题",
+    "default": "立即提升团队协作效率"
+  },
+  {
+    "name": "description",
+    "type": "textarea",
+    "label": "描述",
+    "default": "加入数百家信任我们的企业，开启高效沟通之旅。"
+  },
+  {
+    "name": "buttons",
+    "type": "repeater",
+    "label": "按钮列表",
+    "fields": [
+      {
+        "name": "btnText",
+        "type": "text",
+        "label": "按钮文字"
+      },
+      {
+        "name": "btnLink",
+        "type": "text",
+        "label": "链接地址"
+      },
+      {
+        "name": "isPrimary",
+        "type": "boolean",
+        "label": "突出显示"
+      },
+      {
+        "name": "newWindow",
+        "type": "boolean",
+        "label": "新窗口打开"
+      }
+    ],
+    "default": [
+      {
+        "btnLink": "#",
+        "btnText": "免费试用30天",
+        "isPrimary": true,
+        "newWindow": false
+      },
+      {
+        "btnLink": "#",
+        "btnText": "预约演示",
+        "isPrimary": false,
+        "newWindow": true
+      }
+    ]
+  }
+]

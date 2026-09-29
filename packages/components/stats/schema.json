@@ -1,0 +1,37 @@
+[
+  {
+    "name": "stats",
+    "type": "repeater",
+    "label": "统计列表",
+    "fields": [
+      {
+        "name": "value",
+        "type": "text",
+        "label": "数值 (如: 98%)"
+      },
+      {
+        "name": "label",
+        "type": "text",
+        "label": "标签 (如: 客户留存率)"
+      }
+    ],
+    "default": [
+      {
+        "label": "企业客户",
+        "value": "500+"
+      },
+      {
+        "label": "客户留存率",
+        "value": "98%"
+      },
+      {
+        "label": "日消息量",
+        "value": "20M+"
+      },
+      {
+        "label": "技术支持",
+        "value": "24/7"
+      }
+    ]
+  }
+]

@@ -1,0 +1,341 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "区块标题",
+    "default": "热门课程",
+    "help": "主标题，通常为2-4个字"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "区块副标题",
+    "default": "系统化学习路径，助力团队快速掌握协作技能",
+    "help": "简短描述，概括区块内容"
+  },
+  {
+    "name": "courses",
+    "type": "repeater",
+    "label": "课程列表",
+    "fields": [
+      {
+        "name": "image",
+        "type": "image",
+        "label": "课程封面图",
+        "default": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "help": "建议尺寸 600x400px (3:2)"
+      },
+      {
+        "name": "imageAlt",
+        "type": "text",
+        "label": "图片描述",
+        "default": "课程封面",
+        "help": "用于无障碍访问和搜索引擎优化"
+      },
+      {
+        "name": "tags",
+        "type": "repeater",
+        "label": "课程标签",
+        "fields": [
+          {
+            "name": "text",
+            "type": "text",
+            "label": "标签文字",
+            "help": "如：入门、进阶、高级、热门、新品"
+          },
+          {
+            "name": "bgColor",
+            "type": "select",
+            "label": "标签颜色",
+            "options": [
+              {
+                "label": "靛蓝",
+                "value": "bg-indigo-600"
+              },
+              {
+                "label": "翠绿",
+                "value": "bg-emerald-500"
+              },
+              {
+                "label": "橙色",
+                "value": "bg-orange-500"
+              },
+              {
+                "label": "玫红",
+                "value": "bg-rose-500"
+              },
+              {
+                "label": "紫色",
+                "value": "bg-purple-500"
+              },
+              {
+                "label": "青色",
+                "value": "bg-cyan-500"
+              }
+            ],
+            "default": "bg-indigo-600"
+          }
+        ],
+        "default": [
+          {
+            "text": "入门",
+            "bgColor": "bg-indigo-600"
+          }
+        ],
+        "help": "显示在封面图左上角，建议1-2个"
+      },
+      {
+        "name": "duration",
+        "type": "text",
+        "label": "课程时长",
+        "default": "2.5 小时",
+        "help": "如：2.5 小时、45 分钟"
+      },
+      {
+        "name": "chapters",
+        "type": "text",
+        "label": "章节数",
+        "default": "6",
+        "help": "数字，如：6"
+      },
+      {
+        "name": "instructor",
+        "type": "text",
+        "label": "讲师姓名",
+        "default": "张伟",
+        "help": "讲师名称"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "课程标题",
+        "default": "ChatFlow 从入门到精通",
+        "help": "建议8-15个字"
+      },
+      {
+        "name": "description",
+        "type": "textarea",
+        "label": "课程描述",
+        "default": "全面了解 ChatFlow 核心功能，快速搭建企业协作平台。",
+        "help": "建议15-25字，简短概括"
+      },
+      {
+        "name": "ratingStars",
+        "type": "select",
+        "label": "评分星级",
+        "options": [
+          {
+            "label": "★★★★★ (5.0)",
+            "value": "★★★★★"
+          },
+          {
+            "label": "★★★★☆ (4.5)",
+            "value": "★★★★☆"
+          },
+          {
+            "label": "★★★★ (4.0)",
+            "value": "★★★★"
+          },
+          {
+            "label": "★★★☆☆ (3.5)",
+            "value": "★★★☆☆"
+          }
+        ],
+        "default": "★★★★★",
+        "help": "选择显示的星级"
+      },
+      {
+        "name": "ratingCount",
+        "type": "text",
+        "label": "评价数量",
+        "default": "86",
+        "help": "数字，如：86"
+      },
+      {
+        "name": "price",
+        "type": "text",
+        "label": "课程价格",
+        "default": "¥199",
+        "help": "如：¥199、免费、¥299"
+      },
+      {
+        "name": "btnText",
+        "type": "text",
+        "label": "按钮文字",
+        "default": "立即学习",
+        "help": "CTA 按钮文字"
+      },
+      {
+        "name": "link",
+        "type": "text",
+        "label": "课程链接",
+        "default": "#",
+        "help": "点击按钮跳转的目标地址"
+      },
+      {
+        "name": "newWindow",
+        "type": "boolean",
+        "label": "新窗口打开",
+        "default": false,
+        "help": "勾选后点击链接将在新标签页打开"
+      }
+    ],
+    "default": [
+      {
+        "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "ChatFlow 入门指南课程封面",
+        "tags": [
+          {
+            "text": "入门",
+            "bgColor": "bg-indigo-600"
+          }
+        ],
+        "duration": "2.5 小时",
+        "chapters": "6",
+        "instructor": "张伟",
+        "title": "ChatFlow 从入门到精通",
+        "description": "全面了解 ChatFlow 核心功能，快速搭建企业协作平台。",
+        "ratingStars": "★★★★★",
+        "ratingCount": "86",
+        "price": "¥199",
+        "btnText": "立即学习",
+        "link": "#",
+        "newWindow": false
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "团队管理课程封面",
+        "tags": [
+          {
+            "text": "进阶",
+            "bgColor": "bg-emerald-500"
+          },
+          {
+            "text": "热门",
+            "bgColor": "bg-orange-500"
+          }
+        ],
+        "duration": "4 小时",
+        "chapters": "8",
+        "instructor": "陈敏",
+        "title": "高效团队协作管理",
+        "description": "掌握团队沟通、任务分配与进度追踪的实战技巧。",
+        "ratingStars": "★★★★★",
+        "ratingCount": "124",
+        "price": "¥299",
+        "btnText": "立即学习",
+        "link": "#",
+        "newWindow": false
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "AI 助手课程封面",
+        "tags": [
+          {
+            "text": "高级",
+            "bgColor": "bg-purple-500"
+          },
+          {
+            "text": "新品",
+            "bgColor": "bg-rose-500"
+          }
+        ],
+        "duration": "3 小时",
+        "chapters": "5",
+        "instructor": "王磊",
+        "title": "AI 助手实战应用",
+        "description": "利用 AI 自动生成会议纪要、摘要和待办事项。",
+        "ratingStars": "★★★★☆",
+        "ratingCount": "53",
+        "price": "¥249",
+        "btnText": "立即学习",
+        "link": "#",
+        "newWindow": false
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "数据洞察课程封面",
+        "tags": [
+          {
+            "text": "入门",
+            "bgColor": "bg-indigo-600"
+          }
+        ],
+        "duration": "2 小时",
+        "chapters": "4",
+        "instructor": "李莉",
+        "title": "数据洞察与团队分析",
+        "description": "通过数据可视化了解团队活跃度与协作效率。",
+        "ratingStars": "★★★★☆",
+        "ratingCount": "41",
+        "price": "¥199",
+        "btnText": "立即学习",
+        "link": "#",
+        "newWindow": false
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "集成中心课程封面",
+        "tags": [
+          {
+            "text": "进阶",
+            "bgColor": "bg-emerald-500"
+          }
+        ],
+        "duration": "3.5 小时",
+        "chapters": "7",
+        "instructor": "张伟",
+        "title": "集成中心与自动化工作流",
+        "description": "连接 200+ 应用，打造自动化协作工作流。",
+        "ratingStars": "★★★★★",
+        "ratingCount": "67",
+        "price": "¥349",
+        "btnText": "立即学习",
+        "link": "#",
+        "newWindow": false
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "安全合规课程封面",
+        "tags": [
+          {
+            "text": "高级",
+            "bgColor": "bg-purple-500"
+          }
+        ],
+        "duration": "2.5 小时",
+        "chapters": "5",
+        "instructor": "陈敏",
+        "title": "企业安全合规实战",
+        "description": "掌握端到端加密、SSO 与数据合规最佳实践。",
+        "ratingStars": "★★★★☆",
+        "ratingCount": "38",
+        "price": "¥299",
+        "btnText": "立即学习",
+        "link": "#",
+        "newWindow": false
+      }
+    ]
+  },
+  {
+    "name": "moreText",
+    "type": "text",
+    "label": "底部按钮文字",
+    "default": "查看全部课程",
+    "help": "显示在课程列表下方的 CTA 按钮文字"
+  },
+  {
+    "name": "moreLink",
+    "type": "text",
+    "label": "底部按钮链接",
+    "default": "#",
+    "help": "点击按钮跳转的目标地址"
+  },
+  {
+    "name": "moreNewWindow",
+    "type": "boolean",
+    "label": "底部按钮新窗口打开",
+    "default": false,
+    "help": "勾选后点击按钮将在新标签页打开"
+  }
+]

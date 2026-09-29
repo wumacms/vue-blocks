@@ -1,0 +1,132 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "区块标题",
+    "default": "最新动态",
+    "help": "主标题，通常为2-4个字"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "区块副标题",
+    "default": "产品更新 · 行业洞察 · 客户故事",
+    "help": "简短描述，可用 · 或 | 分隔关键词"
+  },
+  {
+    "name": "news",
+    "type": "repeater",
+    "label": "新闻列表",
+    "fields": [
+      {
+        "name": "image",
+        "type": "image",
+        "label": "封面图片",
+        "default": "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=40",
+        "help": "建议尺寸 600x400px (3:2)，保持比例一致"
+      },
+      {
+        "name": "imageAlt",
+        "type": "text",
+        "label": "图片描述（Alt）",
+        "default": "新闻封面",
+        "help": "用于无障碍访问和SEO"
+      },
+      {
+        "name": "category",
+        "type": "text",
+        "label": "分类标签",
+        "default": "产品更新",
+        "help": "显示在卡片左上角的标签文字，如「产品更新」「行业洞察」"
+      },
+      {
+        "name": "date",
+        "type": "text",
+        "label": "发布日期",
+        "default": "2026-08-20",
+        "help": "格式建议 YYYY-MM-DD"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "新闻标题",
+        "default": "全新AI助手正式上线，支持智能摘要",
+        "help": "建议14-20字，简洁有力"
+      },
+      {
+        "name": "summary",
+        "type": "textarea",
+        "label": "新闻摘要",
+        "default": "通过大语言模型自动生成会议纪要、消息摘要，帮助团队快速对齐信息，减少沟通成本。",
+        "help": "建议50-80字，概括核心内容"
+      },
+      {
+        "name": "link",
+        "type": "text",
+        "label": "阅读更多链接",
+        "default": "#",
+        "help": "点击「阅读更多」跳转的目标地址"
+      },
+      {
+        "name": "newWindow",
+        "type": "boolean",
+        "label": "新窗口打开",
+        "default": false,
+        "help": "勾选后点击链接将在新标签页打开"
+      }
+    ],
+    "default": [
+      {
+        "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=40",
+        "imageAlt": "团队在会议室使用AI助手进行协作",
+        "category": "产品更新",
+        "date": "2026-08-20",
+        "title": "全新AI助手正式上线，支持智能摘要",
+        "summary": "通过大语言模型自动生成会议纪要、消息摘要，帮助团队快速对齐信息，减少沟通成本。",
+        "link": "#",
+        "newWindow": false
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=40",
+        "imageAlt": "科技趋势分析图表与笔记本电脑",
+        "category": "行业洞察",
+        "date": "2026-08-18",
+        "title": "2026年企业协作趋势：AI原生与安全合规",
+        "summary": "报告显示，超过70%的企业计划在明年引入AI驱动的协作工具，同时数据主权成为决策关键。",
+        "link": "#",
+        "newWindow": false
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=40",
+        "imageAlt": "零售团队在办公区交流协作",
+        "category": "客户故事",
+        "date": "2026-08-15",
+        "title": "某全球零售品牌借助ChatFlow提升跨部门效率",
+        "summary": "通过集成库存系统与即时通讯，该品牌将补货响应时间缩短了40%，团队协作更加透明。",
+        "link": "#",
+        "newWindow": false
+      }
+    ]
+  },
+  {
+    "name": "moreText",
+    "type": "text",
+    "label": "底部按钮文字",
+    "default": "查看全部新闻",
+    "help": "显示在卡片列表下方的CTA按钮文字"
+  },
+  {
+    "name": "moreLink",
+    "type": "text",
+    "label": "底部按钮链接",
+    "default": "#",
+    "help": "点击按钮跳转的目标地址，如新闻列表页"
+  },
+  {
+    "name": "moreNewWindow",
+    "type": "boolean",
+    "label": "底部按钮新窗口打开",
+    "default": false,
+    "help": "勾选后点击按钮将在新标签页打开"
+  }
+]

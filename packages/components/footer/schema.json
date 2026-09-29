@@ -1,0 +1,21 @@
+[
+  {
+    "name": "logo",
+    "type": "image",
+    "label": "Logo 图片",
+    "default": "https://placehold.co/200x200?text=Logo",
+    "help": "建议高度 32px，宽度自适应，支持长方形"
+  },
+  {
+    "name": "brandName",
+    "type": "text",
+    "label": "品牌名称",
+    "default": "ChatFlow"
+  },
+  {
+    "name": "copyright",
+    "type": "text",
+    "label": "版权信息",
+    "default": "© 2025 ChatFlow Technologies · 企业聊天解决方案。 保留所有权利。"
+  }
+]

@@ -1,0 +1,187 @@
+[
+  {
+    "name": "logo",
+    "type": "image",
+    "label": "Logo 图片",
+    "default": "https://placehold.co/32x32/4F46E5/white?text=Logo",
+    "help": "建议高度 32px，宽度自适应，支持长方形"
+  },
+  {
+    "name": "brandName",
+    "type": "text",
+    "label": "品牌名称",
+    "default": "ChatFlow"
+  },
+  {
+    "name": "navLinks",
+    "type": "repeater",
+    "label": "导航菜单项",
+    "fields": [
+      {
+        "name": "text",
+        "type": "text",
+        "label": "菜单显示文字"
+      },
+      {
+        "name": "link",
+        "type": "text",
+        "label": "链接地址（无二级菜单时使用）",
+        "placeholder": "/或https://"
+      },
+      {
+        "name": "newWindow",
+        "type": "boolean",
+        "label": "新窗口打开（无二级菜单时生效）"
+      },
+      {
+        "name": "children",
+        "type": "repeater",
+        "label": "二级菜单项（留空表示无二级菜单）",
+        "fields": [
+          {
+            "name": "text",
+            "type": "text",
+            "label": "菜单显示文字"
+          },
+          {
+            "name": "link",
+            "type": "text",
+            "label": "链接地址"
+          },
+          {
+            "name": "icon",
+            "type": "text",
+            "label": "图标（Emoji）",
+            "help": "如：💬、📹、🤖"
+          },
+          {
+            "name": "newWindow",
+            "type": "boolean",
+            "label": "新窗口打开"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "text": "产品",
+        "link": "#",
+        "children": [
+          {
+            "text": "即时通讯",
+            "link": "#",
+            "icon": "💬"
+          },
+          {
+            "text": "视频会议",
+            "link": "#",
+            "icon": "📹"
+          },
+          {
+            "text": "AI 助手",
+            "link": "#",
+            "icon": "🤖"
+          },
+          {
+            "text": "数据洞察",
+            "link": "#",
+            "icon": "📊"
+          }
+        ]
+      },
+      {
+        "text": "解决方案",
+        "link": "#",
+        "children": [
+          {
+            "text": "大型企业",
+            "link": "#",
+            "icon": "🏢"
+          },
+          {
+            "text": "初创团队",
+            "link": "#",
+            "icon": "🚀"
+          },
+          {
+            "text": "电商零售",
+            "link": "#",
+            "icon": "🛒"
+          },
+          {
+            "text": "医疗健康",
+            "link": "#",
+            "icon": "⚕️"
+          }
+        ]
+      },
+      {
+        "text": "资源",
+        "link": "#",
+        "children": [
+          {
+            "text": "帮助文档",
+            "link": "#",
+            "icon": "📚"
+          },
+          {
+            "text": "开发者教程",
+            "link": "#",
+            "icon": "🎓"
+          },
+          {
+            "text": "最佳实践",
+            "link": "#",
+            "icon": "💡"
+          },
+          {
+            "text": "社区论坛",
+            "link": "#",
+            "icon": "🌐"
+          }
+        ]
+      },
+      {
+        "text": "价格",
+        "link": "#",
+        "newWindow": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "buttons",
+    "type": "repeater",
+    "label": "CTA 按钮列表",
+    "fields": [
+      {
+        "name": "text",
+        "type": "text",
+        "label": "按钮文字"
+      },
+      {
+        "name": "link",
+        "type": "text",
+        "label": "链接地址"
+      },
+      {
+        "name": "isPrimary",
+        "type": "boolean",
+        "label": "突出显示（主按钮）"
+      },
+      {
+        "name": "newWindow",
+        "type": "boolean",
+        "label": "新窗口打开"
+      }
+    ],
+    "default": [
+      {
+        "text": "开始免费试用",
+        "link": "#",
+        "isPrimary": true,
+        "newWindow": false
+      }
+    ]
+  }
+]

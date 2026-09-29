@@ -1,0 +1,48 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "模块标题",
+    "default": "深度集成工作流"
+  },
+  {
+    "name": "description",
+    "type": "textarea",
+    "label": "模块描述",
+    "default": "与您使用的工具无缝连接：Jira、GitLab、Google Drive、Salesforce。在聊天中创建任务、分享文件、触发自动化。"
+  },
+  {
+    "name": "image",
+    "type": "image",
+    "label": "图片",
+    "default": "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=30",
+    "help": "建议尺寸 1200x900px (4:3)"
+  },
+  {
+    "name": "imageAlt",
+    "type": "text",
+    "label": "图片描述",
+    "default": "两位年轻职场人士坐在办公室的电脑前工作",
+    "help": "用于无障碍访问和搜索引擎优化"
+  },
+  {
+    "name": "tags",
+    "type": "repeater",
+    "label": "标签列表",
+    "fields": [
+      {
+        "name": "text",
+        "type": "text",
+        "label": "标签文字"
+      }
+    ],
+    "default": [
+      {
+        "text": "Slack 导入"
+      },
+      {
+        "text": "API 开放"
+      }
+    ]
+  }
+]

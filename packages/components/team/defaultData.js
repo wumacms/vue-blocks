@@ -1,0 +1,27 @@
+export const defaultData = {
+  "title": "核心团队",
+  "description": "来自全球顶尖企业的协作专家",
+  "members": [
+    {
+      "name": "张伟",
+      "role": "CEO & 创始人",
+      "avatar": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=128&h=128&fit=crop"
+    },
+    {
+      "name": "陈敏",
+      "role": "CTO",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop"
+    },
+    {
+      "name": "王磊",
+      "role": "产品总监",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=128&h=128&fit=crop"
+    },
+    {
+      "name": "李莉",
+      "role": "设计负责人",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=128&h=128&fit=crop"
+    }
+  ]
+}
+export default defaultData

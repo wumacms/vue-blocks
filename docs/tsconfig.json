@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "jsx": "preserve",
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "vue-blocks": ["../packages"],
+      "@vue-blocks/*": ["../packages/*"]
+    }
+  },
+  "include": [
+    "**/*",
+    ".vitepress/**/*",
+    "env.d.ts"
+  ]
+}

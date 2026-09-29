@@ -1,0 +1,17 @@
+{
+  "name": "@vue-blocks/utils",
+  "version": "1.0.0",
+  "description": "Utility functions for block components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "defu": "^6.1.7",
+    "tailwind-merge": "^3.7.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

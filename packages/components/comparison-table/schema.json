@@ -1,0 +1,198 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "区块标题",
+    "default": "为什么选择 ChatFlow"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "区块描述",
+    "default": "与主流竞品对比，优势一目了然"
+  },
+  {
+    "name": "firstColHeader",
+    "type": "text",
+    "label": "首列表头文字",
+    "default": "功能"
+  },
+  {
+    "name": "headers",
+    "type": "repeater",
+    "label": "表头列表（不含首列）",
+    "fields": [
+      {
+        "name": "text",
+        "type": "text",
+        "label": "表头文字"
+      },
+      {
+        "name": "textColor",
+        "type": "select",
+        "label": "文字颜色",
+        "options": [
+          {
+            "label": "Indigo (品牌色)",
+            "value": "text-indigo-700"
+          },
+          {
+            "label": "灰色",
+            "value": "text-gray-500"
+          }
+        ],
+        "default": "text-gray-500"
+      }
+    ],
+    "default": [
+      {
+        "text": "ChatFlow",
+        "textColor": "text-indigo-700"
+      },
+      {
+        "text": "竞品A",
+        "textColor": "text-gray-500"
+      },
+      {
+        "text": "竞品B",
+        "textColor": "text-gray-500"
+      }
+    ]
+  },
+  {
+    "name": "rows",
+    "type": "repeater",
+    "label": "表格行",
+    "fields": [
+      {
+        "name": "feature",
+        "type": "text",
+        "label": "功能名称"
+      },
+      {
+        "name": "columns",
+        "type": "repeater",
+        "label": "各列值（顺序需与表头一致）",
+        "fields": [
+          {
+            "name": "value",
+            "type": "text",
+            "label": "显示内容",
+            "help": "支持 ✓、✗、Beta 等文字"
+          },
+          {
+            "name": "textColor",
+            "type": "select",
+            "label": "文字颜色",
+            "options": [
+              {
+                "label": "绿色 (✓)",
+                "value": "text-green-600"
+              },
+              {
+                "label": "红色 (✗)",
+                "value": "text-red-400"
+              },
+              {
+                "label": "黄色 (Beta)",
+                "value": "text-yellow-500"
+              },
+              {
+                "label": "深灰色 (默认)",
+                "value": "text-gray-700"
+              }
+            ],
+            "default": "text-gray-700"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "feature": "端到端加密",
+        "columns": [
+          {
+            "value": "✓",
+            "textColor": "text-green-600"
+          },
+          {
+            "value": "✗",
+            "textColor": "text-red-400"
+          },
+          {
+            "value": "✓",
+            "textColor": "text-green-600"
+          }
+        ]
+      },
+      {
+        "feature": "无限消息历史",
+        "columns": [
+          {
+            "value": "✓",
+            "textColor": "text-green-600"
+          },
+          {
+            "value": "✓",
+            "textColor": "text-green-600"
+          },
+          {
+            "value": "✗",
+            "textColor": "text-red-400"
+          }
+        ]
+      },
+      {
+        "feature": "私有部署",
+        "columns": [
+          {
+            "value": "✓",
+            "textColor": "text-green-600"
+          },
+          {
+            "value": "✗",
+            "textColor": "text-red-400"
+          },
+          {
+            "value": "✓",
+            "textColor": "text-green-600"
+          }
+        ]
+      },
+      {
+        "feature": "AI 助手",
+        "columns": [
+          {
+            "value": "✓",
+            "textColor": "text-green-600"
+          },
+          {
+            "value": "✗",
+            "textColor": "text-red-400"
+          },
+          {
+            "value": "Beta",
+            "textColor": "text-yellow-500"
+          }
+        ]
+      },
+      {
+        "feature": "200+ 集成",
+        "columns": [
+          {
+            "value": "✓",
+            "textColor": "text-green-600"
+          },
+          {
+            "value": "✓",
+            "textColor": "text-green-600"
+          },
+          {
+            "value": "✗",
+            "textColor": "text-red-400"
+          }
+        ]
+      }
+    ]
+  }
+]

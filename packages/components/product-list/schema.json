@@ -1,0 +1,257 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "区块标题",
+    "default": "我们的产品",
+    "help": "主标题，通常为2-4个字"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "区块副标题",
+    "default": "为企业打造的智能协作工具矩阵",
+    "help": "简短描述，概括区块内容"
+  },
+  {
+    "name": "products",
+    "type": "repeater",
+    "label": "产品列表",
+    "fields": [
+      {
+        "name": "image",
+        "type": "image",
+        "label": "产品图片",
+        "default": "https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "help": "建议尺寸 600x400px (3:2)，使用高质量产品截图或场景图"
+      },
+      {
+        "name": "imageAlt",
+        "type": "text",
+        "label": "图片描述",
+        "default": "产品界面截图",
+        "help": "用于无障碍访问和搜索引擎优化"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "产品名称",
+        "default": "即时通讯",
+        "help": "产品标题，建议2-4个字"
+      },
+      {
+        "name": "description",
+        "type": "textarea",
+        "label": "产品描述",
+        "default": "企业级实时消息系统，支持群聊、私聊、富媒体分享，消息历史永久保存。",
+        "help": "建议30-50字，概括产品核心功能"
+      },
+      {
+        "name": "tags",
+        "type": "repeater",
+        "label": "特性标签",
+        "fields": [
+          {
+            "name": "text",
+            "type": "text",
+            "label": "标签文字"
+          }
+        ],
+        "default": [
+          {
+            "text": "端到端加密"
+          },
+          {
+            "text": "已读回执"
+          },
+          {
+            "text": "多端同步"
+          }
+        ],
+        "help": "显示在产品卡片底部的特性标签，建议2-4个"
+      },
+      {
+        "name": "link",
+        "type": "text",
+        "label": "详情链接",
+        "default": "#",
+        "help": "点击「了解详情」跳转的目标地址"
+      },
+      {
+        "name": "newWindow",
+        "type": "boolean",
+        "label": "新窗口打开",
+        "default": false,
+        "help": "勾选后点击链接将在新标签页打开"
+      },
+      {
+        "name": "badge",
+        "type": "text",
+        "label": "角标文字（可选）",
+        "default": "",
+        "help": "显示在卡片右上角的标签，如「热门」「新品」「推荐」，留空则不显示"
+      },
+      {
+        "name": "badgeColor",
+        "type": "select",
+        "label": "角标颜色",
+        "options": [
+          {
+            "label": "靛蓝",
+            "value": "bg-indigo-600"
+          },
+          {
+            "label": "翠绿",
+            "value": "bg-emerald-500"
+          },
+          {
+            "label": "橙色",
+            "value": "bg-orange-500"
+          },
+          {
+            "label": "玫红",
+            "value": "bg-rose-500"
+          },
+          {
+            "label": "紫色",
+            "value": "bg-purple-500"
+          },
+          {
+            "label": "青色",
+            "value": "bg-cyan-500"
+          }
+        ],
+        "default": "bg-indigo-600",
+        "help": "仅当角标文字不为空时生效"
+      }
+    ],
+    "default": [
+      {
+        "image": "https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "即时通讯产品界面截图",
+        "title": "即时通讯",
+        "description": "企业级实时消息系统，支持群聊、私聊、富媒体分享，消息历史永久保存。",
+        "tags": [
+          {
+            "text": "端到端加密"
+          },
+          {
+            "text": "已读回执"
+          },
+          {
+            "text": "多端同步"
+          }
+        ],
+        "link": "#",
+        "newWindow": false,
+        "badge": "热门",
+        "badgeColor": "bg-indigo-600"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "视频会议产品界面截图",
+        "title": "视频会议",
+        "description": "高清音视频通话，支持屏幕共享、录制、虚拟背景，最多容纳500人同时在线。",
+        "tags": [
+          {
+            "text": "1080p"
+          },
+          {
+            "text": "AI 降噪"
+          },
+          {
+            "text": "实时字幕"
+          }
+        ],
+        "link": "#",
+        "newWindow": false,
+        "badge": "",
+        "badgeColor": "bg-indigo-600"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "AI智能助手产品界面截图",
+        "title": "AI 智能助手",
+        "description": "基于大语言模型，自动生成会议纪要、消息摘要、待办事项，提升团队效率。",
+        "tags": [
+          {
+            "text": "智能摘要"
+          },
+          {
+            "text": "多语言"
+          },
+          {
+            "text": "API 开放"
+          }
+        ],
+        "link": "#",
+        "newWindow": false,
+        "badge": "新品",
+        "badgeColor": "bg-emerald-500"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "数据洞察产品界面截图",
+        "title": "数据洞察",
+        "description": "实时团队活跃度分析、响应时间监控、消息量统计，数据可视化助力决策。",
+        "tags": [
+          {
+            "text": "实时仪表盘"
+          },
+          {
+            "text": "导出报表"
+          },
+          {
+            "text": "API 集成"
+          }
+        ],
+        "link": "#",
+        "newWindow": false,
+        "badge": "",
+        "badgeColor": "bg-indigo-600"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "集成中心产品界面截图",
+        "title": "集成中心",
+        "description": "连接 200+ 企业应用（Jira、GitLab、Salesforce 等），打造统一工作平台。",
+        "tags": [
+          {
+            "text": "200+ 连接器"
+          },
+          {
+            "text": "自定义机器人"
+          },
+          {
+            "text": "Webhook"
+          }
+        ],
+        "link": "#",
+        "newWindow": false,
+        "badge": "",
+        "badgeColor": "bg-indigo-600"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60",
+        "imageAlt": "安全合规产品界面截图",
+        "title": "安全合规",
+        "description": "端到端加密、SSO 单点登录、DLP 策略、审计日志，满足企业安全合规需求。",
+        "tags": [
+          {
+            "text": "端到端加密"
+          },
+          {
+            "text": "SSO"
+          },
+          {
+            "text": "审计日志"
+          }
+        ],
+        "link": "#",
+        "newWindow": false,
+        "badge": "",
+        "badgeColor": "bg-indigo-600"
+      }
+    ]
+  }
+]

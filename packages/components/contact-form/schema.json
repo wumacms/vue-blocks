@@ -1,0 +1,101 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "区块标题",
+    "default": "联系我们",
+    "help": "主标题，通常为2-4个字"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "区块副标题",
+    "default": "有疑问或需求？我们的团队随时准备为您提供帮助",
+    "help": "简短描述，概括区块内容"
+  },
+  {
+    "name": "nameLabel",
+    "type": "text",
+    "label": "姓名",
+    "default": ""
+  },
+  {
+    "name": "companyLabel",
+    "type": "text",
+    "label": "公司名称",
+    "default": ""
+  },
+  {
+    "name": "emailLabel",
+    "type": "text",
+    "label": "邮箱地址",
+    "default": ""
+  },
+  {
+    "name": "subjectLabel",
+    "type": "text",
+    "label": "主题",
+    "default": ""
+  },
+  {
+    "name": "subjectOptions",
+    "type": "repeater",
+    "label": "主题下拉选项",
+    "fields": [
+      {
+        "name": "label",
+        "type": "text",
+        "label": "选项显示文字"
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "选项值"
+      }
+    ],
+    "default": [
+      {
+        "label": "产品咨询",
+        "value": "product"
+      },
+      {
+        "label": "价格方案",
+        "value": "pricing"
+      },
+      {
+        "label": "预约演示",
+        "value": "demo"
+      },
+      {
+        "label": "技术支持",
+        "value": "support"
+      },
+      {
+        "label": "合作洽谈",
+        "value": "partnership"
+      },
+      {
+        "label": "其他",
+        "value": "other"
+      }
+    ]
+  },
+  {
+    "name": "messageLabel",
+    "type": "text",
+    "label": "留言内容",
+    "default": ""
+  },
+  {
+    "name": "submitText",
+    "type": "text",
+    "label": "提交按钮文字",
+    "default": "发送消息"
+  },
+  {
+    "name": "footerNote",
+    "type": "text",
+    "label": "底部提示文字",
+    "default": "提交即表示您同意我们的隐私政策。我们承诺不会泄露您的信息。"
+  }
+]
