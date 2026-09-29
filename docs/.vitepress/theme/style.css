@@ -131,7 +131,7 @@
 }
 
 /* 2. 标题、段落与排版元素隔离：移除 VitePress 强加的分割线、外边距与行高 */
-.vp-doc .block-preview-box :is(h1, h2, h3, h4, h5, h6, p, ul, ol, li, table, tr, th, td) {
+.vp-doc .block-preview-box :is(h1, h2, h3, h4, h5, h6, p, ul, ol, li, blockquote, hr, table, tr, th, td, strong, b) {
   margin: revert-layer;
   padding: revert-layer;
   border: revert-layer;
@@ -139,5 +139,79 @@
   line-height: revert-layer;
   letter-spacing: revert-layer;
   font-weight: revert-layer;
+  list-style: revert-layer;
+  background-color: revert-layer;
+}
+
+/* 3. 图像、SVG 与多媒体元素隔离：防止 VitePress base.css 的 height: auto 覆盖 Tailwind 工具类 (如 h-8) */
+.vp-doc .block-preview-box :is(img, video) {
+  height: revert-layer;
+  max-width: revert-layer;
+}
+
+.vp-doc .block-preview-box :is(img, svg, video, canvas, audio, iframe, embed, object) {
+  display: revert-layer;
+  vertical-align: revert-layer;
+}
+
+/* 4. 表单与交互元素隔离：移除 VitePress 强加的 transparent 背景与 border: 0，恢复表单元素样式 */
+.vp-doc .block-preview-box :is(button, input, optgroup, select, textarea) {
+  border: revert-layer;
+  padding: revert-layer;
+  line-height: revert-layer;
+  color: revert-layer;
+  font: revert-layer;
+  font-family: revert-layer;
+  background-color: revert-layer;
+  background-image: revert-layer;
+  outline: revert-layer;
+}
+
+/* 5. 行内代码与预格式化隔离：防止 VitePress 给 code 元素强加灰色背景和内边距 */
+.vp-doc .block-preview-box :is(code, pre, kbd, samp) {
+  background-color: revert-layer;
+  padding: revert-layer;
+  border: revert-layer;
+  border-radius: revert-layer;
+  color: revert-layer;
+  font-size: revert-layer;
+}
+
+/* 6. 表格排版隔离：移除 VitePress 强加的 display: block 及内部隔行背景色，恢复原生 table 宽度自适应填充 */
+.vp-doc .block-preview-box table {
+  display: table;
+  width: 100%;
+  margin: revert-layer;
+  overflow: revert-layer;
+  border-collapse: revert-layer;
+}
+
+.vp-doc .block-preview-box thead {
+  display: table-header-group;
+}
+
+.vp-doc .block-preview-box tbody {
+  display: table-row-group;
+}
+
+.vp-doc .block-preview-box tr {
+  display: table-row;
+  border-top: revert-layer;
+  background-color: revert-layer;
+}
+
+.vp-doc .block-preview-box tr:nth-child(2n) {
+  background-color: revert-layer;
+}
+
+.vp-doc .block-preview-box :is(th, td) {
+  display: table-cell;
+  border: revert-layer;
+  padding: revert-layer;
+  background-color: revert-layer;
+  text-align: revert-layer;
+  font-size: revert-layer;
+  font-weight: revert-layer;
+  color: revert-layer;
 }
 

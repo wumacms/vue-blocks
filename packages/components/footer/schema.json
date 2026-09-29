@@ -3,7 +3,7 @@
     "name": "logo",
     "type": "image",
     "label": "Logo 图片",
-    "default": "https://placehold.co/200x200?text=Logo",
+    "default": "https://placehold.co/32x32/4F46E5/white?text=Logo",
     "help": "建议高度 32px，宽度自适应，支持长方形"
   },
   {

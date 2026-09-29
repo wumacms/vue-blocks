@@ -161,7 +161,7 @@ const customStyles = {
   title: 'text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4',
   description: 'text-lg text-gray-600 dark:text-gray-400',
   tableWrapper: 'overflow-x-auto shadow-sm rounded-2xl border border-gray-200 dark:border-gray-800',
-  table: 'min-w-full divide-y divide-gray-200 dark:divide-gray-800 text-sm text-left',
+  table: 'w-full min-w-full divide-y divide-gray-200 dark:divide-gray-800 text-sm text-left',
   thead: 'bg-gray-50 dark:bg-gray-800/80',
   th: 'px-6 py-4 font-semibold text-gray-700 dark:text-gray-200',
   tbody: 'divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900',
@@ -227,7 +227,7 @@ const customStyles = {
 | `title` | 区块主标题 `<h2>` 样式 | `text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4` |
 | `description` | 区块副标题 `<p>` 样式 | `text-lg text-gray-600 dark:text-gray-400` |
 | `tableWrapper` | 表格横向滚动包裹层（控制边框、圆角及小屏横向滚动） | `overflow-x-auto shadow-sm rounded-2xl border border-gray-200 dark:border-gray-800` |
-| `table` | 原生 `<table>` 元素样式（全宽、分隔线） | `min-w-full divide-y divide-gray-200 dark:divide-gray-800 text-sm text-left` |
+| `table` | 原生 `<table>` 元素样式（全宽、分隔线） | `w-full min-w-full divide-y divide-gray-200 dark:divide-gray-800 text-sm text-left` |
 | `thead` | 表头 `<thead>` 区域样式 | `bg-gray-50 dark:bg-gray-800/80` |
 | `th` | 表头单元格 `<th>` 样式 | `px-6 py-4 font-semibold text-gray-700 dark:text-gray-200` |
 | `tbody` | 表体 `<tbody>` 区域样式 | `divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900` |

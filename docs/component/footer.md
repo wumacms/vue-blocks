@@ -34,7 +34,7 @@
 import { FooterBlock } from 'vue-blocks'
 
 const customData = {
-  logo: 'https://placehold.co/200x200?text=Logo',
+  logo: 'https://placehold.co/32x32/4F46E5/white?text=Logo',
   brandName: 'ChatFlow',
   copyright: '© 2025 ChatFlow Technologies · 企业聊天解决方案。 保留所有权利。'
 }
@@ -78,7 +78,7 @@ const customStyles = {
 
 | 字段名 | 类型 | 说明 | 默认值 |
 |---|---|---|---|
-| `logo` | `image` | 页脚 Logo 图片 URL | `https://placehold.co/200x200?text=Logo` |
+| `logo` | `image` | 页脚 Logo 图片 URL | `https://placehold.co/32x32/4F46E5/white?text=Logo` |
 | `brandName` | `text` | 品牌或公司名称 | `ChatFlow` |
 | `copyright` | `text` | 版权所有与法律声明文本 | `© 2025 ChatFlow Technologies · 企业聊天解决方案。 保留所有权利。` |
 
