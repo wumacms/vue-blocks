@@ -58,6 +58,62 @@ export const CtaBlockComponent: BlockComponent
 export const ContactFormBlockComponent: BlockComponent
 export const FooterBlockComponent: BlockComponent
 
+// 页面渲染器类型声明
+export interface BlockItem {
+  type: string
+  id?: string
+  variant?: string | number
+  data?: Record<string, any>
+  styles?: Record<string, any>
+}
+
+export interface PageSEO {
+  title?: string
+  description?: string
+  keywords?: string | string[]
+  meta?: Array<{ name?: string; property?: string; content: string }> | Record<string, string>
+}
+
+export interface PageData {
+  seo?: PageSEO
+  title?: string
+  description?: string
+  keywords?: string | string[]
+  navbar?: any
+  containerClass?: string
+  mainClass?: string
+  blocks: BlockItem[]
+  footer?: any
+}
+
+export interface SubmitContext {
+  block: BlockItem | any
+  index: number | string
+}
+
+export type PageRendererComponentType = DefineComponent<
+  {
+    data?: PageData | BlockItem[]
+    navbar?: any
+    footer?: any
+    seo?: PageSEO | boolean
+  },
+  {},
+  any,
+  {},
+  {},
+  {},
+  {},
+  {
+    submit: (payload: any, context: SubmitContext) => void
+  }
+>
+
+export const PageRenderer: PageRendererComponentType
+export const PageRendererComponent: PageRendererComponentType
+export const pageRendererDefaultData: PageData
+export const builtInBlocks: Record<string, any>
+
 // 工具函数声明
 export declare function mergeData<T extends Record<string, any>>(defaults: T, custom?: Partial<T>): T
 export declare function mergeStyles<T extends Record<string, string>>(defaultStyles: T, customStyles?: Partial<T>): T

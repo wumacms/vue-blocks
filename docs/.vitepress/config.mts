@@ -42,6 +42,12 @@ export default defineConfig({
       ],
       '/component/': [
         {
+          text: '页面渲染',
+          items: [
+            { text: 'PageRenderer 页面渲染器', link: '/component/page-renderer' }
+          ]
+        },
+        {
           text: '基础区块',
           items: [
             { text: 'Navbar 导航栏', link: '/component/navbar' },

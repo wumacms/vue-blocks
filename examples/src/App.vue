@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import {
+  PageRenderer,
   NavbarBlock,
   HeroBlock,
   PartnersBlock,
@@ -26,6 +27,7 @@ import {
 } from 'vue-blocks'
 import FloatingToolbar from './components/FloatingToolbar.vue'
 
+const renderMode = ref('renderer') // 'renderer' | 'manual'
 const heroVariant = ref('1')
 const footerEl = ref(null)
 
@@ -40,83 +42,151 @@ const customFeaturesStyles = {
   root: 'py-24 bg-gradient-to-b from-indigo-50/50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950'
 }
 
-function handleContactSubmit(formData) {
-  alert(`提交成功！感谢 ${formData.name} 的留言。\n我们已向 ${formData.email} 发送确认函。`)
+// PageRenderer 数据驱动页面配置（支持响应式关联 heroVariant）
+const dynamicPageData = computed(() => ({
+  seo: {
+    title: 'VueBlocks - 数据驱动落地页渲染示例',
+    description: '无需繁琐手动引入组件，仅需一份 JSON 配置即可自动渲染企业级落地页。',
+    keywords: 'Vue3, TailwindCSS, 落地页, PageRenderer'
+  },
+  containerClass: 'space-y-0',
+  blocks: [
+    {
+      id: 'hero',
+      type: 'HeroBlock',
+      variant: heroVariant.value,
+      data: {
+        title: '下一代智能协作平台<br><span class="text-indigo-600 dark:text-indigo-400">由 PageRenderer 数据驱动</span>',
+        description: '无需繁琐手动引入 22 个组件，仅需一份 JSON 配置即可自动渲染企业级落地页。'
+      }
+    },
+    { id: 'partners', type: 'PartnersBlock' },
+    { id: 'features', type: 'FeaturesBlock', variant: '1', styles: customFeaturesStyles },
+    { id: 'stats', type: 'StatsBlock' },
+    { id: 'pricing', type: 'PricingBlock' },
+    { id: 'faq', type: 'FaqBlock' },
+    { id: 'contact', type: 'ContactFormBlock' }
+  ]
+}))
+
+function handleContactSubmit(formData, context) {
+  const fromInfo = context?.block ? `（来源区块: ${context.block.id || context.block.type}）` : ''
+  alert(`提交成功！感谢 ${formData.name} 的留言。\n我们已向 ${formData.email} 发送确认函。${fromInfo}`)
 }
 </script>
 
 <template>
   <div
     class="min-h-screen font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 底部悬浮模式切换开关（避开顶部固定/吸顶导航栏，居中展示） -->
+    <div
+      class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-gray-200/90 dark:border-gray-700/90 shadow-2xl rounded-full p-1.5 text-xs font-medium">
+      <button
+        @click="renderMode = 'renderer'"
+        :class="[
+          'px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5',
+          renderMode === 'renderer'
+            ? 'bg-indigo-600 text-white shadow-sm font-semibold'
+            : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
+        ]">
+        <span>🚀</span>
+        <span>PageRenderer 模式</span>
+      </button>
+      <button
+        @click="renderMode = 'manual'"
+        :class="[
+          'px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5',
+          renderMode === 'manual'
+            ? 'bg-indigo-600 text-white shadow-sm font-semibold'
+            : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
+        ]">
+        <span>📑</span>
+        <span>全量手动平铺模式</span>
+      </button>
+    </div>
+
     <!-- 悬浮控制台：主题模式切换与 Hero 变体切换（自动避让页脚） -->
     <FloatingToolbar v-model="heroVariant" :footer-el="footerEl" />
 
-    <!-- 1. 导航栏 (零配置渲染) -->
-    <NavbarBlock />
+    <!-- 模式 1：PageRenderer 数据驱动渲染（传入可选 navbar 与 footer 参数） -->
+    <div v-if="renderMode === 'renderer'">
+      <PageRenderer
+        :data="dynamicPageData"
+        :navbar="NavbarBlock"
+        :footer="FooterBlock"
+        @submit="handleContactSubmit"
+      />
+    </div>
 
-    <!-- 2. Hero 区块 (支持变体切换 + 数据与样式覆盖测试) -->
-    <HeroBlock :variant="heroVariant" :data="heroVariant === '1' ? customHeroData : {}" />
+    <!-- 模式 2：手动平铺全部区块 -->
+    <div v-else>
+      <!-- 1. 导航栏 (零配置渲染) -->
+      <NavbarBlock />
 
-    <!-- 3. 合作伙伴区块 -->
-    <PartnersBlock />
+      <!-- 2. Hero 区块 (支持变体切换 + 数据与样式覆盖测试) -->
+      <HeroBlock :variant="heroVariant" :data="heroVariant === '1' ? customHeroData : {}" />
 
-    <!-- 4. 特性区块 (样式覆盖测试) -->
-    <FeaturesBlock :styles="customFeaturesStyles" />
+      <!-- 3. 合作伙伴区块 -->
+      <PartnersBlock />
 
-    <!-- 5. 上文下图区块 -->
-    <TopTextBottomImageBlock />
+      <!-- 4. 特性区块 (样式覆盖测试) -->
+      <FeaturesBlock :styles="customFeaturesStyles" />
 
-    <!-- 6. 统计区块 -->
-    <StatsBlock />
+      <!-- 5. 上文下图区块 -->
+      <TopTextBottomImageBlock />
 
-    <!-- 7. 左图右文 -->
-    <LeftImageRightTextBlock />
+      <!-- 6. 统计区块 -->
+      <StatsBlock />
 
-    <!-- 8. 左文右图 -->
-    <RightImageLeftTextBlock />
+      <!-- 7. 左图右文 -->
+      <LeftImageRightTextBlock />
 
-    <!-- 9. 图标墙区块 -->
-    <IconWallBlock />
+      <!-- 8. 左文右图 -->
+      <RightImageLeftTextBlock />
 
-    <!-- 10. 服务列表区块 -->
-    <ServiceListBlock />
+      <!-- 9. 图标墙区块 -->
+      <IconWallBlock />
 
-    <!-- 11. 产品列表区块 -->
-    <ProductListBlock />
+      <!-- 10. 服务列表区块 -->
+      <ServiceListBlock />
 
-    <!-- 12. 课程列表区块 -->
-    <CourseListBlock />
+      <!-- 11. 产品列表区块 -->
+      <ProductListBlock />
 
-    <!-- 13. 客户评价区块 -->
-    <TestimonialsBlock />
+      <!-- 12. 课程列表区块 -->
+      <CourseListBlock />
 
-    <!-- 14. 团队区块 -->
-    <TeamBlock />
+      <!-- 13. 客户评价区块 -->
+      <TestimonialsBlock />
 
-    <!-- 15. 价格区块 -->
-    <PricingBlock />
+      <!-- 14. 团队区块 -->
+      <TeamBlock />
 
-    <!-- 16. 对比表格区块 -->
-    <ComparisonTableBlock />
+      <!-- 15. 价格区块 -->
+      <PricingBlock />
 
-    <!-- 17. 新闻列表区块 -->
-    <NewsListBlock />
+      <!-- 16. 对比表格区块 -->
+      <ComparisonTableBlock />
 
-    <!-- 18. 新闻详情区块 -->
-    <NewsDetailBlock />
+      <!-- 17. 新闻列表区块 -->
+      <NewsListBlock />
 
-    <!-- 19. 常见问题区块 (交互式折叠手风琴) -->
-    <FaqBlock />
+      <!-- 18. 新闻详情区块 -->
+      <NewsDetailBlock />
 
-    <!-- 20. 号召区块 (CTA) -->
-    <CtaBlock />
+      <!-- 19. 常见问题区块 (交互式折叠手风琴) -->
+      <FaqBlock />
 
-    <!-- 21. 联系表单区块 (支持响应式表单事件) -->
-    <ContactFormBlock @submit="handleContactSubmit" />
+      <!-- 20. 号召区块 (CTA) -->
+      <CtaBlock />
 
-    <!-- 22. 页脚区块 -->
-    <div ref="footerEl">
-      <FooterBlock />
+      <!-- 21. 联系表单区块 (支持响应式表单事件) -->
+      <ContactFormBlock @submit="handleContactSubmit" />
+
+      <!-- 22. 页脚区块 -->
+      <div ref="footerEl">
+        <FooterBlock />
+      </div>
     </div>
   </div>
 </template>
