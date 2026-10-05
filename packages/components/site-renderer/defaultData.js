@@ -1,5 +1,5 @@
 export const defaultData = {
-  containerClass: 'min-h-screen bg-slate-50 text-slate-900 flex flex-col',
+  containerClass: 'min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col transition-colors duration-300',
   routeMode: 'hash',
   defaultPath: '/',
   siteTitle: 'VueBlocks - 积木式全栈建站组件库',
@@ -89,16 +89,6 @@ export const defaultData = {
                 icon: '🎨',
                 title: '全局变体与换肤系统',
                 description: '支持整站一键切换视觉变体（默认、极简、暗黑等），区块风格自适应同步，彻底摆脱同质化设计。'
-              },
-              {
-                icon: '🚀',
-                title: '动态 SEO 与无刷新路由',
-                description: '集成站内链接拦截、平滑滚动、页面级 Title 与 Meta 自动注入，开箱即拥有专业的搜索引擎优化表现。'
-              },
-              {
-                icon: '🛡️',
-                title: '完整类型定义与多产物打包',
-                description: '提供完备的 TypeScript .d.ts 类型文件，支持 ESM、UMD、CJS 规范，轻松接入现有工程与微前端。'
               },
               {
                 icon: '🔧',
@@ -241,11 +231,6 @@ export const defaultData = {
                 icon: '🎯',
                 title: '转化型 Hero 主视觉',
                 description: '4+ 种不同视觉变体，强力提升落地页首屏转化率'
-              },
-              {
-                icon: '💳',
-                title: '智能定价卡片',
-                description: '支持推荐标签、多周期计费、清晰特权对照'
               },
               {
                 icon: '📊',
@@ -516,16 +501,6 @@ export const defaultData = {
                 newWindow: false
               },
               {
-                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=40',
-                imageAlt: 'SEO 数据看板',
-                category: '技术分享',
-                date: '2026-09-15',
-                title: '如何利用 Vue 3 动态 SEO 机制实现企业站点的搜索引擎最优抓取',
-                summary: '分析单页面应用在搜索引擎优化中的核心痛点，详述 SiteRenderer 如何通过客户端 Meta 实时更新与静态预渲染方案实现完美的 SEO 指标。',
-                link: '#',
-                newWindow: false
-              },
-              {
                 image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=40',
                 imageAlt: '低代码与设计协同',
                 category: '行业洞察',
@@ -676,6 +651,21 @@ export const defaultData = {
                 description: '深入组件库打包工程化、动态样式合并策略与 TypeScript 强类型体系设计，构建工业级前端资产库。',
                 ratingStars: '★★★★★',
                 ratingCount: '156',
+                price: '免费公开',
+                btnText: '立即学习',
+                link: '#',
+                newWindow: false
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=60',
+                tags: [{ text: '设计规范', bgColor: 'bg-purple-500' }],
+                duration: '3 小时',
+                chapters: '7 节',
+                instructor: '赵雅静',
+                title: '企业级设计系统与 Figma 到代码高效落地',
+                description: '深入解析现代商业设计令牌 (Design Tokens)、Figma 规范体系以及如何通过原子区块还原高保真落地页。',
+                ratingStars: '★★★★★',
+                ratingCount: '142',
                 price: '免费公开',
                 btnText: '立即学习',
                 link: '#',

@@ -90,7 +90,7 @@ const resolvedVariant = computed(() => {
 })
 
 const resolvedContainerClass = computed(() => {
-  return props.containerClass ?? props.data?.containerClass ?? 'min-h-screen bg-slate-50 text-slate-900 flex flex-col'
+  return props.containerClass ?? props.data?.containerClass ?? 'min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col transition-colors duration-300'
 })
 
 // 2. 路由路径标准化工具函数
