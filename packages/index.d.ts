@@ -75,6 +75,7 @@ export interface PageSEO {
 }
 
 export interface PageData {
+  variant?: string | number
   seo?: PageSEO
   title?: string
   description?: string
@@ -94,6 +95,7 @@ export interface SubmitContext {
 export type PageRendererComponentType = DefineComponent<
   {
     data?: PageData | BlockItem[]
+    variant?: string | number
     navbar?: any
     footer?: any
     seo?: PageSEO | boolean
@@ -113,6 +115,54 @@ export const PageRenderer: PageRendererComponentType
 export const PageRendererComponent: PageRendererComponentType
 export const pageRendererDefaultData: PageData
 export const builtInBlocks: Record<string, any>
+
+// 站点渲染器类型声明
+export type AsyncPageLoader = () => Promise<PageData | { default: PageData } | any>
+
+export interface SiteData {
+  variant?: string | number
+  containerClass?: string
+  routeMode?: 'hash' | 'history' | 'memory'
+  defaultPath?: string
+  siteTitle?: string
+  navbar?: any
+  pages: Record<string, PageData | AsyncPageLoader> | Array<PageData & { path: string }>
+  footer?: any
+}
+
+export type SiteRendererComponentType = DefineComponent<
+  {
+    data?: SiteData
+    variant?: string | number
+    navbar?: any
+    footer?: any
+    pages?: Record<string, PageData | AsyncPageLoader> | Array<PageData & { path: string }>
+    currentPath?: string
+    routeMode?: 'hash' | 'history' | 'memory'
+    defaultPath?: string
+    siteTitle?: string
+    containerClass?: string
+    transition?: string | object | boolean
+    keepAlive?: boolean | string[]
+  },
+  {},
+  any,
+  {},
+  {},
+  {},
+  {},
+  {
+    'update:currentPath': (path: string) => void
+    'update:path': (path: string) => void
+    'page-change': (newPath: string, oldPath: string, pageData: any) => void
+    'error': (err: { type: '404' | 'load-failed'; path: string; error?: any }) => void
+    'submit': (payload: any, context: SubmitContext) => void
+  }
+>
+
+export const SiteRenderer: SiteRendererComponentType
+export const SiteRendererComponent: SiteRendererComponentType
+export const siteRendererDefaultData: SiteData
 
 // 工具函数声明
 export declare function mergeData<T extends Record<string, any>>(defaults: T, custom?: Partial<T>): T

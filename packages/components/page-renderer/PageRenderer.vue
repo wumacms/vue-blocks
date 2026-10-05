@@ -12,6 +12,10 @@ const props = defineProps({
     type: [Object, Array],
     default: () => defaultData
   },
+  variant: {
+    type: [String, Number],
+    default: undefined
+  },
   navbar: {
     type: [Object, String, Function, Boolean],
     default: undefined
@@ -33,6 +37,7 @@ const pageConfig = computed(() => {
   const raw = props.data
   if (Array.isArray(raw)) {
     return {
+      variant: props.variant,
       seo: undefined,
       navbar: undefined,
       containerClass: '',
@@ -42,6 +47,7 @@ const pageConfig = computed(() => {
     }
   }
   return {
+    variant: props.variant || raw?.variant,
     seo: raw?.seo,
     title: raw?.title,
     description: raw?.description,
@@ -96,7 +102,7 @@ function resolveBlockConfig(input, defaultType) {
       component: comp,
       props: {
         id: input.id,
-        variant: input.variant,
+        variant: pageConfig.value.variant || input.variant,
         data: input.data,
         styles: input.styles
       },
@@ -105,6 +111,13 @@ function resolveBlockConfig(input, defaultType) {
   }
 
   return null
+}
+
+// 统一解析区块变体：支持全局变体渗透，同时允许单个区块通过 lockVariant 锁定变体
+function resolveBlockVariant(block) {
+  if (!block) return '1'
+  if (block.lockVariant) return block.variant || '1'
+  return pageConfig.value.variant || block.variant || '1'
 }
 
 const resolvedNavbar = computed(() => {
@@ -217,7 +230,7 @@ function handleSubmit(payload, block, index) {
           :is="resolveBlock(block?.type)"
           v-if="block?.type"
           :id="block.id"
-          :variant="block.variant"
+          :variant="resolveBlockVariant(block)"
           :data="block.data"
           :styles="block.styles"
           @submit="(payload) => handleSubmit(payload, block, index)"

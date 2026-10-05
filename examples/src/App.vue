@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import {
+  SiteRenderer,
   PageRenderer,
   NavbarBlock,
   HeroBlock,
@@ -27,7 +28,7 @@ import {
 } from 'vue-blocks'
 import FloatingToolbar from './components/FloatingToolbar.vue'
 
-const renderMode = ref('renderer') // 'renderer' | 'manual'
+const renderMode = ref('site') // 'site' | 'renderer' | 'manual'
 const heroVariant = ref('1')
 const footerEl = ref(null)
 
@@ -82,6 +83,17 @@ function handleContactSubmit(formData, context) {
     <div
       class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-gray-200/90 dark:border-gray-700/90 shadow-2xl rounded-full p-1.5 text-xs font-medium">
       <button
+        @click="renderMode = 'site'"
+        :class="[
+          'px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5',
+          renderMode === 'site'
+            ? 'bg-indigo-600 text-white shadow-sm font-semibold'
+            : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
+        ]">
+        <span>🌐</span>
+        <span>SiteRenderer 多页面站点</span>
+      </button>
+      <button
         @click="renderMode = 'renderer'"
         :class="[
           'px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5',
@@ -90,7 +102,7 @@ function handleContactSubmit(formData, context) {
             : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
         ]">
         <span>🚀</span>
-        <span>PageRenderer 模式</span>
+        <span>PageRenderer 单页</span>
       </button>
       <button
         @click="renderMode = 'manual'"
@@ -101,15 +113,20 @@ function handleContactSubmit(formData, context) {
             : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
         ]">
         <span>📑</span>
-        <span>全量手动平铺模式</span>
+        <span>手动平铺</span>
       </button>
     </div>
 
-    <!-- 悬浮控制台：主题模式切换与 Hero 变体切换（自动避让页脚） -->
+    <!-- 悬浮控制台：主题模式切换与全站/Hero 变体切换（自动避让页脚） -->
     <FloatingToolbar v-model="heroVariant" :footer-el="footerEl" />
 
-    <!-- 模式 1：PageRenderer 数据驱动渲染（传入可选 navbar 与 footer 参数） -->
-    <div v-if="renderMode === 'renderer'">
+    <!-- 模式 1：SiteRenderer 多页面全站渲染（支持通过 floatingToolbar 统一切换变体） -->
+    <div v-if="renderMode === 'site'">
+      <SiteRenderer :variant="heroVariant" route-mode="hash" />
+    </div>
+
+    <!-- 模式 2：PageRenderer 数据驱动渲染（传入可选 navbar 与 footer 参数） -->
+    <div v-else-if="renderMode === 'renderer'">
       <PageRenderer
         :data="dynamicPageData"
         :navbar="NavbarBlock"
@@ -118,7 +135,7 @@ function handleContactSubmit(formData, context) {
       />
     </div>
 
-    <!-- 模式 2：手动平铺全部区块 -->
+    <!-- 模式 3：手动平铺全部区块 -->
     <div v-else>
       <!-- 1. 导航栏 (零配置渲染) -->
       <NavbarBlock />

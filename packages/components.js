@@ -21,6 +21,7 @@ import CtaBlock from './components/cta/index.js'
 import ContactFormBlock from './components/contact-form/index.js'
 import FooterBlock from './components/footer/index.js'
 import PageRenderer from './components/page-renderer/index.js'
+import SiteRenderer from './components/site-renderer/index.js'
 
 export default [
   NavbarBlock,
@@ -45,5 +46,6 @@ export default [
   CtaBlock,
   ContactFormBlock,
   FooterBlock,
-  PageRenderer
+  PageRenderer,
+  SiteRenderer
 ]

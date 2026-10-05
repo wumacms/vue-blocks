@@ -35,7 +35,7 @@ const isMobileOpen = ref(false)
               :class="item.children && item.children.length ? 'relative group' : ''">
               <!-- 带二级菜单 -->
               <template v-if="item.children && item.children.length">
-                <button type="button" :class="styles.dropdownTrigger">
+                <button type="button" :class="[styles.dropdownTrigger, item.active ? styles.dropdownTriggerActive : '']">
                   <span>{{ item.text }}</span>
                   <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24">
@@ -44,7 +44,8 @@ const isMobileOpen = ref(false)
                 </button>
                 <div :class="styles.dropdownMenu">
                   <a v-for="(child, cIdx) in item.children" :key="cIdx" :href="child.link || '#'"
-                    :target="child.newWindow ? '_blank' : '_self'" :class="styles.dropdownItem">
+                    :target="child.newWindow ? '_blank' : '_self'"
+                    :class="[styles.dropdownItem, child.active ? styles.dropdownItemActive : '']">
                     <span v-if="child.icon" class="text-base">{{ child.icon }}</span>
                     <span>{{ child.text }}</span>
                   </a>
@@ -53,7 +54,8 @@ const isMobileOpen = ref(false)
 
               <!-- 普通单级菜单 -->
               <template v-else>
-                <a :href="item.link || '#'" :target="item.newWindow ? '_blank' : '_self'" :class="styles.menuItem">
+                <a :href="item.link || '#'" :target="item.newWindow ? '_blank' : '_self'"
+                  :class="[styles.menuItem, item.active ? styles.menuItemActive : '']">
                   {{ item.text }}
                 </a>
               </template>
@@ -87,12 +89,12 @@ const isMobileOpen = ref(false)
       <div v-show="isMobileOpen" :class="styles.mobileMenu">
         <div v-for="(item, idx) in data.navLinks" :key="'mob-' + idx" :class="styles.mobileMenuGroup">
           <a :href="item.link || '#'" :target="item.newWindow ? '_blank' : '_self'"
-            :class="styles.mobileMenuItem">
+            :class="[styles.mobileMenuItem, item.active ? styles.mobileMenuItemActive : '']">
             {{ item.text }}
           </a>
           <div v-if="item.children && item.children.length" :class="styles.mobileDropdownWrapper">
             <a v-for="(child, cIdx) in item.children" :key="'mob-c-' + cIdx" :href="child.link || '#'"
-              :class="styles.mobileDropdownItem">
+              :class="[styles.mobileDropdownItem, child.active ? styles.mobileDropdownItemActive : '']">
               <span v-if="child.icon">{{ child.icon }}</span>
               <span>{{ child.text }}</span>
             </a>

@@ -42,8 +42,9 @@ export default defineConfig({
       ],
       '/component/': [
         {
-          text: '页面渲染',
+          text: '页面与站点编排',
           items: [
+            { text: 'SiteRenderer 站点渲染器', link: '/component/site-renderer' },
             { text: 'PageRenderer 页面渲染器', link: '/component/page-renderer' }
           ]
         },
