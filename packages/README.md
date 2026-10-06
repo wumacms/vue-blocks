@@ -58,18 +58,18 @@ import "vue-blocks/dist/style.css";
 </script>
 
 <template>
-  <!-- 1. 零配置默认渲染 -->
+  <!-- 1. 零配置默认渲染 (SaaS 现代简约风格) -->
   <NavbarBlock />
 
-  <!-- 2. 指定变体切换 (Hero 支持 1/2/3/4) -->
+  <!-- 2. 指定变体切换 (全系支持统一 variant='2' 波普复古/新粗野主义风格) -->
   <HeroBlock variant="2" />
 
   <!-- 3. 自定义内容覆盖 -->
-  <FeaturesBlock :data="featuresData" />
+  <FeaturesBlock variant="2" :data="featuresData" />
 
-  <PricingBlock />
-  <FaqBlock />
-  <FooterBlock />
+  <PricingBlock variant="2" />
+  <FaqBlock variant="2" />
+  <FooterBlock variant="2" />
 </template>
 ```
 

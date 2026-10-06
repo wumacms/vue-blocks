@@ -61,12 +61,12 @@ const dynamicPageData = computed(() => ({
         description: '无需繁琐手动引入 22 个组件，仅需一份 JSON 配置即可自动渲染企业级落地页。'
       }
     },
-    { id: 'partners', type: 'PartnersBlock' },
-    { id: 'features', type: 'FeaturesBlock', variant: '1', styles: customFeaturesStyles },
-    { id: 'stats', type: 'StatsBlock' },
-    { id: 'pricing', type: 'PricingBlock' },
-    { id: 'faq', type: 'FaqBlock' },
-    { id: 'contact', type: 'ContactFormBlock' }
+    { id: 'partners', type: 'PartnersBlock', variant: heroVariant.value },
+    { id: 'features', type: 'FeaturesBlock', variant: heroVariant.value, styles: heroVariant.value === '1' ? customFeaturesStyles : {} },
+    { id: 'stats', type: 'StatsBlock', variant: heroVariant.value },
+    { id: 'pricing', type: 'PricingBlock', variant: heroVariant.value },
+    { id: 'faq', type: 'FaqBlock', variant: heroVariant.value },
+    { id: 'contact', type: 'ContactFormBlock', variant: heroVariant.value }
   ]
 }))
 
@@ -128,6 +128,7 @@ function handleContactSubmit(formData, context) {
     <!-- 模式 2：PageRenderer 数据驱动渲染（传入可选 navbar 与 footer 参数） -->
     <div v-else-if="renderMode === 'renderer'">
       <PageRenderer
+        :variant="heroVariant"
         :data="dynamicPageData"
         :navbar="NavbarBlock"
         :footer="FooterBlock"
@@ -137,72 +138,72 @@ function handleContactSubmit(formData, context) {
 
     <!-- 模式 3：手动平铺全部区块 -->
     <div v-else>
-      <!-- 1. 导航栏 (零配置渲染) -->
-      <NavbarBlock />
+      <!-- 1. 导航栏 -->
+      <NavbarBlock :variant="heroVariant" />
 
-      <!-- 2. Hero 区块 (支持变体切换 + 数据与样式覆盖测试) -->
+      <!-- 2. Hero 区块 -->
       <HeroBlock :variant="heroVariant" :data="heroVariant === '1' ? customHeroData : {}" />
 
       <!-- 3. 合作伙伴区块 -->
-      <PartnersBlock />
+      <PartnersBlock :variant="heroVariant" />
 
-      <!-- 4. 特性区块 (样式覆盖测试) -->
-      <FeaturesBlock :styles="customFeaturesStyles" />
+      <!-- 4. 特性区块 -->
+      <FeaturesBlock :variant="heroVariant" :styles="heroVariant === '1' ? customFeaturesStyles : {}" />
 
       <!-- 5. 上文下图区块 -->
-      <TopTextBottomImageBlock />
+      <TopTextBottomImageBlock :variant="heroVariant" />
 
       <!-- 6. 统计区块 -->
-      <StatsBlock />
+      <StatsBlock :variant="heroVariant" />
 
       <!-- 7. 左图右文 -->
-      <LeftImageRightTextBlock />
+      <LeftImageRightTextBlock :variant="heroVariant" />
 
       <!-- 8. 左文右图 -->
-      <RightImageLeftTextBlock />
+      <RightImageLeftTextBlock :variant="heroVariant" />
 
       <!-- 9. 图标墙区块 -->
-      <IconWallBlock />
+      <IconWallBlock :variant="heroVariant" />
 
       <!-- 10. 服务列表区块 -->
-      <ServiceListBlock />
+      <ServiceListBlock :variant="heroVariant" />
 
       <!-- 11. 产品列表区块 -->
-      <ProductListBlock />
+      <ProductListBlock :variant="heroVariant" />
 
       <!-- 12. 课程列表区块 -->
-      <CourseListBlock />
+      <CourseListBlock :variant="heroVariant" />
 
       <!-- 13. 客户评价区块 -->
-      <TestimonialsBlock />
+      <TestimonialsBlock :variant="heroVariant" />
 
       <!-- 14. 团队区块 -->
-      <TeamBlock />
+      <TeamBlock :variant="heroVariant" />
 
       <!-- 15. 价格区块 -->
-      <PricingBlock />
+      <PricingBlock :variant="heroVariant" />
 
       <!-- 16. 对比表格区块 -->
-      <ComparisonTableBlock />
+      <ComparisonTableBlock :variant="heroVariant" />
 
       <!-- 17. 新闻列表区块 -->
-      <NewsListBlock />
+      <NewsListBlock :variant="heroVariant" />
 
       <!-- 18. 新闻详情区块 -->
-      <NewsDetailBlock />
+      <NewsDetailBlock :variant="heroVariant" />
 
-      <!-- 19. 常见问题区块 (交互式折叠手风琴) -->
-      <FaqBlock />
+      <!-- 19. 常见问题区块 -->
+      <FaqBlock :variant="heroVariant" />
 
       <!-- 20. 号召区块 (CTA) -->
-      <CtaBlock />
+      <CtaBlock :variant="heroVariant" />
 
-      <!-- 21. 联系表单区块 (支持响应式表单事件) -->
-      <ContactFormBlock @submit="handleContactSubmit" />
+      <!-- 21. 联系表单区块 -->
+      <ContactFormBlock :variant="heroVariant" @submit="handleContactSubmit" />
 
       <!-- 22. 页脚区块 -->
       <div ref="footerEl">
-        <FooterBlock />
+        <FooterBlock :variant="heroVariant" />
       </div>
     </div>
   </div>

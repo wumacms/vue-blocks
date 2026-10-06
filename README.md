@@ -26,7 +26,7 @@
   单页面编排引擎，严格遵循 HTML5 `<main>` 语义化标准与无障碍规范，内置响应式动态 SEO 同步系统（`Title` / `Description` / `Meta` 自动更新与卸载清理）。
 
 - **🎨 统一变体模式（极简全局换皮）**：
-  支持在站点组件或页面组件顶层传入统一的 `variant` 参数，一键控制全站所有区块统一切换至指定设计风格（未声明该变体的区块自动优雅降级，保障视觉统一）。
+  内置统一的跨区块设计变体体系。支持在站点渲染器（`SiteRenderer`）、页面渲染器（`PageRenderer`）或任意原子区块顶层传入统一的 `variant` 参数，一键控制全站所有区块统一切换至指定设计风格（例如 `'1'` SaaS 现代极简、`'2'` 波普复古新粗野主义等）。
 
 - **⚡ 开箱即用（Zero-Config Preview）**：
   任何区块组件及渲染器未传参即可直接渲染高保真图文与设计排版，极大缩短原型与交付周期。
@@ -113,19 +113,25 @@ import "vue-blocks/dist/style.css";
 </template>
 ```
 
-#### 场景 3：一键切换全站风格（统一变体）
+#### 场景 3：一键切换全站风格（统一变体体系）
+
+VueBlocks 全系区块共享统一的变体规范：
+- **`variant="1"`**：**SaaS 现代极简风格**（默认，高通用性、轻质感柔和投影与优雅圆角）
+- **`variant="2"`**：**波普复古 / 新粗野主义风格**（Neo-Brutalism，粗黑描边、零模糊硬投影、波普高反差撞色与拟物按压反馈）
+- 更多风格变体持续扩充中，支持整站一键联动或单个区块局部混搭。
 
 ```html
 <script setup>
   import { ref } from "vue";
   import { SiteRenderer } from "vue-blocks";
 
-  const currentVariant = ref("2"); // 1 | 2 | 3 | 4
+  // 切换为 '2' 即刻将整站所有区块转为波普复古新粗野主义风格
+  const currentVariant = ref("2");
 </script>
 
 <template>
-  <!-- 切换变体，全站区块实时联动换皮 -->
-  <SiteRenderer :variant="currentVariant" />
+  <!-- 切换变体，全站 22 个区块实时联动换皮 -->
+  <SiteRenderer :variant="currentVariant" route-mode="hash" />
 </template>
 ```
 
@@ -173,6 +179,9 @@ import "vue-blocks/dist/style.css";
 | `PageRenderer` | **单页面落地页渲染器** | 营销活动页、单页落地页、语义化 `<main>` 正文区数据驱动 |
 
 ### 2. 标准落地页区块（22 组）
+
+> [!TIP]
+> **全系变体支持**：所有 22 个标准区块均原生支持统一的 `variant` 设计体系（默认 `'1'` SaaS 现代简约、`'2'` 波普复古新粗野主义，更多主题持续扩展）。推荐访问 [在线演示 ↗](https://wumacms.github.io/vue-blocks/examples/) 使用右下角悬浮控制台交互式实时切换与预览全量变体！
 
 | 组件名称 | 说明 |
 | :--- | :--- |

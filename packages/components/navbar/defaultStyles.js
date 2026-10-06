@@ -26,6 +26,34 @@ export const defaultStyles = {
     mobileDropdownItemActive: 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/80 dark:bg-indigo-950/40 font-medium',
     mobileButtonWrapper: 'pt-4 border-t border-gray-100 dark:border-gray-800',
     mobileCtaButton: 'block w-full text-center bg-indigo-600 text-white font-medium py-2.5 rounded-full shadow-sm'
+  },
+  '2': {
+    root: 'border-b-4 border-[#ffb347] bg-[#e9e2ff] dark:bg-[#1a103d] sticky top-0 z-50 transition-colors duration-300',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    navWrapper: 'flex items-center justify-between h-16 md:h-20',
+    brandWrapper: 'flex items-center gap-3 shrink-0 cursor-pointer',
+    logo: 'h-9 w-auto rounded-xl border-2 border-[#120b48] dark:border-[#ffb347] shadow-[3px_3px_0_#ff5c8a] dark:shadow-[3px_3px_0_#b47aff]',
+    brandName: 'text-xl font-black text-[#120b48] dark:text-white tracking-tight',
+    menuNav: 'hidden md:flex items-center space-x-2',
+    menuItem: 'px-4 py-2 text-[#120b48] dark:text-[#c4b5fd] hover:text-[#120b48] dark:hover:text-white text-sm font-bold transition-all rounded-full hover:bg-white dark:hover:bg-[#2c1b6b] hover:shadow-[3px_3px_0_#ff5c8a] dark:hover:shadow-[3px_3px_0_#b47aff]',
+    menuItemActive: 'bg-[#ffb347] text-[#120b48] dark:bg-[#ffb347] dark:text-[#120b48] font-black border-2 border-[#120b48] shadow-[3px_3px_0_#ff5c8a]',
+    dropdownTrigger: 'flex items-center gap-1.5 px-4 py-2 text-[#120b48] dark:text-[#c4b5fd] hover:text-[#120b48] dark:hover:text-white text-sm font-bold transition-all rounded-full hover:bg-white dark:hover:bg-[#2c1b6b]',
+    dropdownTriggerActive: 'bg-[#ffb347] text-[#120b48] dark:bg-[#ffb347] dark:text-[#120b48] font-black border-2 border-[#120b48] shadow-[3px_3px_0_#ff5c8a]',
+    dropdownMenu: 'absolute left-0 mt-2 w-56 bg-white dark:bg-[#2c1b6b] rounded-2xl shadow-[6px_6px_0_#ff5c8a] dark:shadow-[6px_6px_0_#b47aff] border-3 border-[#120b48] dark:border-[#ffb347] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 py-2.5 overflow-hidden',
+    dropdownItem: 'flex items-center gap-3 px-4 py-2.5 text-sm font-bold text-[#120b48] dark:text-[#c4b5fd] hover:bg-[#e9e2ff] dark:hover:bg-[#1a103d] hover:text-[#120b48] dark:hover:text-white transition',
+    dropdownItemActive: 'bg-[#ffb347] text-[#120b48] dark:bg-[#ffb347] dark:text-[#120b48]',
+    actionsWrapper: 'flex items-center gap-3',
+    ctaButton: 'hidden sm:inline-flex items-center justify-center bg-[#120b48] dark:bg-[#ffb347] text-white dark:text-[#120b48] font-black text-sm px-6 py-2.5 rounded-full border-3 border-[#ffb347] dark:border-[#ff5c8a] shadow-[4px_4px_0_#ff5c8a] dark:shadow-[4px_4px_0_#b47aff] hover:shadow-[1px_1px_0_#ff5c8a] dark:hover:shadow-[1px_1px_0_#b47aff] transition',
+    mobileToggle: 'md:hidden p-2 rounded-xl text-[#120b48] dark:text-[#ffb347] border-2 border-[#120b48] dark:border-[#ffb347] bg-white dark:bg-[#2c1b6b] shadow-[3px_3px_0_#ff5c8a] dark:shadow-[3px_3px_0_#b47aff]',
+    mobileMenu: 'md:hidden border-t-4 border-[#ffb347] bg-[#e9e2ff] dark:bg-[#1a103d] px-4 pt-4 pb-6 space-y-2',
+    mobileMenuItem: 'block px-4 py-2.5 text-base font-bold text-[#120b48] dark:text-white rounded-xl hover:bg-white dark:hover:bg-[#2c1b6b]',
+    mobileMenuItemActive: 'bg-[#ffb347] text-[#120b48] dark:bg-[#ffb347] dark:text-[#120b48] border-2 border-[#120b48] shadow-[3px_3px_0_#ff5c8a]',
+    mobileMenuGroup: 'py-1',
+    mobileDropdownWrapper: 'pl-4 space-y-1 mt-1 border-l-2 border-[#ff5c8a]/40',
+    mobileDropdownItem: 'flex items-center gap-2 px-3 py-2 text-sm font-semibold text-[#2c1b6b] dark:text-[#c4b5fd] hover:text-[#120b48] dark:hover:text-white',
+    mobileDropdownItemActive: 'text-[#ff5c8a] dark:text-[#ffb347] font-black',
+    mobileButtonWrapper: 'pt-4 border-t-2 border-[#120b48]/20 dark:border-[#ffb347]/30',
+    mobileCtaButton: 'block w-full text-center bg-[#120b48] dark:bg-[#ffb347] text-white dark:text-[#120b48] font-black py-3 rounded-full border-3 border-[#ffb347] dark:border-[#ff5c8a] shadow-[4px_4px_0_#ff5c8a] dark:shadow-[4px_4px_0_#b47aff]'
   }
 }
 export default defaultStyles

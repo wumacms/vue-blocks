@@ -4,6 +4,7 @@ import { mergeData, mergeStyles } from '@vue-blocks/utils'
 import { defaultData } from './defaultData'
 import { defaultStyles } from './defaultStyles'
 import Variant1 from './variants/Variant1.vue'
+import Variant2 from './variants/Variant2.vue'
 
 defineOptions({
   name: 'ContactFormBlock'
@@ -34,6 +35,7 @@ const resolvedStyles = computed(() => {
 
 const variantMap = {
   '1': Variant1,
+  '2': Variant2,
   default: Variant1
 }
 
