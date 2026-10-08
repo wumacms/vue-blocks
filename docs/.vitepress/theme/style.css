@@ -64,6 +64,19 @@
   border-radius: 4px;
 }
 
+/* 优化组件文档在大屏下的正文容器宽度，为落地页级区块提供舒适的自适应预览宽度 */
+@media (min-width: 1280px) {
+  .VPDoc.has-aside .content-container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .VPDoc.has-aside .content-container {
+    max-width: 1140px;
+  }
+}
+
 .block-preview-box {
   margin: 1.5rem 0 2rem;
   border-radius: 1rem;
@@ -130,8 +143,8 @@
   display: none !important;
 }
 
-/* 2. 标题、段落与排版元素隔离：移除 VitePress 强加的分割线、外边距与行高 */
-.vp-doc .block-preview-box :is(h1, h2, h3, h4, h5, h6, p, ul, ol, li, blockquote, hr, table, tr, th, td, strong, b) {
+/* 2. 标题、段落与排版元素隔离：移除 VitePress 强加的分割线、外边距、字号与行高 */
+:is(#preview-root, .vp-doc .block-preview-box, .block-preview-container) :is(h1, h2, h3, h4, h5, h6, p, ul, ol, li, blockquote, hr, table, tr, th, td, strong, b) {
   margin: revert-layer;
   padding: revert-layer;
   border: revert-layer;
@@ -143,13 +156,14 @@
   background-color: revert-layer;
 }
 
+
 /* 3. 图像、SVG 与多媒体元素隔离：防止 VitePress base.css 的 height: auto 覆盖 Tailwind 工具类 (如 h-8) */
-.vp-doc .block-preview-box :is(img, video) {
+:is(#preview-root, .vp-doc .block-preview-box, .block-preview-container) :is(img, video) {
   height: revert-layer;
   max-width: revert-layer;
 }
 
-.vp-doc .block-preview-box :is(img, svg, video, canvas, audio, iframe, embed, object) {
+:is(#preview-root, .vp-doc .block-preview-box, .block-preview-container) :is(img, svg, video, canvas, audio, iframe, embed, object) {
   display: revert-layer;
   vertical-align: revert-layer;
 }

@@ -235,8 +235,8 @@ async function loadPage(targetPath, oldPath = '') {
     emit('page-change', path, oldPath, null)
   }
 
-  // 切换页面后平滑滚动回顶部
-  if (typeof window !== 'undefined') {
+  // 切换页面后平滑滚动回顶部（在 memory 路由沙箱模式下不触发，防止干扰父页面滚动）
+  if (typeof window !== 'undefined' && resolvedRouteMode.value !== 'memory') {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 }
@@ -488,8 +488,8 @@ onUnmounted(() => {
     <!-- 导航栏下方插槽 -->
     <slot name="after-navbar" />
 
-    <!-- 页面核心渲染区 -->
-    <div class="site-main-wrapper flex-1 flex flex-col" :style="{ minHeight: 'calc(100vh - 140px)' }">
+    <!-- 页面核心渲染区 (flex-1 自然贴底，避免写死 100vh 导致嵌入 iframe 发生高度循环自增) -->
+    <div class="site-main-wrapper flex-1 flex flex-col">
       <!-- 页面加载中指示器 -->
       <div v-if="isLoading" class="flex-1 flex items-center justify-center py-24">
         <div class="inline-flex items-center gap-3 px-6 py-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur rounded-xl shadow-lg border border-slate-200/80 dark:border-slate-700/80">

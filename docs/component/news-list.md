@@ -8,14 +8,7 @@
 
 不传任何参数直接使用，组件自动使用内置的高保真默认数据与样式渲染：
 
-<div class="block-preview-box">
-  <div class="block-preview-header">
-    <span>NewsListBlock 默认零配置预览</span>
-  </div>
-  <div class="block-preview-body">
-    <NewsListBlock />
-  </div>
-</div>
+<BlockPreview name="NewsListBlock" title="NewsListBlock 组件预览" />
 
 ```vue
 <NewsListBlock />
@@ -27,7 +20,8 @@
 
 ### 1. 内容覆写 (`data`)
 
-在 `<script setup lang="ts">` 中定义自定义数据对象，通过 `:data` 属性传入。未声明的字段将自动继承默认配置：
+在 `<script setup lang="ts">` 中定义自定义数据对象，通过 `:data`
+属性传入。未声明的字段将自动继承默认配置：
 
 ```vue
 <script setup lang="ts">
@@ -81,7 +75,8 @@ const customData = {
 
 ### 2. 样式覆写 (`styles`)
 
-在 `<script setup lang="ts">` 中定义样式覆写映射，通过 `:styles` 属性传入。内置 `tailwind-merge` 实现无冲突安全合并：
+在 `<script setup lang="ts">` 中定义样式覆写映射，通过 `:styles` 属性传入。内置
+`tailwind-merge` 实现无冲突安全合并：
 
 ```vue
 <script setup lang="ts">
@@ -121,65 +116,67 @@ const customStyles = {
 
 ### 基础字段
 
-| 字段名 | 类型 | 说明 | 默认值 |
-|---|---|---|---|
-| `title` | `text` | 新闻列表区块主标题 | `最新动态` |
-| `description` | `text` | 副标题或栏目说明 | `产品更新 · 行业洞察 · 客户故事` |
-| `news` | `repeater` | 新闻文章卡片列表 | `[3 项数据]` |
-| `moreText` | `text` | 底部“查看全部”按钮文字 | `查看全部新闻` |
-| `moreLink` | `text` | 底部按钮跳转链接 | `#` |
-| `moreNewWindow` | `boolean` | 底部按钮是否新窗口打开 | `false` |
+| 字段名          | 类型       | 说明                   | 默认值                           |
+| --------------- | ---------- | ---------------------- | -------------------------------- |
+| `title`         | `text`     | 新闻列表区块主标题     | `最新动态`                       |
+| `description`   | `text`     | 副标题或栏目说明       | `产品更新 · 行业洞察 · 客户故事` |
+| `news`          | `repeater` | 新闻文章卡片列表       | `[3 项数据]`                     |
+| `moreText`      | `text`     | 底部“查看全部”按钮文字 | `查看全部新闻`                   |
+| `moreLink`      | `text`     | 底部按钮跳转链接       | `#`                              |
+| `moreNewWindow` | `boolean`  | 底部按钮是否新窗口打开 | `false`                          |
 
 ### `news` 列表项字段说明
 
-| 字段名 | 类型 | 说明 |
-|---|---|---|
-| `image` | `image` | 文章封面缩略图 URL |
-| `imageAlt` | `text` | 封面图片替代文本 |
-| `category` | `text` | 文章分类标签（如“产品更新”） |
-| `date` | `text` | 发布日期文本（如“2026-08-20”） |
-| `title` | `text` | 文章标题 |
-| `summary` | `textarea` | 文章简短摘要导读 |
-| `moreLink` | `text` | 跳转链接地址 |
-| `newWindow` | `boolean` | 是否新窗口打开 |
+| 字段名      | 类型       | 说明                           |
+| ----------- | ---------- | ------------------------------ |
+| `image`     | `image`    | 文章封面缩略图 URL             |
+| `imageAlt`  | `text`     | 封面图片替代文本               |
+| `category`  | `text`     | 文章分类标签（如“产品更新”）   |
+| `date`      | `text`     | 发布日期文本（如“2026-08-20”） |
+| `title`     | `text`     | 文章标题                       |
+| `summary`   | `textarea` | 文章简短摘要导读               |
+| `moreLink`  | `text`     | 跳转链接地址                   |
+| `newWindow` | `boolean`  | 是否新窗口打开                 |
 
 ---
 
 ## 🎨 样式类名规范 (Styles Classes)
 
-组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
+组件支持通过 `:styles` 属性针对每个内部 DOM
+节点进行原子类定制，默认样式类名及说明如下：
 
-| 样式字段名 | 作用元素 / 解释说明 | 默认 Tailwind CSS 类名 |
-|---|---|---|
-| `root` | 新闻列表区块外层 `<section>` 容器 | `py-20 bg-gray-50 dark:bg-gray-950 transition-colors duration-300` |
-| `container` | 内容居中容器 | `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8` |
-| `header` | 标题区包裹容器 | `text-center mb-16 max-w-3xl mx-auto` |
-| `title` | 区块主标题 `<h2>` 样式 | `text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4` |
-| `description` | 区块副标题 `<p>` 样式 | `text-lg text-gray-600 dark:text-gray-400` |
-| `grid` | 新闻卡片响应式多列网格容器 | `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8` |
-| `card` | 单个新闻卡片外框（背景、圆角、边框及悬停卡片阴影） | `bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-lg transition flex flex-col` |
-| `imageWrapper` | 封面图片外层裁剪容器 | `relative aspect-video overflow-hidden` |
-| `image` | 封面图片元素样式（带 hover 缩放动画） | `w-full h-full object-cover transition-transform duration-300 hover:scale-105` |
-| `cardBody` | 卡片文字内容区域包裹层 | `p-6 flex-1 flex flex-col` |
-| `meta` | 分类与日期元数据行容器 | `flex items-center gap-2 mb-3 text-xs` |
-| `category` | 分类药丸小徽章样式 | `bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400 font-semibold px-2.5 py-1 rounded-full` |
-| `date` | 发布日期浅色文字样式 | `text-gray-400` |
-| `newsTitle` | 文章标题样式（粗体、两行截断或完整显示） | `text-xl font-bold text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition mb-2 line-clamp-2` |
-| `summary` | 摘要正文文字样式 | `text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4 flex-1` |
-| `moreLink` | 阅读全文行动链接样式 | `text-indigo-600 dark:text-indigo-400 font-semibold text-sm hover:underline inline-flex items-center gap-1` |
-| `bottomMore` | 底部“查看更多”按钮外层容器 | `text-center mt-12` |
+| 样式字段名     | 作用元素 / 解释说明                                | 默认 Tailwind CSS 类名                                                                                                                                 |
+| -------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `root`         | 新闻列表区块外层 `<section>` 容器                  | `py-20 bg-gray-50 dark:bg-gray-950 transition-colors duration-300`                                                                                     |
+| `container`    | 内容居中容器                                       | `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`                                                                                                               |
+| `header`       | 标题区包裹容器                                     | `text-center mb-16 max-w-3xl mx-auto`                                                                                                                  |
+| `title`        | 区块主标题 `<h2>` 样式                             | `text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4`                                                                                    |
+| `description`  | 区块副标题 `<p>` 样式                              | `text-lg text-gray-600 dark:text-gray-400`                                                                                                             |
+| `grid`         | 新闻卡片响应式多列网格容器                         | `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`                                                                                                 |
+| `card`         | 单个新闻卡片外框（背景、圆角、边框及悬停卡片阴影） | `bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-lg transition flex flex-col` |
+| `imageWrapper` | 封面图片外层裁剪容器                               | `relative aspect-video overflow-hidden`                                                                                                                |
+| `image`        | 封面图片元素样式（带 hover 缩放动画）              | `w-full h-full object-cover transition-transform duration-300 hover:scale-105`                                                                         |
+| `cardBody`     | 卡片文字内容区域包裹层                             | `p-6 flex-1 flex flex-col`                                                                                                                             |
+| `meta`         | 分类与日期元数据行容器                             | `flex items-center gap-2 mb-3 text-xs`                                                                                                                 |
+| `category`     | 分类药丸小徽章样式                                 | `bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400 font-semibold px-2.5 py-1 rounded-full`                                       |
+| `date`         | 发布日期浅色文字样式                               | `text-gray-400`                                                                                                                                        |
+| `newsTitle`    | 文章标题样式（粗体、两行截断或完整显示）           | `text-xl font-bold text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition mb-2 line-clamp-2`                        |
+| `summary`      | 摘要正文文字样式                                   | `text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4 flex-1`                                                                                    |
+| `moreLink`     | 阅读全文行动链接样式                               | `text-indigo-600 dark:text-indigo-400 font-semibold text-sm hover:underline inline-flex items-center gap-1`                                            |
+| `bottomMore`   | 底部“查看更多”按钮外层容器                         | `text-center mt-12`                                                                                                                                    |
 
 ---
 
 ## 🧩 插槽规范 (Slots)
 
-组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过
+Slot Props 传入）：
 
-| 插槽名 | 作用域参数 (Slot Props) | 说明 |
-|---|---|---|
-| `title` | `{ title }` | 新闻资讯列表主标题 |
-| `description` | `{ description }` | 新闻资讯列表副标题描述 |
-| `news` | `{ news }` | 新闻资讯卡片列表网格，可自定义时间戳格式与跳转链接 |
+| 插槽名        | 作用域参数 (Slot Props) | 说明                                               |
+| ------------- | ----------------------- | -------------------------------------------------- |
+| `title`       | `{ title }`             | 新闻资讯列表主标题                                 |
+| `description` | `{ description }`       | 新闻资讯列表副标题描述                             |
+| `news`        | `{ news }`              | 新闻资讯卡片列表网格，可自定义时间戳格式与跳转链接 |
 
 ### 插槽使用示例
 
@@ -212,8 +209,8 @@ const customStyles = {
 
 ## 🧩 基础属性 (Props)
 
-| 参数名 | 类型 | 默认值 | 说明 |
-|---|---|---|---|
-| `variant` | `string \| number` | `'1'` | 变体类型 |
-| `data` | `object` | `{}` | 内容覆盖 JSON，按 Schema 结构深层合并 |
-| `styles` | `object` | `{}` | 样式覆写映射对象（Tailwind CSS 类名） |
+| 参数名    | 类型               | 默认值 | 说明                                  |
+| --------- | ------------------ | ------ | ------------------------------------- |
+| `variant` | `string \| number` | `'1'`  | 变体类型                              |
+| `data`    | `object`           | `{}`   | 内容覆盖 JSON，按 Schema 结构深层合并 |
+| `styles`  | `object`           | `{}`   | 样式覆写映射对象（Tailwind CSS 类名） |

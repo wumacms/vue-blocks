@@ -10,7 +10,7 @@ export const defaultStyles = {
     stars: 'text-amber-400 text-lg mb-4 tracking-wider',
     quote: 'text-gray-700 dark:text-gray-300 text-base leading-relaxed italic mb-6 flex-1',
     authorWrapper: 'flex items-center gap-4 pt-4 border-t border-gray-200/60 dark:border-gray-700',
-    avatar: 'w-12 h-12 rounded-full object-cover shadow-sm',
+    avatar: 'w-12 h-12 rounded-full object-cover shrink-0 shadow-sm',
     authorName: 'font-bold text-gray-900 dark:text-white text-sm',
     authorRole: 'text-xs text-gray-500 dark:text-gray-400'
   },
@@ -25,7 +25,7 @@ export const defaultStyles = {
     stars: 'text-[#ffb347] text-xl mb-4 tracking-widest drop-shadow-[2px_2px_0_#120b48]',
     quote: 'text-[#120b48] dark:text-white text-base font-bold leading-relaxed mb-6 flex-1',
     authorWrapper: 'flex items-center gap-4 pt-4 border-t-2 border-[#120b48]/20 dark:border-[#ffb347]/30',
-    avatar: 'w-12 h-12 rounded-full object-cover border-2 border-[#120b48] dark:border-[#ffb347] shadow-[2px_2px_0_#ff5c8a]',
+    avatar: 'w-12 h-12 rounded-full object-cover shrink-0 border-2 border-[#120b48] dark:border-[#ffb347] shadow-[2px_2px_0_#ff5c8a]',
     authorName: 'font-black text-[#120b48] dark:text-white text-base',
     authorRole: 'text-xs font-bold text-[#ff5c8a] dark:text-[#c4b5fd]'
   }

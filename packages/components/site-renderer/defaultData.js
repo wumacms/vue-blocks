@@ -122,21 +122,21 @@ export const defaultData = {
                 name: '李青松',
                 position: '前端技术总监',
                 company: '智算云联科技',
-                avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=30'
+                avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80'
               },
               {
                 quote: 'VueBlocks 的多变体模式太实用了！传入统一 variant 参数就可以全局换皮，而且插槽设计非常克制优雅，二次定制完全没有枷锁。',
                 name: '苏宛晴',
                 position: '全栈独立开发者',
                 company: 'SaaSKit 创始人',
-                avatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=30'
+                avatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80'
               },
               {
                 quote: 'Tailwind CSS 4 与 Vue 3 的结合让页面渲染极为丝滑。SEO 自动同步与无刷新页面路由机制，完全省去了搭建额外路由脚手架的精力。',
                 name: '张博文',
                 position: '高级架构师',
                 company: '极客创新实验室',
-                avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=30'
+                avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80'
               }
             ]
           }

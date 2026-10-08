@@ -8,14 +8,8 @@
 
 不传任何参数直接使用，组件默认渲染一套多页面企业官网完整示例。内置导航链接点击拦截与无刷新路由跳转（在文档预览中使用 `route-mode="memory"` 防止干扰文档本身路由）：
 
-<div class="block-preview-box">
-  <div class="block-preview-header">
-    <span>SiteRenderer 多页面站点零配置预览</span>
-  </div>
-  <div class="block-preview-body" style="height: 680px; overflow-y: auto;">
-    <SiteRenderer route-mode="memory" />
-  </div>
-</div>
+<BlockPreview name="SiteRenderer" title="SiteRenderer 多页面站点零配置预览" :min-height="680" />
+
 
 ```vue
 <!-- 默认使用 hash 路由模式，零配置部署 -->

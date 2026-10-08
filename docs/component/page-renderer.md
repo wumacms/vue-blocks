@@ -8,14 +8,8 @@
 
 不传任何参数直接使用，组件默认渲染一套高保真企业落地页完整示例（导航栏与页脚独立渲染在 `<main>` 标签外部，契合 HTML5 标准规范）：
 
-<div class="block-preview-box">
-  <div class="block-preview-header">
-    <span>PageRenderer 零配置默认渲染预览</span>
-  </div>
-  <div class="block-preview-body">
-    <PageRenderer :seo="false" />
-  </div>
-</div>
+<BlockPreview name="PageRenderer" title="PageRenderer 零配置默认渲染预览" :min-height="600" />
+
 
 ```vue
 <PageRenderer />
