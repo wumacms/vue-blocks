@@ -5,8 +5,6 @@ import { defaultData } from './defaultData'
 import { defaultStyles } from './defaultStyles'
 import Variant1 from './variants/Variant1.vue'
 import Variant2 from './variants/Variant2.vue'
-import Variant3 from './variants/Variant3.vue'
-import Variant4 from './variants/Variant4.vue'
 
 defineOptions({
   name: 'HeroBlock'
@@ -34,7 +32,8 @@ const resolvedStyles = computed(() => {
 })
 
 const variantMap = {
-  '1': Variant1, '2': Variant2, '3': Variant3, '4': Variant4,
+  '1': Variant1,
+  '2': Variant2,
   default: Variant1
 }
 

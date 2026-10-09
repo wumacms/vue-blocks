@@ -52,7 +52,7 @@ export default defineConfig({
           text: '基础区块',
           items: [
             { text: 'Navbar 导航栏', link: '/component/navbar' },
-            { text: 'Hero 主视觉 (4种变体)', link: '/component/hero' },
+            { text: 'Hero 主视觉', link: '/component/hero' },
             { text: 'Partners 合作伙伴', link: '/component/partners' },
             { text: 'Footer 页脚', link: '/component/footer' }
           ]

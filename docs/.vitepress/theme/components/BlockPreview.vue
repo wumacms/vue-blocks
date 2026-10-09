@@ -48,16 +48,13 @@ const variantDropdownRef = ref(null)
 // Available variants
 const resolvedVariants = computed(() => {
   if (props.variants && props.variants.length) return props.variants
-  if (props.name === 'HeroBlock') return ['1', '2', '3', '4']
   return ['1', '2']
 })
 
 // Variant labels
 const variantLabels = {
   '1': '现代极简',
-  '2': '新粗野主义',
-  '3': '暗黑科技',
-  '4': '视觉大图'
+  '2': '新粗野主义'
 }
 
 function getVariantName(v) {

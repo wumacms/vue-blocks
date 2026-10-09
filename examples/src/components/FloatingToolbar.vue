@@ -14,9 +14,7 @@ const props = defineProps({
     type: Array,
     default: () => [
       { id: '1', name: 'SaaS 现代风格', desc: '科技产品落地页' },
-      { id: '2', name: '波普复古风', desc: '新丑风粗边框卡片' },
-      { id: '3', name: '暗黑分割网格', desc: '极客技术网格风' },
-      { id: '4', name: '全屏大图蒙版', desc: '沉浸式视觉焦点' }
+      { id: '2', name: '波普复古风', desc: '新丑风粗边框卡片' }
     ]
   },
   footerEl: {

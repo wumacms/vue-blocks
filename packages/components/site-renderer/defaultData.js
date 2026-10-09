@@ -293,7 +293,7 @@ export const defaultData = {
       blocks: [
         {
           type: 'HeroBlock',
-          variant: '3',
+          variant: '1',
           data: {
             title: '简单透明、终身授权<br>助力团队业务飞跃',
             description: '开源版永远自由使用；商业授权提供全量高保真区块、完整 Figma 源文件与专属架构师技术支持，无隐藏费用。',
@@ -462,11 +462,12 @@ export const defaultData = {
       blocks: [
         {
           type: 'HeroBlock',
-          variant: '4',
+          variant: '2',
           data: {
             title: '前沿动态与技术洞察',
             description: '深入剖析现代化落地页工程化理念，探索 Vue 3 与 Tailwind CSS 4 的极致设计哲学。',
-            bgImage: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+            image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=60',
+            imageAlt: '技术前沿动态',
             buttons: [
               { btnText: '浏览精选动态', btnLink: '#news-list', isPrimary: true, newWindow: false }
             ]

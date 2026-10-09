@@ -186,7 +186,7 @@ VueBlocks 全系区块共享统一的变体规范：
 | 组件名称 | 说明 |
 | :--- | :--- |
 | `NavbarBlock` | 顶部导航栏（支持下拉菜单、移动端折叠、激活态自动高亮） |
-| `HeroBlock` | 主视觉 Hero（内置 4 种风格变体：SaaS极简、波普复古、暗黑网格、大图全屏） |
+| `HeroBlock` | 主视觉 Hero（内置 2 种风格变体：SaaS极简、波普复古） |
 | `PartnersBlock` | 合作伙伴 / 客户 Logo 墙 |
 | `FooterBlock` | 页脚区块 |
 | `FeaturesBlock` | 特性列表区块 |

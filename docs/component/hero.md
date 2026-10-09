@@ -1,7 +1,7 @@
 # Hero 主视觉
 
-落地页最核心的首屏转化区域，内置 4
-种风格变体：SaaS现代简约、波普复古/新丑风、暗黑分割网格、全屏背景大图蒙版。
+落地页最核心的首屏转化区域，内置 2
+种风格变体：SaaS现代简约、波普复古/新丑风。
 
 ---
 
@@ -29,22 +29,6 @@
 
 ```vue
 <HeroBlock variant="2" />
-```
-
-### 变体 3：暗黑分割网格亮黄风
-
-<BlockPreview name="HeroBlock" variant="3" title="Variant 3: Dark Split Grid" />
-
-```vue
-<HeroBlock variant="3" />
-```
-
-### 变体 4：全屏背景图蒙版
-
-<BlockPreview name="HeroBlock" variant="4" title="Variant 4: Background Image Hero" />
-
-```vue
-<HeroBlock variant="4" />
 ```
 
 ---
@@ -78,10 +62,7 @@ const customData = {
     }
   ],
   image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=60',
-  imageAlt: '团队协作界面',
-  bgImage: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-  bgImageAlt: '现代办公空间全景',
-  overlayOpacity: 60
+  imageAlt: '团队协作界面'
 }
 </script>
 
@@ -131,11 +112,8 @@ const customStyles = {
 | `title`          | `textarea` | 巨幕主标题（支持 `<br>` 换行与 HTML 高亮） | `企业级即时通讯<br>让协作更快一步`                                           |
 | `description`    | `textarea` | 核心价值主张与详细说明文本                 | `安全、高效、可定制——专为现代企业打造的智能聊天平台，集成工作流与数据洞察。` |
 | `buttons`        | `repeater` | 操作按钮列表（支持主次按钮并排）           | `[2 项数据]`                                                                 |
-| `image`          | `image`    | 产品界面或插画展示图片 URL（变体1、2、3）  | `https://images.unsplash.com/photo-1557804506-66...`                         |
+| `image`          | `image`    | 产品界面或插画展示图片 URL（变体1、2）     | `https://images.unsplash.com/photo-1557804506-66...`                         |
 | `imageAlt`       | `text`     | 展示图片的替代文本（SEO与无障碍访问）      | `团队协作界面`                                                               |
-| `bgImage`        | `image`    | 全宽背景大图 URL（变体4全屏背景风格使用）  | `https://images.unsplash.com/photo-1497215728101...`                         |
-| `bgImageAlt`     | `text`     | 全宽背景大图的替代文本                     | `现代办公空间全景`                                                           |
-| `overlayOpacity` | `number`   | 背景遮罩层黑色半透明不透明度百分比 (0-100) | `60`                                                                         |
 
 ### `buttons` 列表项字段说明
 
@@ -166,7 +144,6 @@ const customStyles = {
 | `mediaWrapper`    | 媒体展示区外层容器                                            | `mt-16 max-w-5xl mx-auto`                                                                                                                                                                                             |
 | `image`           | 产品界面预览图片元素                                          | `rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 w-full h-auto object-cover`                                                                                                                        |
 | `imageBox`        | 图片装饰外框（带阴影、外边框与圆角）                          | -                                                                                                                                                                                                                     |
-| `overlay`         | 变体4背景暗色半透明遮罩层                                     | -                                                                                                                                                                                                                     |
 
 ---
 
@@ -224,6 +201,6 @@ Slot Props 传入）：
 
 | 参数名    | 类型               | 默认值 | 说明                                  |
 | --------- | ------------------ | ------ | ------------------------------------- |
-| `variant` | `string \| number` | `'1'`  | 变体类型                              |
+| `variant` | `string \| number` | `'1'`  | 变体类型（`'1'`：SaaS 现代简约，`'2'`：波普复古/新丑风） |
 | `data`    | `object`           | `{}`   | 内容覆盖 JSON，按 Schema 结构深层合并 |
 | `styles`  | `object`           | `{}`   | 样式覆写映射对象（Tailwind CSS 类名） |

@@ -53,7 +53,7 @@ docs/
 │   └── architecture.md  # 架构设计与覆盖机制规范
 ├── component/           # 22 个区块组件的独立演示与文档
 │   ├── navbar.md        # 导航栏
-│   ├── hero.md          # 主视觉 Hero（4种变体）
+│   ├── hero.md          # 主视觉 Hero（2种变体）
 │   ├── pricing.md       # 价格方案
 │   └── ...              # 其他区块
 ├── index.md             # 文档首页 (VitePress Home Layout)
