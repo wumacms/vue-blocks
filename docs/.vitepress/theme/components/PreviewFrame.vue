@@ -214,33 +214,30 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    id="preview-root"
+  <div id="preview-root"
     class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-200"
-    style="display: flow-root; width: 100%; height: auto; min-height: 0; box-sizing: border-box;"
-  >
-    <component
-      :is="CurrentComponent"
-      v-if="CurrentComponent"
-      :key="blockName + '-' + variant"
-      :variant="variant"
-      :route-mode="blockName === 'SiteRenderer' ? 'memory' : undefined"
-      :seo="blockName === 'PageRenderer' ? false : undefined"
-    />
-    <div v-else class="p-12 text-center text-sm text-gray-400">
-      未找到区块组件: {{ blockName }}
-    </div>
+    style="display: flow-root; width: 100%; height: auto; min-height: 0; box-sizing: border-box;">
+    <ClientOnly>
+      <component :is="CurrentComponent" v-if="CurrentComponent" :key="blockName + '-' + variant" :variant="variant"
+        :route-mode="blockName === 'SiteRenderer' ? 'memory' : undefined"
+        :seo="blockName === 'PageRenderer' ? false : undefined" />
+      <div v-else class="p-12 text-center text-sm text-gray-400">
+        未找到区块组件: {{ blockName }}
+      </div>
 
-    <!-- Extra space for Navbar dropdown menus -->
-    <div v-if="blockName === 'NavbarBlock'" class="py-24 text-center text-xs text-gray-400 dark:text-gray-600 select-none">
-      页面内容占位区域（用于演示悬停二级下拉菜单展开与吸顶效果）
-    </div>
+      <!-- Extra space for Navbar dropdown menus -->
+      <div v-if="blockName === 'NavbarBlock'"
+        class="py-24 text-center text-xs text-gray-400 dark:text-gray-600 select-none">
+        页面内容占位区域（用于演示悬停二级下拉菜单展开与吸顶效果）
+      </div>
+    </ClientOnly>
   </div>
 </template>
 
 <style>
 /* 避免 html 和 body 锁死高度，允许真实内容高度自适应流动 */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: auto;
@@ -258,12 +255,12 @@ html, body {
 }
 
 /* 彻底中和预览容器内部 min-h-screen 与 100vh 对 iframe 的正反馈自增污染，恢复自然内容高度 */
-#preview-root :is(.min-h-screen, [style*="100vh"], [style*="min-height: calc(100vh"]) {
+:where(#preview-root) :is(.min-h-screen, [style*="100vh"], [style*="min-height: calc(100vh"]) {
   min-height: auto !important;
 }
 
 /* 彻底清除 VitePress base.css 对 h1-h6、段落等在无图层(unlayered)级别强制施加的 font-size:16px、font-weight:400 污染 */
-#preview-root :is(h1, h2, h3, h4, h5, h6) {
+:where(#preview-root) :is(h1, h2, h3, h4, h5, h6) {
   margin: revert-layer;
   padding: revert-layer;
   border: revert-layer;
@@ -273,7 +270,7 @@ html, body {
   font-weight: revert-layer;
 }
 
-#preview-root :is(p, ul, ol, li, blockquote, hr, table, tr, th, td, strong, b) {
+:where(#preview-root) :is(p, ul, ol, li, blockquote, hr, table, tr, th, td, strong, b) {
   margin: revert-layer;
   padding: revert-layer;
   border: revert-layer;
@@ -285,7 +282,7 @@ html, body {
   background-color: revert-layer;
 }
 
-#preview-root :is(button, input, optgroup, select, textarea) {
+:where(#preview-root) :is(button, input, optgroup, select, textarea) {
   border: revert-layer;
   padding: revert-layer;
   line-height: revert-layer;
@@ -296,21 +293,20 @@ html, body {
   outline: revert-layer;
 }
 
-#preview-root :is(a) {
+:where(#preview-root) :is(a) {
   text-decoration: revert-layer;
   color: revert-layer;
   font-weight: revert-layer;
 }
 
 /* 彻底清除 VitePress base.css 对 img、video 的 height: auto 导致的 Tailwind 高度类 (.h-12 等) 覆盖污染 */
-#preview-root :is(img, video) {
+:where(#preview-root) :is(img, video) {
   height: revert-layer;
   max-width: revert-layer;
 }
 
-#preview-root :is(img, svg, video, canvas, audio, iframe, embed, object) {
+:where(#preview-root) :is(img, svg, video, canvas, audio, iframe, embed, object) {
   display: revert-layer;
   vertical-align: revert-layer;
 }
 </style>
-
