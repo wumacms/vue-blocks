@@ -164,6 +164,7 @@ const customStyles = {
 | `summary`      | 摘要正文文字样式                                   | `text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4 flex-1`                                                                                    |
 | `moreLink`     | 阅读全文行动链接样式                               | `text-indigo-600 dark:text-indigo-400 font-semibold text-sm hover:underline inline-flex items-center gap-1`                                            |
 | `bottomMore`   | 底部“查看更多”按钮外层容器                         | `text-center mt-12`                                                                                                                                    |
+| `moreButton`   | 底部“查看更多”按钮样式                             | `inline-block bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 px-6 py-2.5 rounded-full text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm transition` |
 
 ---
 

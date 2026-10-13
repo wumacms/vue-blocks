@@ -95,7 +95,8 @@ const customStyles = {
 | `title`          | 主标题 `<h2>` 样式                     | `text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4`                             |
 | `description`    | 描述说明文本 `<p>` 样式                | `text-lg text-gray-600 dark:text-gray-300`                                                      |
 | `mediaWrapper`   | 下方全景大图展示容器                   | `max-w-5xl mx-auto`                                                                             |
-| `image`          | 全景大图样式（大圆角、深阴影与外边框） | `rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 w-full h-auto object-cover` |
+| `imageBox`       | 大图外部裁剪容器（圆角、阴影与边框）   | `rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800`            |
+| `image`          | 全景大图图片元素样式                   | `w-full h-auto object-cover`                                                                    |
 
 ---
 

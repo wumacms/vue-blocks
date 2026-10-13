@@ -112,7 +112,8 @@ const customStyles = {
 | `container`      | 内容居中容器                           | `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`                                                                                                                        |
 | `grid`           | 左图右文响应式双列网格布局容器         | `grid md:grid-cols-2 gap-12 items-center`                                                                                                                       |
 | `mediaWrapper`   | 左侧大图媒体容器                       | `relative`                                                                                                                                                      |
-| `image`          | 大图图片元素样式（大圆角、阴影与边框） | `rounded-2xl shadow-xl w-full h-auto object-cover border border-gray-100 dark:border-gray-800`                                                                  |
+| `imageBox`       | 大图外部裁剪容器（圆角、阴影与边框）   | `rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800`                                             |
+| `image`          | 大图图片元素样式                       | `w-full h-auto object-cover`                                                                                                    |
 | `contentWrapper` | 右侧文本与列表内容排版包裹容器         | `space-y-6`                                                                                                                                                     |
 | `title`          | 区块主标题 `<h2>` 样式                 | `text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight`                                                                                    |
 | `description`    | 正文说明文本 `<p>` 样式                | `text-lg text-gray-600 dark:text-gray-300 leading-relaxed`                                                                                                      |

@@ -125,6 +125,7 @@ const customStyles = {
 | `image`        | 头图图片元素样式（大圆角、阴影）                     | `w-full h-auto object-cover max-h-[500px]`                                                                             |
 | `body`         | 正文富文本排版样式（段落行高、标题字阶及阅读体验）   | `prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed space-y-6`               |
 | `tagsWrapper`  | 文章底部标签列表外层容器                             | `mt-12 pt-6 border-t border-gray-100 dark:border-gray-800 flex items-center gap-2 flex-wrap`                           |
+| `tagLabel`     | 标签前缀提示文本（“标签:”）样式                      | `text-xs text-gray-400 mr-2`                                                                                           |
 | `tag`          | 单个话题标签药丸样式                                 | `bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-medium`             |
 
 ---

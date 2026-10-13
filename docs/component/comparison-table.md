@@ -230,6 +230,9 @@ const customStyles = {
 | `tr`           | 数据行 `<tr>` 悬浮过渡与分割线样式                 | `hover:bg-gray-50 dark:hover:bg-gray-800/50 transition`                             |
 | `tdFeature`    | 首列特性名称单元格 `<td>` 样式（粗体、左对齐）     | `px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap`             |
 | `tdValue`      | 对比值数据单元格 `<td>` 样式（居中、字体规范）     | `px-6 py-4 text-gray-600 dark:text-gray-300 whitespace-nowrap`                      |
+| `iconCheck`    | 支持状态勾选符号（✓）样式                          | `text-green-500 font-bold text-base`                                                |
+| `iconCross`    | 不支持状态叉号符号（✗）样式                        | `text-red-400 font-bold text-base`                                                  |
+| `iconDash`     | 不适用/占位横线符号（—）样式                       | `text-gray-400`                                                                     |
 
 ---
 

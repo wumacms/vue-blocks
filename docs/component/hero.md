@@ -142,8 +142,8 @@ const customStyles = {
 | `buttonPrimary`   | 主行动按钮样式（实色/渐变背景、阴影与 hover 动效）            | `bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-6 py-3 rounded-full font-medium shadow-md transition`                                                                    |
 | `buttonSecondary` | 次级行动按钮样式（边框、透明底或灰底）                        | `bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-full font-medium shadow-sm transition`     |
 | `mediaWrapper`    | 媒体展示区外层容器                                            | `mt-16 max-w-5xl mx-auto`                                                                                                                                                                                             |
-| `image`           | 产品界面预览图片元素                                          | `rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 w-full h-auto object-cover`                                                                                                                        |
-| `imageBox`        | 图片装饰外框（带阴影、外边框与圆角）                          | -                                                                                                                                                                                                                     |
+| `imageBox`        | 图片装饰外框（带阴影、外边框与圆角）                          | `rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden`                                                                  |
+| `image`           | 产品界面预览图片元素                                          | `w-full h-auto object-cover`                                                                                                                          |
 
 ---
 

@@ -126,6 +126,7 @@ const customStyles = {
 | `icon`          | 右侧折叠箭头 SVG 图标基础样式                               | `w-5 h-5 text-indigo-600 dark:text-indigo-400 transition-transform duration-200 shrink-0 ml-4`                                                                                        |
 | `iconOpen`      | 条目展开时箭头的旋转动画样式（`rotate-180`）                | `rotate-180`                                                                                                                                                                          |
 | `content`       | 展开后显示的回答详细内容正文区域（带顶部分割线）            | `mt-4 text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base border-t border-gray-100 dark:border-gray-700/60 pt-4`                                                    |
+| `strokeWidth`   | 折叠箭头 SVG 图标描边粗细（数值型属性）                     | `2`                                                                                                                                                    |
 
 ---
 

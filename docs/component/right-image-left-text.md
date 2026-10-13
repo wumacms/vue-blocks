@@ -118,7 +118,8 @@ const customStyles = {
 | `tagItem`        | 单个要点条目弹性对齐容器               | `flex items-center gap-3 text-gray-700 dark:text-gray-200 font-medium`                                                                                          |
 | `tagIcon`        | 要点前置对勾/图标徽章样式              | `flex-shrink-0 w-5 h-5 text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 rounded-full flex items-center justify-center text-xs font-bold` |
 | `mediaWrapper`   | 右侧大图媒体容器                       | `relative`                                                                                                                                                      |
-| `image`          | 大图图片元素样式（大圆角、阴影与边框） | `rounded-2xl shadow-xl w-full h-auto object-cover border border-gray-100 dark:border-gray-800`                                                                  |
+| `imageBox`       | 大图外部裁剪容器（圆角、阴影与边框）   | `rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800`                                             |
+| `image`          | 大图图片元素样式                       | `w-full h-auto object-cover`                                                                                                    |
 
 ---
 
