@@ -12,7 +12,10 @@ export const defaultStyles = {
     tbody: 'divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900',
     tr: 'hover:bg-gray-50 dark:hover:bg-gray-800/50 transition',
     tdFeature: 'px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap',
-    tdValue: 'px-6 py-4 text-gray-600 dark:text-gray-300 whitespace-nowrap'
+    tdValue: 'px-6 py-4 text-gray-600 dark:text-gray-300 whitespace-nowrap',
+    iconCheck: 'text-green-500 font-bold text-base',
+    iconCross: 'text-red-400 font-bold text-base',
+    iconDash: 'text-gray-400'
   },
   '2': {
     root: 'py-20 bg-[#e9e2ff] dark:bg-[#1a103d] border-b-4 border-[#ffb347] transition-colors duration-300 relative overflow-hidden',
@@ -27,7 +30,10 @@ export const defaultStyles = {
     tbody: 'divide-y-2 divide-[#120b48]/15 dark:divide-[#ffb347]/20 bg-white dark:bg-[#2c1b6b]',
     tr: 'hover:bg-[#e9e2ff]/40 dark:hover:bg-[#1a103d]/40 transition',
     tdFeature: 'px-6 py-4 font-black text-[#120b48] dark:text-white whitespace-nowrap text-base',
-    tdValue: 'px-6 py-4 font-bold text-[#2c1b6b] dark:text-[#c4b5fd] whitespace-nowrap'
+    tdValue: 'px-6 py-4 font-bold text-[#2c1b6b] dark:text-[#c4b5fd] whitespace-nowrap',
+    iconCheck: 'font-black text-lg text-[#120b48] dark:text-[#ffb347]',
+    iconCross: 'font-black text-lg text-[#ff5c8a]',
+    iconDash: 'font-bold text-[#ff5c8a]'
   }
 }
 export default defaultStyles

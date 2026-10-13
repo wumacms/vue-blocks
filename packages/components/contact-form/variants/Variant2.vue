@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, useId } from 'vue'
 
 const props = defineProps({
   data: { type: Object, required: true },
@@ -7,6 +7,8 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['submit'])
+
+const uid = useId()
 
 const form = reactive({
   name: '',
@@ -40,9 +42,9 @@ function handleSubmit() {
         <form @submit.prevent="handleSubmit" class="space-y-6">
           <div :class="styles.formGrid">
             <div :class="styles.field">
-              <label :class="styles.label" for="name-v2">{{ data.nameLabel || '姓名' }}</label>
+              <label :class="styles.label" :for="`${uid}-name`">{{ data.nameLabel || '姓名' }}</label>
               <input
-                id="name-v2"
+                :id="`${uid}-name`"
                 name="name"
                 autocomplete="name"
                 v-model="form.name"
@@ -53,9 +55,9 @@ function handleSubmit() {
               />
             </div>
             <div :class="styles.field">
-              <label :class="styles.label" for="company-v2">{{ data.companyLabel || '公司名称' }}</label>
+              <label :class="styles.label" :for="`${uid}-company`">{{ data.companyLabel || '公司名称' }}</label>
               <input
-                id="company-v2"
+                :id="`${uid}-company`"
                 name="company"
                 autocomplete="organization"
                 v-model="form.company"
@@ -65,9 +67,9 @@ function handleSubmit() {
               />
             </div>
             <div :class="styles.field">
-              <label :class="styles.label" for="email-v2">{{ data.emailLabel || '电子邮箱' }}</label>
+              <label :class="styles.label" :for="`${uid}-email`">{{ data.emailLabel || '电子邮箱' }}</label>
               <input
-                id="email-v2"
+                :id="`${uid}-email`"
                 name="email"
                 autocomplete="email"
                 v-model="form.email"
@@ -78,8 +80,13 @@ function handleSubmit() {
               />
             </div>
             <div :class="styles.field">
-              <label :class="styles.label" for="subject-v2">{{ data.subjectLabel || '咨询主题' }}</label>
-              <select id="subject-v2" name="subject" v-model="form.subject" :class="styles.select">
+              <label :class="styles.label" :for="`${uid}-subject`">{{ data.subjectLabel || '咨询主题' }}</label>
+              <select
+                :id="`${uid}-subject`"
+                name="subject"
+                v-model="form.subject"
+                :class="styles.select"
+              >
                 <option value="" disabled>请选择主题</option>
                 <option v-for="(opt, idx) in data.subjectOptions" :key="idx" :value="opt.value">
                   {{ opt.label }}
@@ -87,11 +94,11 @@ function handleSubmit() {
               </select>
             </div>
             <div :class="styles.fieldFull">
-              <label :class="styles.label" for="message-v2">
+              <label :class="styles.label" :for="`${uid}-message`">
                 {{ data.messageLabel || '留言信息' }}
               </label>
               <textarea
-                id="message-v2"
+                :id="`${uid}-message`"
                 name="message"
                 v-model="form.message"
                 rows="4"

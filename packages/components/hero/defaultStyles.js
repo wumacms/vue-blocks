@@ -9,7 +9,8 @@ export const defaultStyles = {
     buttonPrimary: 'bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-6 py-3 rounded-full font-medium shadow-md transition',
     buttonSecondary: 'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-full font-medium shadow-sm transition',
     mediaWrapper: 'mt-16 max-w-5xl mx-auto',
-    image: 'rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 w-full h-auto object-cover'
+    imageBox: 'rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden',
+    image: 'w-full h-auto object-cover'
   },
   '2': {
     root: 'bg-[#e9e2ff] dark:bg-[#1a103d] border-b-4 border-[#ffb347] dark:border-[#ffb347] relative overflow-hidden pt-16 pb-20 transition-colors duration-300',

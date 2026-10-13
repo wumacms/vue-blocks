@@ -48,7 +48,7 @@ defineProps({
         <a
           :href="data.moreLink || '#'"
           :target="data.moreNewWindow ? '_blank' : '_self'"
-          class="inline-block bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 px-6 py-2.5 rounded-full text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm transition"
+          :class="styles.moreButton"
         >
           {{ data.moreText }}
         </a>

@@ -41,15 +41,15 @@ defineProps({
                   :class="[styles.tdValue, typeof col === 'object' && col ? (col.textColor || '') : '']"
                 >
                   <template v-if="typeof col === 'object' && col !== null">
-                    <span v-if="col.value === true || col.value === '✓'" class="font-black text-lg text-[#120b48] dark:text-[#ffb347]">✓</span>
-                    <span v-else-if="col.value === false || col.value === '—' || col.value === '-'" class="font-bold text-[#ff5c8a]">—</span>
-                    <span v-else-if="col.value === '✗'" class="font-black text-lg text-[#ff5c8a]">✗</span>
+                    <span v-if="col.value === true || col.value === '✓'" :class="styles.iconCheck">✓</span>
+                    <span v-else-if="col.value === false || col.value === '—' || col.value === '-'" :class="styles.iconDash">—</span>
+                    <span v-else-if="col.value === '✗'" :class="styles.iconCross">✗</span>
                     <span v-else>{{ col.value }}</span>
                   </template>
                   <template v-else>
-                    <span v-if="col === true || col === '✓'" class="font-black text-lg text-[#120b48] dark:text-[#ffb347]">✓</span>
-                    <span v-else-if="col === false || col === '—' || col === '-'" class="font-bold text-[#ff5c8a]">—</span>
-                    <span v-else-if="col === '✗'" class="font-black text-lg text-[#ff5c8a]">✗</span>
+                    <span v-if="col === true || col === '✓'" :class="styles.iconCheck">✓</span>
+                    <span v-else-if="col === false || col === '—' || col === '-'" :class="styles.iconDash">—</span>
+                    <span v-else-if="col === '✗'" :class="styles.iconCross">✗</span>
                     <span v-else>{{ col }}</span>
                   </template>
                 </td>

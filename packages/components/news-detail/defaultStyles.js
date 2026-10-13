@@ -10,6 +10,7 @@ export const defaultStyles = {
     image: 'w-full h-auto object-cover max-h-[500px]',
     body: 'prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed space-y-6',
     tagsWrapper: 'mt-12 pt-6 border-t border-gray-100 dark:border-gray-800 flex items-center gap-2 flex-wrap',
+    tagLabel: 'text-xs text-gray-400 mr-2',
     tag: 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-medium'
   },
   '2': {
@@ -23,6 +24,7 @@ export const defaultStyles = {
     image: 'w-full h-auto object-cover max-h-[500px]',
     body: 'prose prose-lg dark:prose-invert max-w-none text-[#120b48] dark:text-white font-medium leading-relaxed space-y-6',
     tagsWrapper: 'mt-12 pt-6 border-t-2 border-[#120b48]/20 dark:border-[#ffb347]/30 flex items-center gap-2 flex-wrap',
+    tagLabel: 'text-xs font-black text-[#120b48] dark:text-[#c4b5fd] mr-2',
     tag: 'bg-white dark:bg-[#2c1b6b] text-[#120b48] dark:text-white border-2 border-[#120b48] dark:border-[#ffb347] px-3.5 py-1 rounded-full text-xs font-black shadow-[2px_2px_0_#ff5c8a]'
   }
 }

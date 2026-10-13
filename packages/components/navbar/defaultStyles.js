@@ -25,7 +25,8 @@ export const defaultStyles = {
     mobileDropdownItem: 'flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400',
     mobileDropdownItemActive: 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/80 dark:bg-indigo-950/40 font-medium',
     mobileButtonWrapper: 'pt-4 border-t border-gray-100 dark:border-gray-800',
-    mobileCtaButton: 'block w-full text-center bg-indigo-600 text-white font-medium py-2.5 rounded-full shadow-sm'
+    mobileCtaButton: 'block w-full text-center bg-indigo-600 text-white font-medium py-2.5 rounded-full shadow-sm',
+    strokeWidth: 2
   },
   '2': {
     root: 'border-b-4 border-[#ffb347] bg-[#e9e2ff] dark:bg-[#1a103d] sticky top-0 z-50 transition-colors duration-300',
@@ -53,7 +54,8 @@ export const defaultStyles = {
     mobileDropdownItem: 'flex items-center gap-2 px-3 py-2 text-sm font-semibold text-[#2c1b6b] dark:text-[#c4b5fd] hover:text-[#120b48] dark:hover:text-white',
     mobileDropdownItemActive: 'text-[#ff5c8a] dark:text-[#ffb347] font-black',
     mobileButtonWrapper: 'pt-4 border-t-2 border-[#120b48]/20 dark:border-[#ffb347]/30',
-    mobileCtaButton: 'block w-full text-center bg-[#120b48] dark:bg-[#ffb347] text-white dark:text-[#120b48] font-black py-3 rounded-full border-3 border-[#ffb347] dark:border-[#ff5c8a] shadow-[4px_4px_0_#ff5c8a] dark:shadow-[4px_4px_0_#b47aff]'
+    mobileCtaButton: 'block w-full text-center bg-[#120b48] dark:bg-[#ffb347] text-white dark:text-[#120b48] font-black py-3 rounded-full border-3 border-[#ffb347] dark:border-[#ff5c8a] shadow-[4px_4px_0_#ff5c8a] dark:shadow-[4px_4px_0_#b47aff]',
+    strokeWidth: 2.5
   }
 }
 export default defaultStyles

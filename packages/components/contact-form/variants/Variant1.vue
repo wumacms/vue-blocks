@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, useId } from 'vue'
 
 const props = defineProps({
   data: { type: Object, required: true },
@@ -7,6 +7,8 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['submit'])
+
+const uid = useId()
 
 const form = reactive({
   name: '',
@@ -40,23 +42,51 @@ function handleSubmit() {
         <form @submit.prevent="handleSubmit" class="space-y-6">
           <div :class="styles.formGrid">
             <div :class="styles.field">
-              <label :class="styles.label" for="name">{{ data.nameLabel || '姓名' }}</label>
-              <input id="name" name="name" autocomplete="name" v-model="form.name" type="text" required
-                placeholder="请输入您的姓名" :class="styles.input" />
+              <label :class="styles.label" :for="`${uid}-name`">{{ data.nameLabel || '姓名' }}</label>
+              <input
+                :id="`${uid}-name`"
+                name="name"
+                autocomplete="name"
+                v-model="form.name"
+                type="text"
+                required
+                placeholder="请输入您的姓名"
+                :class="styles.input"
+              />
             </div>
             <div :class="styles.field">
-              <label :class="styles.label" for="company">{{ data.companyLabel || '公司名称' }}</label>
-              <input id="company" name="company" autocomplete="organization" v-model="form.company" type="text"
-                placeholder="请输入公司名称" :class="styles.input" />
+              <label :class="styles.label" :for="`${uid}-company`">{{ data.companyLabel || '公司名称' }}</label>
+              <input
+                :id="`${uid}-company`"
+                name="company"
+                autocomplete="organization"
+                v-model="form.company"
+                type="text"
+                placeholder="请输入公司名称"
+                :class="styles.input"
+              />
             </div>
             <div :class="styles.field">
-              <label :class="styles.label" for="email">{{ data.emailLabel || '电子邮箱' }}</label>
-              <input id="email" name="email" autocomplete="email" v-model="form.email" type="email" required
-                placeholder="name@company.com" :class="styles.input" />
+              <label :class="styles.label" :for="`${uid}-email`">{{ data.emailLabel || '电子邮箱' }}</label>
+              <input
+                :id="`${uid}-email`"
+                name="email"
+                autocomplete="email"
+                v-model="form.email"
+                type="email"
+                required
+                placeholder="name@company.com"
+                :class="styles.input"
+              />
             </div>
             <div :class="styles.field">
-              <label :class="styles.label" for="subject">{{ data.subjectLabel || '咨询主题' }}</label>
-              <select id="subject" name="subject" v-model="form.subject" :class="styles.select">
+              <label :class="styles.label" :for="`${uid}-subject`">{{ data.subjectLabel || '咨询主题' }}</label>
+              <select
+                :id="`${uid}-subject`"
+                name="subject"
+                v-model="form.subject"
+                :class="styles.select"
+              >
                 <option value="" disabled>请选择主题</option>
                 <option v-for="(opt, idx) in data.subjectOptions" :key="idx" :value="opt.value">
                   {{ opt.label }}
@@ -64,11 +94,18 @@ function handleSubmit() {
               </select>
             </div>
             <div :class="styles.fieldFull">
-              <label :class="styles.label" for="message">
+              <label :class="styles.label" :for="`${uid}-message`">
                 {{ data.messageLabel || '留言信息' }}
               </label>
-              <textarea id="message" name="message" v-model="form.message" rows="4" required placeholder="请详细描述您的需求..."
-                :class="styles.textarea" />
+              <textarea
+                :id="`${uid}-message`"
+                name="message"
+                v-model="form.message"
+                rows="4"
+                required
+                placeholder="请详细描述您的需求..."
+                :class="styles.textarea"
+              />
             </div>
           </div>
 

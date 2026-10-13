@@ -6,7 +6,8 @@ export const defaultStyles = {
     title: 'text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4',
     description: 'text-lg text-gray-600 dark:text-gray-300',
     mediaWrapper: 'max-w-5xl mx-auto',
-    image: 'rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 w-full h-auto object-cover'
+    imageBox: 'rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-800',
+    image: 'w-full h-auto object-cover'
   },
   '2': {
     root: 'py-20 bg-[#e9e2ff] dark:bg-[#1a103d] border-b-4 border-[#ffb347] transition-colors duration-300 relative overflow-hidden',

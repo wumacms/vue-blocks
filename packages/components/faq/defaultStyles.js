@@ -11,7 +11,8 @@ export const defaultStyles = {
     trigger: 'flex justify-between items-center w-full text-left font-semibold text-gray-900 dark:text-white text-lg',
     icon: 'w-5 h-5 text-indigo-600 dark:text-indigo-400 transition-transform duration-200 shrink-0 ml-4',
     iconOpen: 'rotate-180',
-    content: 'mt-4 text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base border-t border-gray-100 dark:border-gray-700/60 pt-4'
+    content: 'mt-4 text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base border-t border-gray-100 dark:border-gray-700/60 pt-4',
+    strokeWidth: 2
   },
   '2': {
     root: 'py-20 bg-[#e9e2ff] dark:bg-[#1a103d] border-b-4 border-[#ffb347] transition-colors duration-300 relative overflow-hidden',
@@ -25,7 +26,8 @@ export const defaultStyles = {
     trigger: 'flex justify-between items-center w-full text-left font-black text-[#120b48] dark:text-white text-lg md:text-xl',
     icon: 'w-7 h-7 text-[#120b48] dark:text-[#ffb347] transition-transform duration-200 shrink-0 ml-4 font-black',
     iconOpen: 'rotate-180 text-[#ff5c8a]',
-    content: 'mt-4 text-[#2c1b6b] dark:text-[#c4b5fd] font-medium leading-relaxed text-base border-t-2 border-[#120b48]/15 dark:border-[#ffb347]/30 pt-4'
+    content: 'mt-4 text-[#2c1b6b] dark:text-[#c4b5fd] font-medium leading-relaxed text-base border-t-2 border-[#120b48]/15 dark:border-[#ffb347]/30 pt-4',
+    strokeWidth: 3
   }
 }
 export default defaultStyles

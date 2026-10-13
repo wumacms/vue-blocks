@@ -25,7 +25,7 @@ defineProps({
       </slot>
       <slot name="tags" :tags="data.tags">
         <div v-if="data.tags && data.tags.length" :class="styles.tagsWrapper">
-          <span class="text-xs text-gray-400 mr-2">标签:</span>
+          <span :class="styles.tagLabel">标签:</span>
           <span v-for="(t, idx) in data.tags" :key="idx" :class="styles.tag">
             #{{ t.text }}
           </span>

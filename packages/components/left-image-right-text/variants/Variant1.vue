@@ -11,7 +11,9 @@ defineProps({
       <div :class="styles.grid">
         <slot name="media" :image="data.image" :image-alt="data.imageAlt">
           <div :class="styles.mediaWrapper">
-            <img :src="data.image" :alt="data.imageAlt || 'Left Image'" :class="styles.image" />
+            <div :class="styles.imageBox">
+              <img :src="data.image" :alt="data.imageAlt || 'Left Image'" :class="styles.image" />
+            </div>
           </div>
         </slot>
         <div :class="styles.contentWrapper">

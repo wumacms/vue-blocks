@@ -16,7 +16,8 @@ export const defaultStyles = {
     newsTitle: 'text-xl font-bold text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition mb-2 line-clamp-2',
     summary: 'text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4 flex-1',
     moreLink: 'text-indigo-600 dark:text-indigo-400 font-semibold text-sm hover:underline inline-flex items-center gap-1',
-    bottomMore: 'text-center mt-12'
+    bottomMore: 'text-center mt-12',
+    moreButton: 'inline-block bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 px-6 py-2.5 rounded-full text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm transition'
   },
   '2': {
     root: 'py-20 bg-[#e9e2ff] dark:bg-[#1a103d] border-b-4 border-[#ffb347] transition-colors duration-300 relative overflow-hidden',
@@ -35,7 +36,8 @@ export const defaultStyles = {
     newsTitle: 'text-2xl font-black text-[#120b48] dark:text-white hover:text-[#ff5c8a] dark:hover:text-[#ffb347] transition mb-2 line-clamp-2',
     summary: 'text-[#2c1b6b] dark:text-[#c4b5fd] text-sm font-medium line-clamp-3 mb-4 flex-1 leading-relaxed',
     moreLink: 'text-[#120b48] dark:text-[#ffb347] font-black text-sm hover:text-[#ff5c8a] inline-flex items-center gap-1',
-    bottomMore: 'text-center mt-12'
+    bottomMore: 'text-center mt-12',
+    moreButton: 'inline-block bg-[#120b48] dark:bg-[#ffb347] text-white dark:text-[#120b48] border-3 border-[#ffb347] dark:border-[#ff5c8a] px-8 py-3.5 rounded-full text-base font-black shadow-[4px_4px_0_#ff5c8a] dark:shadow-[4px_4px_0_#b47aff] hover:shadow-[1px_1px_0_#ff5c8a] transition-all'
   }
 }
 export default defaultStyles

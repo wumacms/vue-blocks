@@ -54,7 +54,7 @@ const isMobileOpen = ref(false)
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                    <path stroke-linecap="round" stroke-linejoin="round" :stroke-width="styles.strokeWidth || 2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
                 <div :class="styles.dropdownMenu">
@@ -112,14 +112,14 @@ const isMobileOpen = ref(false)
                 v-if="!isMobileOpen"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2.5"
+                :stroke-width="styles.strokeWidth || 2"
                 d="M4 6h16M4 12h16M4 18h16"
               />
               <path
                 v-else
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2.5"
+                :stroke-width="styles.strokeWidth || 2"
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>

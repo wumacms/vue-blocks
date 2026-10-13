@@ -10,7 +10,8 @@ export const defaultStyles = {
     tagItem: 'flex items-center gap-3 text-gray-700 dark:text-gray-200 font-medium',
     tagIcon: 'flex-shrink-0 w-5 h-5 text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 rounded-full flex items-center justify-center text-xs font-bold',
     mediaWrapper: 'relative',
-    image: 'rounded-2xl shadow-xl w-full h-auto object-cover border border-gray-100 dark:border-gray-800'
+    imageBox: 'rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800',
+    image: 'w-full h-auto object-cover'
   },
   '2': {
     root: 'py-20 bg-[#e9e2ff] dark:bg-[#1a103d] border-b-4 border-[#ffb347] transition-colors duration-300 relative overflow-hidden',

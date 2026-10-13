@@ -31,7 +31,9 @@ defineProps({
       </div>
       <slot name="media" :image="data.image" :image-alt="data.imageAlt">
         <div v-if="data.image" :class="styles.mediaWrapper">
-          <img :src="data.image" :alt="data.imageAlt || 'Hero Media'" :class="styles.image" />
+          <div :class="styles.imageBox">
+            <img :src="data.image" :alt="data.imageAlt || 'Hero Media'" :class="styles.image" />
+          </div>
         </div>
       </slot>
     </div>
