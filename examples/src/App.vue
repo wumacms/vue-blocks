@@ -29,7 +29,7 @@ import {
 import FloatingToolbar from './components/FloatingToolbar.vue'
 
 const renderMode = ref('site') // 'site' | 'renderer' | 'manual'
-const heroVariant = ref('1')
+const globalVariant = ref('1')
 const footerEl = ref(null)
 
 // Custom data override example for Hero
@@ -43,7 +43,7 @@ const customFeaturesStyles = {
   root: 'py-24 bg-gradient-to-b from-indigo-50/50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950'
 }
 
-// PageRenderer 数据驱动页面配置（支持响应式关联 heroVariant）
+// PageRenderer 数据驱动页面配置（支持响应式关联 globalVariant）
 const dynamicPageData = computed(() => ({
   seo: {
     title: 'VueBlocks - 数据驱动落地页渲染示例',
@@ -55,18 +55,18 @@ const dynamicPageData = computed(() => ({
     {
       id: 'hero',
       type: 'HeroBlock',
-      variant: heroVariant.value,
+      variant: globalVariant.value,
       data: {
         title: '下一代智能协作平台<br><span class="text-indigo-600 dark:text-indigo-400">由 PageRenderer 数据驱动</span>',
         description: '无需繁琐手动引入 22 个组件，仅需一份 JSON 配置即可自动渲染企业级落地页。'
       }
     },
-    { id: 'partners', type: 'PartnersBlock', variant: heroVariant.value },
-    { id: 'features', type: 'FeaturesBlock', variant: heroVariant.value, styles: heroVariant.value === '1' ? customFeaturesStyles : {} },
-    { id: 'stats', type: 'StatsBlock', variant: heroVariant.value },
-    { id: 'pricing', type: 'PricingBlock', variant: heroVariant.value },
-    { id: 'faq', type: 'FaqBlock', variant: heroVariant.value },
-    { id: 'contact', type: 'ContactFormBlock', variant: heroVariant.value }
+    { id: 'partners', type: 'PartnersBlock', variant: globalVariant.value },
+    { id: 'features', type: 'FeaturesBlock', variant: globalVariant.value, styles: globalVariant.value === '1' ? customFeaturesStyles : {} },
+    { id: 'stats', type: 'StatsBlock', variant: globalVariant.value },
+    { id: 'pricing', type: 'PricingBlock', variant: globalVariant.value },
+    { id: 'faq', type: 'FaqBlock', variant: globalVariant.value },
+    { id: 'contact', type: 'ContactFormBlock', variant: globalVariant.value }
   ]
 }))
 
@@ -118,17 +118,17 @@ function handleContactSubmit(formData, context) {
     </div>
 
     <!-- 悬浮控制台：主题模式切换与全站/Hero 变体切换（自动避让页脚） -->
-    <FloatingToolbar v-model="heroVariant" :footer-el="footerEl" />
+    <FloatingToolbar v-model="globalVariant" :footer-el="footerEl" />
 
     <!-- 模式 1：SiteRenderer 多页面全站渲染（支持通过 floatingToolbar 统一切换变体） -->
     <div v-if="renderMode === 'site'">
-      <SiteRenderer :variant="heroVariant" route-mode="hash" />
+      <SiteRenderer :variant="globalVariant" route-mode="hash" />
     </div>
 
     <!-- 模式 2：PageRenderer 数据驱动渲染（传入可选 navbar 与 footer 参数） -->
     <div v-else-if="renderMode === 'renderer'">
       <PageRenderer
-        :variant="heroVariant"
+        :variant="globalVariant"
         :data="dynamicPageData"
         :navbar="NavbarBlock"
         :footer="FooterBlock"
@@ -139,71 +139,100 @@ function handleContactSubmit(formData, context) {
     <!-- 模式 3：手动平铺全部区块 -->
     <div v-else>
       <!-- 1. 导航栏 -->
-      <NavbarBlock :variant="heroVariant" />
+      <NavbarBlock :variant="globalVariant" />
 
       <!-- 2. Hero 区块 -->
-      <HeroBlock :variant="heroVariant" :data="heroVariant === '1' ? customHeroData : {}" />
+      <HeroBlock :variant="globalVariant" :data="globalVariant === '1' ? customHeroData : {}">
+        <!-- 插槽演示：自定义增强行动按钮，演示跨风格变体无损透传 -->
+        <template #actions="{ buttons }">
+          <div class="flex flex-wrap gap-4 justify-center items-center">
+            <a
+              :href="buttons?.[0]?.btnLink || '#'"
+              :class="[
+                'px-8 py-3.5 rounded-full font-bold transition flex items-center gap-2 shadow-lg cursor-pointer',
+                globalVariant === '1'
+                  ? 'bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white'
+                  : 'bg-[#ffb347] text-[#120b48] border-3 border-[#120b48] shadow-[4px_4px_0_#ff5c8a] hover:shadow-[1px_1px_0_#ff5c8a]'
+              ]"
+            >
+              <span>⚡</span>
+              <span>{{ buttons?.[0]?.btnText || '立即免费体验' }} <span class="text-xs opacity-80">(自定义插槽)</span></span>
+            </a>
+            <a
+              :href="buttons?.[1]?.btnLink || '#'"
+              :class="[
+                'px-6 py-3 rounded-full font-medium transition cursor-pointer',
+                globalVariant === '1'
+                  ? 'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
+                  : 'bg-white dark:bg-[#2c1b6b] text-[#120b48] dark:text-white border-3 border-[#120b48] dark:border-[#ffb347] font-bold shadow-[4px_4px_0_#b47aff]'
+              ]"
+            >
+              {{ buttons?.[1]?.btnText || '预约产品演示' }}
+            </a>
+          </div>
+        </template>
+      </HeroBlock>
 
       <!-- 3. 合作伙伴区块 -->
-      <PartnersBlock :variant="heroVariant" />
+      <PartnersBlock :variant="globalVariant" />
 
       <!-- 4. 特性区块 -->
-      <FeaturesBlock :variant="heroVariant" :styles="heroVariant === '1' ? customFeaturesStyles : {}" />
+      <FeaturesBlock :variant="globalVariant" :styles="globalVariant === '1' ? customFeaturesStyles : {}" />
 
       <!-- 5. 上文下图区块 -->
-      <TopTextBottomImageBlock :variant="heroVariant" />
+      <TopTextBottomImageBlock :variant="globalVariant" />
 
       <!-- 6. 统计区块 -->
-      <StatsBlock :variant="heroVariant" />
+      <StatsBlock :variant="globalVariant" />
 
       <!-- 7. 左图右文 -->
-      <LeftImageRightTextBlock :variant="heroVariant" />
+      <LeftImageRightTextBlock :variant="globalVariant" />
 
       <!-- 8. 左文右图 -->
-      <RightImageLeftTextBlock :variant="heroVariant" />
+      <RightImageLeftTextBlock :variant="globalVariant" />
 
       <!-- 9. 图标墙区块 -->
-      <IconWallBlock :variant="heroVariant" />
+      <IconWallBlock :variant="globalVariant" />
 
       <!-- 10. 服务列表区块 -->
-      <ServiceListBlock :variant="heroVariant" />
+      <ServiceListBlock :variant="globalVariant" />
 
       <!-- 11. 产品列表区块 -->
-      <ProductListBlock :variant="heroVariant" />
+      <ProductListBlock :variant="globalVariant" />
 
       <!-- 12. 课程列表区块 -->
-      <CourseListBlock :variant="heroVariant" />
+      <CourseListBlock :variant="globalVariant" />
 
       <!-- 13. 客户评价区块 -->
-      <TestimonialsBlock :variant="heroVariant" />
+      <TestimonialsBlock :variant="globalVariant" />
 
       <!-- 14. 团队区块 -->
-      <TeamBlock :variant="heroVariant" />
+      <TeamBlock :variant="globalVariant" />
 
       <!-- 15. 价格区块 -->
-      <PricingBlock :variant="heroVariant" />
+      <PricingBlock :variant="globalVariant" />
 
       <!-- 16. 对比表格区块 -->
-      <ComparisonTableBlock :variant="heroVariant" />
+      <ComparisonTableBlock :variant="globalVariant" />
 
       <!-- 17. 新闻列表区块 -->
-      <NewsListBlock :variant="heroVariant" />
+      <NewsListBlock :variant="globalVariant" />
 
       <!-- 18. 新闻详情区块 -->
-      <NewsDetailBlock :variant="heroVariant" />
+      <NewsDetailBlock :variant="globalVariant" />
 
       <!-- 19. 常见问题区块 -->
-      <FaqBlock :variant="heroVariant" />
+      <FaqBlock :variant="globalVariant" />
 
       <!-- 20. 号召区块 (CTA) -->
-      <CtaBlock :variant="heroVariant" />
+      <CtaBlock :variant="globalVariant" />
 
       <!-- 21. 联系表单区块 -->
-      <ContactFormBlock :variant="heroVariant" @submit="handleContactSubmit" />
+      <ContactFormBlock :variant="globalVariant" @submit="handleContactSubmit" />
 
       <!-- 22. 页脚区块 -->
       <div ref="footerEl">
-        <FooterBlock :variant="heroVariant" />
+        <FooterBlock :variant="globalVariant" />
       </div>
     </div>
   </div>

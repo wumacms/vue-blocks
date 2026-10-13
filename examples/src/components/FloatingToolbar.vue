@@ -13,8 +13,8 @@ const props = defineProps({
   variants: {
     type: Array,
     default: () => [
-      { id: '1', name: 'SaaS 现代风格', desc: '科技产品落地页' },
-      { id: '2', name: '波普复古风', desc: '新丑风粗边框卡片' }
+      { id: '1', alias: 'clean', name: 'SaaS 现代风格', desc: '科技产品极简落地页' },
+      { id: '2', alias: 'brutalism', name: '波普复古新丑风', desc: '粗边框强对比撞色卡片' }
     ]
   },
   footerEl: {
@@ -137,11 +137,11 @@ onUnmounted(() => {
     >
       <div
         v-if="activePopup === 'variant'"
-        class="mr-3 mb-0 w-52 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-gray-200/90 dark:border-gray-700/90 shadow-2xl rounded-2xl p-2 text-xs"
+        class="mr-3 mb-0 w-60 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-gray-200/90 dark:border-gray-700/90 shadow-2xl rounded-2xl p-2 text-xs"
       >
         <div class="space-y-1">
           <div class="px-2.5 py-1 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
-            Hero 变体选择
+            全系风格变体切换
           </div>
           <button
             v-for="v in variants"
@@ -155,18 +155,19 @@ onUnmounted(() => {
             ]"
           >
             <div>
-              <div class="flex items-center gap-1.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
                 <span
                   :class="[
-                    'w-4 h-4 rounded-full text-[10px] flex items-center justify-center font-bold',
+                    'w-4 h-4 rounded-full text-[10px] flex items-center justify-center font-bold shrink-0',
                     currentVariant === String(v.id)
                       ? 'bg-indigo-600 text-white'
                       : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                   ]"
                 >{{ v.id }}</span>
                 <span class="text-xs">{{ v.name }}</span>
+                <span v-if="v.alias" class="text-[9px] px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 font-mono leading-none">{{ v.alias }}</span>
               </div>
-              <div class="text-[10px] text-gray-400 dark:text-gray-500 pl-5">{{ v.desc }}</div>
+              <div class="text-[10px] text-gray-400 dark:text-gray-500 pl-5 mt-0.5">{{ v.desc }}</div>
             </div>
             <svg
               v-if="currentVariant === String(v.id)"
@@ -234,8 +235,8 @@ onUnmounted(() => {
             ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400'
             : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/60'
         ]"
-        title="切换Hero变体"
-        aria-label="切换Hero变体"
+        title="切换全系风格变体"
+        aria-label="切换全系风格变体"
       >
         <svg
           class="w-5 h-5 transition-transform group-hover:scale-110"
