@@ -26,7 +26,10 @@
   单页面编排引擎，严格遵循 HTML5 `<main>` 语义化标准与无障碍规范，内置响应式动态 SEO 同步系统（`Title` / `Description` / `Meta` 自动更新与卸载清理）。
 
 - **🎨 统一变体模式（极简全局换皮）**：
-  内置统一的跨区块设计变体体系。支持在站点渲染器（`SiteRenderer`）、页面渲染器（`PageRenderer`）或任意原子区块顶层传入统一的 `variant` 参数，一键控制全站所有区块统一切换至指定设计风格（例如 `'1'` SaaS 现代极简、`'2'` 波普复古新粗野主义等）。
+  内置统一的跨区块设计变体体系。支持在站点渲染器（`SiteRenderer`）、页面渲染器（`PageRenderer`）或任意原子区块顶层传入统一的 `variant` 参数（支持数字或 `'clean'`、`'brutalism'` 等语义别名），一键控制全站所有区块统一切换至指定设计风格。
+
+- **🧩 单模板直出与 DOM 恒定架构**：
+  底层采用「纯配置样式驱动 + 单模板直出」架构，风格变体切换仅动态匹配原子样式表，DOM 结构恒定一致。彻底消除了多模板割裂，保证自定义插槽（Slots）在任意风格变体下均能 100% 稳定透传与渲染。
 
 - **⚡ 开箱即用（Zero-Config Preview）**：
   任何区块组件及渲染器未传参即可直接渲染高保真图文与设计排版，极大缩短原型与交付周期。
@@ -34,9 +37,10 @@
 - **🎨 Tailwind CSS 4 原生驱动**：
   深度适配 Tailwind CSS 4 架构，零配置自适应 `dark:` 响应式深浅色主题。
 
-- **🔄 双重智能覆盖机制**：
+- **🔄 三重智能定制机制**：
   - **内容覆盖 (`data`)**：传入 JSON 局部覆写默认文案、图片与列表数据。
   - **样式覆盖 (`styles`)**：传入 Tailwind 类名精准定制视觉样式，内置 `tailwind-merge` 无类名冲突。
+  - **插槽扩展 (`slots`)**：通过 Vue 具名作用域插槽彻底接管局部组件结构与交互事件。
 
 - **🔌 Schema 协议驱动**：每个区块附带标准化字段 Schema，无缝对接无头 CMS 与可视化低代码构建器。
 
@@ -115,9 +119,9 @@ import "vue-blocks/dist/style.css";
 
 #### 场景 3：一键切换全站风格（统一变体体系）
 
-VueBlocks 全系区块共享统一的变体规范：
-- **`variant="1"`**：**SaaS 现代极简风格**（默认，高通用性、轻质感柔和投影与优雅圆角）
-- **`variant="2"`**：**波普复古 / 新粗野主义风格**（Neo-Brutalism，粗黑描边、零模糊硬投影、波普高反差撞色与拟物按压反馈）
+VueBlocks 全系区块共享统一的变体规范（支持数字或语义化字符串别名）：
+- **`variant="1"` / `"clean"`**：**SaaS 现代极简风格**（默认，高通用性、轻质感柔和投影与优雅圆角）
+- **`variant="2"` / `"brutalism"`**：**波普复古 / 新粗野主义风格**（Neo-Brutalism，粗黑描边、零模糊硬投影、波普高反差撞色与拟物按压反馈）
 - 更多风格变体持续扩充中，支持整站一键联动或单个区块局部混搭。
 
 ```html
@@ -125,8 +129,8 @@ VueBlocks 全系区块共享统一的变体规范：
   import { ref } from "vue";
   import { SiteRenderer } from "vue-blocks";
 
-  // 切换为 '2' 即刻将整站所有区块转为波普复古新粗野主义风格
-  const currentVariant = ref("2");
+  // 传入语义别名 'brutalism'（或 '2'）即刻将整站所有区块转为波普复古新粗野主义风格
+  const currentVariant = ref("brutalism");
 </script>
 
 <template>
@@ -161,7 +165,21 @@ VueBlocks 全系区块共享统一的变体规范：
 
 <template>
   <NavbarBlock />
-  <HeroBlock variant="2" :data="heroData" />
+
+  <!-- 3. 支持插槽扩展（在任意变体风格下均无损稳定透传） -->
+  <HeroBlock variant="clean" :data="heroData">
+    <template #actions="{ buttons }">
+      <div class="flex gap-4">
+        <a
+          :href="buttons?.[0]?.btnLink || '#'"
+          class="px-8 py-3.5 rounded-full bg-indigo-600 text-white font-bold shadow-lg hover:bg-indigo-700 transition"
+        >
+          🚀 立即免费体验
+        </a>
+      </div>
+    </template>
+  </HeroBlock>
+
   <FeaturesBlock :styles="featuresStyles" />
   <FooterBlock />
 </template>
@@ -186,7 +204,7 @@ VueBlocks 全系区块共享统一的变体规范：
 | 组件名称 | 说明 |
 | :--- | :--- |
 | `NavbarBlock` | 顶部导航栏（支持下拉菜单、移动端折叠、激活态自动高亮） |
-| `HeroBlock` | 主视觉 Hero（内置 2 种风格变体：SaaS极简、波普复古） |
+| `HeroBlock` | 主视觉 Hero（支持富文本标题、主次行动按钮与媒体展示） |
 | `PartnersBlock` | 合作伙伴 / 客户 Logo 墙 |
 | `FooterBlock` | 页脚区块 |
 | `FeaturesBlock` | 特性列表区块 |
@@ -220,6 +238,9 @@ pnpm install
 
 # 启动全量区块与全站演示站点
 pnpm dev
+
+# 运行规范与机制自动化测试（186 项检测）
+pnpm test
 
 # 启动 VitePress 官方文档站点
 pnpm docs:dev
