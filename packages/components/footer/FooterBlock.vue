@@ -1,10 +1,8 @@
 <script setup>
 import { computed } from 'vue'
-import { mergeData, mergeStyles } from '@vue-blocks/utils'
+import { mergeData, resolveStyles } from '@vue-blocks/utils'
 import { defaultData } from './defaultData'
 import { defaultStyles } from './defaultStyles'
-import Variant1 from './variants/Variant1.vue'
-import Variant2 from './variants/Variant2.vue'
 
 defineOptions({
   name: 'FooterBlock'
@@ -25,29 +23,30 @@ const props = defineProps({
   }
 })
 
-const resolvedData = computed(() => mergeData(defaultData, props.data))
-const resolvedStyles = computed(() => {
-  const base = defaultStyles[String(props.variant)] || defaultStyles['1'] || {}
-  return mergeStyles(base, props.styles)
-})
-
-const variantMap = {
-  '1': Variant1,
-  '2': Variant2,
-  default: Variant1
-}
-
-const currentVariant = computed(() => variantMap[String(props.variant)] || Variant1)
+const data = computed(() => mergeData(defaultData, props.data))
+const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.styles))
 </script>
 
 <template>
-  <component
-    :is="currentVariant"
-    :data="resolvedData"
-    :styles="resolvedStyles"
-  >
-    <template v-for="(_, name) in $slots" #[name]="slotProps">
-      <slot :name="name" v-bind="slotProps || {}" />
-    </template>
-  </component>
+  <footer :class="styles.root">
+    <div :class="styles.container">
+      <slot name="brand" :data="data">
+        <div :class="styles.brandWrapper">
+          <img
+            v-if="data.logo"
+            :src="data.logo"
+            :alt="data.brandName || 'Footer Logo'"
+            :class="styles.logo"
+            onerror="this.src='https://placehold.co/32x32/4F46E5/white?text=Logo'"
+          />
+          <span v-if="data.brandName" :class="styles.brandName">{{ data.brandName }}</span>
+        </div>
+      </slot>
+      <slot name="copyright" :copyright="data.copyright">
+        <div :class="styles.copyright">
+          {{ data.copyright }}
+        </div>
+      </slot>
+    </div>
+  </footer>
 </template>

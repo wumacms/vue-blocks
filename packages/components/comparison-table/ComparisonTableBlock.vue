@@ -1,10 +1,8 @@
 <script setup>
 import { computed } from 'vue'
-import { mergeData, mergeStyles } from '@vue-blocks/utils'
+import { mergeData, resolveStyles } from '@vue-blocks/utils'
 import { defaultData } from './defaultData'
 import { defaultStyles } from './defaultStyles'
-import Variant1 from './variants/Variant1.vue'
-import Variant2 from './variants/Variant2.vue'
 
 defineOptions({
   name: 'ComparisonTableBlock'
@@ -25,29 +23,63 @@ const props = defineProps({
   }
 })
 
-const resolvedData = computed(() => mergeData(defaultData, props.data))
-const resolvedStyles = computed(() => {
-  const base = defaultStyles[String(props.variant)] || defaultStyles['1'] || {}
-  return mergeStyles(base, props.styles)
-})
-
-const variantMap = {
-  '1': Variant1,
-  '2': Variant2,
-  default: Variant1
-}
-
-const currentVariant = computed(() => variantMap[String(props.variant)] || Variant1)
+const data = computed(() => mergeData(defaultData, props.data))
+const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.styles))
 </script>
 
 <template>
-  <component
-    :is="currentVariant"
-    :data="resolvedData"
-    :styles="resolvedStyles"
-  >
-    <template v-for="(_, name) in $slots" #[name]="slotProps">
-      <slot :name="name" v-bind="slotProps || {}" />
-    </template>
-  </component>
+  <section :class="styles.root">
+    <div :class="styles.container">
+      <div :class="styles.header">
+        <slot name="title" :title="data.title">
+          <h2 :class="styles.title" v-html="data.title" />
+        </slot>
+        <slot name="description" :description="data.description">
+          <p :class="styles.description">{{ data.description }}</p>
+        </slot>
+      </div>
+      <slot name="table" :data="data">
+        <div :class="styles.tableWrapper">
+          <table :class="styles.table">
+            <thead :class="styles.thead">
+              <tr>
+                <th scope="col" :class="styles.th">{{ data.firstColHeader || '功能' }}</th>
+                <th
+                  v-for="(header, hIdx) in data.headers"
+                  :key="hIdx"
+                  scope="col"
+                  :class="[styles.th, header.textColor || '']"
+                >
+                  {{ header.text }}
+                </th>
+              </tr>
+            </thead>
+            <tbody :class="styles.tbody">
+              <tr v-for="(row, rIdx) in data.rows" :key="rIdx" :class="styles.tr">
+                <td :class="styles.tdFeature">{{ row.feature }}</td>
+                <td
+                  v-for="(col, vIdx) in (row.columns || row.values || [row.val1, row.val2, row.val3])"
+                  :key="vIdx"
+                  :class="[styles.tdValue, typeof col === 'object' && col ? (col.textColor || '') : '']"
+                >
+                  <template v-if="typeof col === 'object' && col !== null">
+                    <span v-if="col.value === true || col.value === '✓'" :class="styles.iconCheck">✓</span>
+                    <span v-else-if="col.value === false || col.value === '—' || col.value === '-'" :class="styles.iconDash">—</span>
+                    <span v-else-if="col.value === '✗'" :class="styles.iconCross">✗</span>
+                    <span v-else>{{ col.value }}</span>
+                  </template>
+                  <template v-else>
+                    <span v-if="col === true || col === '✓'" :class="styles.iconCheck">✓</span>
+                    <span v-else-if="col === false || col === '—' || col === '-'" :class="styles.iconDash">—</span>
+                    <span v-else-if="col === '✗'" :class="styles.iconCross">✗</span>
+                    <span v-else>{{ col }}</span>
+                  </template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </slot>
+    </div>
+  </section>
 </template>

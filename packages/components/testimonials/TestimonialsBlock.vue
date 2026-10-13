@@ -1,10 +1,8 @@
 <script setup>
 import { computed } from 'vue'
-import { mergeData, mergeStyles } from '@vue-blocks/utils'
+import { mergeData, resolveStyles } from '@vue-blocks/utils'
 import { defaultData } from './defaultData'
 import { defaultStyles } from './defaultStyles'
-import Variant1 from './variants/Variant1.vue'
-import Variant2 from './variants/Variant2.vue'
 
 defineOptions({
   name: 'TestimonialsBlock'
@@ -25,29 +23,44 @@ const props = defineProps({
   }
 })
 
-const resolvedData = computed(() => mergeData(defaultData, props.data))
-const resolvedStyles = computed(() => {
-  const base = defaultStyles[String(props.variant)] || defaultStyles['1'] || {}
-  return mergeStyles(base, props.styles)
-})
-
-const variantMap = {
-  '1': Variant1,
-  '2': Variant2,
-  default: Variant1
-}
-
-const currentVariant = computed(() => variantMap[String(props.variant)] || Variant1)
+const data = computed(() => mergeData(defaultData, props.data))
+const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.styles))
 </script>
 
 <template>
-  <component
-    :is="currentVariant"
-    :data="resolvedData"
-    :styles="resolvedStyles"
-  >
-    <template v-for="(_, name) in $slots" #[name]="slotProps">
-      <slot :name="name" v-bind="slotProps || {}" />
-    </template>
-  </component>
+  <section :class="styles.root">
+    <div :class="styles.container">
+      <div :class="styles.header">
+        <slot name="title" :title="data.title">
+          <h2 :class="styles.title" v-html="data.title" />
+        </slot>
+        <slot name="description" :description="data.description">
+          <p :class="styles.description">{{ data.description }}</p>
+        </slot>
+      </div>
+      <slot name="testimonials" :testimonials="data.testimonials">
+        <div :class="styles.grid">
+          <div
+            v-for="(item, idx) in data.testimonials"
+            :key="idx"
+            :class="styles.card"
+          >
+            <div>
+              <div :class="styles.stars">★★★★★</div>
+              <p :class="styles.quote">“{{ item.quote }}”</p>
+            </div>
+            <div :class="styles.authorWrapper">
+              <img v-if="item.avatar" :src="item.avatar" :alt="item.name" :class="styles.avatar" />
+              <div>
+                <h4 :class="styles.authorName">{{ item.name }}</h4>
+                <p :class="styles.authorRole">
+                  {{ item.position }} · {{ item.company }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </slot>
+    </div>
+  </section>
 </template>

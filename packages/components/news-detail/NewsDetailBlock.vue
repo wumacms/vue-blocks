@@ -1,10 +1,8 @@
 <script setup>
 import { computed } from 'vue'
-import { mergeData, mergeStyles } from '@vue-blocks/utils'
+import { mergeData, resolveStyles } from '@vue-blocks/utils'
 import { defaultData } from './defaultData'
 import { defaultStyles } from './defaultStyles'
-import Variant1 from './variants/Variant1.vue'
-import Variant2 from './variants/Variant2.vue'
 
 defineOptions({
   name: 'NewsDetailBlock'
@@ -25,29 +23,36 @@ const props = defineProps({
   }
 })
 
-const resolvedData = computed(() => mergeData(defaultData, props.data))
-const resolvedStyles = computed(() => {
-  const base = defaultStyles[String(props.variant)] || defaultStyles['1'] || {}
-  return mergeStyles(base, props.styles)
-})
-
-const variantMap = {
-  '1': Variant1,
-  '2': Variant2,
-  default: Variant1
-}
-
-const currentVariant = computed(() => variantMap[String(props.variant)] || Variant1)
+const data = computed(() => mergeData(defaultData, props.data))
+const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.styles))
 </script>
 
 <template>
-  <component
-    :is="currentVariant"
-    :data="resolvedData"
-    :styles="resolvedStyles"
-  >
-    <template v-for="(_, name) in $slots" #[name]="slotProps">
-      <slot :name="name" v-bind="slotProps || {}" />
-    </template>
-  </component>
+  <article :class="styles.root">
+    <div :class="styles.container">
+      <div :class="styles.meta">
+        <span v-if="data.category" :class="styles.category">{{ data.category }}</span>
+        <span v-if="data.date" :class="styles.date">{{ data.date }}</span>
+      </div>
+      <slot name="title" :title="data.title">
+        <h1 :class="styles.title" v-html="data.title" />
+      </slot>
+      <slot name="media" :image="data.image" :image-alt="data.imageAlt">
+        <div v-if="data.image" :class="styles.mediaWrapper">
+          <img :src="data.image" :alt="data.imageAlt || data.title" :class="styles.image" />
+        </div>
+      </slot>
+      <slot name="body" :body="data.body">
+        <div :class="styles.body" v-html="data.body" />
+      </slot>
+      <slot name="tags" :tags="data.tags">
+        <div v-if="data.tags && data.tags.length" :class="styles.tagsWrapper">
+          <span :class="styles.tagLabel">标签:</span>
+          <span v-for="(t, idx) in data.tags" :key="idx" :class="styles.tag">
+            #{{ t.text }}
+          </span>
+        </div>
+      </slot>
+    </div>
+  </article>
 </template>

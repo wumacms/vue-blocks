@@ -1,10 +1,8 @@
 <script setup>
 import { computed } from 'vue'
-import { mergeData, mergeStyles } from '@vue-blocks/utils'
+import { mergeData, resolveStyles } from '@vue-blocks/utils'
 import { defaultData } from './defaultData'
 import { defaultStyles } from './defaultStyles'
-import Variant1 from './variants/Variant1.vue'
-import Variant2 from './variants/Variant2.vue'
 
 defineOptions({
   name: 'NewsListBlock'
@@ -25,29 +23,58 @@ const props = defineProps({
   }
 })
 
-const resolvedData = computed(() => mergeData(defaultData, props.data))
-const resolvedStyles = computed(() => {
-  const base = defaultStyles[String(props.variant)] || defaultStyles['1'] || {}
-  return mergeStyles(base, props.styles)
-})
-
-const variantMap = {
-  '1': Variant1,
-  '2': Variant2,
-  default: Variant1
-}
-
-const currentVariant = computed(() => variantMap[String(props.variant)] || Variant1)
+const data = computed(() => mergeData(defaultData, props.data))
+const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.styles))
 </script>
 
 <template>
-  <component
-    :is="currentVariant"
-    :data="resolvedData"
-    :styles="resolvedStyles"
-  >
-    <template v-for="(_, name) in $slots" #[name]="slotProps">
-      <slot :name="name" v-bind="slotProps || {}" />
-    </template>
-  </component>
+  <section :class="styles.root">
+    <div :class="styles.container">
+      <div :class="styles.header">
+        <slot name="title" :title="data.title">
+          <h2 :class="styles.title" v-html="data.title" />
+        </slot>
+        <slot name="description" :description="data.description">
+          <p :class="styles.description">{{ data.description }}</p>
+        </slot>
+      </div>
+      <slot name="news" :news="data.news">
+        <div :class="styles.grid">
+          <article
+            v-for="(item, idx) in data.news"
+            :key="idx"
+            :class="styles.card"
+          >
+            <div v-if="item.image" :class="styles.imageWrapper">
+              <img :src="item.image" :alt="item.imageAlt || item.title" :class="styles.image" />
+            </div>
+            <div :class="styles.cardBody">
+              <div :class="styles.meta">
+                <span v-if="item.category" :class="styles.category">{{ item.category }}</span>
+                <span v-if="item.date" :class="styles.date">{{ item.date }}</span>
+              </div>
+              <h3 :class="styles.newsTitle">
+                <a :href="item.link || '#'">{{ item.title }}</a>
+              </h3>
+              <p :class="styles.summary">{{ item.summary }}</p>
+              <div>
+                <a :href="item.link || '#'" :class="styles.moreLink">
+                  阅读全文 →
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </slot>
+      <div v-if="data.moreText" :class="styles.bottomMore">
+        <a
+          :href="data.moreLink || '#'"
+          :target="data.moreNewWindow ? '_blank' : '_self'"
+          :class="styles.moreButton"
+        >
+          {{ data.moreText }}
+        </a>
+      </div>
+    </div>
+  </section>
 </template>

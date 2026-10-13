@@ -1,10 +1,8 @@
 <script setup>
 import { computed } from 'vue'
-import { mergeData, mergeStyles } from '@vue-blocks/utils'
+import { mergeData, resolveStyles } from '@vue-blocks/utils'
 import { defaultData } from './defaultData'
 import { defaultStyles } from './defaultStyles'
-import Variant1 from './variants/Variant1.vue'
-import Variant2 from './variants/Variant2.vue'
 
 defineOptions({
   name: 'LeftImageRightTextBlock'
@@ -25,29 +23,38 @@ const props = defineProps({
   }
 })
 
-const resolvedData = computed(() => mergeData(defaultData, props.data))
-const resolvedStyles = computed(() => {
-  const base = defaultStyles[String(props.variant)] || defaultStyles['1'] || {}
-  return mergeStyles(base, props.styles)
-})
-
-const variantMap = {
-  '1': Variant1,
-  '2': Variant2,
-  default: Variant1
-}
-
-const currentVariant = computed(() => variantMap[String(props.variant)] || Variant1)
+const data = computed(() => mergeData(defaultData, props.data))
+const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.styles))
 </script>
 
 <template>
-  <component
-    :is="currentVariant"
-    :data="resolvedData"
-    :styles="resolvedStyles"
-  >
-    <template v-for="(_, name) in $slots" #[name]="slotProps">
-      <slot :name="name" v-bind="slotProps || {}" />
-    </template>
-  </component>
+  <section :class="styles.root">
+    <div :class="styles.container">
+      <div :class="styles.grid">
+        <slot name="media" :image="data.image" :image-alt="data.imageAlt">
+          <div :class="styles.mediaWrapper">
+            <div :class="styles.imageBox">
+              <img :src="data.image" :alt="data.imageAlt || 'Left Image'" :class="styles.image" />
+            </div>
+          </div>
+        </slot>
+        <div :class="styles.contentWrapper">
+          <slot name="title" :title="data.title">
+            <h2 :class="styles.title" v-html="data.title" />
+          </slot>
+          <slot name="description" :description="data.description">
+            <p :class="styles.description">{{ data.description }}</p>
+          </slot>
+          <slot name="tags" :tags="data.tags">
+            <div v-if="data.tags && data.tags.length" :class="styles.tagList">
+              <div v-for="(tag, idx) in data.tags" :key="idx" :class="styles.tagItem">
+                <span :class="styles.tagIcon">✓</span>
+                <span>{{ tag.text }}</span>
+              </div>
+            </div>
+          </slot>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>

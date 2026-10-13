@@ -1,10 +1,8 @@
 <script setup>
-import { computed } from 'vue'
-import { mergeData, mergeStyles } from '@vue-blocks/utils'
+import { computed, ref } from 'vue'
+import { mergeData, resolveStyles } from '@vue-blocks/utils'
 import { defaultData } from './defaultData'
 import { defaultStyles } from './defaultStyles'
-import Variant1 from './variants/Variant1.vue'
-import Variant2 from './variants/Variant2.vue'
 
 defineOptions({
   name: 'FaqBlock'
@@ -25,29 +23,57 @@ const props = defineProps({
   }
 })
 
-const resolvedData = computed(() => mergeData(defaultData, props.data))
-const resolvedStyles = computed(() => {
-  const base = defaultStyles[String(props.variant)] || defaultStyles['1'] || {}
-  return mergeStyles(base, props.styles)
-})
+const data = computed(() => mergeData(defaultData, props.data))
+const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.styles))
 
-const variantMap = {
-  '1': Variant1,
-  '2': Variant2,
-  default: Variant1
+const openIndices = ref([0])
+
+function toggle(idx) {
+  const pos = openIndices.value.indexOf(idx)
+  if (pos > -1) {
+    openIndices.value.splice(pos, 1)
+  } else {
+    openIndices.value.push(idx)
+  }
 }
-
-const currentVariant = computed(() => variantMap[String(props.variant)] || Variant1)
 </script>
 
 <template>
-  <component
-    :is="currentVariant"
-    :data="resolvedData"
-    :styles="resolvedStyles"
-  >
-    <template v-for="(_, name) in $slots" #[name]="slotProps">
-      <slot :name="name" v-bind="slotProps || {}" />
-    </template>
-  </component>
+  <section :class="styles.root">
+    <div :class="styles.container">
+      <div :class="styles.header">
+        <slot name="title" :title="data.title">
+          <h2 :class="styles.title" v-html="data.title" />
+        </slot>
+        <slot v-if="data.description" name="description" :description="data.description">
+          <p :class="styles.description">{{ data.description }}</p>
+        </slot>
+      </div>
+      <slot name="faqs" :faqs="data.faqs">
+        <div :class="styles.accordionList">
+          <div
+            v-for="(faq, idx) in data.faqs"
+            :key="idx"
+            :class="[styles.item, openIndices.includes(idx) ? styles.itemActive : '']"
+            @click="toggle(idx)"
+          >
+            <div :class="styles.trigger">
+              <span>{{ faq.question }}</span>
+              <svg
+                :class="[styles.icon, openIndices.includes(idx) ? styles.iconOpen : '']"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" :stroke-width="styles.strokeWidth || 2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div v-show="openIndices.includes(idx)" :class="styles.content">
+              <p>{{ faq.answer }}</p>
+            </div>
+          </div>
+        </div>
+      </slot>
+    </div>
+  </section>
 </template>

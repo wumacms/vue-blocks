@@ -1,6 +1,7 @@
 {
   "name": "vue-blocks-monorepo",
   "private": true,
+  "type": "module",
   "version": "1.0.0",
   "description": "Vue 3 + Tailwind CSS 4 Enterprise Landing Page Block Components Library",
   "scripts": {
@@ -13,7 +14,7 @@
     "build:pages": "pnpm run build:all && node -e \"const fs = require('fs'); fs.cpSync('examples/dist', 'docs/.vitepress/dist/examples', { recursive: true });\"",
     "docs:dev": "pnpm -C docs docs:dev",
     "docs:build": "pnpm -C docs docs:build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node scripts/verify-blocks.js"
   },
   "keywords": [
     "vue3",

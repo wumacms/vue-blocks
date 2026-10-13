@@ -1,16 +1,12 @@
 <script setup>
-import { computed } from 'vue'
-import { mergeData, mergeStyles } from '@vue-blocks/utils'
+import { computed, reactive, ref, useId } from 'vue'
+import { mergeData, resolveStyles } from '@vue-blocks/utils'
 import { defaultData } from './defaultData'
 import { defaultStyles } from './defaultStyles'
-import Variant1 from './variants/Variant1.vue'
-import Variant2 from './variants/Variant2.vue'
 
 defineOptions({
   name: 'ContactFormBlock'
 })
-
-const emit = defineEmits(['submit'])
 
 const props = defineProps({
   variant: {
@@ -27,35 +23,122 @@ const props = defineProps({
   }
 })
 
-const resolvedData = computed(() => mergeData(defaultData, props.data))
-const resolvedStyles = computed(() => {
-  const base = defaultStyles[String(props.variant)] || defaultStyles['1'] || {}
-  return mergeStyles(base, props.styles)
+const emit = defineEmits(['submit'])
+
+const data = computed(() => mergeData(defaultData, props.data))
+const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.styles))
+
+const uid = useId()
+
+const form = reactive({
+  name: '',
+  company: '',
+  email: '',
+  subject: '',
+  message: ''
 })
 
-const variantMap = {
-  '1': Variant1,
-  '2': Variant2,
-  default: Variant1
-}
+const isSubmitted = ref(false)
 
-const currentVariant = computed(() => variantMap[String(props.variant)] || Variant1)
-
-function onSubmit(formData) {
-  emit('submit', formData)
+function handleSubmit() {
+  isSubmitted.value = true
+  emit('submit', { ...form })
 }
 </script>
 
 <template>
-  <component
-    :is="currentVariant"
-    :data="resolvedData"
-    :styles="resolvedStyles"
-    @submit="onSubmit"
-  >
-    <template v-for="(_, name) in $slots" #[name]="slotProps">
-      <slot :name="name" v-bind="slotProps || {}" />
-    </template>
-  </component>
-</template>
+  <section :class="styles.root">
+    <div :class="styles.container">
+      <div :class="styles.header">
+        <slot name="title" :title="data.title">
+          <h2 :class="styles.title" v-html="data.title" />
+        </slot>
+        <slot name="description" :description="data.description">
+          <p :class="styles.description">{{ data.description }}</p>
+        </slot>
+      </div>
 
+      <div :class="styles.formCard">
+        <form @submit.prevent="handleSubmit" class="space-y-6">
+          <div :class="styles.formGrid">
+            <div :class="styles.field">
+              <label :class="styles.label" :for="`${uid}-name`">{{ data.nameLabel || '姓名' }}</label>
+              <input
+                :id="`${uid}-name`"
+                name="name"
+                autocomplete="name"
+                v-model="form.name"
+                type="text"
+                required
+                placeholder="请输入您的姓名"
+                :class="styles.input"
+              />
+            </div>
+            <div :class="styles.field">
+              <label :class="styles.label" :for="`${uid}-company`">{{ data.companyLabel || '公司名称' }}</label>
+              <input
+                :id="`${uid}-company`"
+                name="company"
+                autocomplete="organization"
+                v-model="form.company"
+                type="text"
+                placeholder="请输入公司名称"
+                :class="styles.input"
+              />
+            </div>
+            <div :class="styles.field">
+              <label :class="styles.label" :for="`${uid}-email`">{{ data.emailLabel || '电子邮箱' }}</label>
+              <input
+                :id="`${uid}-email`"
+                name="email"
+                autocomplete="email"
+                v-model="form.email"
+                type="email"
+                required
+                placeholder="name@company.com"
+                :class="styles.input"
+              />
+            </div>
+            <div :class="styles.field">
+              <label :class="styles.label" :for="`${uid}-subject`">{{ data.subjectLabel || '咨询主题' }}</label>
+              <select
+                :id="`${uid}-subject`"
+                name="subject"
+                v-model="form.subject"
+                :class="styles.select"
+              >
+                <option value="" disabled>请选择主题</option>
+                <option v-for="(opt, idx) in data.subjectOptions" :key="idx" :value="opt.value">
+                  {{ opt.label }}
+                </option>
+              </select>
+            </div>
+            <div :class="styles.fieldFull">
+              <label :class="styles.label" :for="`${uid}-message`">
+                {{ data.messageLabel || '留言信息' }}
+              </label>
+              <textarea
+                :id="`${uid}-message`"
+                name="message"
+                v-model="form.message"
+                rows="4"
+                required
+                placeholder="请详细描述您的需求..."
+                :class="styles.textarea"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button type="submit" :class="styles.submitButton">
+              {{ data.submitText || '立即提交' }}
+            </button>
+            <p v-if="data.footerNote" :class="styles.footerNote">
+              {{ data.footerNote }}
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</template>
