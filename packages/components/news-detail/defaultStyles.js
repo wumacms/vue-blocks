@@ -26,6 +26,20 @@ export const defaultStyles = {
     tagsWrapper: 'mt-12 pt-6 border-t-2 border-[#120b48]/20 dark:border-[#ffb347]/30 flex items-center gap-2 flex-wrap',
     tagLabel: 'text-xs font-black text-[#120b48] dark:text-[#c4b5fd] mr-2',
     tag: 'bg-white dark:bg-[#2c1b6b] text-[#120b48] dark:text-white border-2 border-[#120b48] dark:border-[#ffb347] px-3.5 py-1 rounded-full text-xs font-black shadow-[2px_2px_0_#ff5c8a]'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-3xl mx-auto px-4 sm:px-6 lg:px-8',
+    meta: 'flex items-center gap-3 mb-6',
+    category: 'bg-[#efe9de] dark:bg-[#252320] text-[#cc785c] text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider',
+    date: 'text-[#8e8b82] text-sm',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-1px] text-[#141413] dark:text-[#faf9f5] leading-tight mb-8',
+    mediaWrapper: 'mb-10 rounded-xl overflow-hidden border border-[#e6dfd8] dark:border-[#2a2824] shadow-xs',
+    image: 'w-full h-auto object-cover max-h-[500px]',
+    body: 'prose prose-lg dark:prose-invert max-w-none text-[#3d3d3a] dark:text-[#d4d0c8] leading-relaxed space-y-6',
+    tagsWrapper: 'mt-12 pt-6 border-t border-[#e6dfd8] dark:border-[#2a2824] flex items-center gap-2 flex-wrap',
+    tagLabel: 'text-xs text-[#8e8b82] mr-2',
+    tag: 'bg-[#efe9de] dark:bg-[#252320] text-[#3d3d3a] dark:text-[#d4d0c8] px-3 py-1 rounded-full text-xs font-medium'
   }
 }
 export default defaultStyles

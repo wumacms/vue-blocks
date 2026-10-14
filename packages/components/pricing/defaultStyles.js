@@ -32,6 +32,23 @@ export const defaultStyles = {
     featuresList: 'mt-8 space-y-3 text-sm font-bold text-[#120b48] dark:text-[#c4b5fd] flex-1 whitespace-pre-line',
     button: 'mt-8 w-full text-center py-3.5 px-6 rounded-full font-black text-sm transition-all border-3 border-[#120b48] dark:border-[#ffb347] bg-white dark:bg-[#1a103d] text-[#120b48] dark:text-white shadow-[4px_4px_0_#120b48] dark:shadow-[4px_4px_0_#ff5c8a] hover:shadow-[1px_1px_0_#120b48]',
     buttonPrimary: 'mt-8 w-full text-center py-3.5 px-6 rounded-full font-black text-sm transition-all border-3 border-[#120b48] bg-[#120b48] text-white shadow-[4px_4px_0_#ff5c8a] hover:shadow-[1px_1px_0_#ff5c8a]'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16 max-w-3xl mx-auto',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    grid: 'grid md:grid-cols-3 gap-8 items-stretch',
+    card: 'bg-[#faf9f5] dark:bg-[#1f1e1b] p-8 rounded-xl border border-[#e6dfd8] dark:border-[#2a2824] flex flex-col justify-between relative transition-colors',
+    cardPrimary: 'bg-[#181715] dark:bg-[#1f1e1b] text-[#faf9f5] p-8 rounded-xl border border-[#181715] dark:border-[#2a2824] flex flex-col justify-between relative shadow-lg transition-colors',
+    badge: 'absolute -top-3 left-1/2 -translate-x-1/2 bg-[#cc785c] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider',
+    planName: 'text-xl font-semibold',
+    price: 'font-serif text-4xl font-semibold mt-4',
+    unit: 'text-sm font-normal text-[#8e8b82]',
+    featuresList: 'mt-8 space-y-3 text-sm flex-1 whitespace-pre-line opacity-90',
+    button: 'mt-8 w-full text-center py-3 px-6 rounded-md font-medium text-sm transition border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] hover:bg-[#f5f0e8] dark:hover:bg-[#252320]',
+    buttonPrimary: 'mt-8 w-full text-center py-3 px-6 rounded-md font-medium text-sm transition bg-[#cc785c] hover:bg-[#b8684e] text-white shadow-xs'
   }
 }
 export default defaultStyles

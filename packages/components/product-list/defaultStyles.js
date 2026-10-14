@@ -38,6 +38,26 @@ export const defaultStyles = {
     price: 'text-2xl font-black text-[#120b48] dark:text-[#ffb347]',
     originalPrice: 'text-sm text-[#ff5c8a] line-through font-bold',
     button: 'bg-[#120b48] dark:bg-[#ffb347] text-white dark:text-[#120b48] text-sm font-black px-5 py-2.5 rounded-full border-3 border-[#ffb347] dark:border-[#ff5c8a] shadow-[4px_4px_0_#ff5c8a] dark:shadow-[4px_4px_0_#b47aff] hover:shadow-[1px_1px_0_#ff5c8a] transition-all'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16 max-w-3xl mx-auto',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    grid: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    card: 'bg-[#faf9f5] dark:bg-[#1f1e1b] rounded-xl overflow-hidden border border-[#e6dfd8] dark:border-[#2a2824] shadow-xs flex flex-col transition-colors',
+    imageWrapper: 'relative aspect-4/3 overflow-hidden bg-[#efe9de] dark:bg-[#252320] border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    image: 'w-full h-full object-cover transition-transform duration-300 hover:scale-105',
+    tag: 'absolute top-3 left-3 bg-[#181715]/80 text-[#faf9f5] text-xs font-medium px-2.5 py-1 rounded-full backdrop-blur-xs',
+    cardBody: 'p-6 flex-1 flex flex-col',
+    productTitle: 'text-xl font-semibold text-[#141413] dark:text-[#faf9f5] mb-2',
+    productDescription: 'text-[#3d3d3a] dark:text-[#d4d0c8] text-sm line-clamp-3 mb-6 flex-1 leading-relaxed',
+    footer: 'flex items-center justify-between pt-4 border-t border-[#e6dfd8] dark:border-[#2a2824] mt-auto',
+    priceWrapper: 'flex items-baseline gap-2',
+    price: 'font-serif text-2xl font-semibold text-[#141413] dark:text-[#faf9f5]',
+    originalPrice: 'text-sm text-[#8e8b82] line-through',
+    button: 'bg-[#cc785c] hover:bg-[#b8684e] text-white text-sm font-medium px-4 py-2 rounded-md transition-colors shadow-xs'
   }
 }
 export default defaultStyles

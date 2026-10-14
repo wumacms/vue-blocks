@@ -24,6 +24,19 @@ export const defaultStyles = {
     mediaWrapper: 'mt-16 max-w-5xl mx-auto',
     imageBox: 'bg-[#ffb347] dark:bg-[#2c1b6b] w-full h-80 md:h-96 rounded-3xl overflow-hidden border-4 border-[#120b48] dark:border-[#ffb347] shadow-[20px_20px_0_#ff5c8a] dark:shadow-[20px_20px_0_#b47aff]',
     image: 'w-full h-full object-cover opacity-90'
+  },
+  '3': {
+    root: 'bg-[#faf9f5] dark:bg-[#141413] text-[#141413] dark:text-[#faf9f5] antialiased relative border-b border-[#e6dfd8] dark:border-[#2a2824] pt-16 pb-20 overflow-hidden transition-colors duration-300',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    contentWrapper: 'text-center max-w-3xl mx-auto',
+    title: 'font-serif text-5xl md:text-6xl font-medium tracking-[-1.5px] leading-[1.05] text-[#141413] dark:text-[#faf9f5] mb-6',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8] mb-10 max-w-2xl mx-auto leading-relaxed',
+    buttonGroup: 'flex flex-wrap gap-4 justify-center items-center',
+    buttonPrimary: 'inline-flex items-center justify-center gap-2 bg-[#cc785c] hover:bg-[#b8684e] text-white text-sm font-medium px-6 py-3 rounded-md transition-colors shadow-xs',
+    buttonSecondary: 'inline-flex items-center justify-center gap-2 border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] hover:bg-[#f5f0e8] dark:hover:bg-[#252320] text-[#141413] dark:text-[#faf9f5] text-sm font-medium px-6 py-3 rounded-md transition-colors',
+    mediaWrapper: 'mt-16 max-w-5xl mx-auto',
+    imageBox: 'rounded-xl overflow-hidden border border-[#e6dfd8] dark:border-[#2a2824] shadow-xs transition-colors',
+    image: 'w-full h-auto object-cover'
   }
 }
 export default defaultStyles

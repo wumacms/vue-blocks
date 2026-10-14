@@ -48,13 +48,14 @@ const variantDropdownRef = ref(null)
 // Available variants
 const resolvedVariants = computed(() => {
   if (props.variants && props.variants.length) return props.variants
-  return ['1', '2']
+  return ['1', '2', '3']
 })
 
 // Variant labels
 const variantLabels = {
   '1': '现代极简',
-  '2': '新粗野主义'
+  '2': '新粗野主义',
+  '3': '人文科技纸质风'
 }
 
 function getVariantName(v) {

@@ -24,6 +24,19 @@ export const defaultStyles = {
     content: 'space-y-1.5',
     itemTitle: 'text-lg font-black text-[#120b48] dark:text-white',
     itemDescription: 'text-sm text-[#2c1b6b] dark:text-[#c4b5fd] font-medium leading-relaxed'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center max-w-3xl mx-auto mb-16',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    grid: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6',
+    card: 'bg-[#efe9de] dark:bg-[#252320] p-6 rounded-xl border border-transparent hover:border-[#e6dfd8] dark:hover:border-[#2a2824] transition-colors flex items-start gap-4',
+    iconWrapper: 'w-10 h-10 rounded-lg flex items-center justify-center text-xl shrink-0 text-[#cc785c]',
+    content: 'space-y-1',
+    itemTitle: 'text-lg font-semibold text-[#141413] dark:text-[#faf9f5]',
+    itemDescription: 'text-sm text-[#3d3d3a] dark:text-[#d4d0c8] leading-relaxed'
   }
 }
 export default defaultStyles

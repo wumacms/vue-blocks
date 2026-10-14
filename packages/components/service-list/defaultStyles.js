@@ -30,6 +30,22 @@ export const defaultStyles = {
     pointItem: 'flex items-center gap-2',
     pointIcon: 'w-5 h-5 rounded-full bg-[#ffb347] text-[#120b48] border border-[#120b48] inline-flex items-center justify-center text-xs font-black',
     link: 'inline-flex items-center gap-1 mt-auto font-black text-[#120b48] dark:text-[#ffb347] hover:text-[#ff5c8a] dark:hover:text-white transition-colors'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16 max-w-3xl mx-auto',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    grid: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    card: 'p-8 rounded-xl border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] hover:bg-[#f5f0e8] dark:hover:bg-[#252320] transition-colors duration-200 flex flex-col',
+    iconWrapper: 'w-12 h-12 rounded-lg flex items-center justify-center text-3xl mb-6 text-[#cc785c]',
+    serviceTitle: 'text-xl font-semibold text-[#141413] dark:text-[#faf9f5] mb-3',
+    serviceDescription: 'text-[#3d3d3a] dark:text-[#d4d0c8] text-sm leading-relaxed mb-6',
+    pointsList: 'space-y-2 mb-6 flex-1 text-sm text-[#3d3d3a] dark:text-[#d4d0c8]',
+    pointItem: 'flex items-center gap-2',
+    pointIcon: 'text-[#5db872] font-semibold',
+    link: 'text-[#cc785c] hover:text-[#b8684e] font-medium text-sm inline-flex items-center gap-1 mt-auto transition-colors'
   }
 }
 export default defaultStyles

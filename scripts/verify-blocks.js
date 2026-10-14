@@ -26,7 +26,9 @@ assert(resolveVariantKey('clean') === '1', "resolveVariantKey('clean') 应解析
 assert(resolveVariantKey('modern') === '1', "resolveVariantKey('modern') 应解析为 '1'")
 assert(resolveVariantKey('brutalism') === '2', "resolveVariantKey('brutalism') 应解析为 '2'")
 assert(resolveVariantKey('retro') === '2', "resolveVariantKey('retro') 应解析为 '2'")
-assert(resolveVariantKey(2) === '2', "resolveVariantKey(2) 应解析为 '2'")
+assert(resolveVariantKey('editorial') === '3', "resolveVariantKey('editorial') 应解析为 '3'")
+assert(resolveVariantKey('warm') === '3', "resolveVariantKey('warm') 应解析为 '3'")
+assert(resolveVariantKey(3) === '3', "resolveVariantKey(3) 应解析为 '3'")
 
 const testStyles = {
   '1': { root: 'bg-white', strokeWidth: 2 },
@@ -56,6 +58,10 @@ for (const comp of compDirs) {
   // 必须具备的核心文件
   assert(files.includes('defaultData.js'), `${comp} 必须包含 defaultData.js`)
   assert(files.includes('defaultStyles.js'), `${comp} 必须包含 defaultStyles.js`)
+  if (files.includes('defaultStyles.js')) {
+    const stylesContent = fs.readFileSync(path.join(dir, 'defaultStyles.js'), 'utf-8')
+    assert(stylesContent.includes("'3':"), `${comp} defaultStyles.js 必须包含变体 3`)
+  }
   assert(files.includes('schema.json'), `${comp} 必须包含 schema.json`)
   assert(files.includes('index.js'), `${comp} 必须包含 index.js`)
 

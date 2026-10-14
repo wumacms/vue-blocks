@@ -26,6 +26,20 @@ export const defaultStyles = {
     mediaWrapper: 'relative',
     imageBox: 'bg-[#ffb347] dark:bg-[#2c1b6b] rounded-3xl overflow-hidden border-4 border-[#120b48] dark:border-[#ffb347] shadow-[16px_16px_0_#ff5c8a] dark:shadow-[16px_16px_0_#b47aff]',
     image: 'w-full h-auto object-cover'
+  },
+  '3': {
+    root: 'py-20 bg-[#f5f0e8] dark:bg-[#1f1e1b] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    grid: 'grid md:grid-cols-2 gap-12 items-center',
+    contentWrapper: 'space-y-6',
+    title: 'font-serif text-3xl md:text-4xl font-semibold tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] leading-tight',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8] leading-relaxed',
+    tagList: 'space-y-3 pt-2',
+    tagItem: 'flex items-center gap-3 text-[#3d3d3a] dark:text-[#d4d0c8] font-medium',
+    tagIcon: 'shrink-0 w-5 h-5 text-[#cc785c] flex items-center justify-center text-sm font-bold',
+    mediaWrapper: 'relative',
+    imageBox: 'rounded-xl overflow-hidden border border-[#e6dfd8] dark:border-[#2a2824] shadow-xs',
+    image: 'w-full h-auto object-cover'
   }
 }
 export default defaultStyles

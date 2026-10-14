@@ -281,28 +281,28 @@ app.mount('#app')
 
 | 分类 | `type` 名称 | 对应组件 | 支持变体 (`variant`) |
 | :--- | :--- | :--- | :--- |
-| **基础骨架** | `NavbarBlock` | 顶部导航栏 | 默认 1 种 |
-| | `HeroBlock` | 主视觉首屏 | `'1'`, `'2'` |
-| | `PartnersBlock` | 合作伙伴 / 客户墙 | 默认 1 种 |
-| | `FooterBlock` | 页脚区域 | 默认 1 种 |
-| **内容展示** | `FeaturesBlock` | 核心特性卡片 | `'1'`, `'2'` |
-| | `TopTextBottomImageBlock` | 上文下图展示 | 默认 1 种 |
-| | `StatsBlock` | 关键数据统计 | 默认 1 种 |
-| | `LeftImageRightTextBlock` | 左图右文图文排版 | 默认 1 种 |
-| | `RightImageLeftTextBlock` | 左文右图图文排版 | 默认 1 种 |
-| | `IconWallBlock` | 生产力图标墙 | 默认 1 种 |
-| **业务转化** | `PricingBlock` | 价格方案对比 | 默认 1 种 |
-| | `ComparisonTableBlock` | 产品能力对比表格 | 默认 1 种 |
-| | `CtaBlock` | 行动号召横幅 (CTA) | 默认 1 种 |
-| | `TestimonialsBlock` | 用户与客户评价 | 默认 1 种 |
-| | `FaqBlock` | 常见问题手风琴 | 默认 1 种 |
-| | `ContactFormBlock` | 咨询联系表单 (支持 `@submit`) | 默认 1 种 |
-| **列表资讯** | `ServiceListBlock` | 服务项目列表 | 默认 1 种 |
-| | `ProductListBlock` | 产品展示列表 | 默认 1 种 |
-| | `CourseListBlock` | 课程与培训列表 | 默认 1 种 |
-| | `TeamBlock` | 核心团队成员展示 | 默认 1 种 |
-| | `NewsListBlock` | 资讯新闻列表 | 默认 1 种 |
-| | `NewsDetailBlock` | 资讯详情排版 | 默认 1 种 |
+| **基础骨架** | `NavbarBlock` | 顶部导航栏 | `'1'`, `'2'`, `'3'` |
+| | `HeroBlock` | 主视觉首屏 | `'1'`, `'2'`, `'3'` |
+| | `PartnersBlock` | 合作伙伴 / 客户墙 | `'1'`, `'2'`, `'3'` |
+| | `FooterBlock` | 页脚区域 | `'1'`, `'2'`, `'3'` |
+| **内容展示** | `FeaturesBlock` | 核心特性卡片 | `'1'`, `'2'`, `'3'` |
+| | `TopTextBottomImageBlock` | 上文下图展示 | `'1'`, `'2'`, `'3'` |
+| | `StatsBlock` | 关键数据统计 | `'1'`, `'2'`, `'3'` |
+| | `LeftImageRightTextBlock` | 左图右文图文排版 | `'1'`, `'2'`, `'3'` |
+| | `RightImageLeftTextBlock` | 左文右图图文排版 | `'1'`, `'2'`, `'3'` |
+| | `IconWallBlock` | 生产力图标墙 | `'1'`, `'2'`, `'3'` |
+| **业务转化** | `PricingBlock` | 价格方案对比 | `'1'`, `'2'`, `'3'` |
+| | `ComparisonTableBlock` | 产品能力对比表格 | `'1'`, `'2'`, `'3'` |
+| | `CtaBlock` | 行动号召横幅 (CTA) | `'1'`, `'2'`, `'3'` |
+| | `TestimonialsBlock` | 用户与客户评价 | `'1'`, `'2'`, `'3'` |
+| | `FaqBlock` | 常见问题手风琴 | `'1'`, `'2'`, `'3'` |
+| | `ContactFormBlock` | 咨询联系表单 (支持 `@submit`) | `'1'`, `'2'`, `'3'` |
+| **列表资讯** | `ServiceListBlock` | 服务项目列表 | `'1'`, `'2'`, `'3'` |
+| | `ProductListBlock` | 产品展示列表 | `'1'`, `'2'`, `'3'` |
+| | `CourseListBlock` | 课程与培训列表 | `'1'`, `'2'`, `'3'` |
+| | `TeamBlock` | 核心团队成员展示 | `'1'`, `'2'`, `'3'` |
+| | `NewsListBlock` | 资讯新闻列表 | `'1'`, `'2'`, `'3'` |
+| | `NewsDetailBlock` | 资讯详情排版 | `'1'`, `'2'`, `'3'` |
 
 ---
 

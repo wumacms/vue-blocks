@@ -28,6 +28,21 @@ export const defaultStyles = {
     iconOpen: 'rotate-180 text-[#ff5c8a]',
     content: 'mt-4 text-[#2c1b6b] dark:text-[#c4b5fd] font-medium leading-relaxed text-base border-t-2 border-[#120b48]/15 dark:border-[#ffb347]/30 pt-4',
     strokeWidth: 3
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-3xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    accordionList: 'space-y-4',
+    item: 'border border-[#e6dfd8] dark:border-[#2a2824] rounded-xl p-5 transition-colors duration-200 bg-[#faf9f5] dark:bg-[#1f1e1b] hover:bg-[#f5f0e8] dark:hover:bg-[#252320] cursor-pointer',
+    itemActive: 'bg-[#faf9f5] dark:bg-[#1f1e1b] border-[#cc785c] dark:border-[#cc785c]',
+    trigger: 'flex justify-between items-center w-full text-left font-semibold text-[#141413] dark:text-[#faf9f5] text-lg',
+    icon: 'w-5 h-5 text-[#cc785c] transition-transform duration-200 shrink-0 ml-4',
+    iconOpen: 'rotate-180 text-[#cc785c]',
+    content: 'mt-4 text-[#3d3d3a] dark:text-[#d4d0c8] leading-relaxed text-sm md:text-base border-t border-[#e6dfd8] dark:border-[#2a2824] pt-4',
+    strokeWidth: 1.75
   }
 }
 export default defaultStyles

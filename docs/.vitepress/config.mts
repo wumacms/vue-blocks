@@ -9,7 +9,18 @@ export default defineConfig({
   base,
   title: 'VueBlocks',
   description: '基于 Vue 3 + Tailwind CSS 4 的企业落地页区块组件库',
-  head: [['link', { rel: 'icon', href: `${base}images/favicon.ico` }]],
+  head: [
+    ['link', { rel: 'icon', href: `${base}images/favicon.ico` }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:opsz,wght@14..32,400;14..32,500;14..32,600&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap'
+      }
+    ]
+  ],
   themeConfig: {
     logo: '/images/logo.png',
     siteTitle: 'VueBlocks',

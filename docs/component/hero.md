@@ -1,7 +1,6 @@
 # Hero 主视觉
 
-落地页最核心的首屏转化区域，内置 2
-种风格变体：SaaS现代简约、波普复古/新丑风。
+落地页最核心的首屏转化区域，内置 3 种风格变体：SaaS现代简约、波普复古/新丑风、人文科技纸质叙事风。
 
 ---
 
@@ -29,6 +28,16 @@
 
 ```vue
 <HeroBlock variant="2" />
+```
+
+### 变体 3：人文科技 / 暖调纸质叙事风 (Warm Editorial Tech)
+
+<BlockPreview name="HeroBlock" variant="3" title="Variant 3: Warm Editorial Tech (Anthropic/Claude Style)" />
+
+```vue
+<HeroBlock variant="3" />
+<!-- 或使用语义化别名 -->
+<HeroBlock variant="editorial" />
 ```
 
 ---
@@ -201,6 +210,6 @@ Slot Props 传入）：
 
 | 参数名    | 类型               | 默认值 | 说明                                  |
 | --------- | ------------------ | ------ | ------------------------------------- |
-| `variant` | `string \| number` | `'1'`  | 变体类型（`'1'`：SaaS 现代简约，`'2'`：波普复古/新丑风） |
+| `variant` | `string \| number` | `'1'`  | 风格变体：`'1'`(SaaS现代简约) / `'2'`(波普复古新粗野) / `'3'`(人文科技暖调纸质风) |
 | `data`    | `object`           | `{}`   | 内容覆盖 JSON，按 Schema 结构深层合并 |
 | `styles`  | `object`           | `{}`   | 样式覆写映射对象（Tailwind CSS 类名） |

@@ -56,6 +56,35 @@ export const defaultStyles = {
     mobileButtonWrapper: 'pt-4 border-t-2 border-[#120b48]/20 dark:border-[#ffb347]/30',
     mobileCtaButton: 'block w-full text-center bg-[#120b48] dark:bg-[#ffb347] text-white dark:text-[#120b48] font-black py-3 rounded-full border-3 border-[#ffb347] dark:border-[#ff5c8a] shadow-[4px_4px_0_#ff5c8a] dark:shadow-[4px_4px_0_#b47aff]',
     strokeWidth: 2.5
+  },
+  '3': {
+    root: 'bg-[#faf9f5]/90 dark:bg-[#141413]/90 backdrop-blur-md border-b border-[#e6dfd8] dark:border-[#2a2824] sticky top-0 z-50 transition-colors duration-300',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    navWrapper: 'flex items-center justify-between h-16 md:h-20',
+    brandWrapper: 'flex items-center gap-3 shrink-0 cursor-pointer',
+    logo: 'h-8 w-auto rounded-md shadow-xs',
+    brandName: 'text-xl font-serif font-semibold text-[#141413] dark:text-[#faf9f5] tracking-tight',
+    menuNav: 'hidden md:flex items-center space-x-1 lg:space-x-2',
+    menuItem: 'px-3 py-2 text-sm font-medium text-[#3d3d3a] dark:text-[#d4d0c8] hover:text-[#cc785c] dark:hover:text-[#cc785c] transition-colors rounded-md hover:bg-[#f5f0e8] dark:hover:bg-[#252320]',
+    menuItemActive: 'text-[#cc785c] dark:text-[#cc785c] bg-[#efe9de] dark:bg-[#252320] font-semibold',
+    dropdownTrigger: 'flex items-center gap-1 px-3 py-2 text-sm font-medium text-[#3d3d3a] dark:text-[#d4d0c8] hover:text-[#cc785c] dark:hover:text-[#cc785c] transition-colors rounded-md hover:bg-[#f5f0e8] dark:hover:bg-[#252320]',
+    dropdownTriggerActive: 'text-[#cc785c] dark:text-[#cc785c] bg-[#efe9de] dark:bg-[#252320] font-semibold',
+    dropdownMenu: 'absolute left-0 mt-1 w-56 bg-[#faf9f5] dark:bg-[#1f1e1b] rounded-xl shadow-lg border border-[#e6dfd8] dark:border-[#2a2824] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 py-2',
+    dropdownItem: 'flex items-center gap-3 px-4 py-2.5 text-sm text-[#3d3d3a] dark:text-[#d4d0c8] hover:bg-[#efe9de] dark:hover:bg-[#252320] hover:text-[#cc785c] dark:hover:text-[#cc785c] transition-colors',
+    dropdownItemActive: 'bg-[#efe9de] dark:bg-[#252320] text-[#cc785c] dark:text-[#cc785c] font-medium',
+    actionsWrapper: 'flex items-center gap-3',
+    ctaButton: 'hidden sm:inline-flex items-center justify-center bg-[#cc785c] hover:bg-[#b8684e] text-white text-sm font-medium px-5 py-2.5 rounded-md transition-colors',
+    mobileToggle: 'md:hidden p-2 rounded-md border border-[#e6dfd8] dark:border-[#2a2824] text-[#141413] dark:text-[#faf9f5] hover:bg-[#f5f0e8] dark:hover:bg-[#252320] transition-colors',
+    mobileMenu: 'md:hidden border-t border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#141413] px-4 pt-2 pb-6 space-y-2',
+    mobileMenuItem: 'block px-3 py-2 text-base font-medium text-[#141413] dark:text-[#faf9f5] rounded-md hover:bg-[#f5f0e8] dark:hover:bg-[#252320] transition-colors',
+    mobileMenuItemActive: 'text-[#cc785c] dark:text-[#cc785c] bg-[#efe9de] dark:bg-[#252320] font-semibold',
+    mobileMenuGroup: 'py-1',
+    mobileDropdownWrapper: 'pl-4 space-y-1 mt-1 border-l border-[#e6dfd8] dark:border-[#2a2824]',
+    mobileDropdownItem: 'flex items-center gap-2 px-3 py-1.5 text-sm text-[#3d3d3a] dark:text-[#d4d0c8] hover:text-[#cc785c] dark:hover:text-[#cc785c]',
+    mobileDropdownItemActive: 'text-[#cc785c] dark:text-[#cc785c] font-medium',
+    mobileButtonWrapper: 'pt-4 border-t border-[#e6dfd8] dark:border-[#2a2824]',
+    mobileCtaButton: 'block w-full text-center bg-[#cc785c] hover:bg-[#b8684e] text-white font-medium py-2.5 rounded-md transition-colors',
+    strokeWidth: 1.75
   }
 }
 export default defaultStyles

@@ -34,6 +34,24 @@ export const defaultStyles = {
     iconCheck: 'font-black text-lg text-[#120b48] dark:text-[#ffb347]',
     iconCross: 'font-black text-lg text-[#ff5c8a]',
     iconDash: 'font-bold text-[#ff5c8a]'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center max-w-3xl mx-auto mb-16',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    tableWrapper: 'overflow-x-auto rounded-xl border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] shadow-xs',
+    table: 'w-full min-w-full divide-y divide-[#e6dfd8] dark:divide-[#2a2824] text-sm text-left',
+    thead: 'bg-[#f5f0e8] dark:bg-[#252320]',
+    th: 'px-6 py-4 font-serif font-semibold text-[#141413] dark:text-[#faf9f5] text-base',
+    tbody: 'divide-y divide-[#e6dfd8] dark:divide-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b]',
+    tr: 'hover:bg-[#f5f0e8] dark:hover:bg-[#252320] transition-colors',
+    tdFeature: 'px-6 py-4 font-medium text-[#141413] dark:text-[#faf9f5] whitespace-nowrap',
+    tdValue: 'px-6 py-4 text-[#3d3d3a] dark:text-[#d4d0c8] whitespace-nowrap',
+    iconCheck: 'text-[#5db872] font-semibold text-base',
+    iconCross: 'text-[#8e8b82] font-normal text-base',
+    iconDash: 'text-[#8e8b82]'
   }
 }
 export default defaultStyles

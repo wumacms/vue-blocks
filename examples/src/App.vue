@@ -38,6 +38,11 @@ const customHeroData = {
   description: '全链路打通工作流，提供沉浸式团队沟通、数据智能洞察与开箱即用的落地页区块组件库。'
 }
 
+const customHeroDataEditorial = {
+  title: '让企业效率<br><span class="text-[#cc785c]">提升 10 倍</span>',
+  description: 'NovaStack 帮助企业打通数据孤岛，自动化重复流程，让团队专注于真正创造价值的工作。'
+}
+
 // Custom styles override example for Features
 const customFeaturesStyles = {
   root: 'py-24 bg-gradient-to-b from-indigo-50/50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950'
@@ -57,15 +62,20 @@ const dynamicPageData = computed(() => ({
       type: 'HeroBlock',
       variant: globalVariant.value,
       data: {
-        title: '下一代智能协作平台<br><span class="text-indigo-600 dark:text-indigo-400">由 PageRenderer 数据驱动</span>',
+        title: globalVariant.value === '3'
+          ? '让企业协作<br><span class="text-[#cc785c]">回归专注与理性</span>'
+          : '下一代智能协作平台<br><span class="text-indigo-600 dark:text-indigo-400">由 PageRenderer 数据驱动</span>',
         description: '无需繁琐手动引入 22 个组件，仅需一份 JSON 配置即可自动渲染企业级落地页。'
       }
     },
     { id: 'partners', type: 'PartnersBlock', variant: globalVariant.value },
     { id: 'features', type: 'FeaturesBlock', variant: globalVariant.value, styles: globalVariant.value === '1' ? customFeaturesStyles : {} },
+    { id: 'top-image', type: 'TopTextBottomImageBlock', variant: globalVariant.value },
     { id: 'stats', type: 'StatsBlock', variant: globalVariant.value },
+    { id: 'testimonials', type: 'TestimonialsBlock', variant: globalVariant.value },
     { id: 'pricing', type: 'PricingBlock', variant: globalVariant.value },
     { id: 'faq', type: 'FaqBlock', variant: globalVariant.value },
+    { id: 'cta', type: 'CtaBlock', variant: globalVariant.value },
     { id: 'contact', type: 'ContactFormBlock', variant: globalVariant.value }
   ]
 }))
@@ -78,7 +88,15 @@ function handleContactSubmit(formData, context) {
 
 <template>
   <div
-    class="min-h-screen font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    :class="[
+      'min-h-screen font-sans transition-colors duration-300',
+      globalVariant === '3'
+        ? 'bg-[#faf9f5] dark:bg-[#141413] text-[#141413] dark:text-[#faf9f5]'
+        : globalVariant === '2'
+          ? 'bg-[#e9e2ff] dark:bg-[#1a103d] text-[#120b48] dark:text-white'
+          : 'bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100'
+    ]"
+  >
     <!-- 底部悬浮模式切换开关（避开顶部固定/吸顶导航栏，居中展示） -->
     <div
       class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-gray-200/90 dark:border-gray-700/90 shadow-2xl rounded-full p-1.5 text-xs font-medium">
@@ -87,7 +105,11 @@ function handleContactSubmit(formData, context) {
         :class="[
           'px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5',
           renderMode === 'site'
-            ? 'bg-indigo-600 text-white shadow-sm font-semibold'
+            ? globalVariant === '3'
+              ? 'bg-[#cc785c] text-white shadow-sm font-semibold'
+              : globalVariant === '2'
+                ? 'bg-[#120b48] text-white dark:bg-[#ffb347] dark:text-[#120b48] font-bold shadow-sm'
+                : 'bg-indigo-600 text-white shadow-sm font-semibold'
             : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
         ]">
         <span>🌐</span>
@@ -98,7 +120,11 @@ function handleContactSubmit(formData, context) {
         :class="[
           'px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5',
           renderMode === 'renderer'
-            ? 'bg-indigo-600 text-white shadow-sm font-semibold'
+            ? globalVariant === '3'
+              ? 'bg-[#cc785c] text-white shadow-sm font-semibold'
+              : globalVariant === '2'
+                ? 'bg-[#120b48] text-white dark:bg-[#ffb347] dark:text-[#120b48] font-bold shadow-sm'
+                : 'bg-indigo-600 text-white shadow-sm font-semibold'
             : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
         ]">
         <span>🚀</span>
@@ -109,7 +135,11 @@ function handleContactSubmit(formData, context) {
         :class="[
           'px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5',
           renderMode === 'manual'
-            ? 'bg-indigo-600 text-white shadow-sm font-semibold'
+            ? globalVariant === '3'
+              ? 'bg-[#cc785c] text-white shadow-sm font-semibold'
+              : globalVariant === '2'
+                ? 'bg-[#120b48] text-white dark:bg-[#ffb347] dark:text-[#120b48] font-bold shadow-sm'
+                : 'bg-indigo-600 text-white shadow-sm font-semibold'
             : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
         ]">
         <span>📑</span>
@@ -142,17 +172,22 @@ function handleContactSubmit(formData, context) {
       <NavbarBlock :variant="globalVariant" />
 
       <!-- 2. Hero 区块 -->
-      <HeroBlock :variant="globalVariant" :data="globalVariant === '1' ? customHeroData : {}">
+      <HeroBlock
+        :variant="globalVariant"
+        :data="globalVariant === '1' ? customHeroData : globalVariant === '3' ? customHeroDataEditorial : {}"
+      >
         <!-- 插槽演示：自定义增强行动按钮，演示跨风格变体无损透传 -->
         <template #actions="{ buttons }">
           <div class="flex flex-wrap gap-4 justify-center items-center">
             <a
               :href="buttons?.[0]?.btnLink || '#'"
               :class="[
-                'px-8 py-3.5 rounded-full font-bold transition flex items-center gap-2 shadow-lg cursor-pointer',
+                'px-8 py-3.5 transition flex items-center gap-2 cursor-pointer',
                 globalVariant === '1'
-                  ? 'bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white'
-                  : 'bg-[#ffb347] text-[#120b48] border-3 border-[#120b48] shadow-[4px_4px_0_#ff5c8a] hover:shadow-[1px_1px_0_#ff5c8a]'
+                  ? 'rounded-full font-bold shadow-lg bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white'
+                  : globalVariant === '2'
+                    ? 'rounded-full font-bold shadow-[4px_4px_0_#ff5c8a] hover:shadow-[1px_1px_0_#ff5c8a] bg-[#ffb347] text-[#120b48] border-3 border-[#120b48]'
+                    : 'rounded-md font-medium text-sm shadow-xs bg-[#cc785c] hover:bg-[#b8684e] text-white'
               ]"
             >
               <span>⚡</span>
@@ -161,10 +196,12 @@ function handleContactSubmit(formData, context) {
             <a
               :href="buttons?.[1]?.btnLink || '#'"
               :class="[
-                'px-6 py-3 rounded-full font-medium transition cursor-pointer',
+                'px-6 py-3 transition cursor-pointer',
                 globalVariant === '1'
-                  ? 'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
-                  : 'bg-white dark:bg-[#2c1b6b] text-[#120b48] dark:text-white border-3 border-[#120b48] dark:border-[#ffb347] font-bold shadow-[4px_4px_0_#b47aff]'
+                  ? 'rounded-full font-medium bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
+                  : globalVariant === '2'
+                    ? 'rounded-full font-bold bg-white dark:bg-[#2c1b6b] text-[#120b48] dark:text-white border-3 border-[#120b48] dark:border-[#ffb347] shadow-[4px_4px_0_#b47aff]'
+                    : 'rounded-md font-medium text-sm border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] hover:bg-[#f5f0e8] dark:hover:bg-[#252320]'
               ]"
             >
               {{ buttons?.[1]?.btnText || '预约产品演示' }}

@@ -8,7 +8,13 @@ export const VARIANT_ALIASES = {
   saas: '1',
   brutalism: '2',
   retro: '2',
-  pop: '2'
+  pop: '2',
+  editorial: '3',
+  warm: '3',
+  paper: '3',
+  anthropic: '3',
+  claude: '3',
+  minimalist: '3'
 }
 
 /**

@@ -22,6 +22,18 @@ export const defaultStyles = {
     avatar: 'w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-[#120b48] dark:border-[#ffb347] shadow-[4px_4px_0_#ffb347] dark:shadow-[4px_4px_0_#ff5c8a]',
     name: 'text-xl font-black text-[#120b48] dark:text-white',
     role: 'text-sm font-black text-[#ff5c8a] dark:text-[#ffb347] mt-1 uppercase tracking-wide'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center max-w-3xl mx-auto mb-16',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    grid: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8',
+    card: 'text-center p-6 rounded-xl bg-transparent transition-colors',
+    avatar: 'w-28 h-28 rounded-full mx-auto mb-4 object-cover border border-[#e6dfd8] dark:border-[#2a2824]',
+    name: 'text-lg font-semibold text-[#141413] dark:text-[#faf9f5]',
+    role: 'text-sm text-[#6c6a64] dark:text-[#a09d96] mt-1'
   }
 }
 export default defaultStyles

@@ -28,6 +28,21 @@ export const defaultStyles = {
     avatar: 'w-12 h-12 rounded-full object-cover shrink-0 border-2 border-[#120b48] dark:border-[#ffb347] shadow-[2px_2px_0_#ff5c8a]',
     authorName: 'font-black text-[#120b48] dark:text-white text-base',
     authorRole: 'text-xs font-bold text-[#ff5c8a] dark:text-[#c4b5fd]'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16 max-w-3xl mx-auto',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    grid: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7',
+    card: 'bg-[#efe9de] dark:bg-[#252320] p-7 rounded-xl border border-transparent hover:border-[#e6dfd8] dark:hover:border-[#2a2824] transition-colors flex flex-col justify-between',
+    stars: 'text-[#e8a55a] text-base mb-4 tracking-wider',
+    quote: 'text-[#3d3d3a] dark:text-[#d4d0c8] text-sm leading-relaxed mb-6 flex-1',
+    authorWrapper: 'flex items-center gap-3 pt-4 border-t border-[#e6dfd8]/60 dark:border-[#2a2824]',
+    avatar: 'w-10 h-10 rounded-full object-cover shrink-0 border border-[#e6dfd8] dark:border-[#2a2824]',
+    authorName: 'font-semibold text-[#141413] dark:text-[#faf9f5] text-sm',
+    authorRole: 'text-xs text-[#6c6a64] dark:text-[#a09d96]'
   }
 }
 export default defaultStyles

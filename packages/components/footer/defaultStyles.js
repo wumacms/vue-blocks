@@ -14,6 +14,14 @@ export const defaultStyles = {
     logo: 'h-9 w-auto rounded-xl border-2 border-[#ffb347] shadow-[2px_2px_0_#ff5c8a]',
     brandName: 'text-xl font-black text-white tracking-tight',
     copyright: 'text-sm font-bold text-[#c4b5fd] text-center md:text-right px-4 py-2 rounded-full border-2 border-[#ff5c8a]/40 bg-[#1a103d]'
+  },
+  '3': {
+    root: 'bg-[#181715] dark:bg-[#0f0e0d] text-[#a09d96] py-12 transition-colors duration-300 border-t border-white/10 dark:border-white/5',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6',
+    brandWrapper: 'flex items-center gap-3',
+    logo: 'h-8 w-auto rounded-md',
+    brandName: 'text-xl font-serif font-semibold text-[#faf9f5] tracking-tight',
+    copyright: 'text-sm text-[#8e8b82] text-center md:text-right'
   }
 }
 export default defaultStyles

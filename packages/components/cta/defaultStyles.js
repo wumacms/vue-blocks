@@ -16,6 +16,15 @@ export const defaultStyles = {
     buttonGroup: 'flex flex-wrap gap-4 justify-center',
     buttonPrimary: 'px-8 py-4 bg-[#120b48] dark:bg-[#ffb347] text-white dark:text-[#120b48] font-black rounded-full border-4 border-[#ffb347] dark:border-[#ff5c8a] shadow-[6px_6px_0_#ff5c8a] dark:shadow-[6px_6px_0_#b47aff] hover:shadow-[2px_2px_0_#ff5c8a] dark:hover:shadow-[2px_2px_0_#b47aff] hover:translate-x-1 hover:translate-y-1 transition-all',
     buttonSecondary: 'px-8 py-4 bg-white dark:bg-[#2c1b6b] text-[#120b48] dark:text-white font-black rounded-full border-4 border-[#ff5c8a] dark:border-[#ffb347] shadow-[6px_6px_0_#b47aff] dark:shadow-[6px_6px_0_#ff5c8a] hover:shadow-[2px_2px_0_#b47aff] dark:hover:shadow-[2px_2px_0_#ff5c8a] hover:translate-x-1 hover:translate-y-1 transition-all'
+  },
+  '3': {
+    root: 'py-16 text-center bg-[#cc785c] transition-colors duration-300 relative overflow-hidden',
+    container: 'max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10',
+    title: 'font-serif text-4xl md:text-5xl font-semibold text-white mb-4 tracking-[-0.5px]',
+    description: 'text-lg text-white/90 mb-8 max-w-2xl mx-auto',
+    buttonGroup: 'flex flex-wrap gap-4 justify-center items-center',
+    buttonPrimary: 'inline-flex items-center justify-center gap-2 bg-[#faf9f5] hover:bg-white text-[#141413] px-6 py-3 rounded-md font-medium text-sm transition-colors shadow-xs',
+    buttonSecondary: 'inline-flex items-center justify-center gap-2 border border-white hover:bg-white/10 text-white px-6 py-3 rounded-md font-medium text-sm transition-colors'
   }
 }
 export default defaultStyles

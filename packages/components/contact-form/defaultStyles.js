@@ -32,6 +32,23 @@ export const defaultStyles = {
     textarea: 'w-full px-4 py-3.5 rounded-2xl border-3 border-[#120b48] dark:border-[#ffb347] bg-[#f8f5ff] dark:bg-[#1a103d] text-[#120b48] dark:text-white font-bold placeholder-[#2c1b6b]/40 focus:shadow-[4px_4px_0_#ff5c8a] outline-none transition-all min-h-[120px]',
     submitButton: 'w-full py-4 px-8 bg-[#120b48] dark:bg-[#ffb347] text-white dark:text-[#120b48] font-black text-lg rounded-full border-4 border-[#ffb347] dark:border-[#ff5c8a] shadow-[6px_6px_0_#ff5c8a] dark:shadow-[6px_6px_0_#b47aff] hover:shadow-[2px_2px_0_#ff5c8a] dark:hover:shadow-[2px_2px_0_#b47aff] hover:translate-x-1 hover:translate-y-1 transition-all cursor-pointer',
     footerNote: 'text-center text-xs font-bold text-[#2c1b6b] dark:text-[#c4b5fd] mt-4'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-4xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-14 max-w-2xl mx-auto',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-3',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    formCard: 'bg-[#faf9f5] dark:bg-[#1f1e1b] rounded-xl p-8 md:p-12 border border-[#e6dfd8] dark:border-[#2a2824] shadow-xs',
+    formGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
+    field: 'space-y-2',
+    fieldFull: 'space-y-2 md:col-span-2',
+    label: 'block text-sm font-medium text-[#141413] dark:text-[#faf9f5]',
+    input: 'w-full px-4 py-3 rounded-md border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] placeholder:text-[#8e8b82] focus:border-[#cc785c] dark:focus:border-[#cc785c] outline-none transition-colors text-sm',
+    select: 'w-full px-4 py-3 rounded-md border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] focus:border-[#cc785c] dark:focus:border-[#cc785c] outline-none transition-colors text-sm',
+    textarea: 'w-full px-4 py-3 rounded-md border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] placeholder:text-[#8e8b82] focus:border-[#cc785c] dark:focus:border-[#cc785c] outline-none transition-colors min-h-[120px] text-sm',
+    submitButton: 'w-full py-3.5 px-8 bg-[#cc785c] hover:bg-[#b8684e] text-white font-medium rounded-md transition-colors text-sm shadow-xs cursor-pointer',
+    footerNote: 'text-center text-xs text-[#8e8b82] mt-4'
   }
 }
 export default defaultStyles

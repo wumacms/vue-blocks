@@ -59,17 +59,18 @@ import { NavbarBlock, HeroBlock, FeaturesBlock, FooterBlock } from 'vue-blocks'
 全系 22 组区块均支持通过 `variant` 参数统一切换设计风格（支持数字标识与语义化别名，可单区块指定或由渲染器全站统一调度）：
 - **`variant="1"`**（或 **`"clean"`** / **`"modern"`**）：SaaS 现代简约风格（默认）
 - **`variant="2"`**（或 **`"brutalism"`** / **`"retro"`**）：波普复古 / 新粗野主义风格（粗描边、实体硬阴影、高反差撞色）
+- **`variant="3"`**（或 **`"editorial"`** / **`"warm"`** / **`"paper"`** / **`"anthropic"`**）：人文科技 / 暖调纸质叙事风格（Anthropic/Claude 风格，温润羊皮纸底、陶土珊瑚橙、经典衬线体）
 
 ```vue
 <template>
   <!-- 方式 1：单个区块直接指定变体（支持数字或语义化别名） -->
   <NavbarBlock variant="clean" />
-  <HeroBlock variant="brutalism" />
-  <FeaturesBlock variant="2" />
-  <PricingBlock variant="brutalism" />
+  <HeroBlock variant="editorial" />
+  <FeaturesBlock variant="3" />
+  <PricingBlock variant="warm" />
 
   <!-- 方式 2：通过编排容器实现全站 22 个区块一键联动换皮 -->
-  <!-- <SiteRenderer :variant="'brutalism'" /> -->
+  <!-- <SiteRenderer :variant="'editorial'" /> -->
 </template>
 ```
 

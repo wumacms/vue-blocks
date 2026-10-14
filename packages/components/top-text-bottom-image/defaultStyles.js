@@ -18,6 +18,16 @@ export const defaultStyles = {
     mediaWrapper: 'max-w-5xl mx-auto',
     imageBox: 'bg-[#ffb347] dark:bg-[#2c1b6b] rounded-3xl overflow-hidden border-4 border-[#120b48] dark:border-[#ffb347] shadow-[20px_20px_0_#ff5c8a] dark:shadow-[20px_20px_0_#b47aff]',
     image: 'w-full h-auto object-cover'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    contentWrapper: 'text-center max-w-3xl mx-auto mb-16',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    mediaWrapper: 'max-w-5xl mx-auto',
+    imageBox: 'rounded-xl overflow-hidden border border-[#e6dfd8] dark:border-[#2a2824] shadow-xs',
+    image: 'w-full h-auto object-cover'
   }
 }
 export default defaultStyles

@@ -38,6 +38,26 @@ export const defaultStyles = {
     moreLink: 'text-[#120b48] dark:text-[#ffb347] font-black text-sm hover:text-[#ff5c8a] inline-flex items-center gap-1',
     bottomMore: 'text-center mt-12',
     moreButton: 'inline-block bg-[#120b48] dark:bg-[#ffb347] text-white dark:text-[#120b48] border-3 border-[#ffb347] dark:border-[#ff5c8a] px-8 py-3.5 rounded-full text-base font-black shadow-[4px_4px_0_#ff5c8a] dark:shadow-[4px_4px_0_#b47aff] hover:shadow-[1px_1px_0_#ff5c8a] transition-all'
+  },
+  '3': {
+    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16 max-w-3xl mx-auto',
+    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
+    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
+    grid: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    card: 'bg-[#faf9f5] dark:bg-[#1f1e1b] rounded-xl overflow-hidden border border-[#e6dfd8] dark:border-[#2a2824] shadow-xs hover:border-[#cc785c]/40 transition-colors flex flex-col',
+    imageWrapper: 'relative aspect-video overflow-hidden border-b border-[#e6dfd8] dark:border-[#2a2824] bg-[#efe9de] dark:bg-[#252320]',
+    image: 'w-full h-full object-cover transition-transform duration-300 hover:scale-105',
+    cardBody: 'p-6 flex-1 flex flex-col',
+    meta: 'flex items-center gap-2 mb-3 text-xs',
+    category: 'bg-[#efe9de] dark:bg-[#252320] text-[#cc785c] font-medium px-2.5 py-1 rounded-full',
+    date: 'text-[#8e8b82]',
+    newsTitle: 'font-serif text-xl font-semibold text-[#141413] dark:text-[#faf9f5] hover:text-[#cc785c] dark:hover:text-[#cc785c] transition-colors mb-2 line-clamp-2',
+    summary: 'text-[#3d3d3a] dark:text-[#d4d0c8] text-sm line-clamp-3 mb-4 flex-1 leading-relaxed',
+    moreLink: 'text-[#cc785c] hover:text-[#b8684e] font-medium text-sm inline-flex items-center gap-1 transition-colors',
+    bottomMore: 'text-center mt-12',
+    moreButton: 'inline-flex items-center justify-center border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] text-sm font-medium px-6 py-2.5 rounded-md hover:bg-[#f5f0e8] dark:hover:bg-[#252320] transition-colors'
   }
 }
 export default defaultStyles
