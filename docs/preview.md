@@ -15,4 +15,6 @@ head:
       })();
 ---
 
-<PreviewFrame />
+<ClientOnly>
+  <PreviewFrame />
+</ClientOnly>
