@@ -39,46 +39,47 @@ pnpm run dev
 
 ### 🎨 全系风格变体切换（全局一键换皮）
 
-支持在 2 种设计系统风格变体间一键联动切换（无论是 `SiteRenderer` 多页面站点、`PageRenderer` 单页还是 22 个原子区块均可统一换皮）：
+支持在 4 种设计系统风格变体间一键联动切换（无论是 `SiteRenderer` 多页面站点还是 `PageRenderer` 单页均可统一换皮）：
 
 | 变体代号 | 语义别名 (`alias`) | 视觉风格 |
-| :--- | :--- | :--- |
+| :------- | :--------------------------------------------- | :------------------------------------- |
 | `'1'` | `clean` / `modern` / `saas` | SaaS 现代极简落地页 |
 | `'2'` | `brutalism` / `retro` / `pop` | 波普复古 / 新粗野主义撞色风 |
+| `'3'` | `editorial` / `warm` / `paper` / `anthropic` | 人文科技纸质风 / 暖调叙事典雅 |
+| `'4'` | `geek` / `developer` / `technical` / `code` | 工科极客新粗野风 / 开发者硬核终端风 |
 
 ### 📝 覆盖与定制机制演示
 
-- **数据覆盖** — Hero 区块展示了通过 `data` prop 传入自定义标题与描述
-- **插槽扩展** — Hero 区块展示了通过 `#actions` 自定义插槽，在变体 1 与变体 2 之间均能无损稳定渲染
+- **数据驱动覆盖** — Hero 区块展示了通过 `data` prop 随全局风格变体自适应个性化标题与描述
 - **样式覆盖** — Features 区块展示了通过 `styles` prop 精准覆盖根容器背景渐变
-- **事件交互** — ContactForm 区块展示了 `@submit` 事件的表单数据回传
+- **事件交互** — ContactForm 区块展示了 `@submit` 事件的表单数据回传与弹窗反馈
 
 ## 区块组件渲染顺序
 
 本演示站点按以下顺序依次渲染全部 22 个区块：
 
-1. `NavbarBlock` — 导航栏
-2. `HeroBlock` — 主视觉（变体切换）
-3. `PartnersBlock` — 合作伙伴
-4. `FeaturesBlock` — 特性卡片（样式覆盖）
-5. `TopTextBottomImageBlock` — 上文下图
-6. `StatsBlock` — 数据统计
-7. `LeftImageRightTextBlock` — 左图右文
-8. `RightImageLeftTextBlock` — 左文右图
-9. `IconWallBlock` — 图标墙
-10. `ServiceListBlock` — 服务列表
-11. `ProductListBlock` — 产品列表
-12. `CourseListBlock` — 课程列表
-13. `TestimonialsBlock` — 客户评价
-14. `TeamBlock` — 核心团队
-15. `PricingBlock` — 价格方案
-16. `ComparisonTableBlock` — 对比表格
-17. `NewsListBlock` — 资讯列表
-18. `NewsDetailBlock` — 资讯详情
-19. `FaqBlock` — 常见问题
-20. `CtaBlock` — 行动号召
-21. `ContactFormBlock` — 联系表单（事件交互）
-22. `FooterBlock` — 页脚
+1. **基础骨架**：`NavbarBlock`（顶部导航栏）
+2. **首屏视觉**：`HeroBlock`（主视觉首屏）
+3. **生态伙伴**：`PartnersBlock`（合作伙伴/客户墙）
+4. **核心亮点**：`FeaturesBlock`（特性卡片）
+5. **图文结构**：`TopTextBottomImageBlock`（上文下图）
+6. **数据背书**：`StatsBlock`（数据统计）
+7. **图文排版**：`LeftImageRightTextBlock`（左图右文）
+8. **图文排版**：`RightImageLeftTextBlock`（右图左文）
+9. **能力矩阵**：`IconWallBlock`（图标墙）
+10. **服务矩阵**：`ServiceListBlock`（服务列表）
+11. **产品展示**：`ProductListBlock`（产品列表）
+12. **培训学习**：`CourseListBlock`（课程列表）
+13. **口碑评价**：`TestimonialsBlock`（客户评价）
+14. **团队风采**：`TeamBlock`（核心团队）
+15. **商业变现**：`PricingBlock`（价格方案）
+16. **能力对比**：`ComparisonTableBlock`（对比表格）
+17. **资讯动态**：`NewsListBlock`（新闻列表）
+18. **深度图文**：`NewsDetailBlock`（新闻详情）
+19. **答疑解惑**：`FaqBlock`（常见问题）
+20. **转化激励**：`CtaBlock`（行动号召横幅）
+21. **交互留资**：`ContactFormBlock`（联系咨询表单）
+22. **底座骨架**：`FooterBlock`（全站页脚）
 
 ## 目录结构
 

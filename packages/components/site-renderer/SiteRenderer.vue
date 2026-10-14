@@ -325,18 +325,23 @@ function resolveComponentConfig(input, defaultFallback, defaultType) {
   if (source === false || source === null) return null
   if (!source) return null
 
+  if (source === true) {
+    const comp = resolveBlock(defaultType)
+    return comp ? { component: comp, props: { variant: resolvedVariant.value } } : null
+  }
+
   // 1. 直接传入组件对象或渲染函数
   if (
     typeof source === 'function' ||
     (typeof source === 'object' && !source.type && !source.is && (source.render || source.setup || source.__vccOpts || source.name))
   ) {
-    return { component: source, props: {} }
+    return { component: source, props: { variant: resolvedVariant.value } }
   }
 
   // 2. 字符串组件名
   if (typeof source === 'string') {
     const comp = resolveBlock(source)
-    return comp ? { component: comp, props: {} } : null
+    return comp ? { component: comp, props: { variant: resolvedVariant.value } } : null
   }
 
   // 3. 区块配置对象
@@ -348,7 +353,7 @@ function resolveComponentConfig(input, defaultFallback, defaultType) {
       component: comp,
       props: {
         id: source.id,
-        variant: resolvedVariant.value || source.variant,
+        variant: source.lockVariant ? (source.variant || '1') : (resolvedVariant.value || source.variant),
         data: source.data,
         styles: source.styles
       }

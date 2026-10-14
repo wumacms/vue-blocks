@@ -71,7 +71,7 @@ function resolveBlockConfig(input, defaultType) {
   if (input === false || input === null) return null
   if (input === true) {
     const comp = resolveBlock(defaultType)
-    return comp ? { component: comp, props: {}, raw: { type: defaultType } } : null
+    return comp ? { component: comp, props: { variant: pageConfig.value.variant }, raw: { type: defaultType } } : null
   }
   if (!input) return null
 
@@ -82,7 +82,9 @@ function resolveBlockConfig(input, defaultType) {
   ) {
     return {
       component: input,
-      props: {},
+      props: {
+        variant: pageConfig.value.variant
+      },
       raw: input
     }
   }
@@ -90,7 +92,7 @@ function resolveBlockConfig(input, defaultType) {
   // 2. 如果传入的是字符串，如 "NavbarBlock"
   if (typeof input === 'string') {
     const comp = resolveBlock(input)
-    return comp ? { component: comp, props: {}, raw: { type: input } } : null
+    return comp ? { component: comp, props: { variant: pageConfig.value.variant }, raw: { type: input } } : null
   }
 
   // 3. 如果传入的是区块配置对象，如 { type: 'NavbarBlock', variant: '1', data: { ... }, styles: { ... } }
@@ -102,7 +104,7 @@ function resolveBlockConfig(input, defaultType) {
       component: comp,
       props: {
         id: input.id,
-        variant: pageConfig.value.variant || input.variant,
+        variant: input.lockVariant ? (input.variant || '1') : (pageConfig.value.variant || input.variant),
         data: input.data,
         styles: input.styles
       },

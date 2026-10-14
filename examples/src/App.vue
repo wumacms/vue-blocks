@@ -1,59 +1,90 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import {
   SiteRenderer,
   PageRenderer,
   NavbarBlock,
-  HeroBlock,
-  PartnersBlock,
-  FeaturesBlock,
-  TopTextBottomImageBlock,
-  StatsBlock,
-  LeftImageRightTextBlock,
-  RightImageLeftTextBlock,
-  IconWallBlock,
-  ServiceListBlock,
-  ProductListBlock,
-  CourseListBlock,
-  TestimonialsBlock,
-  PricingBlock,
-  ComparisonTableBlock,
-  NewsListBlock,
-  NewsDetailBlock,
-  FaqBlock,
-  CtaBlock,
-  ContactFormBlock,
-  TeamBlock,
   FooterBlock
 } from 'vue-blocks'
 import FloatingToolbar from './components/FloatingToolbar.vue'
 
-const renderMode = ref('site') // 'site' | 'renderer' | 'manual'
-const globalVariant = ref('1')
-const footerEl = ref(null)
+// 1. 渲染模式配置
+const MODES = [
+  { value: 'site', label: 'SiteRenderer 多页面站点', icon: '🌐' },
+  { value: 'renderer', label: 'PageRenderer 单页', icon: '🚀' }
+]
 
-// Custom data override example for Hero
-const customHeroData = {
-  title: '下一代智能协作平台<br><span class="text-indigo-600 dark:text-indigo-400">连接企业每一个节点</span>',
-  description: '全链路打通工作流，提供沉浸式团队沟通、数据智能洞察与开箱即用的落地页区块组件库。'
+// 安全读取 localStorage
+function getStoredValue(key, validValues, fallback) {
+  try {
+    const val = localStorage.getItem(key)
+    if (val && validValues.includes(val)) {
+      return val
+    }
+  } catch {
+    // 忽略安全沙箱或隐身模式异常
+  }
+  return fallback
 }
 
-const customHeroDataEditorial = {
-  title: '让企业效率<br><span class="text-[#cc785c]">提升 10 倍</span>',
-  description: 'NovaStack 帮助企业打通数据孤岛，自动化重复流程，让团队专注于真正创造价值的工作。'
+// 安全写入 localStorage
+function setStoredValue(key, value) {
+  try {
+    localStorage.setItem(key, value)
+  } catch {
+    // 忽略配额或安全沙箱异常
+  }
 }
 
-const customHeroDataGeek = {
-  title: '从零到架构师<br><span class="text-amber-400">实战 就业</span>',
-  description: '一线大厂导师带队，项目驱动式学习。覆盖前端、后端、AI、运维全栈方向，助你斩获心仪 Offer。'
-}
+// 持久化存储状态：渲染模式与全局风格变体
+const renderMode = ref(getStoredValue('vb-render-mode', ['site', 'renderer'], 'site'))
+const globalVariant = ref(getStoredValue('vb-variant', ['1', '2', '3', '4'], '1'))
 
-// Custom styles override example for Features
+// 监听变动并实时保存至 localStorage
+watch(renderMode, (newVal) => {
+  setStoredValue('vb-render-mode', newVal)
+})
+
+watch(globalVariant, (newVal) => {
+  setStoredValue('vb-variant', newVal)
+})
+
+// 2. 变体与主题容器背景样式映射
+const themeContainerClass = computed(() => {
+  const map = {
+    '4': 'bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100',
+    '3': 'bg-[#faf9f5] dark:bg-[#141413] text-[#141413] dark:text-[#faf9f5]',
+    '2': 'bg-[#e9e2ff] dark:bg-[#1a103d] text-[#120b48] dark:text-white',
+    '1': 'bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100'
+  }
+  return map[globalVariant.value] || map['1']
+})
+
+// 3. 模式切换按钮高亮色映射
+const activeTabClass = computed(() => {
+  const map = {
+    '4': 'bg-indigo-800 text-white dark:bg-indigo-500 font-bold shadow-sm',
+    '3': 'bg-[#cc785c] text-white shadow-sm font-semibold',
+    '2': 'bg-[#120b48] text-white dark:bg-[#ffb347] dark:text-[#120b48] font-bold shadow-sm',
+    '1': 'bg-indigo-600 text-white shadow-sm font-semibold'
+  }
+  return map[globalVariant.value] || map['1']
+})
+
+// 4. 自定义样式覆盖示例（以 FeaturesBlock 渐变背景为例）
 const customFeaturesStyles = {
   root: 'py-24 bg-gradient-to-b from-indigo-50/50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950'
 }
 
-// PageRenderer 数据驱动页面配置（支持响应式关联 globalVariant）
+// 5. Hero 标语随变体自适应
+const heroTitleMap = {
+  '4': '从零到架构师<br><span class="text-amber-400">实战 就业</span>',
+  '3': '让企业协作<br><span class="text-[#cc785c]">回归专注与理性</span>',
+  '2': '突破规则束缚<br><span class="text-[#ff5c8a]">重构数字视觉体验</span>',
+  '1': '下一代智能协作平台<br><span class="text-indigo-600 dark:text-indigo-400">由 PageRenderer 数据驱动</span>'
+}
+
+// 6. PageRenderer 数据驱动配置（所有子区块自动继承外层 PageRenderer 的 :variant 全局渗透）
 const dynamicPageData = computed(() => ({
   seo: {
     title: 'VueBlocks - 数据驱动落地页渲染示例',
@@ -65,25 +96,34 @@ const dynamicPageData = computed(() => ({
     {
       id: 'hero',
       type: 'HeroBlock',
-      variant: globalVariant.value,
       data: {
-        title: globalVariant.value === '4'
-          ? '从零到架构师<br><span class="text-amber-400">实战 就业</span>'
-          : globalVariant.value === '3'
-            ? '让企业协作<br><span class="text-[#cc785c]">回归专注与理性</span>'
-            : '下一代智能协作平台<br><span class="text-indigo-600 dark:text-indigo-400">由 PageRenderer 数据驱动</span>',
+        title: heroTitleMap[globalVariant.value] || heroTitleMap['1'],
         description: '无需繁琐手动引入 22 个组件，仅需一份 JSON 配置即可自动渲染企业级落地页。'
       }
     },
-    { id: 'partners', type: 'PartnersBlock', variant: globalVariant.value },
-    { id: 'features', type: 'FeaturesBlock', variant: globalVariant.value, styles: globalVariant.value === '1' ? customFeaturesStyles : {} },
-    { id: 'top-image', type: 'TopTextBottomImageBlock', variant: globalVariant.value },
-    { id: 'stats', type: 'StatsBlock', variant: globalVariant.value },
-    { id: 'testimonials', type: 'TestimonialsBlock', variant: globalVariant.value },
-    { id: 'pricing', type: 'PricingBlock', variant: globalVariant.value },
-    { id: 'faq', type: 'FaqBlock', variant: globalVariant.value },
-    { id: 'cta', type: 'CtaBlock', variant: globalVariant.value },
-    { id: 'contact', type: 'ContactFormBlock', variant: globalVariant.value }
+    { id: 'partners', type: 'PartnersBlock' },
+    {
+      id: 'features',
+      type: 'FeaturesBlock',
+      styles: globalVariant.value === '1' ? customFeaturesStyles : {}
+    },
+    { id: 'top-image', type: 'TopTextBottomImageBlock' },
+    { id: 'stats', type: 'StatsBlock' },
+    { id: 'left-image', type: 'LeftImageRightTextBlock' },
+    { id: 'right-image', type: 'RightImageLeftTextBlock' },
+    { id: 'icon-wall', type: 'IconWallBlock' },
+    { id: 'service-list', type: 'ServiceListBlock' },
+    { id: 'product-list', type: 'ProductListBlock' },
+    { id: 'course-list', type: 'CourseListBlock' },
+    { id: 'testimonials', type: 'TestimonialsBlock' },
+    { id: 'team', type: 'TeamBlock' },
+    { id: 'pricing', type: 'PricingBlock' },
+    { id: 'comparison', type: 'ComparisonTableBlock' },
+    { id: 'news-list', type: 'NewsListBlock' },
+    { id: 'news-detail', type: 'NewsDetailBlock' },
+    { id: 'faq', type: 'FaqBlock' },
+    { id: 'cta', type: 'CtaBlock' },
+    { id: 'contact', type: 'ContactFormBlock' }
   ]
 }))
 
@@ -94,76 +134,25 @@ function handleContactSubmit(formData, context) {
 </script>
 
 <template>
-  <div
-    :class="[
-      'min-h-screen font-sans transition-colors duration-300',
-      globalVariant === '4'
-        ? 'bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100'
-        : globalVariant === '3'
-          ? 'bg-[#faf9f5] dark:bg-[#141413] text-[#141413] dark:text-[#faf9f5]'
-          : globalVariant === '2'
-            ? 'bg-[#e9e2ff] dark:bg-[#1a103d] text-[#120b48] dark:text-white'
-            : 'bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100'
-    ]"
-  >
+  <div :class="['min-h-screen font-sans transition-colors duration-300', themeContainerClass]">
     <!-- 底部悬浮模式切换开关（避开顶部固定/吸顶导航栏，居中展示） -->
     <div
-      class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-gray-200/90 dark:border-gray-700/90 shadow-2xl rounded-full p-1.5 text-xs font-medium">
-      <button
-        @click="renderMode = 'site'"
-        :class="[
+      class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-gray-200/90 dark:border-gray-700/90 shadow-2xl rounded-full p-1.5 text-xs font-medium"
+      role="tablist" aria-label="页面渲染模式切换">
+      <button v-for="mode in MODES" :key="mode.value" role="tab" :aria-selected="renderMode === mode.value"
+        @click="renderMode = mode.value" :class="[
           'px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5',
-          renderMode === 'site'
-            ? globalVariant === '4'
-              ? 'bg-indigo-800 text-white dark:bg-indigo-500 font-bold shadow-sm'
-              : globalVariant === '3'
-                ? 'bg-[#cc785c] text-white shadow-sm font-semibold'
-                : globalVariant === '2'
-                  ? 'bg-[#120b48] text-white dark:bg-[#ffb347] dark:text-[#120b48] font-bold shadow-sm'
-                  : 'bg-indigo-600 text-white shadow-sm font-semibold'
+          renderMode === mode.value
+            ? activeTabClass
             : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
         ]">
-        <span>🌐</span>
-        <span>SiteRenderer 多页面站点</span>
-      </button>
-      <button
-        @click="renderMode = 'renderer'"
-        :class="[
-          'px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5',
-          renderMode === 'renderer'
-            ? globalVariant === '4'
-              ? 'bg-indigo-800 text-white dark:bg-indigo-500 font-bold shadow-sm'
-              : globalVariant === '3'
-                ? 'bg-[#cc785c] text-white shadow-sm font-semibold'
-                : globalVariant === '2'
-                  ? 'bg-[#120b48] text-white dark:bg-[#ffb347] dark:text-[#120b48] font-bold shadow-sm'
-                  : 'bg-indigo-600 text-white shadow-sm font-semibold'
-            : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
-        ]">
-        <span>🚀</span>
-        <span>PageRenderer 单页</span>
-      </button>
-      <button
-        @click="renderMode = 'manual'"
-        :class="[
-          'px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5',
-          renderMode === 'manual'
-            ? globalVariant === '4'
-              ? 'bg-indigo-800 text-white dark:bg-indigo-500 font-bold shadow-sm'
-              : globalVariant === '3'
-                ? 'bg-[#cc785c] text-white shadow-sm font-semibold'
-                : globalVariant === '2'
-                  ? 'bg-[#120b48] text-white dark:bg-[#ffb347] dark:text-[#120b48] font-bold shadow-sm'
-                  : 'bg-indigo-600 text-white shadow-sm font-semibold'
-            : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
-        ]">
-        <span>📑</span>
-        <span>手动平铺</span>
+        <span>{{ mode.icon }}</span>
+        <span>{{ mode.label }}</span>
       </button>
     </div>
 
     <!-- 悬浮控制台：主题模式切换与全站/Hero 变体切换（自动避让页脚） -->
-    <FloatingToolbar v-model="globalVariant" :footer-el="footerEl" />
+    <FloatingToolbar v-model="globalVariant" />
 
     <!-- 模式 1：SiteRenderer 多页面全站渲染（支持通过 floatingToolbar 统一切换变体） -->
     <div v-if="renderMode === 'site'">
@@ -171,125 +160,9 @@ function handleContactSubmit(formData, context) {
     </div>
 
     <!-- 模式 2：PageRenderer 数据驱动渲染（传入可选 navbar 与 footer 参数） -->
-    <div v-else-if="renderMode === 'renderer'">
-      <PageRenderer
-        :variant="globalVariant"
-        :data="dynamicPageData"
-        :navbar="NavbarBlock"
-        :footer="FooterBlock"
-        @submit="handleContactSubmit"
-      />
-    </div>
-
-    <!-- 模式 3：手动平铺全部区块 -->
     <div v-else>
-      <!-- 1. 导航栏 -->
-      <NavbarBlock :variant="globalVariant" />
-
-      <!-- 2. Hero 区块 -->
-      <HeroBlock
-        :variant="globalVariant"
-        :data="globalVariant === '1' ? customHeroData : globalVariant === '3' ? customHeroDataEditorial : globalVariant === '4' ? customHeroDataGeek : {}"
-      >
-        <!-- 插槽演示：自定义增强行动按钮，演示跨风格变体无损透传 -->
-        <template #actions="{ buttons }">
-          <div class="flex flex-wrap gap-4 justify-center items-center">
-            <a
-              :href="buttons?.[0]?.btnLink || '#'"
-              :class="[
-                'transition flex items-center gap-2 cursor-pointer',
-                globalVariant === '1'
-                  ? 'px-8 py-3.5 rounded-full font-bold shadow-lg bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white'
-                  : globalVariant === '2'
-                    ? 'px-8 py-3.5 rounded-full font-bold shadow-[4px_4px_0_#ff5c8a] hover:shadow-[1px_1px_0_#ff5c8a] bg-[#ffb347] text-[#120b48] border-3 border-[#120b48]'
-                    : globalVariant === '3'
-                      ? 'px-8 py-3.5 rounded-md font-medium text-sm shadow-xs bg-[#cc785c] hover:bg-[#b8684e] text-white'
-                      : 'px-8 py-3.5 border-2 border-black dark:border-white bg-indigo-800 dark:bg-indigo-500 text-white font-bold uppercase tracking-wider text-sm shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_black] dark:hover:shadow-[6px_6px_0_white] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_black]'
-              ]"
-            >
-              <span>⚡</span>
-              <span>{{ buttons?.[0]?.btnText || '立即免费体验' }} <span class="text-xs opacity-80">(自定义插槽)</span></span>
-            </a>
-            <a
-              :href="buttons?.[1]?.btnLink || '#'"
-              :class="[
-                'transition cursor-pointer',
-                globalVariant === '1'
-                  ? 'px-6 py-3 rounded-full font-medium bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
-                  : globalVariant === '2'
-                    ? 'px-6 py-3 rounded-full font-bold bg-white dark:bg-[#2c1b6b] text-[#120b48] dark:text-white border-3 border-[#120b48] dark:border-[#ffb347] shadow-[4px_4px_0_#b47aff]'
-                    : globalVariant === '3'
-                      ? 'px-6 py-3 rounded-md font-medium text-sm border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] hover:bg-[#f5f0e8] dark:hover:bg-[#252320]'
-                      : 'px-6 py-3 border-2 border-black dark:border-white bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-bold uppercase tracking-wider text-sm shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_black] dark:hover:shadow-[6px_6px_0_white]'
-              ]"
-            >
-              {{ buttons?.[1]?.btnText || '预约产品演示' }}
-            </a>
-          </div>
-        </template>
-      </HeroBlock>
-
-      <!-- 3. 合作伙伴区块 -->
-      <PartnersBlock :variant="globalVariant" />
-
-      <!-- 4. 特性区块 -->
-      <FeaturesBlock :variant="globalVariant" :styles="globalVariant === '1' ? customFeaturesStyles : {}" />
-
-      <!-- 5. 上文下图区块 -->
-      <TopTextBottomImageBlock :variant="globalVariant" />
-
-      <!-- 6. 统计区块 -->
-      <StatsBlock :variant="globalVariant" />
-
-      <!-- 7. 左图右文 -->
-      <LeftImageRightTextBlock :variant="globalVariant" />
-
-      <!-- 8. 左文右图 -->
-      <RightImageLeftTextBlock :variant="globalVariant" />
-
-      <!-- 9. 图标墙区块 -->
-      <IconWallBlock :variant="globalVariant" />
-
-      <!-- 10. 服务列表区块 -->
-      <ServiceListBlock :variant="globalVariant" />
-
-      <!-- 11. 产品列表区块 -->
-      <ProductListBlock :variant="globalVariant" />
-
-      <!-- 12. 课程列表区块 -->
-      <CourseListBlock :variant="globalVariant" />
-
-      <!-- 13. 客户评价区块 -->
-      <TestimonialsBlock :variant="globalVariant" />
-
-      <!-- 14. 团队区块 -->
-      <TeamBlock :variant="globalVariant" />
-
-      <!-- 15. 价格区块 -->
-      <PricingBlock :variant="globalVariant" />
-
-      <!-- 16. 对比表格区块 -->
-      <ComparisonTableBlock :variant="globalVariant" />
-
-      <!-- 17. 新闻列表区块 -->
-      <NewsListBlock :variant="globalVariant" />
-
-      <!-- 18. 新闻详情区块 -->
-      <NewsDetailBlock :variant="globalVariant" />
-
-      <!-- 19. 常见问题区块 -->
-      <FaqBlock :variant="globalVariant" />
-
-      <!-- 20. 号召区块 (CTA) -->
-      <CtaBlock :variant="globalVariant" />
-
-      <!-- 21. 联系表单区块 -->
-      <ContactFormBlock :variant="globalVariant" @submit="handleContactSubmit" />
-
-      <!-- 22. 页脚区块 -->
-      <div ref="footerEl">
-        <FooterBlock :variant="globalVariant" />
-      </div>
+      <PageRenderer :variant="globalVariant" :data="dynamicPageData" :navbar="NavbarBlock" :footer="FooterBlock"
+        @submit="handleContactSubmit" />
     </div>
   </div>
 </template>
