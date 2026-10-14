@@ -64,12 +64,12 @@ const customData = {
 import { StatsBlock } from 'vue-blocks'
 
 const customStyles = {
-  root: 'py-16 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800 transition-colors duration-300',
+  root: 'py-16 bg-primary text-primary-foreground relative overflow-hidden transition-colors duration-300',
   container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
   grid: 'grid grid-cols-2 md:grid-cols-4 gap-8 text-center',
   item: 'p-4',
-  value: 'text-4xl md:text-5xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight',
-  label: 'text-sm md:text-base text-gray-600 dark:text-gray-400 font-medium mt-2'
+  value: 'text-4xl md:text-5xl font-black text-primary-foreground tracking-tight',
+  label: 'text-sm md:text-base text-primary-foreground/80 font-medium mt-2'
 }
 </script>
 
@@ -106,12 +106,12 @@ const customStyles = {
 
 | 样式字段名  | 作用元素 / 解释说明                                     | 默认 Tailwind CSS 类名                                                                                         |
 | ----------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `root`      | 统计区块外层 `<section>` 容器，控制垂直内边距与边框分割 | `py-16 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800 transition-colors duration-300` |
+| `root`      | 统计区块外层 `<section>` 容器，控制垂直内边距与边框分割 | `py-16 bg-primary text-primary-foreground relative overflow-hidden transition-colors duration-300`            |
 | `container` | 内容最大宽度居中容器                                    | `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`                                                                       |
 | `grid`      | 数据指标响应式网格容器（两列至四列自适应）              | `grid grid-cols-2 md:grid-cols-4 gap-8 text-center`                                                            |
 | `item`      | 单个数据单元格容器                                      | `p-4`                                                                                                          |
-| `value`     | 指标数值特大粗体高亮文本样式                            | `text-4xl md:text-5xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight`                          |
-| `label`     | 指标描述标签文本样式                                    | `text-sm md:text-base text-gray-600 dark:text-gray-400 font-medium mt-2`                                       |
+| `value`     | 指标数值特大粗体高亮文本样式                            | `text-4xl md:text-5xl font-black text-primary-foreground tracking-tight`                                       |
+| `label`     | 指标描述标签文本样式                                    | `text-sm md:text-base text-primary-foreground/80 font-medium mt-2`                                             |
 
 ---
 

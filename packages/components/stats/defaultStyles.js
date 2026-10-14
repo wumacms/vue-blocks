@@ -16,12 +16,12 @@ export const defaultStyles = {
     label: 'text-sm md:text-base text-foreground/80 font-black mt-2 uppercase tracking-wide'
   },
   '3': {
-    root: 'py-12 bg-muted border-t border-b border-border transition-colors duration-300',
-    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    root: 'py-16 text-center bg-primary text-primary-foreground transition-colors duration-300 relative overflow-hidden',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10',
     grid: 'grid grid-cols-2 md:grid-cols-4 gap-8 text-center',
     item: 'p-4',
-    value: 'font-serif text-4xl md:text-5xl font-medium text-foreground tracking-tight',
-    label: 'mt-1 text-sm text-muted-foreground'
+    value: 'font-serif text-4xl md:text-5xl font-semibold text-primary-foreground tracking-[-0.5px]',
+    label: 'text-sm md:text-base text-primary-foreground/90 font-medium mt-2'
   },
   '4': {
     root: 'py-16 bg-primary text-primary-foreground border-y-2 border-foreground relative overflow-hidden transition-colors duration-200',
