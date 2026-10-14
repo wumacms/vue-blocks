@@ -216,9 +216,11 @@ onUnmounted(() => {
 <template>
   <div id="preview-root"
     :class="[
-      (variant === '3' || variant === 'editorial' || variant === 'warm')
-        ? 'bg-[#faf9f5] dark:bg-[#141413] text-[#141413] dark:text-[#f5f2eb]'
-        : 'bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100',
+      (variant === '4' || variant === 'geek' || variant === 'developer')
+        ? 'bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100'
+        : (variant === '3' || variant === 'editorial' || variant === 'warm')
+          ? 'bg-[#faf9f5] dark:bg-[#141413] text-[#141413] dark:text-[#f5f2eb]'
+          : 'bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100',
       'transition-colors duration-200'
     ]"
     style="display: flow-root; width: 100%; height: auto; min-height: 0; box-sizing: border-box;">

@@ -29,6 +29,9 @@ assert(resolveVariantKey('retro') === '2', "resolveVariantKey('retro') 应解析
 assert(resolveVariantKey('editorial') === '3', "resolveVariantKey('editorial') 应解析为 '3'")
 assert(resolveVariantKey('warm') === '3', "resolveVariantKey('warm') 应解析为 '3'")
 assert(resolveVariantKey(3) === '3', "resolveVariantKey(3) 应解析为 '3'")
+assert(resolveVariantKey('geek') === '4', "resolveVariantKey('geek') 应解析为 '4'")
+assert(resolveVariantKey('developer') === '4', "resolveVariantKey('developer') 应解析为 '4'")
+assert(resolveVariantKey(4) === '4', "resolveVariantKey(4) 应解析为 '4'")
 
 const testStyles = {
   '1': { root: 'bg-white', strokeWidth: 2 },
@@ -61,6 +64,7 @@ for (const comp of compDirs) {
   if (files.includes('defaultStyles.js')) {
     const stylesContent = fs.readFileSync(path.join(dir, 'defaultStyles.js'), 'utf-8')
     assert(stylesContent.includes("'3':"), `${comp} defaultStyles.js 必须包含变体 3`)
+    assert(stylesContent.includes("'4':"), `${comp} defaultStyles.js 必须包含变体 4`)
   }
   assert(files.includes('schema.json'), `${comp} 必须包含 schema.json`)
   assert(files.includes('index.js'), `${comp} 必须包含 index.js`)

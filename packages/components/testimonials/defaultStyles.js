@@ -43,6 +43,21 @@ export const defaultStyles = {
     avatar: 'w-10 h-10 rounded-full object-cover shrink-0 border border-[#e6dfd8] dark:border-[#2a2824]',
     authorName: 'font-semibold text-[#141413] dark:text-[#faf9f5] text-sm',
     authorRole: 'text-xs text-[#6c6a64] dark:text-[#a09d96]'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16 max-w-3xl mx-auto',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    grid: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    card: 'bg-white dark:bg-slate-800 p-8 border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] -rotate-1 hover:rotate-0 hover:scale-[1.01] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_black] dark:hover:shadow-[8px_8px_0_white] transition-all flex flex-col justify-between',
+    stars: 'text-amber-500 text-lg mb-4 tracking-wider',
+    quote: 'text-slate-800 dark:text-slate-200 text-sm md:text-base font-medium leading-relaxed mb-6 flex-1',
+    authorWrapper: 'flex items-center gap-4 pt-4 border-t-2 border-black dark:border-white',
+    avatar: 'w-12 h-12 object-cover shrink-0 border-2 border-black dark:border-white shadow-[2px_2px_0_black]',
+    authorName: 'font-extrabold uppercase text-slate-900 dark:text-white text-sm',
+    authorRole: 'text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400'
   }
 }
 export default defaultStyles

@@ -28,6 +28,16 @@ export const defaultStyles = {
     mediaWrapper: 'max-w-5xl mx-auto',
     imageBox: 'rounded-xl overflow-hidden border border-[#e6dfd8] dark:border-[#2a2824] shadow-xs',
     image: 'w-full h-auto object-cover'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    contentWrapper: 'text-center max-w-3xl mx-auto mb-16',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    mediaWrapper: 'max-w-5xl mx-auto',
+    imageBox: 'border-2 border-black dark:border-white shadow-[8px_8px_0_black] dark:shadow-[8px_8px_0_white] rotate-1 hover:rotate-0 transition-transform overflow-hidden bg-slate-900',
+    image: 'w-full h-auto object-cover block grayscale-[15%] contrast-[1.1] hover:grayscale-0 transition-all'
   }
 }
 export default defaultStyles

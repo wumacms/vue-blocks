@@ -37,6 +37,19 @@ export const defaultStyles = {
     content: 'space-y-1',
     itemTitle: 'text-lg font-semibold text-[#141413] dark:text-[#faf9f5]',
     itemDescription: 'text-sm text-[#3d3d3a] dark:text-[#d4d0c8] leading-relaxed'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center max-w-3xl mx-auto mb-16',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    grid: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6',
+    card: 'bg-white dark:bg-slate-800 p-6 border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_black] dark:hover:shadow-[8px_8px_0_white] transition-all flex items-start gap-4 -rotate-1 hover:rotate-0',
+    iconWrapper: 'w-12 h-12 bg-indigo-800 dark:bg-indigo-400 border-2 border-black dark:border-white flex items-center justify-center text-2xl shrink-0 text-white shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white]',
+    content: 'space-y-1',
+    itemTitle: 'text-lg font-extrabold uppercase tracking-tight text-slate-900 dark:text-white',
+    itemDescription: 'text-sm text-slate-700 dark:text-slate-300 font-normal leading-relaxed'
   }
 }
 export default defaultStyles

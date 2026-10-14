@@ -49,6 +49,23 @@ export const defaultStyles = {
     textarea: 'w-full px-4 py-3 rounded-md border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] placeholder:text-[#8e8b82] focus:border-[#cc785c] dark:focus:border-[#cc785c] outline-none transition-colors min-h-[120px] text-sm',
     submitButton: 'w-full py-3.5 px-8 bg-[#cc785c] hover:bg-[#b8684e] text-white font-medium rounded-md transition-colors text-sm shadow-xs cursor-pointer',
     footerNote: 'text-center text-xs text-[#8e8b82] mt-4'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-4xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-14 max-w-2xl mx-auto',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-3',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    formCard: 'bg-white dark:bg-slate-800 p-8 md:p-12 border-2 border-black dark:border-white border-l-8 border-l-indigo-800 dark:border-l-indigo-400 shadow-[6px_6px_0_black] dark:shadow-[6px_6px_0_white] rotate-1 hover:rotate-0 transition-transform duration-200',
+    formGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
+    field: 'space-y-2',
+    fieldFull: 'space-y-2 md:col-span-2',
+    label: 'block text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white',
+    input: 'w-full p-3 border-2 border-black dark:border-white bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-medium outline-none transition-colors text-sm',
+    select: 'w-full p-3 border-2 border-black dark:border-white bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-medium outline-none transition-colors text-sm',
+    textarea: 'w-full p-3 border-2 border-black dark:border-white bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-medium outline-none transition-colors min-h-[120px] text-sm',
+    submitButton: 'w-full py-4 px-8 bg-indigo-800 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-bold uppercase tracking-wider border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_black] dark:hover:shadow-[6px_6px_0_white] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_black] dark:active:shadow-[2px_2px_0_white] transition-all text-sm cursor-pointer',
+    footerNote: 'text-center text-xs font-medium text-slate-500 dark:text-slate-400 mt-4'
   }
 }
 export default defaultStyles

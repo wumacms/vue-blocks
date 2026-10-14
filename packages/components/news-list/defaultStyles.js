@@ -58,6 +58,26 @@ export const defaultStyles = {
     moreLink: 'text-[#cc785c] hover:text-[#b8684e] font-medium text-sm inline-flex items-center gap-1 transition-colors',
     bottomMore: 'text-center mt-12',
     moreButton: 'inline-flex items-center justify-center border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] text-sm font-medium px-6 py-2.5 rounded-md hover:bg-[#f5f0e8] dark:hover:bg-[#252320] transition-colors'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16 max-w-3xl mx-auto',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    grid: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    card: 'bg-white dark:bg-slate-800 border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_black] dark:hover:shadow-[8px_8px_0_white] transition-all flex flex-col -rotate-1 hover:rotate-0 overflow-hidden',
+    imageWrapper: 'relative aspect-video overflow-hidden bg-slate-900 border-b-2 border-black dark:border-white',
+    image: 'w-full h-full object-cover grayscale-[15%] contrast-[1.1] hover:grayscale-0 transition-all',
+    cardBody: 'p-6 flex-1 flex flex-col',
+    meta: 'flex items-center gap-2 mb-3 text-xs',
+    category: 'bg-indigo-800 dark:bg-indigo-500 text-white font-bold uppercase tracking-wider px-2.5 py-1 border-2 border-black shadow-[2px_2px_0_black]',
+    date: 'text-slate-500 dark:text-slate-400 font-bold',
+    newsTitle: 'text-xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white hover:text-indigo-800 dark:hover:text-indigo-400 transition mb-2 line-clamp-2',
+    summary: 'text-slate-700 dark:text-slate-300 text-sm font-normal line-clamp-3 mb-4 flex-1 leading-relaxed',
+    moreLink: 'text-slate-900 dark:text-slate-100 font-extrabold uppercase tracking-wider text-xs hover:text-indigo-800 dark:hover:text-indigo-400 inline-flex items-center gap-1',
+    bottomMore: 'text-center mt-12',
+    moreButton: 'inline-flex items-center justify-center border-2 border-black dark:border-white bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-xs font-bold uppercase tracking-wider px-6 py-3 shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_black] dark:hover:shadow-[6px_6px_0_white] cursor-pointer transition-all'
   }
 }
 export default defaultStyles

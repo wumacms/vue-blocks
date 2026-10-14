@@ -15,7 +15,8 @@ const props = defineProps({
     default: () => [
       { id: '1', alias: 'clean', name: 'SaaS 现代风格', desc: '科技产品极简落地页' },
       { id: '2', alias: 'brutalism', name: '波普复古新丑风', desc: '粗边框强对比撞色卡片' },
-      { id: '3', alias: 'editorial', name: '人文科技纸质风', desc: 'Anthropic/Claude 暖调叙事典雅' }
+      { id: '3', alias: 'editorial', name: '人文科技纸质风', desc: 'Anthropic/Claude 暖调叙事典雅' },
+      { id: '4', alias: 'geek', name: '工科极客新粗野风', desc: 'DevPath 开发者硬核代码终端风' }
     ]
   },
   footerEl: {

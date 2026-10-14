@@ -52,6 +52,24 @@ export const defaultStyles = {
     iconCheck: 'text-[#5db872] font-semibold text-base',
     iconCross: 'text-[#8e8b82] font-normal text-base',
     iconDash: 'text-[#8e8b82]'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center max-w-3xl mx-auto mb-16',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    tableWrapper: 'overflow-x-auto border-2 border-black dark:border-white bg-white dark:bg-slate-800 shadow-[6px_6px_0_black] dark:shadow-[6px_6px_0_white]',
+    table: 'w-full min-w-full text-sm text-left border-collapse',
+    thead: 'bg-indigo-800 dark:bg-indigo-500 text-white border-b-2 border-black dark:border-white',
+    th: 'px-6 py-4 font-extrabold text-sm uppercase tracking-wider text-white',
+    tbody: 'divide-y-2 divide-black dark:divide-white bg-white dark:bg-slate-800',
+    tr: 'hover:bg-amber-50 dark:hover:bg-slate-700/60 transition-colors',
+    tdFeature: 'px-6 py-4 font-bold text-slate-900 dark:text-white whitespace-nowrap text-sm',
+    tdValue: 'px-6 py-4 font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap',
+    iconCheck: 'font-extrabold text-base text-emerald-600 dark:text-emerald-400',
+    iconCross: 'font-extrabold text-base text-red-600 dark:text-red-400',
+    iconDash: 'font-bold text-slate-400'
   }
 }
 export default defaultStyles

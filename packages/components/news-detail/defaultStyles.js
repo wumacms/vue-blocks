@@ -40,6 +40,20 @@ export const defaultStyles = {
     tagsWrapper: 'mt-12 pt-6 border-t border-[#e6dfd8] dark:border-[#2a2824] flex items-center gap-2 flex-wrap',
     tagLabel: 'text-xs text-[#8e8b82] mr-2',
     tag: 'bg-[#efe9de] dark:bg-[#252320] text-[#3d3d3a] dark:text-[#d4d0c8] px-3 py-1 rounded-full text-xs font-medium'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-4xl mx-auto px-4 sm:px-6 lg:px-8',
+    meta: 'flex items-center gap-3 mb-6',
+    category: 'bg-indigo-800 dark:bg-indigo-500 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 border-2 border-black shadow-[2px_2px_0_black]',
+    date: 'text-slate-500 dark:text-slate-400 font-bold text-sm',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white leading-tight mb-8',
+    mediaWrapper: 'mb-10 border-2 border-black dark:border-white shadow-[8px_8px_0_black] dark:shadow-[8px_8px_0_white] overflow-hidden bg-slate-900',
+    image: 'w-full h-auto object-cover max-h-[500px] grayscale-[15%] contrast-[1.1]',
+    body: 'prose prose-lg dark:prose-invert max-w-none text-slate-800 dark:text-slate-200 font-medium leading-relaxed space-y-6',
+    tagsWrapper: 'mt-12 pt-6 border-t-2 border-black dark:border-white flex items-center gap-2 flex-wrap',
+    tagLabel: 'text-xs font-bold uppercase tracking-wider text-slate-500 mr-2',
+    tag: 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-2 border-black dark:border-white px-3 py-1 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0_black] dark:shadow-[2px_2px_0_white]'
   }
 }
 export default defaultStyles

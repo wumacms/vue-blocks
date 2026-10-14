@@ -34,6 +34,18 @@ export const defaultStyles = {
     avatar: 'w-28 h-28 rounded-full mx-auto mb-4 object-cover border border-[#e6dfd8] dark:border-[#2a2824]',
     name: 'text-lg font-semibold text-[#141413] dark:text-[#faf9f5]',
     role: 'text-sm text-[#6c6a64] dark:text-[#a09d96] mt-1'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center max-w-3xl mx-auto mb-16',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    grid: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8',
+    card: 'text-center p-6 bg-white dark:bg-slate-800 border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_black] dark:hover:shadow-[8px_8px_0_white] transition-all -rotate-1 hover:rotate-0',
+    avatar: 'w-24 h-24 mx-auto mb-4 object-cover border-2 border-black dark:border-white shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white]',
+    name: 'text-lg font-extrabold uppercase tracking-tight text-slate-900 dark:text-white',
+    role: 'text-xs font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-400 mt-1'
   }
 }
 export default defaultStyles

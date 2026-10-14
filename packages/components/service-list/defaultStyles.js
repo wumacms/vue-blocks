@@ -46,6 +46,22 @@ export const defaultStyles = {
     pointItem: 'flex items-center gap-2',
     pointIcon: 'text-[#5db872] font-semibold',
     link: 'text-[#cc785c] hover:text-[#b8684e] font-medium text-sm inline-flex items-center gap-1 mt-auto transition-colors'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16 max-w-3xl mx-auto',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    grid: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    card: 'p-8 border-2 border-black dark:border-white bg-white dark:bg-slate-800 border-t-[10px] border-t-indigo-800 dark:border-t-indigo-400 shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] -rotate-1 hover:rotate-0 hover:scale-[1.01] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_black] dark:hover:shadow-[8px_8px_0_white] transition-all flex flex-col',
+    iconWrapper: 'w-14 h-14 bg-indigo-800 dark:bg-indigo-400 border-2 border-black dark:border-white flex items-center justify-center text-3xl mb-6 text-white shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white]',
+    serviceTitle: 'text-xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-3',
+    serviceDescription: 'text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 font-normal',
+    pointsList: 'space-y-2 mb-6 flex-1 text-sm font-bold text-slate-800 dark:text-slate-200',
+    pointItem: 'flex items-center gap-2',
+    pointIcon: 'w-4 h-4 text-emerald-600 dark:text-emerald-400 font-bold',
+    link: 'inline-flex items-center gap-2 px-4 py-2 border-2 border-black dark:border-white bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-bold uppercase tracking-wider text-xs cursor-pointer shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_black] dark:hover:shadow-[5px_5px_0_white] transition-all mt-auto self-start'
   }
 }
 export default defaultStyles

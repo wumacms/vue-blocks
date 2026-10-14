@@ -31,6 +31,17 @@ export const defaultStyles = {
     logoItem: 'transition-colors duration-200 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 flex flex-col items-center justify-center p-2',
     logoImg: 'h-7 md:h-9 w-auto object-contain',
     logoName: 'text-xs text-[#8e8b82] mt-1 font-medium'
+  },
+  '4': {
+    root: 'py-12 bg-amber-100 dark:bg-slate-800 border-y-2 border-black dark:border-white transition-colors duration-200 relative overflow-hidden',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-8 max-w-3xl mx-auto',
+    title: 'text-xl md:text-2xl font-extrabold uppercase tracking-[0.2em] text-slate-900 dark:text-white mb-2',
+    description: 'text-xs md:text-sm uppercase tracking-wider font-bold text-slate-700 dark:text-slate-300',
+    logoGrid: 'flex flex-wrap justify-center items-center gap-6 md:gap-8',
+    logoItem: 'bg-white dark:bg-slate-900 px-5 py-3 border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_black] dark:hover:shadow-[6px_6px_0_white] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_black] transition-all flex flex-col items-center justify-center cursor-pointer -rotate-1 hover:rotate-0',
+    logoImg: 'h-8 md:h-10 w-auto object-contain',
+    logoName: 'text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 mt-1.5'
   }
 }
 export default defaultStyles

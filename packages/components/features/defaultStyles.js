@@ -34,6 +34,18 @@ export const defaultStyles = {
     iconWrapper: 'w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-5 text-[#cc785c]',
     cardTitle: 'text-xl font-semibold text-[#141413] dark:text-[#faf9f5] mb-2',
     cardDescription: 'text-[#3d3d3a] dark:text-[#d4d0c8] text-sm leading-relaxed'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center max-w-3xl mx-auto mb-16',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    grid: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6',
+    card: 'relative p-6 border-2 border-black dark:border-white bg-white dark:bg-slate-800 border-l-8 border-l-indigo-800 dark:border-l-indigo-400 shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] -rotate-1 hover:rotate-0 hover:scale-[1.01] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_black] dark:hover:shadow-[8px_8px_0_white] transition-all duration-200 flex flex-col',
+    iconWrapper: 'w-12 h-12 bg-indigo-800 dark:bg-indigo-400 border-2 border-black dark:border-white flex items-center justify-center text-2xl mb-4 text-white shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white]',
+    cardTitle: 'text-xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-2',
+    cardDescription: 'text-slate-700 dark:text-slate-300 text-sm leading-relaxed font-normal'
   }
 }
 export default defaultStyles

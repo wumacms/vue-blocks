@@ -14,7 +14,14 @@ export const VARIANT_ALIASES = {
   paper: '3',
   anthropic: '3',
   claude: '3',
-  minimalist: '3'
+  minimalist: '3',
+  geek: '4',
+  developer: '4',
+  dev: '4',
+  technical: '4',
+  edutech: '4',
+  cyber: '4',
+  code: '4'
 }
 
 /**

@@ -58,6 +58,26 @@ export const defaultStyles = {
     price: 'font-serif text-2xl font-semibold text-[#141413] dark:text-[#faf9f5]',
     originalPrice: 'text-sm text-[#8e8b82] line-through',
     button: 'bg-[#cc785c] hover:bg-[#b8684e] text-white text-sm font-medium px-4 py-2 rounded-md transition-colors shadow-xs'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16 max-w-3xl mx-auto',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    grid: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    card: 'bg-white dark:bg-slate-800 border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_black] dark:hover:shadow-[8px_8px_0_white] transition-all flex flex-col -rotate-1 hover:rotate-0 overflow-hidden',
+    imageWrapper: 'relative aspect-4/3 overflow-hidden bg-slate-900 border-b-2 border-black dark:border-white',
+    image: 'w-full h-full object-cover grayscale-[15%] contrast-[1.1] hover:grayscale-0 transition-all',
+    tag: 'absolute top-3 left-3 bg-amber-400 text-black text-xs font-bold uppercase tracking-wider px-2.5 py-1 border-2 border-black shadow-[2px_2px_0_black]',
+    cardBody: 'p-6 flex-1 flex flex-col',
+    productTitle: 'text-xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-2',
+    productDescription: 'text-slate-700 dark:text-slate-300 text-sm line-clamp-3 mb-6 flex-1 font-normal leading-relaxed',
+    footer: 'flex items-center justify-between pt-4 border-t-2 border-black dark:border-white mt-auto',
+    priceWrapper: 'flex items-baseline gap-2',
+    price: 'text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white',
+    originalPrice: 'text-sm text-slate-400 dark:text-slate-500 line-through',
+    button: 'bg-indigo-800 hover:bg-indigo-700 dark:bg-indigo-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 border-2 border-black dark:border-white shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_black] dark:hover:shadow-[5px_5px_0_white] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_black] transition-all cursor-pointer'
   }
 }
 export default defaultStyles

@@ -60,17 +60,18 @@ import { NavbarBlock, HeroBlock, FeaturesBlock, FooterBlock } from 'vue-blocks'
 - **`variant="1"`**（或 **`"clean"`** / **`"modern"`**）：SaaS 现代简约风格（默认）
 - **`variant="2"`**（或 **`"brutalism"`** / **`"retro"`**）：波普复古 / 新粗野主义风格（粗描边、实体硬阴影、高反差撞色）
 - **`variant="3"`**（或 **`"editorial"`** / **`"warm"`** / **`"paper"`** / **`"anthropic"`**）：人文科技 / 暖调纸质叙事风格（Anthropic/Claude 风格，温润羊皮纸底、陶土珊瑚橙、经典衬线体）
+- **`variant="4"`**（或 **`"geek"`** / **`"developer"`** / **`"dev"`** / **`"technical"`** / **`"edutech"`** / **`"cyber"`**）：工科极客 / 技术新粗野主义风格（DevPath 风格，代码工程网格底纹、2px 黑白硬实体边框、终端色条、大写几何标题）
 
 ```vue
 <template>
   <!-- 方式 1：单个区块直接指定变体（支持数字或语义化别名） -->
   <NavbarBlock variant="clean" />
-  <HeroBlock variant="editorial" />
-  <FeaturesBlock variant="3" />
-  <PricingBlock variant="warm" />
+  <HeroBlock variant="geek" />
+  <FeaturesBlock variant="4" />
+  <PricingBlock variant="developer" />
 
   <!-- 方式 2：通过编排容器实现全站 22 个区块一键联动换皮 -->
-  <!-- <SiteRenderer :variant="'editorial'" /> -->
+  <!-- <SiteRenderer :variant="'geek'" /> -->
 </template>
 ```
 

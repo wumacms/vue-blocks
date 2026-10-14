@@ -22,6 +22,14 @@ export const defaultStyles = {
     item: 'p-4',
     value: 'font-serif text-4xl md:text-5xl font-medium text-[#141413] dark:text-[#faf9f5] tracking-tight',
     label: 'mt-1 text-sm text-[#6c6a64] dark:text-[#a09d96]'
+  },
+  '4': {
+    root: 'py-16 bg-indigo-800 dark:bg-indigo-500 text-white border-y-2 border-black dark:border-white relative overflow-hidden transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    grid: 'grid grid-cols-2 md:grid-cols-4 gap-6 text-center',
+    item: 'border-2 border-white p-5 bg-indigo-900/40 dark:bg-indigo-600/40 -rotate-1 hover:rotate-0 hover:scale-[1.01] shadow-[6px_6px_0_black] transition-all duration-200',
+    value: 'text-4xl md:text-5xl font-extrabold tracking-tight uppercase text-white',
+    label: 'text-xs md:text-sm uppercase tracking-wider font-bold mt-2 text-indigo-100'
   }
 }
 export default defaultStyles

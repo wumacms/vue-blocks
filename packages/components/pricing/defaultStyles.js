@@ -49,6 +49,23 @@ export const defaultStyles = {
     featuresList: 'mt-8 space-y-3 text-sm flex-1 whitespace-pre-line opacity-90',
     button: 'mt-8 w-full text-center py-3 px-6 rounded-md font-medium text-sm transition border border-[#e6dfd8] dark:border-[#2a2824] bg-[#faf9f5] dark:bg-[#1f1e1b] text-[#141413] dark:text-[#faf9f5] hover:bg-[#f5f0e8] dark:hover:bg-[#252320]',
     buttonPrimary: 'mt-8 w-full text-center py-3 px-6 rounded-md font-medium text-sm transition bg-[#cc785c] hover:bg-[#b8684e] text-white shadow-xs'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16 max-w-3xl mx-auto',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    grid: 'grid md:grid-cols-3 gap-8 items-stretch',
+    card: 'bg-white dark:bg-slate-800 p-8 border-2 border-black dark:border-white border-t-[10px] border-t-indigo-800 dark:border-t-indigo-400 shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] -rotate-1 hover:rotate-0 hover:scale-[1.01] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_black] dark:hover:shadow-[8px_8px_0_white] flex flex-col justify-between relative transition-all duration-200',
+    cardPrimary: 'bg-slate-900 text-white p-8 border-2 border-black dark:border-white border-t-[10px] border-t-amber-500 shadow-[8px_8px_0_var(--color-amber-500,#f59e0b)] rotate-1 hover:rotate-0 hover:scale-[1.01] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_var(--color-amber-500,#f59e0b)] flex flex-col justify-between relative transition-all duration-200',
+    badge: 'absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-400 text-black text-xs font-bold uppercase tracking-wider px-3.5 py-1 border-2 border-black shadow-[2px_2px_0_black]',
+    planName: 'text-2xl font-extrabold uppercase tracking-tight',
+    price: 'text-4xl md:text-5xl font-extrabold uppercase tracking-tight mt-4',
+    unit: 'text-sm font-bold text-slate-400 dark:text-slate-400 ml-1',
+    featuresList: 'mt-8 space-y-3 text-sm font-medium flex-1 whitespace-pre-line',
+    button: 'mt-8 w-full text-center py-3.5 px-6 font-bold uppercase tracking-wider text-xs transition border-2 border-black dark:border-white bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_black] dark:hover:shadow-[5px_5px_0_white] cursor-pointer',
+    buttonPrimary: 'mt-8 w-full text-center py-3.5 px-6 font-bold uppercase tracking-wider text-xs transition border-2 border-black dark:border-white bg-amber-400 text-black shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_black] dark:hover:shadow-[6px_6px_0_white] cursor-pointer'
   }
 }
 export default defaultStyles

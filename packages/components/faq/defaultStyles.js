@@ -43,6 +43,21 @@ export const defaultStyles = {
     iconOpen: 'rotate-180 text-[#cc785c]',
     content: 'mt-4 text-[#3d3d3a] dark:text-[#d4d0c8] leading-relaxed text-sm md:text-base border-t border-[#e6dfd8] dark:border-[#2a2824] pt-4',
     strokeWidth: 1.75
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-4xl mx-auto px-4 sm:px-6 lg:px-8',
+    header: 'text-center mb-16',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
+    accordionList: 'space-y-4',
+    item: 'border-2 border-black dark:border-white p-5 transition-all duration-150 bg-white dark:bg-slate-800 shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_black] dark:hover:shadow-[6px_6px_0_white] cursor-pointer',
+    itemActive: 'bg-white dark:bg-slate-800 border-2 border-black dark:border-white shadow-[6px_6px_0_black] dark:shadow-[6px_6px_0_white] border-l-8 border-l-indigo-800 dark:border-l-indigo-400',
+    trigger: 'flex justify-between items-center w-full text-left font-bold text-slate-900 dark:text-white text-lg',
+    icon: 'w-6 h-6 text-slate-900 dark:text-white transition-transform duration-200 shrink-0 ml-4',
+    iconOpen: 'rotate-45 text-amber-500',
+    content: 'mt-3 text-slate-700 dark:text-slate-300 leading-relaxed text-sm md:text-base border-t-2 border-black/10 dark:border-white/10 pt-3 font-normal',
+    strokeWidth: 2.5
   }
 }
 export default defaultStyles

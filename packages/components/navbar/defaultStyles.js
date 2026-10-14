@@ -85,6 +85,35 @@ export const defaultStyles = {
     mobileButtonWrapper: 'pt-4 border-t border-[#e6dfd8] dark:border-[#2a2824]',
     mobileCtaButton: 'block w-full text-center bg-[#cc785c] hover:bg-[#b8684e] text-white font-medium py-2.5 rounded-md transition-colors',
     strokeWidth: 1.75
+  },
+  '4': {
+    root: 'border-b-2 border-black dark:border-white bg-slate-50 dark:bg-slate-900 shadow-[0_4px_0_0_black] dark:shadow-[0_4px_0_0_white] sticky top-0 z-50 transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    navWrapper: 'flex items-center justify-between h-16 md:h-20',
+    brandWrapper: 'flex items-center gap-2.5 shrink-0 cursor-pointer bg-indigo-800 dark:bg-indigo-500 text-white px-3 py-1.5 border-2 border-black dark:border-white shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white] -rotate-1 hover:rotate-0 transition-transform',
+    logo: 'h-7 w-auto',
+    brandName: 'text-lg font-extrabold uppercase tracking-tight text-white',
+    menuNav: 'hidden md:flex items-center space-x-1 lg:space-x-2',
+    menuItem: 'px-3 py-2 text-slate-900 dark:text-slate-100 hover:text-indigo-800 dark:hover:text-indigo-400 text-sm font-bold uppercase tracking-wide transition-all border-2 border-transparent hover:border-black dark:hover:border-white hover:bg-white dark:hover:bg-slate-800 hover:shadow-[2px_2px_0_black] dark:hover:shadow-[2px_2px_0_white]',
+    menuItemActive: 'bg-amber-400 dark:bg-amber-400 text-black font-extrabold border-2 border-black shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white]',
+    dropdownTrigger: 'flex items-center gap-1 px-3 py-2 text-slate-900 dark:text-slate-100 hover:text-indigo-800 dark:hover:text-indigo-400 text-sm font-bold uppercase tracking-wide transition-all border-2 border-transparent hover:border-black dark:hover:border-white hover:bg-white dark:hover:bg-slate-800',
+    dropdownTriggerActive: 'bg-amber-400 dark:bg-amber-400 text-black font-extrabold border-2 border-black shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white]',
+    dropdownMenu: 'absolute left-0 mt-1 w-56 bg-white dark:bg-slate-800 border-2 border-black dark:border-white shadow-[6px_6px_0_black] dark:shadow-[6px_6px_0_white] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 py-2',
+    dropdownItem: 'flex items-center gap-3 px-4 py-2.5 text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-amber-100 dark:hover:bg-slate-700 hover:text-indigo-800 dark:hover:text-indigo-400 transition-colors',
+    dropdownItemActive: 'bg-amber-300 dark:bg-slate-700 text-black dark:text-white font-extrabold',
+    actionsWrapper: 'flex items-center gap-3',
+    ctaButton: 'hidden sm:inline-flex items-center justify-center bg-indigo-800 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white text-sm font-bold uppercase tracking-wider px-5 py-2.5 border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_black] dark:hover:shadow-[6px_6px_0_white] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_black] dark:active:shadow-[2px_2px_0_white] transition-all cursor-pointer',
+    mobileToggle: 'md:hidden w-10 h-10 border-2 border-black dark:border-white flex items-center justify-center bg-white dark:bg-slate-800 shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white] cursor-pointer text-slate-900 dark:text-slate-100',
+    mobileMenu: 'md:hidden border-t-2 border-black dark:border-white bg-slate-50 dark:bg-slate-900 px-4 pt-4 pb-6 space-y-2',
+    mobileMenuItem: 'block px-3 py-2 text-sm font-bold uppercase text-slate-900 dark:text-slate-100 border-2 border-transparent hover:border-black dark:hover:border-white transition-all',
+    mobileMenuItemActive: 'bg-amber-400 text-black font-extrabold border-2 border-black shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white]',
+    mobileMenuGroup: 'py-1',
+    mobileDropdownWrapper: 'pl-4 space-y-1 mt-1 border-l-2 border-black dark:border-white',
+    mobileDropdownItem: 'flex items-center gap-2 px-3 py-1.5 text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-indigo-800 dark:hover:text-indigo-400',
+    mobileDropdownItemActive: 'text-indigo-800 dark:text-indigo-400 font-extrabold',
+    mobileButtonWrapper: 'pt-4 border-t-2 border-black dark:border-white',
+    mobileCtaButton: 'block w-full text-center bg-indigo-800 dark:bg-indigo-500 text-white font-bold uppercase tracking-wider py-3 border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] cursor-pointer',
+    strokeWidth: 2
   }
 }
 export default defaultStyles

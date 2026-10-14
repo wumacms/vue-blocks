@@ -22,6 +22,14 @@ export const defaultStyles = {
     logo: 'h-8 w-auto rounded-md',
     brandName: 'text-xl font-serif font-semibold text-[#faf9f5] tracking-tight',
     copyright: 'text-sm text-[#8e8b82] text-center md:text-right'
+  },
+  '4': {
+    root: 'bg-slate-900 text-slate-300 py-12 transition-colors duration-200 border-t-4 border-amber-500',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6',
+    brandWrapper: 'flex items-center gap-3',
+    logo: 'h-8 w-auto border-2 border-white',
+    brandName: 'text-xl font-extrabold uppercase tracking-tight text-white',
+    copyright: 'text-xs font-bold uppercase tracking-wider text-slate-400 text-center md:text-right'
   }
 }
 export default defaultStyles

@@ -40,6 +40,20 @@ export const defaultStyles = {
     mediaWrapper: 'relative',
     imageBox: 'rounded-xl overflow-hidden border border-[#e6dfd8] dark:border-[#2a2824] shadow-xs',
     image: 'w-full h-auto object-cover'
+  },
+  '4': {
+    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
+    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+    grid: 'grid md:grid-cols-2 gap-12 items-center',
+    contentWrapper: 'space-y-6',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white leading-tight',
+    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium leading-relaxed',
+    tagList: 'space-y-3 pt-2',
+    tagItem: 'flex items-center gap-3 text-slate-900 dark:text-slate-100 font-bold',
+    tagIcon: 'shrink-0 w-6 h-6 text-white bg-indigo-800 dark:bg-indigo-500 border-2 border-black dark:border-white flex items-center justify-center text-xs font-bold shadow-[2px_2px_0_black] dark:shadow-[2px_2px_0_white]',
+    mediaWrapper: 'relative',
+    imageBox: 'border-2 border-black dark:border-white shadow-[8px_8px_0_black] dark:shadow-[8px_8px_0_white] rotate-1 hover:rotate-0 transition-transform overflow-hidden bg-slate-900',
+    image: 'w-full h-auto object-cover block grayscale-[15%] contrast-[1.1] hover:grayscale-0 transition-all'
   }
 }
 export default defaultStyles

@@ -25,6 +25,15 @@ export const defaultStyles = {
     buttonGroup: 'flex flex-wrap gap-4 justify-center items-center',
     buttonPrimary: 'inline-flex items-center justify-center gap-2 bg-[#faf9f5] hover:bg-white text-[#141413] px-6 py-3 rounded-md font-medium text-sm transition-colors shadow-xs',
     buttonSecondary: 'inline-flex items-center justify-center gap-2 border border-white hover:bg-white/10 text-white px-6 py-3 rounded-md font-medium text-sm transition-colors'
+  },
+  '4': {
+    root: 'py-20 bg-indigo-800 dark:bg-indigo-500 text-white border-b-2 border-black dark:border-white relative overflow-hidden bg-[linear-gradient(#ffffff20_1px,transparent_1px),linear-gradient(90deg,#ffffff20_1px,transparent_1px)] dark:bg-[linear-gradient(#00000020_1px,transparent_1px),linear-gradient(90deg,#00000020_1px,transparent_1px)] bg-[size:40px_40px] transition-colors duration-200',
+    container: 'max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10',
+    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-white mb-6 leading-tight',
+    description: 'text-base md:text-xl text-indigo-100 mb-10 max-w-2xl mx-auto font-medium',
+    buttonGroup: 'flex flex-wrap gap-4 justify-center items-center',
+    buttonPrimary: 'inline-flex items-center justify-center gap-2 bg-amber-400 text-black text-sm font-bold uppercase tracking-wider px-8 py-4 border-2 border-black shadow-[4px_4px_0_black] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_black] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_black] transition-all cursor-pointer',
+    buttonSecondary: 'inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm font-bold uppercase tracking-wider px-8 py-4 border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_black] dark:hover:shadow-[6px_6px_0_white] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_black] dark:active:shadow-[2px_2px_0_white] transition-all cursor-pointer'
   }
 }
 export default defaultStyles
