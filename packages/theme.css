@@ -1,0 +1,92 @@
+/* ===== 1. 注册语义令牌到 Tailwind 4 ===== */
+@theme inline {
+  --color-background:           var(--background);
+  --color-foreground:           var(--foreground);
+  --color-card:                 var(--card);
+  --color-card-foreground:      var(--card-foreground);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-border:               var(--border);
+  --color-ring:                 var(--ring);
+}
+
+/* ===== 2. 色相层：每个主题一个色相角度 (OKLCH Hue Angle) ===== */
+:root[data-theme="red"], [data-theme="red"]         { --hue: 25; }
+:root[data-theme="orange"], [data-theme="orange"]   { --hue: 55; }
+:root[data-theme="yellow"], [data-theme="yellow"]   { --hue: 85; }
+:root[data-theme="green"], [data-theme="green"]     { --hue: 145; }
+:root[data-theme="emerald"], [data-theme="emerald"] { --hue: 155; }
+:root[data-theme="cyan"], [data-theme="cyan"]       { --hue: 200; }
+:root[data-theme="blue"], [data-theme="blue"]       { --hue: 255; }
+:root[data-theme="indigo"], [data-theme="indigo"]   { --hue: 270; }
+:root[data-theme="purple"], [data-theme="purple"]   { --hue: 300; }
+:root[data-theme="pink"], [data-theme="pink"]       { --hue: 345; }
+
+/* ===== 3. 明暗层：定义 L(明度) / C(色度) 参数 ===== */
+/* 浅色模式默认参数（默认微环境色度注入，保留温润高级感） */
+:root, [data-mode="light"] {
+  --bg-l: 0.99;   --bg-c: 0.008;
+  --fg-l: 0.18;   --fg-c: 0.025;
+  --card-l: 1.00; --card-c: 0.000;
+  --card-fg-l: 0.18; --card-fg-c: 0.025;
+  --primary-l: 0.55; --primary-c: 0.190;
+  --primary-fg-l: 1.00; --primary-fg-c: 0.000;
+  --secondary-l: 0.95; --secondary-c: 0.020;
+  --secondary-fg-l: 0.30; --secondary-fg-c: 0.050;
+  --muted-l: 0.96; --muted-c: 0.010;
+  --muted-fg-l: 0.48; --muted-fg-c: 0.030;
+  --border-l: 0.90; --border-c: 0.020;
+  --ring-l: 0.55; --ring-c: 0.190;
+}
+
+/* 深色模式参数 (data-mode="dark") */
+:root[data-mode="dark"], [data-mode="dark"] {
+  --bg-l: 0.14;   --bg-c: 0.015;
+  --fg-l: 0.96;   --fg-c: 0.010;
+  --card-l: 0.19; --card-c: 0.020;
+  --card-fg-l: 0.96; --card-fg-c: 0.010;
+  --primary-l: 0.60; --primary-c: 0.180;
+  --primary-fg-l: 0.99; --primary-fg-c: 0.000;
+  --secondary-l: 0.25; --secondary-c: 0.020;
+  --secondary-fg-l: 0.90; --secondary-fg-c: 0.010;
+  --muted-l: 0.22; --muted-c: 0.015;
+  --muted-fg-l: 0.65; --muted-fg-c: 0.020;
+  --border-l: 0.28; --border-c: 0.025;
+  --ring-l: 0.60; --ring-c: 0.180;
+}
+
+/* 兼容 class="dark" 触发环境（且未显式指定 data-mode="light"） */
+:root.dark:not([data-mode="light"]), .dark:not([data-mode="light"]) {
+  --bg-l: 0.14;   --bg-c: 0.015;
+  --fg-l: 0.96;   --fg-c: 0.010;
+  --card-l: 0.19; --card-c: 0.020;
+  --card-fg-l: 0.96; --card-fg-c: 0.010;
+  --primary-l: 0.60; --primary-c: 0.180;
+  --primary-fg-l: 0.99; --primary-fg-c: 0.000;
+  --secondary-l: 0.25; --secondary-c: 0.020;
+  --secondary-fg-l: 0.90; --secondary-fg-c: 0.010;
+  --muted-l: 0.22; --muted-c: 0.015;
+  --muted-fg-l: 0.65; --muted-fg-c: 0.020;
+  --border-l: 0.28; --border-c: 0.025;
+  --ring-l: 0.60; --ring-c: 0.180;
+}
+
+/* ===== 4. 组合层：动态拼出完整 OKLCH 颜色 (默认 --hue 为 255 科技蓝) ===== */
+:root, [data-theme], [data-mode] {
+  --background:         oklch(var(--bg-l) var(--bg-c) var(--hue, 255));
+  --foreground:         oklch(var(--fg-l) var(--fg-c) var(--hue, 255));
+  --card:               oklch(var(--card-l) var(--card-c) var(--hue, 255));
+  --card-foreground:    oklch(var(--card-fg-l) var(--card-fg-c) var(--hue, 255));
+  --primary:            oklch(var(--primary-l) var(--primary-c) var(--hue, 255));
+  --primary-foreground: oklch(var(--primary-fg-l) var(--primary-fg-c) var(--hue, 255));
+  --secondary:          oklch(var(--secondary-l) var(--secondary-c) var(--hue, 255));
+  --secondary-foreground: oklch(var(--secondary-fg-l) var(--secondary-fg-c) var(--hue, 255));
+  --muted:              oklch(var(--muted-l) var(--muted-c) var(--hue, 255));
+  --muted-foreground:   oklch(var(--muted-fg-l) var(--muted-fg-c) var(--hue, 255));
+  --border:             oklch(var(--border-l) var(--border-c) var(--hue, 255));
+  --ring:               oklch(var(--ring-l) var(--ring-c) var(--hue, 255));
+}

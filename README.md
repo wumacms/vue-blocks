@@ -25,8 +25,14 @@
 - **🚀 单页面数据驱动（`PageRenderer`）**：
   单页面编排引擎，严格遵循 HTML5 `<main>` 语义化标准与无障碍规范，内置响应式动态 SEO 同步系统（`Title` / `Description` / `Meta` 自动更新与卸载清理）。
 
-- **🎨 统一变体模式（极简全局换皮）**：
-  内置统一的跨区块设计变体体系。支持在站点渲染器（`SiteRenderer`）、页面渲染器（`PageRenderer`）或任意原子区块顶层传入统一的 `variant` 参数（支持数字或 `'clean'`、`'brutalism'` 等语义别名），一键控制全站所有区块统一切换至指定设计风格。
+- **🎨 OKLCH 4 层动态主题体系（变体 × 色相 × 模式三维解耦）**：
+  基于先进 OKLCH 科学感知均匀色彩模型，实现 **4 种风格变体 × 10+ 款色相主题 × 明暗模式** 的完全正交解耦。全系组件内部 **零硬编码色值**，支持传入预设别名（如 `'emerald'`、`'violet'`、`'rose'`、`'amber'`）或 0-360 任意自定义色相数值角，在任何模式下均保持完美文字对比度与视觉张力。
+
+- **🎭 4 大经典设计变体（全系一键换皮）**：
+  - **`variant="1"` (`clean` / `modern`)**：SaaS 现代极简风格（圆润卡片、细腻浅淡微渐变与轻量阴影）。
+  - **`variant="2"` (`brutalism` / `retro` / `pop`)**：波普复古新粗野主义风格（4px 实体黑粗边框、纯硬阴影 `shadow-[6px_6px_0_var(--color-foreground)]` 与拟物按压反馈）。
+  - **`variant="3"` (`editorial` / `warm` / `paper`)**：人文科技暖调纸质叙事风格（OKLCH 天然温润纸质微色度底色、大号古典衬线体标题 `font-serif` 与精致发丝边框）。
+  - **`variant="4"` (`geek` / `developer` / `technical`)**：工科极客技术终端风格（自适应前景色工程网格底纹、双色动态终端文字投影与大写等宽字体）。
 
 - **🧩 单模板直出与 DOM 恒定架构**：
   底层采用「纯配置样式驱动 + 单模板直出」架构，风格变体切换仅动态匹配原子样式表，DOM 结构恒定一致。彻底消除了多模板割裂，保证自定义插槽（Slots）在任意风格变体下均能 100% 稳定透传与渲染。
@@ -35,7 +41,7 @@
   任何区块组件及渲染器未传参即可直接渲染高保真图文与设计排版，极大缩短原型与交付周期。
 
 - **🎨 Tailwind CSS 4 原生驱动**：
-  深度适配 Tailwind CSS 4 架构，零配置自适应 `dark:` 响应式深浅色主题。
+  深度适配 Tailwind CSS 4 `@theme inline` 语义令牌架构，零配置自适应 `dark:` 响应式深浅色主题。
 
 - **🔄 三重智能定制机制**：
   - **内容覆盖 (`data`)**：传入 JSON 局部覆写默认文案、图片与列表数据。
@@ -62,10 +68,11 @@ npm install vue-blocks
 
 #### 方式 A：项目中已启用 Tailwind CSS 4（推荐）
 
-在主样式文件中加入组件扫描路径，Tailwind 即可自动编译对应类名：
+在主样式文件中引入主题样式与组件扫描路径：
 
 ```css
 @import "tailwindcss";
+@import "vue-blocks/theme.css";
 @source "../node_modules/vue-blocks";
 ```
 
@@ -73,6 +80,7 @@ npm install vue-blocks
 
 ```js
 import "vue-blocks/dist/style.css";
+import "vue-blocks/theme.css";
 ```
 
 ### 3. 使用姿态
@@ -88,8 +96,14 @@ import "vue-blocks/dist/style.css";
 </script>
 
 <template>
-  <!-- 支持 hash 路由模式零配置静态托管 -->
-  <SiteRenderer :data="siteConfig" route-mode="hash" />
+  <!-- 支持 hash 路由模式零配置静态托管，并可直接绑定 theme 与 mode -->
+  <SiteRenderer
+    :data="siteConfig"
+    route-mode="hash"
+    variant="1"
+    theme="emerald"
+    mode="light"
+  />
 </template>
 ```
 
@@ -113,29 +127,35 @@ import "vue-blocks/dist/style.css";
 </script>
 
 <template>
-  <PageRenderer :data="pageData" />
+  <PageRenderer :data="pageData" theme="violet" mode="dark" />
 </template>
 ```
 
-#### 场景 3：一键切换全站风格（统一变体体系）
+#### 场景 3：一键切换全站风格与动态主题
 
-VueBlocks 全系区块共享统一的变体规范（支持数字或语义化字符串别名）：
-- **`variant="1"` / `"clean"`**：**SaaS 现代极简风格**（默认，高通用性、轻质感柔和投影与优雅圆角）
-- **`variant="2"` / `"brutalism"`**：**波普复古 / 新粗野主义风格**（Neo-Brutalism，粗黑描边、零模糊硬投影、波普高反差撞色与拟物按压反馈）
-- 更多风格变体持续扩充中，支持整站一键联动或单个区块局部混搭。
+VueBlocks 全系区块共享统一的变体与主题规范：
 
 ```html
 <script setup>
   import { ref } from "vue";
-  import { SiteRenderer } from "vue-blocks";
+  import { SiteRenderer, applyTheme } from "vue-blocks";
 
-  // 传入语义别名 'brutalism'（或 '2'）即刻将整站所有区块转为波普复古新粗野主义风格
+  // 风格变体：'1' (modern) | '2' (brutalism) | '3' (editorial) | '4' (geek)
   const currentVariant = ref("brutalism");
+  // 主题色相：'emerald' | 'cyan' | 'blue' | 'indigo' | 'purple' | 'pink' | 'red' | 'amber' 等或 0-360 数值
+  const currentTheme = ref("emerald");
+  // 模式：'light' | 'dark'
+  const currentMode = ref("light");
 </script>
 
 <template>
-  <!-- 切换变体，全站 22 个区块实时联动换皮 -->
-  <SiteRenderer :variant="currentVariant" route-mode="hash" />
+  <!-- 变体 × 主题 × 模式完全正交，全站 22 个区块实时联动响应 -->
+  <SiteRenderer
+    :variant="currentVariant"
+    :theme="currentTheme"
+    :mode="currentMode"
+    route-mode="hash"
+  />
 </template>
 ```
 

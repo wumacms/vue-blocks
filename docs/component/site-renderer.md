@@ -185,6 +185,8 @@ const currentVariant = ref('2') // 1 | 2 | 3 | 4
 | :--- | :--- | :--- | :--- |
 | `data` | `SiteData` | `defaultData` | 全站配置对象（包含 navbar、footer、pages 等） |
 | `variant` | `string \| number` | `undefined` | 全站统一变体标识，一键切换整站所有区块风格（未支持该变体的区块自动降级） |
+| `theme` | `ThemeHue \| string \| number` | `undefined` | 全局主题色相（内置色相别名如 `'emerald'`, `'violet'`, `'blue'` 或 0-360 数值色相角） |
+| `mode` | `'light' \| 'dark'` | `undefined` | 全局明暗模式，驱动 OKLCH 感知均匀色彩模型 |
 | `navbar` | `Object \| String \| Function \| Boolean` | `undefined` | 导航栏配置或组件，显式传入时覆盖 `data.navbar`。传 `false` 隐藏 |
 | `footer` | `Object \| String \| Function \| Boolean` | `undefined` | 页脚配置或组件，显式传入时覆盖 `data.footer`。传 `false` 隐藏 |
 | `pages` | `Record<string, PageData \| AsyncLoader> \| Array` | `undefined` | 页面映射表或列表，显式传入时覆盖 `data.pages` |

@@ -28,34 +28,22 @@
         "label": "表头文字"
       },
       {
-        "name": "textColor",
-        "type": "select",
-        "label": "文字颜色",
-        "options": [
-          {
-            "label": "Indigo (品牌色)",
-            "value": "text-indigo-700"
-          },
-          {
-            "label": "灰色",
-            "value": "text-gray-500"
-          }
-        ],
-        "default": "text-gray-500"
+        "name": "isPrimary",
+        "type": "boolean",
+        "label": "突出高亮（自身/主打产品）",
+        "default": false
       }
     ],
     "default": [
       {
         "text": "ChatFlow",
-        "textColor": "text-indigo-700"
+        "isPrimary": true
       },
       {
-        "text": "竞品A",
-        "textColor": "text-gray-500"
+        "text": "竞品A"
       },
       {
-        "text": "竞品B",
-        "textColor": "text-gray-500"
+        "text": "竞品B"
       }
     ]
   },
@@ -78,31 +66,7 @@
             "name": "value",
             "type": "text",
             "label": "显示内容",
-            "help": "支持 ✓、✗、Beta 等文字"
-          },
-          {
-            "name": "textColor",
-            "type": "select",
-            "label": "文字颜色",
-            "options": [
-              {
-                "label": "绿色 (✓)",
-                "value": "text-green-600"
-              },
-              {
-                "label": "红色 (✗)",
-                "value": "text-red-400"
-              },
-              {
-                "label": "黄色 (Beta)",
-                "value": "text-yellow-500"
-              },
-              {
-                "label": "深灰色 (默认)",
-                "value": "text-gray-700"
-              }
-            ],
-            "default": "text-gray-700"
+            "help": "支持 ✓、✗、— 或文字（如 Beta）"
           }
         ]
       }
@@ -112,16 +76,13 @@
         "feature": "端到端加密",
         "columns": [
           {
-            "value": "✓",
-            "textColor": "text-green-600"
+            "value": "✓"
           },
           {
-            "value": "✗",
-            "textColor": "text-red-400"
+            "value": "✗"
           },
           {
-            "value": "✓",
-            "textColor": "text-green-600"
+            "value": "✓"
           }
         ]
       },
@@ -129,16 +90,13 @@
         "feature": "无限消息历史",
         "columns": [
           {
-            "value": "✓",
-            "textColor": "text-green-600"
+            "value": "✓"
           },
           {
-            "value": "✓",
-            "textColor": "text-green-600"
+            "value": "✓"
           },
           {
-            "value": "✗",
-            "textColor": "text-red-400"
+            "value": "✗"
           }
         ]
       },
@@ -146,16 +104,13 @@
         "feature": "私有部署",
         "columns": [
           {
-            "value": "✓",
-            "textColor": "text-green-600"
+            "value": "✓"
           },
           {
-            "value": "✗",
-            "textColor": "text-red-400"
+            "value": "✗"
           },
           {
-            "value": "✓",
-            "textColor": "text-green-600"
+            "value": "✓"
           }
         ]
       },
@@ -163,16 +118,13 @@
         "feature": "AI 助手",
         "columns": [
           {
-            "value": "✓",
-            "textColor": "text-green-600"
+            "value": "✓"
           },
           {
-            "value": "✗",
-            "textColor": "text-red-400"
+            "value": "✗"
           },
           {
-            "value": "Beta",
-            "textColor": "text-yellow-500"
+            "value": "Beta"
           }
         ]
       },
@@ -180,16 +132,13 @@
         "feature": "200+ 集成",
         "columns": [
           {
-            "value": "✓",
-            "textColor": "text-green-600"
+            "value": "✓"
           },
           {
-            "value": "✓",
-            "textColor": "text-green-600"
+            "value": "✓"
           },
           {
-            "value": "✗",
-            "textColor": "text-red-400"
+            "value": "✗"
           }
         ]
       }

@@ -34,10 +34,10 @@ const customData = {
   imageAlt: '三位年轻职场人士在开放式办公室使用笔记本电脑进行团队讨论',
   tags: [
     {
-      text: '✓ 端到端加密'
+      text: '端到端加密'
     },
     {
-      text: '✓ 无限历史记录'
+      text: '无限历史记录'
     }
   ]
 }
@@ -106,20 +106,20 @@ const customStyles = {
 组件支持通过 `:styles` 属性针对每个内部 DOM
 节点进行原子类定制，默认样式类名及说明如下：
 
-| 样式字段名       | 作用元素 / 解释说明                    | 默认 Tailwind CSS 类名                                                                                                                                          |
-| ---------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `root`           | 左图右文区块最外层 `<section>` 容器    | `py-20 bg-white dark:bg-gray-900 transition-colors duration-300`                                                                                                |
-| `container`      | 内容居中容器                           | `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`                                                                                                                        |
-| `grid`           | 左图右文响应式双列网格布局容器         | `grid md:grid-cols-2 gap-12 items-center`                                                                                                                       |
-| `mediaWrapper`   | 左侧大图媒体容器                       | `relative`                                                                                                                                                      |
-| `imageBox`       | 大图外部裁剪容器（圆角、阴影与边框）   | `rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800`                                             |
-| `image`          | 大图图片元素样式                       | `w-full h-auto object-cover`                                                                                                    |
-| `contentWrapper` | 右侧文本与列表内容排版包裹容器         | `space-y-6`                                                                                                                                                     |
-| `title`          | 区块主标题 `<h2>` 样式                 | `text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight`                                                                                    |
-| `description`    | 正文说明文本 `<p>` 样式                | `text-lg text-gray-600 dark:text-gray-300 leading-relaxed`                                                                                                      |
-| `tagList`        | 要点条目垂直清单容器                   | `space-y-3 pt-2`                                                                                                                                                |
-| `tagItem`        | 单个要点条目弹性对齐容器               | `flex items-center gap-3 text-gray-700 dark:text-gray-200 font-medium`                                                                                          |
-| `tagIcon`        | 要点前置对勾/图标徽章样式              | `flex-shrink-0 w-5 h-5 text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 rounded-full flex items-center justify-center text-xs font-bold` |
+| 样式字段名       | 作用元素 / 解释说明                  | 默认 Tailwind CSS 类名                                                                                                                                          |
+| ---------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `root`           | 左图右文区块最外层 `<section>` 容器  | `py-20 bg-white dark:bg-gray-900 transition-colors duration-300`                                                                                                |
+| `container`      | 内容居中容器                         | `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`                                                                                                                        |
+| `grid`           | 左图右文响应式双列网格布局容器       | `grid md:grid-cols-2 gap-12 items-center`                                                                                                                       |
+| `mediaWrapper`   | 左侧大图媒体容器                     | `relative`                                                                                                                                                      |
+| `imageBox`       | 大图外部裁剪容器（圆角、阴影与边框） | `rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800`                                                                             |
+| `image`          | 大图图片元素样式                     | `w-full h-auto object-cover`                                                                                                                                    |
+| `contentWrapper` | 右侧文本与列表内容排版包裹容器       | `space-y-6`                                                                                                                                                     |
+| `title`          | 区块主标题 `<h2>` 样式               | `text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight`                                                                                    |
+| `description`    | 正文说明文本 `<p>` 样式              | `text-lg text-gray-600 dark:text-gray-300 leading-relaxed`                                                                                                      |
+| `tagList`        | 要点条目垂直清单容器                 | `space-y-3 pt-2`                                                                                                                                                |
+| `tagItem`        | 单个要点条目弹性对齐容器             | `flex items-center gap-3 text-gray-700 dark:text-gray-200 font-medium`                                                                                          |
+| `tagIcon`        | 要点前置对勾/图标徽章样式            | `flex-shrink-0 w-5 h-5 text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 rounded-full flex items-center justify-center text-xs font-bold` |
 
 ---
 
@@ -171,8 +171,8 @@ Slot Props 传入）：
 
 ## 🧩 基础属性 (Props)
 
-| 参数名    | 类型               | 默认值 | 说明                                  |
-| --------- | ------------------ | ------ | ------------------------------------- |
+| 参数名    | 类型               | 默认值 | 说明                                                                                                            |
+| --------- | ------------------ | ------ | --------------------------------------------------------------------------------------------------------------- |
 | `variant` | `string \| number` | `'1'`  | 风格变体：`'1'`(SaaS现代简约) / `'2'`(波普复古新粗野) / `'3'`(人文科技暖调纸质风) / `'4'`(工科极客技术新粗野风) |
-| `data`    | `object`           | `{}`   | 内容覆盖 JSON，按 Schema 结构深层合并 |
-| `styles`  | `object`           | `{}`   | 样式覆写映射对象（Tailwind CSS 类名） |
+| `data`    | `object`           | `{}`   | 内容覆盖 JSON，按 Schema 结构深层合并                                                                           |
+| `styles`  | `object`           | `{}`   | 样式覆写映射对象（Tailwind CSS 类名）                                                                           |

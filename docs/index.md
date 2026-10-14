@@ -29,8 +29,8 @@ features:
     details: 不传任何参数也能直接预览精美的落地页区块，默认数据源自行业设计规范，大幅缩短原型与交付周期。
   - title: 强大的双重覆盖机制
     details: 支持传入内容 JSON 局部覆写文本与多媒体，支持传入 Tailwind 类名精准覆盖样式，结合 tailwind-merge 无冲突。
-  - title: 统一主题设计体系
-    details: 全系 22 组区块遵循统一设计规范，在线演示提供交互式悬浮控制台，无需查阅冗长文档即可实时直观体验换皮效果。
+  - title: OKLCH 动态主题体系
+    details: 基于先进 OKLCH 感知均匀色彩模型，实现 4 大风格变体 × 10+ 色相主题 × 明暗模式三维正交解耦，零硬编码色值，全系区块随心换色。
   - title: Tailwind CSS v4 原生驱动
     details: 原生适配最新 Tailwind CSS 4 架构，零配置深色模式（dark:）与响应式断点深度适配。
 ---

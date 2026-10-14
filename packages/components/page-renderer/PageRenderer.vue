@@ -2,6 +2,7 @@
 import { computed, watchEffect, onUnmounted } from 'vue'
 import { builtInBlocks } from './blockMap'
 import { defaultData } from './defaultData'
+import { applyTheme, resolveTheme } from '@vue-blocks/utils'
 
 defineOptions({
   name: 'PageRenderer'
@@ -14,6 +15,14 @@ const props = defineProps({
   },
   variant: {
     type: [String, Number],
+    default: undefined
+  },
+  theme: {
+    type: [String, Number],
+    default: undefined
+  },
+  mode: {
+    type: String,
     default: undefined
   },
   navbar: {
@@ -38,6 +47,8 @@ const pageConfig = computed(() => {
   if (Array.isArray(raw)) {
     return {
       variant: props.variant,
+      theme: props.theme,
+      mode: props.mode,
       seo: undefined,
       navbar: undefined,
       containerClass: '',
@@ -48,6 +59,8 @@ const pageConfig = computed(() => {
   }
   return {
     variant: props.variant || raw?.variant,
+    theme: props.theme !== undefined ? props.theme : raw?.theme,
+    mode: props.mode !== undefined ? props.mode : raw?.mode,
     seo: raw?.seo,
     title: raw?.title,
     description: raw?.description,
@@ -207,11 +220,30 @@ onUnmounted(() => {
 function handleSubmit(payload, block, index) {
   emit('submit', payload, { block, index })
 }
+
+// 响应式应用动态主题与明暗模式
+const resolvedThemeInfo = computed(() => {
+  return pageConfig.value.theme !== undefined ? resolveTheme(pageConfig.value.theme) : null
+})
+
+watchEffect(() => {
+  if (pageConfig.value.theme !== undefined || pageConfig.value.mode !== undefined) {
+    applyTheme({
+      theme: pageConfig.value.theme,
+      mode: pageConfig.value.mode
+    })
+  }
+})
 </script>
 
 <template>
   <!-- 页面全局根容器（挂载 containerClass，统一控制整页背景、字体、最小高度等全局样式） -->
-  <div :class="pageConfig.containerClass">
+  <div
+    :class="pageConfig.containerClass"
+    :data-theme="resolvedThemeInfo?.key"
+    :data-mode="pageConfig.mode"
+    :style="resolvedThemeInfo?.isCustom ? { '--hue': String(resolvedThemeInfo.hue) } : undefined"
+  >
     <!-- 1. 可选导航栏组件（独立于 <main> 外部，属于全局视口头部） -->
     <slot name="navbar">
       <component

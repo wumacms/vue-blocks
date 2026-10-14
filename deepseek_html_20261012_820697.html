@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="blue" data-mode="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaStack · 扁平化企业数字化解决方案</title>
+  <!-- 字体与图标库 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS 浏览器版 + Lucide 图标 -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style type="text/tailwindcss">
+    /* ===== 1. 注册语义令牌到 Tailwind ===== */
+    @theme inline {
+      --color-background:           var(--background);
+      --color-foreground:           var(--foreground);
+      --color-card:                 var(--card);
+      --color-card-foreground:      var(--card-foreground);
+      --color-primary:              var(--primary);
+      --color-primary-foreground:   var(--primary-foreground);
+      --color-secondary:            var(--secondary);
+      --color-secondary-foreground: var(--secondary-foreground);
+      --color-muted:                var(--muted);
+      --color-muted-foreground:     var(--muted-foreground);
+      --color-border:               var(--border);
+      --color-ring:                 var(--ring);
+    }
+
+    /* ===== 2. 色相层：每个主题一个色相角度 ===== */
+    :root[data-theme="red"]    { --hue: 25; }
+    :root[data-theme="orange"] { --hue: 55; }
+    :root[data-theme="yellow"] { --hue: 85; }
+    :root[data-theme="green"]  { --hue: 145; }
+    :root[data-theme="cyan"]   { --hue: 200; }
+    :root[data-theme="blue"]   { --hue: 255; }
+    :root[data-theme="purple"] { --hue: 300; }
+
+    /* ===== 3. 明暗层：定义 L / C 参数 ===== */
+    :root[data-mode="light"] {
+      --bg-l: 0.98;   --bg-c: 0.010;
+      --fg-l: 0.20;   --fg-c: 0.030;
+      --card-l: 1.00; --card-c: 0.000;
+      --card-fg-l: 0.20; --card-fg-c: 0.030;
+      --primary-l: 0.55; --primary-c: 0.180;
+      --primary-fg-l: 1.00; --primary-fg-c: 0.000;
+      --secondary-l: 0.95; --secondary-c: 0.020;
+      --secondary-fg-l: 0.30; --secondary-fg-c: 0.050;
+      --muted-l: 0.96; --muted-c: 0.010;
+      --muted-fg-l: 0.50; --muted-fg-c: 0.030;
+      --border-l: 0.90; --border-c: 0.020;
+      --ring-l: 0.55; --ring-c: 0.180;
+    }
+    :root[data-mode="dark"] {
+      --bg-l: 0.15;   --bg-c: 0.015;
+      --fg-l: 0.95;   --fg-c: 0.010;
+      --card-l: 0.20; --card-c: 0.020;
+      --card-fg-l: 0.95; --card-fg-c: 0.010;
+      --primary-l: 0.70; --primary-c: 0.160;
+      --primary-fg-l: 0.15; --primary-fg-c: 0.020;
+      --secondary-l: 0.25; --secondary-c: 0.020;
+      --secondary-fg-l: 0.90; --secondary-fg-c: 0.010;
+      --muted-l: 0.25; --muted-c: 0.015;
+      --muted-fg-l: 0.65; --muted-fg-c: 0.020;
+      --border-l: 0.30; --border-c: 0.025;
+      --ring-l: 0.70; --ring-c: 0.160;
+    }
+
+    /* ===== 4. 组合层：拼出完整 OKLCH 颜色 ===== */
+    :root {
+      --background:         oklch(var(--bg-l) var(--bg-c) var(--hue));
+      --foreground:         oklch(var(--fg-l) var(--fg-c) var(--hue));
+      --card:               oklch(var(--card-l) var(--card-c) var(--hue));
+      --card-foreground:    oklch(var(--card-fg-l) var(--card-fg-c) var(--hue));
+      --primary:            oklch(var(--primary-l) var(--primary-c) var(--hue));
+      --primary-foreground: oklch(var(--primary-fg-l) var(--primary-fg-c) var(--hue));
+      --secondary:          oklch(var(--secondary-l) var(--secondary-c) var(--hue));
+      --secondary-foreground: oklch(var(--secondary-fg-l) var(--secondary-fg-c) var(--hue));
+      --muted:              oklch(var(--muted-l) var(--muted-c) var(--hue));
+      --muted-foreground:   oklch(var(--muted-fg-l) var(--muted-fg-c) var(--hue));
+      --border:             oklch(var(--border-l) var(--border-c) var(--hue));
+      --ring:               oklch(var(--ring-l) var(--ring-c) var(--hue));
+    }
+
+    /* 平滑过渡 */
+    * {
+      transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+      transition-duration: 0.3s;
+      transition-timing-function: ease;
+    }
+  </style>
+</head>
+
+<body class="font-inter bg-background text-foreground antialiased">
+
+  <!-- 公告栏 -->
+  <div class="bg-foreground/5 text-foreground text-sm py-2 border-b border-border">
+    <div class="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-center gap-3">
+      <span class="flex items-center gap-1.5">
+        <i data-lucide="circle" class="w-2 h-2 fill-emerald-500 text-emerald-500"></i>
+        新品发布：NovaStack AI 2.0 正式上线
+      </span>
+      <a href="#" class="underline underline-offset-2 flex items-center gap-1 hover:text-primary">
+        了解详情 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- 导航栏 -->
+  <header class="bg-card border-b border-border">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex flex-wrap items-center justify-between">
+      <a href="#" class="flex items-center gap-2 text-xl font-extrabold text-foreground">
+        <span class="inline-flex items-center justify-center w-8 h-8 bg-primary text-primary-foreground">
+          <i data-lucide="zap" class="w-4 h-4"></i>
+        </span>
+        NovaStack
+      </a>
+      <ul class="hidden lg:flex items-center gap-7 list-none">
+        <li><a href="#" class="text-muted-foreground font-medium text-sm hover:text-primary transition-colors">产品功能</a>
+        </li>
+        <li><a href="#" class="text-muted-foreground font-medium text-sm hover:text-primary transition-colors">解决方案</a>
+        </li>
+        <li><a href="#" class="text-muted-foreground font-medium text-sm hover:text-primary transition-colors">定价</a>
+        </li>
+        <li><a href="#" class="text-muted-foreground font-medium text-sm hover:text-primary transition-colors">客户案例</a>
+        </li>
+        <li><a href="#" class="text-muted-foreground font-medium text-sm hover:text-primary transition-colors">常见问题</a>
+        </li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <!-- 色相选择下拉 -->
+        <div class="relative" id="themeMenu">
+          <button id="themeMenuBtn" aria-haspopup="listbox" aria-expanded="false" class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-full
+                   bg-background text-foreground ring-1 ring-border
+                   hover:ring-ring transition-all cursor-pointer">
+            <span id="themeSwatch" class="w-4 h-4 rounded-full bg-primary"></span>
+            <span id="themeLabel" class="hidden sm:inline">蓝色</span>
+            <span class="text-xs opacity-60">▾</span>
+          </button>
+          <ul id="themeMenuList" class="hidden absolute right-0 mt-2 w-40 py-1 rounded-xl
+                   bg-card ring-1 ring-border shadow-xl overflow-hidden z-30">
+            <li data-theme="red"
+              class="flex items-center gap-3 px-3 py-2 text-sm text-card-foreground hover:bg-muted cursor-pointer transition-colors">
+              <span class="w-4 h-4 rounded-full bg-red-500"></span>红色
+            </li>
+            <li data-theme="orange"
+              class="flex items-center gap-3 px-3 py-2 text-sm text-card-foreground hover:bg-muted cursor-pointer transition-colors">
+              <span class="w-4 h-4 rounded-full bg-orange-500"></span>橙色
+            </li>
+            <li data-theme="yellow"
+              class="flex items-center gap-3 px-3 py-2 text-sm text-card-foreground hover:bg-muted cursor-pointer transition-colors">
+              <span class="w-4 h-4 rounded-full bg-yellow-500"></span>黄色
+            </li>
+            <li data-theme="green"
+              class="flex items-center gap-3 px-3 py-2 text-sm text-card-foreground hover:bg-muted cursor-pointer transition-colors">
+              <span class="w-4 h-4 rounded-full bg-green-500"></span>绿色
+            </li>
+            <li data-theme="cyan"
+              class="flex items-center gap-3 px-3 py-2 text-sm text-card-foreground hover:bg-muted cursor-pointer transition-colors">
+              <span class="w-4 h-4 rounded-full bg-cyan-500"></span>青色
+            </li>
+            <li data-theme="blue"
+              class="flex items-center gap-3 px-3 py-2 text-sm text-card-foreground hover:bg-muted cursor-pointer transition-colors">
+              <span class="w-4 h-4 rounded-full bg-blue-500"></span>蓝色
+            </li>
+            <li data-theme="purple"
+              class="flex items-center gap-3 px-3 py-2 text-sm text-card-foreground hover:bg-muted cursor-pointer transition-colors">
+              <span class="w-4 h-4 rounded-full bg-purple-500"></span>紫色
+            </li>
+          </ul>
+        </div>
+
+        <!-- 明暗切换按钮 -->
+        <button id="modeToggle" aria-label="切换明暗模式" class="flex items-center justify-center w-9 h-9 rounded-full text-base
+                 bg-background ring-1 ring-border
+                 hover:ring-ring hover:scale-110 active:scale-95
+                 transition-all cursor-pointer">
+          <span id="modeIconLight" class="block dark:hidden">☀️</span>
+          <span id="modeIconDark" class="hidden dark:block">🌙</span>
+        </button>
+
+        <a href="#"
+          class="hidden lg:block text-muted-foreground font-medium text-sm hover:text-primary transition-colors">登录</a>
+        <a href="#"
+          class="inline-flex items-center justify-center gap-2 bg-foreground text-background font-semibold text-sm px-5 py-2 transition-colors hover:bg-foreground/80">
+          免费试用
+        </a>
+        <button id="mobile-menu-btn"
+          class="lg:hidden border border-border text-foreground text-2xl px-3 py-1 cursor-pointer" aria-label="菜单">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+    <!-- 移动端菜单 -->
+    <div id="mobile-menu"
+      class="lg:hidden overflow-hidden transition-all duration-300 max-h-0 bg-card border-b border-border">
+      <ul class="list-none flex flex-col gap-3 px-6 py-4">
+        <li><a href="#" class="block text-foreground font-medium py-2 border-b border-border">产品功能</a></li>
+        <li><a href="#" class="block text-foreground font-medium py-2 border-b border-border">解决方案</a></li>
+        <li><a href="#" class="block text-foreground font-medium py-2 border-b border-border">定价</a></li>
+        <li><a href="#" class="block text-foreground font-medium py-2 border-b border-border">客户案例</a></li>
+        <li><a href="#" class="block text-foreground font-medium py-2 border-b border-border">常见问题</a></li>
+        <li><a href="#" class="block text-foreground font-medium py-2 border-b border-border">登录</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero 区域 -->
+  <section class="bg-muted border-b border-border py-16">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary">
+          <i data-lucide="sparkles" class="inline w-3 h-3 mr-1"></i>全新 AI 驱动的工作流平台
+        </span>
+        <h1 class="text-5xl md:text-6xl font-bold leading-tight mt-4 text-foreground">
+          让企业效率<br>提升 10 倍
+        </h1>
+        <p class="text-xl text-muted-foreground mt-5 max-w-lg">
+          NovaStack 帮助企业打通数据孤岛，自动化重复流程，让团队专注于真正创造价值的工作。
+        </p>
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a href="#"
+            class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold text-sm px-6 py-3 transition-colors hover:bg-primary/90">
+            免费开始使用 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <a href="#"
+            class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-border text-foreground font-semibold text-sm px-6 py-3 transition-colors hover:bg-card hover:border-ring">
+            <i data-lucide="play-circle" class="w-4 h-4"></i> 观看演示
+          </a>
+        </div>
+        <div class="flex items-center gap-4 mt-8">
+          <div class="flex -space-x-2">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=faces" alt=""
+              class="w-8 h-8 rounded-full border-2 border-card">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=40&h=40&fit=crop&crop=faces" alt=""
+              class="w-8 h-8 rounded-full border-2 border-card">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=faces" alt=""
+              class="w-8 h-8 rounded-full border-2 border-card">
+          </div>
+          <span class="text-sm text-muted-foreground"><strong class="text-foreground font-semibold">500+</strong>
+            企业正在使用</span>
+        </div>
+      </div>
+      <div class="bg-card border border-border p-4">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop" alt="NovaStack 仪表盘"
+          class="w-full h-auto block">
+      </div>
+    </div>
+  </section>
+
+  <!-- Logo 墙 -->
+  <section class="bg-muted border-b border-border py-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <p class="text-center text-muted-foreground text-sm mb-6">受到行业领先企业信赖</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-5">
+        <span class="text-lg font-bold text-muted-foreground flex items-center gap-2"><i data-lucide="hexagon"
+            class="w-5 h-5"></i> Acme Corp</span>
+        <span class="text-lg font-bold text-muted-foreground flex items-center gap-2"><i data-lucide="triangle"
+            class="w-5 h-5"></i> Globex</span>
+        <span class="text-lg font-bold text-muted-foreground flex items-center gap-2"><i data-lucide="square"
+            class="w-5 h-5"></i> Initech</span>
+        <span class="text-lg font-bold text-muted-foreground flex items-center gap-2"><i data-lucide="circle"
+            class="w-5 h-5"></i> Umbrella</span>
+        <span class="text-lg font-bold text-muted-foreground flex items-center gap-2"><i data-lucide="gem"
+            class="w-5 h-5"></i> Soylent</span>
+        <span class="text-lg font-bold text-muted-foreground flex items-center gap-2"><i data-lucide="octagon"
+            class="w-5 h-5"></i> Hooli</span>
+        <span class="text-lg font-bold text-muted-foreground flex items-center gap-2"><i data-lucide="star"
+            class="w-5 h-5"></i> Vehement</span>
+        <span class="text-lg font-bold text-muted-foreground flex items-center gap-2"><i data-lucide="shield"
+            class="w-5 h-5"></i> Massive</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 核心功能 -->
+  <section class="py-16 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary mb-4">核心功能</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground">一切你需要的，都在这儿</h2>
+        <p class="text-muted-foreground mt-3">从数据接入到智能分析，NovaStack 提供完整的企业级能力。</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-card border border-border p-7 transition-colors hover:border-ring hover:shadow-sm">
+          <div class="text-primary mb-4"><i data-lucide="zap" class="w-7 h-7"></i></div>
+          <h3 class="text-xl font-bold text-foreground">极速部署</h3>
+          <p class="text-muted-foreground mt-1">5 分钟完成接入，无需复杂配置，开箱即用。</p>
+        </div>
+        <div class="bg-card border border-border p-7 transition-colors hover:border-ring hover:shadow-sm">
+          <div class="text-primary mb-4"><i data-lucide="shield" class="w-7 h-7"></i></div>
+          <h3 class="text-xl font-bold text-foreground">企业级安全</h3>
+          <p class="text-muted-foreground mt-1">SOC2 / ISO27001 认证，数据全程加密传输。</p>
+        </div>
+        <div class="bg-card border border-border p-7 transition-colors hover:border-ring hover:shadow-sm">
+          <div class="text-primary mb-4"><i data-lucide="database" class="w-7 h-7"></i></div>
+          <h3 class="text-xl font-bold text-foreground">实时数据</h3>
+          <p class="text-muted-foreground mt-1">毫秒级数据同步，业务动态尽在掌握。</p>
+        </div>
+        <div class="bg-card border border-border p-7 transition-colors hover:border-ring hover:shadow-sm">
+          <div class="text-primary mb-4"><i data-lucide="users" class="w-7 h-7"></i></div>
+          <h3 class="text-xl font-bold text-foreground">团队协作</h3>
+          <p class="text-muted-foreground mt-1">多人实时编辑，权限精细到字段级。</p>
+        </div>
+        <div class="bg-card border border-border p-7 transition-colors hover:border-ring hover:shadow-sm">
+          <div class="text-primary mb-4"><i data-lucide="sliders-horizontal" class="w-7 h-7"></i></div>
+          <h3 class="text-xl font-bold text-foreground">高度可配置</h3>
+          <p class="text-muted-foreground mt-1">无代码工作流编排，随业务灵活调整。</p>
+        </div>
+        <div class="bg-card border border-border p-7 transition-colors hover:border-ring hover:shadow-sm">
+          <div class="text-primary mb-4"><i data-lucide="headphones" class="w-7 h-7"></i></div>
+          <h3 class="text-xl font-bold text-foreground">7×24 支持</h3>
+          <p class="text-muted-foreground mt-1">专属客户成功团队，随时响应你的需求。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 统计 -->
+  <section class="bg-muted border-t border-b border-border py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-extrabold text-foreground">500+</div>
+          <div class="text-muted-foreground mt-1">服务企业</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold text-foreground">99.99%</div>
+          <div class="text-muted-foreground mt-1">服务可用性</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold text-foreground">10亿+</div>
+          <div class="text-muted-foreground mt-1">日处理请求</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold text-foreground">4.9/5</div>
+          <div class="text-muted-foreground mt-1">客户满意度</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 解决方案 -->
+  <section class="py-16 bg-muted">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary mb-4">解决方案</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground">为不同行业量身打造</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <div class="bg-card border border-border">
+          <img src="https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?w=600&h=400&fit=crop" alt="金融"
+            class="w-full h-48 object-cover border-b border-border">
+          <div class="p-6">
+            <div class="text-primary text-2xl mb-3"><i data-lucide="landmark" class="w-6 h-6"></i></div>
+            <h3 class="text-xl font-bold text-foreground">金融行业</h3>
+            <p class="text-muted-foreground mt-2">风控建模、智能投顾、合规审计，助力金融机构数字化转型。</p>
+            <ul class="list-none mt-3 text-sm space-y-1">
+              <li class="flex items-center gap-1.5 text-muted-foreground"><i data-lucide="check"
+                  class="w-4 h-4 text-emerald-500"></i>实时风控引擎</li>
+              <li class="flex items-center gap-1.5 text-muted-foreground"><i data-lucide="check"
+                  class="w-4 h-4 text-emerald-500"></i>反欺诈识别</li>
+            </ul>
+            <a href="#" class="inline-block mt-4 text-primary font-medium">了解更多 →</a>
+          </div>
+        </div>
+        <div class="bg-card border border-border">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop" alt="医疗"
+            class="w-full h-48 object-cover border-b border-border">
+          <div class="p-6">
+            <div class="text-primary text-2xl mb-3"><i data-lucide="heart-pulse" class="w-6 h-6"></i></div>
+            <h3 class="text-xl font-bold text-foreground">医疗健康</h3>
+            <p class="text-muted-foreground mt-2">电子病历、智能诊断、患者管理，让医疗服务更高效。</p>
+            <ul class="list-none mt-3 text-sm space-y-1">
+              <li class="flex items-center gap-1.5 text-muted-foreground"><i data-lucide="check"
+                  class="w-4 h-4 text-emerald-500"></i>智能分诊系统</li>
+              <li class="flex items-center gap-1.5 text-muted-foreground"><i data-lucide="check"
+                  class="w-4 h-4 text-emerald-500"></i>影像 AI 辅助</li>
+            </ul>
+            <a href="#" class="inline-block mt-4 text-primary font-medium">了解更多 →</a>
+          </div>
+        </div>
+        <div class="bg-card border border-border">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop" alt="零售"
+            class="w-full h-48 object-cover border-b border-border">
+          <div class="p-6">
+            <div class="text-primary text-2xl mb-3"><i data-lucide="shopping-bag" class="w-6 h-6"></i></div>
+            <h3 class="text-xl font-bold text-foreground">零售电商</h3>
+            <p class="text-muted-foreground mt-2">用户画像、精准营销、库存预测，让每一笔生意更聪明。</p>
+            <ul class="list-none mt-3 text-sm space-y-1">
+              <li class="flex items-center gap-1.5 text-muted-foreground"><i data-lucide="check"
+                  class="w-4 h-4 text-emerald-500"></i>千人千面推荐</li>
+              <li class="flex items-center gap-1.5 text-muted-foreground"><i data-lucide="check"
+                  class="w-4 h-4 text-emerald-500"></i>智能补货预测</li>
+            </ul>
+            <a href="#" class="inline-block mt-4 text-primary font-medium">了解更多 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 客户案例 -->
+  <section class="py-16 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-wrap justify-between items-end gap-4 mb-10">
+        <div>
+          <span
+            class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary mb-2">客户案例</span>
+          <h2 class="text-4xl md:text-5xl font-bold text-foreground mt-2">他们用 NovaStack 获得了增长</h2>
+        </div>
+        <a href="#" class="text-primary font-medium">查看全部案例 →</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <a href="#" class="bg-card border border-border text-inherit no-underline hover:border-ring transition-colors">
+          <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=400&fit=crop" alt="银行"
+            class="w-full h-52 object-cover border-b border-border">
+          <div class="p-5">
+            <span
+              class="inline-block px-2.5 py-1 text-xs font-semibold uppercase bg-primary/10 text-primary mb-2">金融</span>
+            <h3 class="text-xl font-bold text-foreground mt-2">某头部银行：审批效率提升 70%</h3>
+            <p class="text-muted-foreground mt-1">通过自动化审批流，将原本 3 天的流程缩短到 2 小时。</p>
+          </div>
+        </a>
+        <a href="#" class="bg-card border border-border text-inherit no-underline hover:border-ring transition-colors">
+          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=400&fit=crop" alt="医院"
+            class="w-full h-52 object-cover border-b border-border">
+          <div class="p-5">
+            <span
+              class="inline-block px-2.5 py-1 text-xs font-semibold uppercase bg-primary/10 text-primary mb-2">医疗</span>
+            <h3 class="text-xl font-bold text-foreground mt-2">三甲医院：门诊量增长 40%</h3>
+            <p class="text-muted-foreground mt-1">智能分诊系统上线后，患者平均等待时间减少 25 分钟。</p>
+          </div>
+        </a>
+        <a href="#" class="bg-card border border-border text-inherit no-underline hover:border-ring transition-colors">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="零售"
+            class="w-full h-52 object-cover border-b border-border">
+          <div class="p-5">
+            <span
+              class="inline-block px-2.5 py-1 text-xs font-semibold uppercase bg-primary/10 text-primary mb-2">零售</span>
+            <h3 class="text-xl font-bold text-foreground mt-2">连锁品牌：复购率翻倍</h3>
+            <p class="text-muted-foreground mt-1">会员画像系统帮助精准触达，复购率从 18% 提升到 36%。</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 客户评价 -->
+  <section class="py-16 bg-muted">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary mb-4">客户评价</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground">真实的声音</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <div class="bg-card border border-border p-7">
+          <div class="flex gap-0.5 text-amber-400 mb-4">
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+              class="w-4 h-4 fill-amber-400"></i><i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i
+              data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+              class="w-4 h-4 fill-amber-400"></i>
+          </div>
+          <blockquote class="text-muted-foreground text-sm leading-relaxed my-4">“NovaStack 帮我们把原本分散在 5
+            个系统里的数据打通了。现在管理层看到的每一份报表，都是实时的。”</blockquote>
+          <div class="flex items-center gap-3 mt-4">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces" alt=""
+              class="w-10 h-10 rounded-full object-cover border border-border">
+            <div>
+              <div class="font-semibold text-foreground">张伟</div>
+              <div class="text-xs text-muted-foreground">某集团 CTO</div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-card border border-border p-7">
+          <div class="flex gap-0.5 text-amber-400 mb-4">
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+              class="w-4 h-4 fill-amber-400"></i><i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i
+              data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+              class="w-4 h-4 fill-amber-400"></i>
+          </div>
+          <blockquote class="text-muted-foreground text-sm leading-relaxed my-4">“最打动我的是他们的客户成功团队。每次遇到问题，几乎都是分钟级响应，这在
+            ToB 产品里很少见。”</blockquote>
+          <div class="flex items-center gap-3 mt-4">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=faces" alt=""
+              class="w-10 h-10 rounded-full object-cover border border-border">
+            <div>
+              <div class="font-semibold text-foreground">李娜</div>
+              <div class="text-xs text-muted-foreground">某零售品牌 数字化负责人</div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-card border border-border p-7">
+          <div class="flex gap-0.5 text-amber-400 mb-4">
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+              class="w-4 h-4 fill-amber-400"></i><i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i
+              data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+              class="w-4 h-4 fill-amber-400"></i>
+          </div>
+          <blockquote class="text-muted-foreground text-sm leading-relaxed my-4">“接入只用了半天，第二周就开始产生业务价值。ROI 远超预期。”
+          </blockquote>
+          <div class="flex items-center gap-3 mt-4">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces" alt=""
+              class="w-10 h-10 rounded-full object-cover border border-border">
+            <div>
+              <div class="font-semibold text-foreground">王强</div>
+              <div class="text-xs text-muted-foreground">某 SaaS 公司 创始人</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 发展历程 -->
+  <section class="py-16 bg-background">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary mb-4">发展历程</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground">一路走来</h2>
+      </div>
+      <div class="flex gap-6 mb-8 items-start">
+        <span class="font-extrabold text-primary text-xl min-w-[70px]">2019</span>
+        <div>
+          <h3 class="text-xl font-bold text-foreground">公司成立</h3>
+          <p class="text-muted-foreground">5 人团队，从一个想法开始。</p>
+        </div>
+      </div>
+      <div class="flex gap-6 mb-8 items-start">
+        <span class="font-extrabold text-primary text-xl min-w-[70px]">2021</span>
+        <div>
+          <h3 class="text-xl font-bold text-foreground">完成 A 轮融资</h3>
+          <p class="text-muted-foreground">获得顶级机构 5000 万美元投资。</p>
+        </div>
+      </div>
+      <div class="flex gap-6 mb-8 items-start">
+        <span class="font-extrabold text-primary text-xl min-w-[70px]">2023</span>
+        <div>
+          <h3 class="text-xl font-bold text-foreground">客户突破 500 家</h3>
+          <p class="text-muted-foreground">覆盖金融、医疗、零售等多个行业。</p>
+        </div>
+      </div>
+      <div class="flex gap-6 mb-8 items-start">
+        <span class="font-extrabold text-primary text-xl min-w-[70px]">2025</span>
+        <div>
+          <h3 class="text-xl font-bold text-foreground">AI 2.0 发布</h3>
+          <p class="text-muted-foreground">全面进入 AI 驱动的新阶段。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 定价 -->
+  <section class="py-16 bg-muted">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary mb-4">定价方案</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground">简单透明的价格</h2>
+        <p class="text-muted-foreground mt-3">按需选择，随时升级或取消。</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <div class="bg-card border border-border p-8 flex flex-col">
+          <i data-lucide="rocket" class="w-8 h-8 text-muted-foreground"></i>
+          <h3 class="text-xl font-bold text-foreground mt-4 mb-1">基础版</h3>
+          <p class="text-muted-foreground text-sm">适合小型团队起步</p>
+          <div class="text-4xl font-extrabold text-foreground my-4">¥199<span
+              class="text-sm font-normal text-muted-foreground">/月</span></div>
+          <ul class="list-none my-6 flex-1 space-y-3 text-sm">
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 最多 10 名成员</li>
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 5GB 存储空间</li>
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 基础数据报表</li>
+            <li class="flex items-center gap-2 text-muted-foreground/60"><i data-lucide="x" class="w-4 h-4"></i> 高级自动化
+            </li>
+          </ul>
+          <a href="#"
+            class="inline-flex items-center justify-center gap-2 w-full bg-transparent border-2 border-border text-foreground font-semibold text-sm px-6 py-3 transition-colors hover:bg-muted hover:border-ring">开始试用</a>
+        </div>
+        <div class="bg-card border-2 border-primary p-8 flex flex-col">
+          <i data-lucide="zap" class="w-8 h-8 text-primary"></i>
+          <h3 class="text-xl font-bold text-foreground mt-4 mb-1">专业版</h3>
+          <p class="text-muted-foreground text-sm">适合快速成长的企业</p>
+          <div class="text-4xl font-extrabold text-foreground my-4">¥599<span
+              class="text-sm font-normal text-muted-foreground">/月</span></div>
+          <ul class="list-none my-6 flex-1 space-y-3 text-sm">
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 最多 50 名成员</li>
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 100GB 存储空间</li>
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 高级数据报表</li>
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 高级自动化</li>
+          </ul>
+          <a href="#"
+            class="inline-flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground font-semibold text-sm px-6 py-3 transition-colors hover:bg-primary/90">立即开始</a>
+        </div>
+        <div class="bg-card border border-border p-8 flex flex-col">
+          <i data-lucide="building" class="w-8 h-8 text-muted-foreground"></i>
+          <h3 class="text-xl font-bold text-foreground mt-4 mb-1">企业版</h3>
+          <p class="text-muted-foreground text-sm">适合大型组织</p>
+          <div class="text-4xl font-extrabold text-foreground my-4">定制</div>
+          <ul class="list-none my-6 flex-1 space-y-3 text-sm">
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 不限成员数量</li>
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 无限存储空间</li>
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 定制数据报表</li>
+            <li class="flex items-center gap-2 text-muted-foreground"><i data-lucide="check"
+                class="w-4 h-4 text-emerald-500"></i> 7×24 电话支持</li>
+          </ul>
+          <a href="#"
+            class="inline-flex items-center justify-center gap-2 w-full bg-transparent border-2 border-border text-foreground font-semibold text-sm px-6 py-3 transition-colors hover:bg-muted hover:border-ring">联系销售</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 图文右侧 -->
+  <section class="py-16 bg-background">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop" alt="团队协作"
+          class="w-full h-auto border border-border"></div>
+      <div>
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary">为什么选择我们</span>
+        <h2 class="text-4xl font-bold text-foreground mt-4 mb-2">让数据流动起来<br>业务自然更快</h2>
+        <p class="text-muted-foreground mb-6">传统企业有 70% 的时间浪费在数据搬运和对齐上。NovaStack 把这部分工作自动化，让团队专注真正有价值的事。</p>
+        <ul class="list-none space-y-4">
+          <li class="flex items-center gap-3 text-muted-foreground"><i data-lucide="check-circle"
+              class="w-5 h-5 text-primary"></i>一键接入，无需改造现有系统</li>
+          <li class="flex items-center gap-3 text-muted-foreground"><i data-lucide="check-circle"
+              class="w-5 h-5 text-primary"></i>可视化编排，业务人员也能上手</li>
+          <li class="flex items-center gap-3 text-muted-foreground"><i data-lucide="check-circle"
+              class="w-5 h-5 text-primary"></i>全链路可观测，问题秒级定位</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 图文左侧 -->
+  <section class="py-16 bg-muted">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">智能分析</span>
+        <h2 class="text-4xl font-bold text-foreground mt-4 mb-2">从数据到决策<br>只差一个洞察</h2>
+        <p class="text-muted-foreground mb-6">内置 AI 分析引擎，自动发现异常、预测趋势、生成可执行建议。</p>
+        <div class="flex gap-6">
+          <div>
+            <div class="text-3xl font-extrabold text-foreground">+38%</div>
+            <div class="text-muted-foreground">营收增长</div>
+          </div>
+          <div>
+            <div class="text-3xl font-extrabold text-foreground">-62%</div>
+            <div class="text-muted-foreground">决策耗时</div>
+          </div>
+        </div>
+      </div>
+      <div><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop" alt="数据分析"
+          class="w-full h-auto border border-border"></div>
+    </div>
+  </section>
+
+  <!-- 产品能力 -->
+  <section class="py-16 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary mb-4">产品能力</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground">一个平台，看全你的业务</h2>
+        <p class="text-muted-foreground mt-3">从数据接入到智能决策，所有关键指标集中在一个视图里。</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=600&fit=crop" alt="业务全景看板"
+        class="w-full border border-border">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 text-center">
+        <div><i data-lucide="layers" class="w-8 h-8 text-primary mx-auto"></i>
+          <h3 class="text-xl font-bold text-foreground mt-3 mb-1">统一数据视图</h3>
+          <p class="text-muted-foreground">打通多个系统，一个页面看清全部指标。</p>
+        </div>
+        <div><i data-lucide="gauge" class="w-8 h-8 text-primary mx-auto"></i>
+          <h3 class="text-xl font-bold text-foreground mt-3 mb-1">实时监控告警</h3>
+          <p class="text-muted-foreground">指标异常自动触发通知，问题不过夜。</p>
+        </div>
+        <div><i data-lucide="share-2" class="w-8 h-8 text-primary mx-auto"></i>
+          <h3 class="text-xl font-bold text-foreground mt-3 mb-1">一键分享协作</h3>
+          <p class="text-muted-foreground">看板可分享给团队，权限精细可控。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 团队 -->
+  <section class="py-16 bg-muted">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary mb-4">核心团队</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground">一群相信技术能改变世界的人</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=faces" alt="张明"
+            class="w-full aspect-square object-cover border border-border mb-4">
+          <h3 class="text-lg font-bold text-foreground">张明</h3>
+          <p class="text-muted-foreground text-sm">创始人 & CEO</p>
+        </div>
+        <div class="text-center">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&crop=faces"
+            alt="李婷" class="w-full aspect-square object-cover border border-border mb-4">
+          <h3 class="text-lg font-bold text-foreground">李婷</h3>
+          <p class="text-muted-foreground text-sm">联合创始人 & CTO</p>
+        </div>
+        <div class="text-center">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=faces"
+            alt="王浩" class="w-full aspect-square object-cover border border-border mb-4">
+          <h3 class="text-lg font-bold text-foreground">王浩</h3>
+          <p class="text-muted-foreground text-sm">产品副总裁</p>
+        </div>
+        <div class="text-center">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=faces"
+            alt="陈静" class="w-full aspect-square object-cover border border-border mb-4">
+          <h3 class="text-lg font-bold text-foreground">陈静</h3>
+          <p class="text-muted-foreground text-sm">首席科学家</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 产品中心 -->
+  <section class="py-16 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-4xl font-bold text-foreground">产品中心</h2>
+        <a href="#" class="text-primary font-medium">查看全部产品 →</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-card border border-border p-6">
+          <h3 class="text-xl font-bold text-foreground">NovaStack DataHub</h3>
+          <p class="text-muted-foreground mt-2 mb-3">企业统一数据接入、清洗、建模平台。</p>
+          <div class="text-2xl font-bold text-foreground">¥1,299<span
+              class="text-sm font-normal text-muted-foreground">/月起</span></div>
+        </div>
+        <div class="bg-card border border-border p-6">
+          <h3 class="text-xl font-bold text-foreground">NovaStack Flow</h3>
+          <p class="text-muted-foreground mt-2 mb-3">无代码流程编排，自动化审批、通知。</p>
+          <div class="text-2xl font-bold text-foreground">¥899<span
+              class="text-sm font-normal text-muted-foreground">/月起</span></div>
+        </div>
+        <div class="bg-card border border-border p-6">
+          <h3 class="text-xl font-bold text-foreground">NovaStack Insight</h3>
+          <p class="text-muted-foreground mt-2 mb-3">AI 驱动的智能分析与预测。</p>
+          <div class="text-2xl font-bold text-foreground">¥1,599<span
+              class="text-sm font-normal text-muted-foreground">/月起</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 bg-muted">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary mb-4">常见问题</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground">你可能想知道</h2>
+      </div>
+      <details open class="bg-card border border-border mb-4 p-5 group">
+        <summary class="flex justify-between items-center font-semibold text-foreground cursor-pointer list-none">
+          可以免费试用吗？ <i data-lucide="plus" class="w-5 h-5 text-primary transition-transform group-open:rotate-45"></i>
+        </summary>
+        <p class="text-muted-foreground mt-4">当然可以。所有方案都提供 14 天全功能免费试用，无需信用卡。</p>
+      </details>
+      <details class="bg-card border border-border mb-4 p-5 group">
+        <summary class="flex justify-between items-center font-semibold text-foreground cursor-pointer list-none">
+          数据存储在哪里？安全吗？ <i data-lucide="plus" class="w-5 h-5 text-primary transition-transform group-open:rotate-45"></i>
+        </summary>
+        <p class="text-muted-foreground mt-4">我们使用国内一线云厂商的多可用区架构，所有数据全程 AES-256 加密。</p>
+      </details>
+      <details class="bg-card border border-border mb-4 p-5 group">
+        <summary class="flex justify-between items-center font-semibold text-foreground cursor-pointer list-none">
+          支持私有化部署吗？ <i data-lucide="plus" class="w-5 h-5 text-primary transition-transform group-open:rotate-45"></i>
+        </summary>
+        <p class="text-muted-foreground mt-4">支持。企业版提供完整的私有化部署方案。</p>
+      </details>
+      <details class="bg-card border border-border mb-4 p-5 group">
+        <summary class="flex justify-between items-center font-semibold text-foreground cursor-pointer list-none">
+          如何从其他平台迁移数据？ <i data-lucide="plus" class="w-5 h-5 text-primary transition-transform group-open:rotate-45"></i>
+        </summary>
+        <p class="text-muted-foreground mt-4">我们提供一键迁移工具，支持主流平台的数据导入。</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary border-t border-b border-border py-16 text-center">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-primary-foreground">准备好开始了吗？</h2>
+      <p class="text-primary-foreground/80 my-4">立即注册，14 天内免费体验 NovaStack 全部功能。</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#"
+          class="inline-flex items-center justify-center gap-2 bg-primary-foreground text-primary font-semibold text-sm px-6 py-3 transition-colors hover:bg-primary-foreground/90">
+          免费开始使用 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <a href="#"
+          class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-primary-foreground text-primary-foreground font-semibold text-sm px-6 py-3 transition-colors hover:bg-primary-foreground/10">
+          联系销售
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系我们 -->
+  <section class="py-16 bg-background">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-primary/10 text-primary">联系我们</span>
+        <h2 class="text-4xl font-bold text-foreground mt-4 mb-4">让我们聊聊你的需求</h2>
+        <p class="text-muted-foreground mb-8">无论是产品咨询、方案定制还是合作洽谈，我们的团队都会在 1 个工作日内回复你。</p>
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3 text-muted-foreground"><i data-lucide="mail"
+              class="w-5 h-5 text-primary"></i> hello@novastack.com</div>
+          <div class="flex items-center gap-3 text-muted-foreground"><i data-lucide="phone"
+              class="w-5 h-5 text-primary"></i> 400-888-8888（工作日 9:00-18:00）</div>
+          <div class="flex items-center gap-3 text-muted-foreground"><i data-lucide="map-pin"
+              class="w-5 h-5 text-primary"></i> 上海市浦东新区张江高科技园区</div>
+        </div>
+      </div>
+      <form class="bg-card border border-border p-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div><label class="block text-sm font-medium text-foreground mb-1">姓名</label><input type="text"
+              placeholder="你的名字"
+              class="w-full border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-primary text-foreground">
+          </div>
+          <div><label class="block text-sm font-medium text-foreground mb-1">公司</label><input type="text"
+              placeholder="公司名称"
+              class="w-full border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-primary text-foreground">
+          </div>
+        </div>
+        <div class="mb-4"><label class="block text-sm font-medium text-foreground mb-1">邮箱</label><input type="email"
+            placeholder="you@company.com"
+            class="w-full border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-primary text-foreground">
+        </div>
+        <div class="mb-4"><label class="block text-sm font-medium text-foreground mb-1">需求类型</label><select
+            class="w-full border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-primary text-foreground">
+            <option>产品咨询</option>
+            <option>方案定制</option>
+            <option>合作洽谈</option>
+          </select></div>
+        <div class="mb-4"><label class="block text-sm font-medium text-foreground mb-1">留言</label><textarea rows="3"
+            placeholder="简单描述你的需求..."
+            class="w-full border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-primary text-foreground"></textarea>
+        </div>
+        <button type="submit"
+          class="w-full bg-primary text-primary-foreground font-semibold text-sm px-6 py-3 transition-colors hover:bg-primary/90">提交
+          <i data-lucide="send" class="w-4 h-4 inline"></i></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-card text-muted-foreground border-t border-border pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div class="lg:col-span-1">
+          <div class="text-foreground font-extrabold text-2xl flex items-center gap-2 mb-4"><i data-lucide="zap"
+              class="w-6 h-6"></i> NovaStack</div>
+          <p class="text-muted-foreground text-sm">让每一家企业都能用上 AI 驱动的数字化工具。</p>
+        </div>
+        <div>
+          <h4 class="text-foreground font-bold mb-5">产品</h4>
+          <ul class="list-none space-y-3">
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">功能</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">定价</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">更新日志</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">API 文档</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-foreground font-bold mb-5">解决方案</h4>
+          <ul class="list-none space-y-3">
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">金融</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">医疗</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">零售</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">制造</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-foreground font-bold mb-5">公司</h4>
+          <ul class="list-none space-y-3">
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">关于我们</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">加入我们</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">新闻</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">联系方式</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-foreground font-bold mb-5">法律</h4>
+          <ul class="list-none space-y-3">
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">隐私政策</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">服务条款</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">Cookie 设置</a></li>
+            <li><a href="#" class="text-muted-foreground hover:text-foreground text-sm">安全</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-border mt-10 pt-8 text-center text-sm text-muted-foreground">
+        © 2025 NovaStack, Inc. 保留所有权利。 沪ICP备2025000001号
+      </div>
+    </div>
+  </footer>
+
+  <!-- 返回顶部 -->
+  <button id="back-to-top" aria-label="返回顶部"
+    class="fixed bottom-6 right-6 z-40 w-12 h-12 bg-foreground text-background flex items-center justify-center shadow-lg opacity-0 pointer-events-none transition-all duration-200 hover:bg-foreground/80">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
+
+  <script>
+    // 初始化图标
+    window.addEventListener('load', function () {
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      }
+    });
+
+    // ===== 动态主题系统 =====
+    const KEY_THEME = 'app-theme';
+    const KEY_MODE = 'app-mode';
+    const NAMES = { red: '红色', orange: '橙色', yellow: '黄色', green: '绿色', cyan: '青色', blue: '蓝色', purple: '紫色' };
+
+    let theme = localStorage.getItem(KEY_THEME) || 'blue';
+    let mode = localStorage.getItem(KEY_MODE) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+    const apply = () => {
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.dataset.mode = mode;
+
+      // 更新下拉菜单按钮
+      document.getElementById('themeLabel').textContent = NAMES[theme];
+      const swatchColors = {
+        red: 'bg-red-500', orange: 'bg-orange-500', yellow: 'bg-yellow-500',
+        green: 'bg-green-500', cyan: 'bg-cyan-500', blue: 'bg-blue-500', purple: 'bg-purple-500'
+      };
+      const swatch = document.getElementById('themeSwatch');
+      swatch.className = `w-4 h-4 rounded-full ${swatchColors[theme]}`;
+
+      // 更新图标（重新渲染）
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        setTimeout(() => lucide.createIcons(), 10);
+      }
+    };
+
+    apply();
+
+    // 色相下拉菜单
+    const menuBtn = document.getElementById('themeMenuBtn');
+    const menuList = document.getElementById('themeMenuList');
+    const themeMenu = document.getElementById('themeMenu');
+
+    menuBtn.onclick = (e) => {
+      e.stopPropagation();
+      const hidden = menuList.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', String(!hidden));
+    };
+
+    menuList.onclick = (e) => {
+      const li = e.target.closest('li[data-theme]');
+      if (!li) return;
+      theme = li.dataset.theme;
+      localStorage.setItem(KEY_THEME, theme);
+      apply();
+      menuList.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    };
+
+    document.onclick = () => {
+      menuList.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    };
+
+    // 明暗切换
+    document.getElementById('modeToggle').onclick = () => {
+      mode = mode === 'dark' ? 'light' : 'dark';
+      localStorage.setItem(KEY_MODE, mode);
+      apply();
+    };
+
+    // 移动菜单
+    (function () {
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      if (!btn || !menu) return;
+
+      function close() {
+        menu.classList.remove('max-h-[500px]');
+        menu.classList.add('max-h-0');
+      }
+      function toggle() {
+        if (menu.classList.contains('max-h-0')) {
+          menu.classList.remove('max-h-0');
+          menu.classList.add('max-h-[500px]');
+        } else { close(); }
+      }
+      btn.addEventListener('click', toggle);
+      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      window.addEventListener('resize', () => { if (window.innerWidth >= 1024) close(); });
+    })();
+
+    // 返回顶部
+    (function () {
+      const btn = document.getElementById('back-to-top');
+      if (!btn) return;
+
+      window.addEventListener('scroll', () => {
+        const show = window.scrollY > 400;
+        btn.classList.toggle('opacity-0', !show);
+        btn.classList.toggle('pointer-events-none', !show);
+      }, { passive: true });
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+
+</body>
+
+</html>

@@ -20,8 +20,7 @@
 
 ### 1. 内容覆写 (`data`)
 
-在 `<script setup lang="ts">` 中定义自定义数据对象，通过 `:data`
-属性传入。未声明的字段将自动继承默认配置：
+在 `<script setup lang="ts">` 中定义自定义数据对象，通过 `:data` 属性传入。未声明的字段将自动继承默认配置：
 
 ```vue
 <script setup lang="ts">
@@ -34,101 +33,54 @@ const customData = {
   headers: [
     {
       text: 'ChatFlow',
-      textColor: 'text-indigo-700'
+      isPrimary: true
     },
     {
-      text: '竞品A',
-      textColor: 'text-gray-500'
+      text: '竞品A'
     },
     {
-      text: '竞品B',
-      textColor: 'text-gray-500'
+      text: '竞品B'
     }
   ],
   rows: [
     {
       feature: '端到端加密',
       columns: [
-        {
-          value: '✓',
-          textColor: 'text-green-600'
-        },
-        {
-          value: '✗',
-          textColor: 'text-red-400'
-        },
-        {
-          value: '✓',
-          textColor: 'text-green-600'
-        }
+        { value: '✓' },
+        { value: '✗' },
+        { value: '✓' }
       ]
     },
     {
       feature: '无限消息历史',
       columns: [
-        {
-          value: '✓',
-          textColor: 'text-green-600'
-        },
-        {
-          value: '✓',
-          textColor: 'text-green-600'
-        },
-        {
-          value: '✗',
-          textColor: 'text-red-400'
-        }
+        { value: '✓' },
+        { value: '✓' },
+        { value: '✗' }
       ]
     },
     {
       feature: '私有部署',
       columns: [
-        {
-          value: '✓',
-          textColor: 'text-green-600'
-        },
-        {
-          value: '✗',
-          textColor: 'text-red-400'
-        },
-        {
-          value: '✓',
-          textColor: 'text-green-600'
-        }
+        { value: '✓' },
+        { value: '✗' },
+        { value: '✓' }
       ]
     },
     {
       feature: 'AI 助手',
       columns: [
-        {
-          value: '✓',
-          textColor: 'text-green-600'
-        },
-        {
-          value: '✗',
-          textColor: 'text-red-400'
-        },
-        {
-          value: 'Beta',
-          textColor: 'text-yellow-500'
-        }
+        { value: '✓' },
+        { value: '✗' },
+        { value: 'Beta' }
       ]
     },
     {
       feature: '200+ 集成',
       columns: [
-        {
-          value: '✓',
-          textColor: 'text-green-600'
-        },
-        {
-          value: '✓',
-          textColor: 'text-green-600'
-        },
-        {
-          value: '✗',
-          textColor: 'text-red-400'
-        }
+        { value: '✓' },
+        { value: '✓' },
+        { value: '✗' }
       ]
     }
   ]
@@ -142,8 +94,7 @@ const customData = {
 
 ### 2. 样式覆写 (`styles`)
 
-在 `<script setup lang="ts">` 中定义样式覆写映射，通过 `:styles` 属性传入。内置
-`tailwind-merge` 实现无冲突安全合并：
+在 `<script setup lang="ts">` 中定义样式覆写映射，通过 `:styles` 属性传入。内置 `tailwind-merge` 实现无冲突安全合并：
 
 ```vue
 <script setup lang="ts">
@@ -159,6 +110,7 @@ const customStyles = {
   table: 'w-full min-w-full divide-y divide-gray-200 dark:divide-gray-800 text-sm text-left',
   thead: 'bg-gray-50 dark:bg-gray-800/80',
   th: 'px-6 py-4 font-semibold text-gray-700 dark:text-gray-200',
+  thPrimary: 'px-6 py-4 font-bold text-primary',
   tbody: 'divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900',
   tr: 'hover:bg-gray-50 dark:hover:bg-gray-800/50 transition',
   tdFeature: 'px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap',
@@ -189,10 +141,10 @@ const customStyles = {
 
 ### `headers` 列表项字段说明
 
-| 字段名      | 类型   | 说明                                             |
-| ----------- | ------ | ------------------------------------------------ |
-| `text`      | `text` | 对比方产品/方案名称                              |
-| `textColor` | `text` | 表头文字颜色 Tailwind 类名（如主推方案突出显示） |
+| 字段名      | 类型      | 说明                                             |
+| ----------- | --------- | ------------------------------------------------ |
+| `text`      | `text`    | 对比方产品/方案名称                              |
+| `isPrimary` | `boolean` | 是否为主打推荐产品（开启后启用主色高亮与样式联动） |
 
 ### `rows` 列表项字段说明
 
@@ -203,17 +155,15 @@ const customStyles = {
 
 ### `rows.columns` 列表项字段说明
 
-| 字段名      | 类型   | 说明                                                |
-| ----------- | ------ | --------------------------------------------------- |
-| `value`     | `text` | 表现值（如 `✓`、`✗` 或文字说明）                    |
-| `textColor` | `text` | 文字颜色类名（如 `text-green-600`、`text-red-400`） |
+| 字段名  | 类型   | 说明                                                           |
+| ------- | ------ | -------------------------------------------------------------- |
+| `value` | `text` | 表现值（支持 `✓`、`✗`、`—` 或文本如 `Beta`，自动匹配状态图标与微标） |
 
 ---
 
 ## 🎨 样式类名规范 (Styles Classes)
 
-组件支持通过 `:styles` 属性针对每个内部 DOM
-节点进行原子类定制，默认样式类名及说明如下：
+组件支持通过 `:styles` 属性针对每个内部 DOM 节点进行原子类定制，默认样式类名及说明如下：
 
 | 样式字段名     | 作用元素 / 解释说明                                | 默认 Tailwind CSS 类名                                                              |
 | -------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -225,21 +175,23 @@ const customStyles = {
 | `tableWrapper` | 表格横向滚动包裹层（控制边框、圆角及小屏横向滚动） | `overflow-x-auto shadow-sm rounded-2xl border border-gray-200 dark:border-gray-800` |
 | `table`        | 原生 `<table>` 元素样式（全宽、分隔线）            | `w-full min-w-full divide-y divide-gray-200 dark:divide-gray-800 text-sm text-left` |
 | `thead`        | 表头 `<thead>` 区域样式                            | `bg-gray-50 dark:bg-gray-800/80`                                                    |
-| `th`           | 表头单元格 `<th>` 样式                             | `px-6 py-4 font-semibold text-gray-700 dark:text-gray-200`                          |
+| `th`           | 常规表头单元格 `<th>` 样式                         | `px-6 py-4 font-semibold text-gray-700 dark:text-gray-200`                          |
+| `thPrimary`    | 主打推荐列高亮表头单元格 `<th>` 样式               | `px-6 py-4 font-bold text-primary`                                                  |
 | `tbody`        | 表体 `<tbody>` 区域样式                            | `divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900`           |
 | `tr`           | 数据行 `<tr>` 悬浮过渡与分割线样式                 | `hover:bg-gray-50 dark:hover:bg-gray-800/50 transition`                             |
 | `tdFeature`    | 首列特性名称单元格 `<td>` 样式（粗体、左对齐）     | `px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap`             |
 | `tdValue`      | 对比值数据单元格 `<td>` 样式（居中、字体规范）     | `px-6 py-4 text-gray-600 dark:text-gray-300 whitespace-nowrap`                      |
-| `iconCheck`    | 支持状态勾选符号（✓）样式                          | `text-green-500 font-bold text-base`                                                |
-| `iconCross`    | 不支持状态叉号符号（✗）样式                        | `text-red-400 font-bold text-base`                                                  |
+| `tdPrimary`    | 主推列数据单元格 `<td>` 高亮背景与字体样式         | `bg-primary/5 font-semibold text-foreground`                                        |
+| `iconCheck`    | 支持状态勾选符号（✓）样式                          | `text-emerald-500 dark:text-emerald-400 font-bold text-base`                         |
+| `iconCross`    | 不支持状态叉号符号（✗）样式                        | `text-rose-500 dark:text-rose-400 font-bold text-base`                              |
 | `iconDash`     | 不适用/占位横线符号（—）样式                       | `text-gray-400`                                                                     |
+| `badge`        | 文本型状态（如 Beta）微标胶囊样式                  | `inline-block text-xs font-semibold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary` |
 
 ---
 
 ## 🧩 插槽规范 (Slots)
 
-组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过
-Slot Props 传入）：
+组件支持通过 Vue 模板插槽实现对局部结构与交互的完全自定义覆盖（作用域参数通过 Slot Props 传入）：
 
 | 插槽名        | 作用域参数 (Slot Props) | 说明                                                 |
 | ------------- | ----------------------- | ---------------------------------------------------- |

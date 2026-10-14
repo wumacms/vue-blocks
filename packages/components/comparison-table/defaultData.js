@@ -5,15 +5,13 @@ export const defaultData = {
   "headers": [
     {
       "text": "ChatFlow",
-      "textColor": "text-indigo-700"
+      "isPrimary": true
     },
     {
-      "text": "竞品A",
-      "textColor": "text-gray-500"
+      "text": "竞品A"
     },
     {
-      "text": "竞品B",
-      "textColor": "text-gray-500"
+      "text": "竞品B"
     }
   ],
   "rows": [
@@ -21,16 +19,13 @@ export const defaultData = {
       "feature": "端到端加密",
       "columns": [
         {
-          "value": "✓",
-          "textColor": "text-green-600"
+          "value": "✓"
         },
         {
-          "value": "✗",
-          "textColor": "text-red-400"
+          "value": "✗"
         },
         {
-          "value": "✓",
-          "textColor": "text-green-600"
+          "value": "✓"
         }
       ]
     },
@@ -38,16 +33,13 @@ export const defaultData = {
       "feature": "无限消息历史",
       "columns": [
         {
-          "value": "✓",
-          "textColor": "text-green-600"
+          "value": "✓"
         },
         {
-          "value": "✓",
-          "textColor": "text-green-600"
+          "value": "✓"
         },
         {
-          "value": "✗",
-          "textColor": "text-red-400"
+          "value": "✗"
         }
       ]
     },
@@ -55,16 +47,13 @@ export const defaultData = {
       "feature": "私有部署",
       "columns": [
         {
-          "value": "✓",
-          "textColor": "text-green-600"
+          "value": "✓"
         },
         {
-          "value": "✗",
-          "textColor": "text-red-400"
+          "value": "✗"
         },
         {
-          "value": "✓",
-          "textColor": "text-green-600"
+          "value": "✓"
         }
       ]
     },
@@ -72,16 +61,13 @@ export const defaultData = {
       "feature": "AI 助手",
       "columns": [
         {
-          "value": "✓",
-          "textColor": "text-green-600"
+          "value": "✓"
         },
         {
-          "value": "✗",
-          "textColor": "text-red-400"
+          "value": "✗"
         },
         {
-          "value": "Beta",
-          "textColor": "text-yellow-500"
+          "value": "Beta"
         }
       ]
     },
@@ -89,19 +75,17 @@ export const defaultData = {
       "feature": "200+ 集成",
       "columns": [
         {
-          "value": "✓",
-          "textColor": "text-green-600"
+          "value": "✓"
         },
         {
-          "value": "✓",
-          "textColor": "text-green-600"
+          "value": "✓"
         },
         {
-          "value": "✗",
-          "textColor": "text-red-400"
+          "value": "✗"
         }
       ]
     }
   ]
 }
+
 export default defaultData

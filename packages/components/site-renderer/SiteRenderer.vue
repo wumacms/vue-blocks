@@ -1,10 +1,11 @@
 <script setup>
-import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, watchEffect, onMounted, onUnmounted } from 'vue'
 import PageRenderer from '../page-renderer/PageRenderer.vue'
 import NavbarBlock from '../navbar/NavbarBlock.vue'
 import FooterBlock from '../footer/FooterBlock.vue'
 import { builtInBlocks } from '../page-renderer/blockMap'
 import { defaultData } from './defaultData'
+import { applyTheme, resolveTheme } from '@vue-blocks/utils'
 
 defineOptions({
   name: 'SiteRenderer'
@@ -17,6 +18,14 @@ const props = defineProps({
   },
   variant: {
     type: [String, Number],
+    default: undefined
+  },
+  theme: {
+    type: [String, Number],
+    default: undefined
+  },
+  mode: {
+    type: String,
     default: undefined
   },
   navbar: {
@@ -89,8 +98,29 @@ const resolvedVariant = computed(() => {
   return undefined
 })
 
+const resolvedTheme = computed(() => {
+  return props.theme !== undefined ? props.theme : props.data?.theme
+})
+
+const resolvedMode = computed(() => {
+  return props.mode !== undefined ? props.mode : props.data?.mode
+})
+
+const resolvedThemeInfo = computed(() => {
+  return resolvedTheme.value !== undefined ? resolveTheme(resolvedTheme.value) : null
+})
+
+watchEffect(() => {
+  if (resolvedTheme.value !== undefined || resolvedMode.value !== undefined) {
+    applyTheme({
+      theme: resolvedTheme.value,
+      mode: resolvedMode.value
+    })
+  }
+})
+
 const resolvedContainerClass = computed(() => {
-  return props.containerClass ?? props.data?.containerClass ?? 'min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col transition-colors duration-300'
+  return props.containerClass ?? props.data?.containerClass ?? 'min-h-screen bg-background text-foreground flex flex-col transition-colors duration-300'
 })
 
 // 2. 路由路径标准化工具函数
@@ -477,7 +507,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="v-site-renderer relative flex-1 flex flex-col" :class="resolvedContainerClass" @click="handleContainerClick">
+  <div
+    class="v-site-renderer relative flex-1 flex flex-col"
+    :class="resolvedContainerClass"
+    :data-theme="resolvedThemeInfo?.key"
+    :data-mode="resolvedMode"
+    :style="resolvedThemeInfo?.isCustom ? { '--hue': String(resolvedThemeInfo.hue) } : undefined"
+    @click="handleContainerClick"
+  >
     <!-- 导航栏上方插槽（如全站公告栏） -->
     <slot name="before-navbar" />
 
@@ -497,28 +534,28 @@ onUnmounted(() => {
     <div class="site-main-wrapper flex-1 flex flex-col">
       <!-- 页面加载中指示器 -->
       <div v-if="isLoading" class="flex-1 flex items-center justify-center py-24">
-        <div class="inline-flex items-center gap-3 px-6 py-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur rounded-xl shadow-lg border border-slate-200/80 dark:border-slate-700/80">
-          <svg class="animate-spin h-5 w-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24">
+        <div class="inline-flex items-center gap-3 px-6 py-3 bg-card/80 backdrop-blur rounded-xl shadow-lg border border-border">
+          <svg class="animate-spin h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
           </svg>
-          <span class="text-sm font-medium text-slate-700 dark:text-slate-300">页面加载中...</span>
+          <span class="text-sm font-medium text-foreground">页面加载中...</span>
         </div>
       </div>
 
       <!-- 404 兜底展示 -->
       <div v-else-if="is404 && !currentPageData" class="flex-1 flex flex-col items-center justify-center py-20 px-4 text-center">
         <slot name="not-found" :path="activePath" :navigate-to="navigateTo">
-          <div class="max-w-md w-full bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm border border-slate-200 dark:border-slate-800">
+          <div class="max-w-md w-full bg-card rounded-2xl p-8 shadow-sm border border-border">
             <span class="inline-block text-6xl mb-4">🔍</span>
-            <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">404</h1>
-            <h2 class="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-2">页面未找到</h2>
-            <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 break-all">
-              抱歉，您访问的路径 <code class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded font-mono text-indigo-600">{{ activePath }}</code> 不存在或已被移除。
+            <h1 class="text-3xl font-extrabold text-foreground mb-2">404</h1>
+            <h2 class="text-lg font-semibold text-foreground mb-2">页面未找到</h2>
+            <p class="text-sm text-muted-foreground mb-6 break-all">
+              抱歉，您访问的路径 <code class="px-2 py-0.5 bg-muted rounded font-mono text-primary">{{ activePath }}</code> 不存在或已被移除。
             </p>
             <button
               type="button"
-              class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              class="w-full py-2.5 px-4 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-xl shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-ring"
               @click="navigateTo('/')"
             >
               返回网站首页

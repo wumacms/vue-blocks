@@ -48,7 +48,7 @@ const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.
                   v-for="(header, hIdx) in data.headers"
                   :key="hIdx"
                   scope="col"
-                  :class="[styles.th, header.textColor || '']"
+                  :class="[styles.th, header.isPrimary ? styles.thPrimary : '']"
                 >
                   {{ header.text }}
                 </th>
@@ -60,19 +60,19 @@ const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.
                 <td
                   v-for="(col, vIdx) in (row.columns || row.values || [row.val1, row.val2, row.val3])"
                   :key="vIdx"
-                  :class="[styles.tdValue, typeof col === 'object' && col ? (col.textColor || '') : '']"
+                  :class="[styles.tdValue, data.headers?.[vIdx]?.isPrimary ? styles.tdPrimary : '']"
                 >
                   <template v-if="typeof col === 'object' && col !== null">
                     <span v-if="col.value === true || col.value === '✓'" :class="styles.iconCheck">✓</span>
                     <span v-else-if="col.value === false || col.value === '—' || col.value === '-'" :class="styles.iconDash">—</span>
                     <span v-else-if="col.value === '✗'" :class="styles.iconCross">✗</span>
-                    <span v-else>{{ col.value }}</span>
+                    <span v-else :class="styles.badge">{{ col.value }}</span>
                   </template>
                   <template v-else>
                     <span v-if="col === true || col === '✓'" :class="styles.iconCheck">✓</span>
                     <span v-else-if="col === false || col === '—' || col === '-'" :class="styles.iconDash">—</span>
                     <span v-else-if="col === '✗'" :class="styles.iconCross">✗</span>
-                    <span v-else>{{ col }}</span>
+                    <span v-else :class="styles.badge">{{ col }}</span>
                   </template>
                 </td>
               </tr>

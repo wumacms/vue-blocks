@@ -34,21 +34,23 @@ yarn add vue-blocks
 
 ---
 
-## 🎨 配置样式
+## 🎨 配置样式与动态主题
 
 ### 方式一：项目中已启用 Tailwind CSS 4（推荐）
 
-如果您的项目已安装 Tailwind CSS 4，只需在主 CSS 文件中通过 `@source` 声明组件库路径，Tailwind 即可自动提取所有区块的样式：
+如果您的项目已安装 Tailwind CSS 4，只需在主 CSS 文件中引入 `@import "vue-blocks/theme.css";`（加载 OKLCH 语义令牌与色相层）并通过 `@source` 声明组件库路径即可：
 
 ```css [src/style.css]
 @import "tailwindcss";
+@import "vue-blocks/theme.css";
 @source "../node_modules/vue-blocks";
 ```
 
 ### 方式二：零 Tailwind 依赖引入预编译 CSS
 
-如果您的项目没有安装 Tailwind CSS，可直接引入组件库打包好的静态样式：
+如果您的项目未安装 Tailwind CSS，可直接引入组件库打包好的静态样式与主题令牌：
 
 ```js [src/main.js]
 import 'vue-blocks/dist/style.css'
+import 'vue-blocks/theme.css'
 ```

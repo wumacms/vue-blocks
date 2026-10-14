@@ -63,6 +63,8 @@ export interface BlockItem {
   type: string
   id?: string
   variant?: string | number
+  theme?: string | number
+  mode?: 'light' | 'dark'
   data?: Record<string, any>
   styles?: Record<string, any>
 }
@@ -76,6 +78,8 @@ export interface PageSEO {
 
 export interface PageData {
   variant?: string | number
+  theme?: string | number
+  mode?: 'light' | 'dark'
   seo?: PageSEO
   title?: string
   description?: string
@@ -96,6 +100,8 @@ export type PageRendererComponentType = DefineComponent<
   {
     data?: PageData | BlockItem[]
     variant?: string | number
+    theme?: string | number
+    mode?: 'light' | 'dark'
     navbar?: any
     footer?: any
     seo?: PageSEO | boolean
@@ -121,6 +127,8 @@ export type AsyncPageLoader = () => Promise<PageData | { default: PageData } | a
 
 export interface SiteData {
   variant?: string | number
+  theme?: string | number
+  mode?: 'light' | 'dark'
   containerClass?: string
   routeMode?: 'hash' | 'history' | 'memory'
   defaultPath?: string
@@ -134,6 +142,8 @@ export type SiteRendererComponentType = DefineComponent<
   {
     data?: SiteData
     variant?: string | number
+    theme?: string | number
+    mode?: 'light' | 'dark'
     navbar?: any
     footer?: any
     pages?: Record<string, PageData | AsyncPageLoader> | Array<PageData & { path: string }>
@@ -163,6 +173,13 @@ export type SiteRendererComponentType = DefineComponent<
 export const SiteRenderer: SiteRendererComponentType
 export const SiteRendererComponent: SiteRendererComponentType
 export const siteRendererDefaultData: SiteData
+
+// 主题常量与工具函数
+export declare const THEME_HUES: Record<string, number>
+export declare const THEME_NAMES: Record<string, string>
+export declare function getThemePresets(): Array<{ key: string; name: string; hue: number; swatch: string }>
+export declare function resolveTheme(theme?: string | number): { key: string; hue: number; isCustom: boolean }
+export declare function applyTheme(options?: { theme?: string | number; mode?: 'light' | 'dark'; target?: HTMLElement | null }): void
 
 // 工具函数声明
 export declare function mergeData<T extends Record<string, any>>(defaults: T, custom?: Partial<T>): T

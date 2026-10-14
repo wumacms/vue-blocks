@@ -54,13 +54,13 @@ import { NavbarBlock, HeroBlock, FeaturesBlock, FooterBlock } from 'vue-blocks'
 </template>
 ```
 
-### 变体切换 (统一主题体系)
+### 变体切换 (统一风格体系)
 
 全系 22 组区块均支持通过 `variant` 参数统一切换设计风格（支持数字标识与语义化别名，可单区块指定或由渲染器全站统一调度）：
 - **`variant="1"`**（或 **`"clean"`** / **`"modern"`**）：SaaS 现代简约风格（默认）
-- **`variant="2"`**（或 **`"brutalism"`** / **`"retro"`**）：波普复古 / 新粗野主义风格（粗描边、实体硬阴影、高反差撞色）
-- **`variant="3"`**（或 **`"editorial"`** / **`"warm"`** / **`"paper"`** / **`"anthropic"`**）：人文科技 / 暖调纸质叙事风格（Anthropic/Claude 风格，温润羊皮纸底、陶土珊瑚橙、经典衬线体）
-- **`variant="4"`**（或 **`"geek"`** / **`"developer"`** / **`"dev"`** / **`"technical"`** / **`"edutech"`** / **`"cyber"`**）：工科极客 / 技术新粗野主义风格（DevPath 风格，代码工程网格底纹、2px 黑白硬实体边框、终端色条、大写几何标题）
+- **`variant="2"`**（或 **`"brutalism"`** / **`"retro"`**）：波普复古 / 新粗野主义风格（4px 实体黑粗边框、纯硬阴影）
+- **`variant="3"`**（或 **`"editorial"`** / **`"warm"`** / **`"paper"`** / **`"anthropic"`**）：人文科技 / 暖调纸质叙事风格（Anthropic/Claude 风格，温润纸质微色度底、经典衬线体）
+- **`variant="4"`**（或 **`"geek"`** / **`"developer"`** / **`"dev"`** / **`"technical"`**）：工科极客 / 技术新粗野主义风格（终端文字阴影、自适应前景色网格底纹、大写等宽字体）
 
 ```vue
 <template>
@@ -72,6 +72,34 @@ import { NavbarBlock, HeroBlock, FeaturesBlock, FooterBlock } from 'vue-blocks'
 
   <!-- 方式 2：通过编排容器实现全站 22 个区块一键联动换皮 -->
   <!-- <SiteRenderer :variant="'geek'" /> -->
+</template>
+```
+
+### 动态主题与明暗模式 (`theme` & `mode`)
+
+结合 OKLCH 动态主题体系，可在 `SiteRenderer` 或 `PageRenderer` 上直接绑定主题色相与明暗模式：
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { SiteRenderer, applyTheme } from 'vue-blocks'
+
+// 支持 10 种内置色相名称或 0-360 任意色相角数值
+const currentTheme = ref('emerald') // 'blue' | 'purple' | 'rose' | 'amber' | 155 ...
+const currentMode = ref<'light' | 'dark'>('dark')
+
+// 也可通过工具函数编程式应用到全局
+function setGlobalTheme(themeName: string) {
+  applyTheme({ theme: themeName, mode: currentMode.value })
+}
+</script>
+
+<template>
+  <SiteRenderer
+    :variant="'1'"
+    :theme="currentTheme"
+    :mode="currentMode"
+  />
 </template>
 ```
 

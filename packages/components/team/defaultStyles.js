@@ -1,51 +1,51 @@
 export const defaultStyles = {
-  '1': {
-    root: 'py-20 bg-white dark:bg-gray-900 transition-colors duration-300',
-    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
-    header: 'text-center max-w-3xl mx-auto mb-16',
-    title: 'text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4',
-    description: 'text-lg text-gray-600 dark:text-gray-400',
-    grid: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8',
-    card: 'text-center p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition',
-    avatar: 'w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md border-2 border-white dark:border-gray-700',
-    name: 'text-lg font-bold text-gray-900 dark:text-white',
-    role: 'text-sm text-indigo-600 dark:text-indigo-400 font-medium mt-1'
-  },
-  '2': {
-    root: 'py-20 bg-[#e9e2ff] dark:bg-[#1a103d] border-b-4 border-[#ffb347] transition-colors duration-300 relative overflow-hidden',
-    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
-    header: 'text-center max-w-3xl mx-auto mb-16',
-    title: 'text-3xl md:text-5xl font-black text-[#120b48] dark:text-white mb-4 tracking-tight',
-    description: 'text-lg text-[#2c1b6b] dark:text-[#c4b5fd] font-semibold',
-    grid: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8',
-    card: 'text-center p-6 rounded-3xl bg-white dark:bg-[#2c1b6b] border-4 border-[#120b48] dark:border-[#ffb347] shadow-[8px_8px_0_#ff5c8a] dark:shadow-[8px_8px_0_#b47aff] hover:shadow-[3px_3px_0_#ff5c8a] dark:hover:shadow-[3px_3px_0_#b47aff] hover:translate-x-1 hover:translate-y-1 transition-all',
-    avatar: 'w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-[#120b48] dark:border-[#ffb347] shadow-[4px_4px_0_#ffb347] dark:shadow-[4px_4px_0_#ff5c8a]',
-    name: 'text-xl font-black text-[#120b48] dark:text-white',
-    role: 'text-sm font-black text-[#ff5c8a] dark:text-[#ffb347] mt-1 uppercase tracking-wide'
-  },
-  '3': {
-    root: 'py-20 bg-[#faf9f5] dark:bg-[#141413] transition-colors duration-300 border-b border-[#e6dfd8] dark:border-[#2a2824]',
-    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
-    header: 'text-center max-w-3xl mx-auto mb-16',
-    title: 'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-[#141413] dark:text-[#faf9f5] mb-4',
-    description: 'text-lg text-[#3d3d3a] dark:text-[#d4d0c8]',
-    grid: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8',
-    card: 'text-center p-6 rounded-xl bg-transparent transition-colors',
-    avatar: 'w-28 h-28 rounded-full mx-auto mb-4 object-cover border border-[#e6dfd8] dark:border-[#2a2824]',
-    name: 'text-lg font-semibold text-[#141413] dark:text-[#faf9f5]',
-    role: 'text-sm text-[#6c6a64] dark:text-[#a09d96] mt-1'
-  },
-  '4': {
-    root: 'py-20 bg-slate-50 dark:bg-slate-900 border-b-2 border-black dark:border-white transition-colors duration-200',
-    container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
-    header: 'text-center max-w-3xl mx-auto mb-16',
-    title: 'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 dark:text-white mb-4',
-    description: 'text-base md:text-lg text-slate-700 dark:text-slate-300 font-medium',
-    grid: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8',
-    card: 'text-center p-6 bg-white dark:bg-slate-800 border-2 border-black dark:border-white shadow-[4px_4px_0_black] dark:shadow-[4px_4px_0_white] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_black] dark:hover:shadow-[8px_8px_0_white] transition-all -rotate-1 hover:rotate-0',
-    avatar: 'w-24 h-24 mx-auto mb-4 object-cover border-2 border-black dark:border-white shadow-[3px_3px_0_black] dark:shadow-[3px_3px_0_white]',
-    name: 'text-lg font-extrabold uppercase tracking-tight text-slate-900 dark:text-white',
-    role: 'text-xs font-bold uppercase tracking-wider text-indigo-800 dark:text-indigo-400 mt-1'
-  }
+'1': {
+ root:'py-20 bg-card text-card-foreground transition-colors duration-300',
+ container:'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+ header:'text-center max-w-3xl mx-auto mb-16',
+ title:'text-3xl md:text-4xl font-bold text-foreground mb-4',
+ description:'text-lg text-muted-foreground',
+ grid:'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8',
+ card:'text-center p-6 rounded-2xl bg-card border border-border hover:bg-muted/50 transition',
+ avatar:'w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md border-2 border-border',
+ name:'text-lg font-bold text-foreground',
+ role:'text-sm text-primary font-medium mt-1'
+ },
+'2': {
+ root:'py-20 bg-primary/10 border-b-4 border-foreground transition-colors duration-300 relative overflow-hidden',
+ container:'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+ header:'text-center max-w-3xl mx-auto mb-16',
+ title:'text-3xl md:text-5xl font-black text-foreground mb-4 tracking-tight',
+ description:'text-lg text-foreground/80 font-semibold',
+ grid:'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8',
+ card:'text-center p-6 rounded-3xl bg-card border-4 border-foreground shadow-[8px_8px_0_var(--color-foreground)] hover:shadow-[3px_3px_0_var(--color-foreground)] hover:translate-x-1 hover:translate-y-1 transition-all',
+ avatar:'w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-foreground shadow-[4px_4px_0_var(--color-foreground)]',
+ name:'text-xl font-black text-foreground',
+ role:'text-sm font-black text-primary dark:text-[var(--color-primary)] mt-1 uppercase tracking-wide'
+ },
+'3': {
+ root:'py-20 bg-background transition-colors duration-300 border-b border-border',
+ container:'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+ header:'text-center max-w-3xl mx-auto mb-16',
+ title:'font-serif text-3xl md:text-5xl font-medium tracking-[-0.5px] text-foreground mb-4',
+ description:'text-lg text-muted-foreground',
+ grid:'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8',
+ card:'text-center p-6 rounded-xl bg-transparent transition-colors',
+ avatar:'w-28 h-28 rounded-full mx-auto mb-4 object-cover border border-border',
+ name:'text-lg font-semibold text-foreground',
+ role:'text-sm text-[var(--color-muted-foreground)] dark:text-muted-foreground mt-1'
+ },
+'4': {
+ root:'py-20 bg-background border-b-2 border-foreground transition-colors duration-200',
+ container:'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+ header:'text-center max-w-3xl mx-auto mb-16',
+ title:'text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-foreground mb-4',
+ description:'text-base md:text-lg text-muted-foreground font-medium',
+ grid:'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8',
+ card:'text-center p-6 bg-card border-2 border-foreground shadow-[4px_4px_0_var(--color-foreground)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_var(--color-foreground)] transition-all -rotate-1 hover:rotate-0',
+ avatar:'w-24 h-24 mx-auto mb-4 object-cover border-2 border-foreground shadow-[3px_3px_0_var(--color-foreground)]',
+ name:'text-lg font-extrabold uppercase tracking-tight text-foreground',
+ role:'text-xs font-bold uppercase tracking-wider text-primary mt-1'
+ }
 }
 export default defaultStyles

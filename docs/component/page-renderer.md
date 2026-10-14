@@ -313,6 +313,9 @@ app.mount('#app')
 | 参数 | 说明 | 类型 | 默认值 |
 | :--- | :--- | :--- | :--- |
 | `data` | 页面配置对象（支持对象或纯数组） | `PageData \| BlockItem[]` | `defaultData` |
+| `variant` | 页面级统一变体（优先级低于区块自身的 `variant`） | `string \| number` | `undefined` |
+| `theme` | 页面级主题色相（内置色相别名如 `'emerald'` 或 0-360 数值色相角） | `ThemeHue \| string \| number` | `undefined` |
+| `mode` | 页面级明暗模式，驱动 OKLCH 感知均匀色彩模型 | `'light' \| 'dark'` | `undefined` |
 | `navbar` | 可选导航栏组件（组件对象、组件名、区块配置或布尔值，在 `<main>` 外部渲染） | `Component \| string \| BlockItem \| boolean` | `undefined` |
 | `footer` | 可选页脚组件（组件对象、组件名、区块配置或布尔值，在 `<main>` 外部渲染） | `Component \| string \| BlockItem \| boolean` | `undefined` |
 | `seo` | 页面级 SEO 配置对象（设为 `false` 可完全关闭 SEO 同步） | `PageSEO \| boolean` | `undefined` |

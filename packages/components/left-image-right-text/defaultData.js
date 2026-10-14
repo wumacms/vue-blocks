@@ -5,10 +5,10 @@ export const defaultData = {
   "imageAlt": "三位年轻职场人士在开放式办公室使用笔记本电脑进行团队讨论",
   "tags": [
     {
-      "text": "✓ 端到端加密"
+      "text": "端到端加密"
     },
     {
-      "text": "✓ 无限历史记录"
+      "text": "无限历史记录"
     }
   ]
 }

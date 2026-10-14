@@ -8,11 +8,16 @@ const deleteUIPackage = () => {
   return deleteAsync(outputDir, { force: true })
 }
 
-// 拷贝 README、package.json 和 index.d.ts 类型声明文件
+// 拷贝 README、package.json、index.d.ts 以及 theme.css 样式文件
 const copyPackageInfo = () => {
   return new Promise((resolve) => {
     gulp
-      .src([join(inputDir, 'README.md'), join(inputDir, 'package.json'), join(inputDir, 'index.d.ts')], {
+      .src([
+        join(inputDir, 'README.md'),
+        join(inputDir, 'package.json'),
+        join(inputDir, 'index.d.ts'),
+        join(inputDir, 'theme.css')
+      ], {
         encoding: false,
         allowEmpty: true
       })
