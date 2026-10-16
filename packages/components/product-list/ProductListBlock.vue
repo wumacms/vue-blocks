@@ -47,23 +47,34 @@ const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.
           >
             <div :class="styles.imageWrapper">
               <img :src="prod.image" :alt="prod.imageAlt || prod.title" :class="styles.image" />
-              <span v-if="prod.tag" :class="styles.tag">{{ prod.tag }}</span>
+              <span v-if="prod.badge || prod.tag" :class="[styles.tag, prod.badgeColor]">
+                {{ prod.badge || prod.tag }}
+              </span>
             </div>
             <div :class="styles.cardBody">
               <h3 :class="styles.productTitle">{{ prod.title }}</h3>
               <p :class="styles.productDescription">{{ prod.description }}</p>
+              <div v-if="prod.tags && prod.tags.length" class="flex flex-wrap gap-1.5 mb-4">
+                <span
+                  v-for="(t, tIdx) in prod.tags"
+                  :key="tIdx"
+                  class="text-xs px-2 py-0.5 rounded bg-muted text-muted-foreground font-medium"
+                >
+                  {{ t.text || t }}
+                </span>
+              </div>
               <div :class="styles.footer">
-                <div :class="styles.priceWrapper">
-                  <span v-if="prod.price" :class="styles.price">{{ prod.price }}</span>
+                <div v-if="prod.price" :class="styles.priceWrapper">
+                  <span :class="styles.price">{{ prod.price }}</span>
                   <span v-if="prod.originalPrice" :class="styles.originalPrice">{{ prod.originalPrice }}</span>
                 </div>
                 <a
-                  v-if="prod.btnText"
-                  :href="prod.btnLink || '#'"
+                  v-if="prod.link || prod.btnLink || prod.btnText"
+                  :href="prod.link || prod.btnLink || '#'"
                   :target="prod.newWindow ? '_blank' : '_self'"
                   :class="styles.button"
                 >
-                  {{ prod.btnText }}
+                  {{ prod.btnText || '了解详情 →' }}
                 </a>
               </div>
             </div>

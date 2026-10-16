@@ -94,16 +94,19 @@ const resolvedSiteTitle = computed(() => {
 
 const resolvedVariant = computed(() => {
   if (props.variant !== undefined) return String(props.variant)
+  if (currentPageData.value?.variant !== undefined) return String(currentPageData.value.variant)
   if (props.data?.variant !== undefined) return String(props.data?.variant)
   return undefined
 })
 
 const resolvedTheme = computed(() => {
-  return props.theme !== undefined ? props.theme : props.data?.theme
+  if (props.theme !== undefined) return props.theme
+  return currentPageData.value?.theme ?? props.data?.theme
 })
 
 const resolvedMode = computed(() => {
-  return props.mode !== undefined ? props.mode : props.data?.mode
+  if (props.mode !== undefined) return props.mode
+  return currentPageData.value?.mode ?? props.data?.mode
 })
 
 const resolvedThemeInfo = computed(() => {
@@ -165,19 +168,35 @@ const activePath = ref(
 )
 
 // 4. 标准化 pages 集合为字典映射表
+// 4. 标准化 pages 集合为字典映射表（默认数据源打底，外部自定义 pages 高优先级覆盖）
 const normalizedPages = computed(() => {
-  const raw = props.pages || props.data?.pages || {}
   const map = {}
 
-  if (Array.isArray(raw)) {
-    raw.forEach((item) => {
+  // 4.1 注入全站默认页面（作为未显式覆盖路由的缺省兜底）
+  const defaultRaw = props.data?.pages || {}
+  if (Array.isArray(defaultRaw)) {
+    defaultRaw.forEach((item) => {
       if (item && item.path) {
         map[normalizePath(item.path)] = item
       }
     })
-  } else if (typeof raw === 'object' && raw !== null) {
-    Object.keys(raw).forEach((key) => {
-      map[normalizePath(key)] = raw[key]
+  } else if (typeof defaultRaw === 'object' && defaultRaw !== null) {
+    Object.keys(defaultRaw).forEach((key) => {
+      map[normalizePath(key)] = defaultRaw[key]
+    })
+  }
+
+  // 4.2 若传入了外部 pages，以自定义 pages 进行高优先级覆盖
+  const customRaw = props.pages
+  if (Array.isArray(customRaw)) {
+    customRaw.forEach((item) => {
+      if (item && item.path) {
+        map[normalizePath(item.path)] = item
+      }
+    })
+  } else if (typeof customRaw === 'object' && customRaw !== null) {
+    Object.keys(customRaw).forEach((key) => {
+      map[normalizePath(key)] = customRaw[key]
     })
   }
 
@@ -357,7 +376,7 @@ function resolveComponentConfig(input, defaultFallback, defaultType) {
 
   if (source === true) {
     const comp = resolveBlock(defaultType)
-    return comp ? { component: comp, props: { variant: resolvedVariant.value } } : null
+    return comp ? { component: comp, props: { variant: resolvedVariant.value, theme: resolvedTheme.value, mode: resolvedMode.value } } : null
   }
 
   // 1. 直接传入组件对象或渲染函数
@@ -365,13 +384,13 @@ function resolveComponentConfig(input, defaultFallback, defaultType) {
     typeof source === 'function' ||
     (typeof source === 'object' && !source.type && !source.is && (source.render || source.setup || source.__vccOpts || source.name))
   ) {
-    return { component: source, props: { variant: resolvedVariant.value } }
+    return { component: source, props: { variant: resolvedVariant.value, theme: resolvedTheme.value, mode: resolvedMode.value } }
   }
 
   // 2. 字符串组件名
   if (typeof source === 'string') {
     const comp = resolveBlock(source)
-    return comp ? { component: comp, props: { variant: resolvedVariant.value } } : null
+    return comp ? { component: comp, props: { variant: resolvedVariant.value, theme: resolvedTheme.value, mode: resolvedMode.value } } : null
   }
 
   // 3. 区块配置对象
@@ -384,6 +403,8 @@ function resolveComponentConfig(input, defaultFallback, defaultType) {
       props: {
         id: source.id,
         variant: source.lockVariant ? (source.variant || '1') : (resolvedVariant.value || source.variant),
+        theme: resolvedTheme.value !== undefined ? resolvedTheme.value : source.theme,
+        mode: resolvedMode.value !== undefined ? resolvedMode.value : source.mode,
         data: source.data,
         styles: source.styles
       }
@@ -519,7 +540,7 @@ onUnmounted(() => {
     <slot name="before-navbar" />
 
     <!-- 全站公共导航栏 -->
-    <slot name="navbar" :active-path="activePath" :navigate-to="navigateTo">
+    <slot name="navbar" :active-path="activePath" :navigate-to="navigateTo" :theme="resolvedTheme" :mode="resolvedMode">
       <component
         :is="resolvedNavbar.component"
         v-if="resolvedNavbar"
@@ -567,9 +588,11 @@ onUnmounted(() => {
       <!-- 正式页面内容渲染（复用 PageRenderer 并托管 SEO、主体区块与统一变体） -->
       <PageRenderer
         v-else-if="currentPageData"
-        :key="`${activePath}_${resolvedVariant || 'default'}`"
+        :key="`${activePath}_${resolvedVariant || 'default'}_${resolvedTheme || 'default'}_${resolvedMode || 'default'}`"
         :data="currentPageData"
         :variant="resolvedVariant"
+        :theme="resolvedTheme"
+        :mode="resolvedMode"
         :navbar="false"
         :footer="false"
         :seo="currentPageSeo"
@@ -581,7 +604,7 @@ onUnmounted(() => {
     <slot name="before-footer" />
 
     <!-- 全站公共页脚 -->
-    <slot name="footer" :active-path="activePath" :navigate-to="navigateTo">
+    <slot name="footer" :active-path="activePath" :navigate-to="navigateTo" :theme="resolvedTheme" :mode="resolvedMode">
       <component
         :is="resolvedFooter.component"
         v-if="resolvedFooter"

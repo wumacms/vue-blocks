@@ -54,11 +54,11 @@ const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.
                 <span v-if="item.date" :class="styles.date">{{ item.date }}</span>
               </div>
               <h3 :class="styles.newsTitle">
-                <a :href="item.link || '#'">{{ item.title }}</a>
+                <a :href="item.link || '#'" :target="item.newWindow ? '_blank' : '_self'">{{ item.title }}</a>
               </h3>
               <p :class="styles.summary">{{ item.summary }}</p>
               <div>
-                <a :href="item.link || '#'" :class="styles.moreLink">
+                <a :href="item.link || '#'" :target="item.newWindow ? '_blank' : '_self'" :class="styles.moreLink">
                   阅读全文 →
                 </a>
               </div>

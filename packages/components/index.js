@@ -22,6 +22,7 @@ export * from './contact-form/index.js'
 export * from './footer/index.js'
 export * from './page-renderer/index.js'
 export * from './site-renderer/index.js'
+export * from './manifests.js'
 
 export { default as NavbarBlock } from './navbar/index.js'
 export { default as HeroBlock } from './hero/index.js'

@@ -1,8 +1,8 @@
 <script setup>
-import { computed, watchEffect, onUnmounted } from 'vue'
+import { computed, watchEffect, onUnmounted, provide } from 'vue'
 import { builtInBlocks } from './blockMap'
 import { defaultData } from './defaultData'
-import { applyTheme, resolveTheme } from '@vue-blocks/utils'
+import { applyTheme, resolveTheme, blockRegistry } from '@vue-blocks/utils'
 
 defineOptions({
   name: 'PageRenderer'
@@ -36,10 +36,17 @@ const props = defineProps({
   seo: {
     type: [Object, Boolean],
     default: undefined
+  },
+  editable: {
+    type: Boolean,
+    default: false
   }
 })
 
-const emit = defineEmits(['submit'])
+const emit = defineEmits(['submit', 'select', 'block-select'])
+
+// 提供全局编辑模式上下文，供底层子组件和指令感知
+provide('WUMA_EDITOR_MODE', computed(() => props.editable))
 
 // 规范化配置数据，安全兼顾 Array 与 Object 结构
 const pageConfig = computed(() => {
@@ -58,7 +65,7 @@ const pageConfig = computed(() => {
     }
   }
   return {
-    variant: props.variant || raw?.variant,
+    variant: props.variant !== undefined ? String(props.variant) : raw?.variant,
     theme: props.theme !== undefined ? props.theme : raw?.theme,
     mode: props.mode !== undefined ? props.mode : raw?.mode,
     seo: raw?.seo,
@@ -73,10 +80,10 @@ const pageConfig = computed(() => {
   }
 })
 
-// 解析区块组件：内置组件优先，未匹配时交由 Vue 全局解析（支持外部扩展）
+// 解析区块组件：物料中心优先，其次内置映射，最后交由 Vue 全局解析（支持外部扩展）
 function resolveBlock(type) {
   if (!type) return null
-  return builtInBlocks[type] || type
+  return blockRegistry.getComponent(type) || builtInBlocks[type] || type
 }
 
 // 统一解析导航栏或页脚配置，支持传入组件对象、组件名字符串、配置对象或布尔值
@@ -117,7 +124,7 @@ function resolveBlockConfig(input, defaultType) {
       component: comp,
       props: {
         id: input.id,
-        variant: input.lockVariant ? (input.variant || '1') : (pageConfig.value.variant || input.variant),
+        variant: resolveBlockVariant(input),
         data: input.data,
         styles: input.styles
       },
@@ -128,11 +135,13 @@ function resolveBlockConfig(input, defaultType) {
   return null
 }
 
-// 统一解析区块变体：支持全局变体渗透，同时允许单个区块通过 lockVariant 锁定变体
+// 统一解析区块变体：优先支持全局变体渗透，若区块显式标记了 lockVariant 则锁定自身变体
 function resolveBlockVariant(block) {
   if (!block) return '1'
-  if (block.lockVariant) return block.variant || '1'
-  return pageConfig.value.variant || block.variant || '1'
+  if (block.lockVariant) {
+    return String(block.variant || '1')
+  }
+  return String(pageConfig.value.variant || block.variant || '1')
 }
 
 const resolvedNavbar = computed(() => {
@@ -221,6 +230,42 @@ function handleSubmit(payload, block, index) {
   emit('submit', payload, { block, index })
 }
 
+// 可视化编辑态：捕获点击事件并向上冒泡元素选择信息
+function handleContainerClick(event) {
+  if (!props.editable) return
+
+  const target = event.target
+  if (!target) return
+
+  // 若点击源自编辑器自身的内部 UI 控件（例如快捷操作条、浮动按钮等），直接放行
+  if (target.closest('[data-wuma-editor-ui]')) return
+
+  // 处于编辑模式，全量阻止默认的链接跳转与按钮行为
+  event.preventDefault()
+  event.stopPropagation()
+
+  const blockEl = target.closest('[data-wuma-block-id]')
+  const fieldEl = target.closest('[data-wuma-field], [data-wuma-field-path]')
+
+  if (blockEl) {
+    const blockIndexAttr = blockEl.getAttribute('data-wuma-block-index')
+    const payload = {
+      blockId: blockEl.getAttribute('data-wuma-block-id') || '',
+      blockType: blockEl.getAttribute('data-wuma-block-type') || '',
+      blockIndex: blockIndexAttr !== null && blockIndexAttr !== '' ? Number(blockIndexAttr) : undefined,
+      fieldName: fieldEl?.getAttribute('data-wuma-field') || undefined,
+      fieldPath: fieldEl?.getAttribute('data-wuma-field-path') || undefined,
+      targetRect: (fieldEl || blockEl).getBoundingClientRect()
+    }
+    emit('select', payload)
+    emit('block-select', payload)
+  } else {
+    // 点击在页面容器空白区域（非任何区块内部）：抛出取消选中事件
+    emit('select', null)
+    emit('block-select', null)
+  }
+}
+
 // 响应式应用动态主题与明暗模式
 const resolvedThemeInfo = computed(() => {
   return pageConfig.value.theme !== undefined ? resolveTheme(pageConfig.value.theme) : null
@@ -242,7 +287,9 @@ watchEffect(() => {
     :class="pageConfig.containerClass"
     :data-theme="resolvedThemeInfo?.key"
     :data-mode="pageConfig.mode"
+    :data-wuma-editable="props.editable ? 'true' : undefined"
     :style="resolvedThemeInfo?.isCustom ? { '--hue': String(resolvedThemeInfo.hue) } : undefined"
+    @click.capture="handleContainerClick"
   >
     <!-- 1. 可选导航栏组件（独立于 <main> 外部，属于全局视口头部） -->
     <slot name="navbar">
@@ -250,6 +297,8 @@ watchEffect(() => {
         :is="resolvedNavbar.component"
         v-if="resolvedNavbar"
         v-bind="resolvedNavbar.props"
+        :data-wuma-block-id="props.editable ? 'navbar' : undefined"
+        :data-wuma-block-type="props.editable ? (resolvedNavbar.raw?.type || 'NavbarBlock') : undefined"
         @submit="(payload) => handleSubmit(payload, resolvedNavbar.raw, 'navbar')"
       />
     </slot>
@@ -264,6 +313,9 @@ watchEffect(() => {
           :is="resolveBlock(block?.type)"
           v-if="block?.type"
           :id="block.id"
+          :data-wuma-block-id="props.editable ? (block?.id || `${block?.type || 'block'}_${index}`) : undefined"
+          :data-wuma-block-type="props.editable ? block?.type : undefined"
+          :data-wuma-block-index="props.editable ? index : undefined"
           :variant="resolveBlockVariant(block)"
           :data="block.data"
           :styles="block.styles"
@@ -278,6 +330,8 @@ watchEffect(() => {
         :is="resolvedFooter.component"
         v-if="resolvedFooter"
         v-bind="resolvedFooter.props"
+        :data-wuma-block-id="props.editable ? 'footer' : undefined"
+        :data-wuma-block-type="props.editable ? (resolvedFooter.raw?.type || 'FooterBlock') : undefined"
         @submit="(payload) => handleSubmit(payload, resolvedFooter.raw, 'footer')"
       />
     </slot>

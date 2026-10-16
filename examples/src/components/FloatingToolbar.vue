@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { getThemePresets, applyTheme as applyThemeUtil } from 'vue-blocks'
 
 const props = defineProps({
@@ -14,6 +14,10 @@ const props = defineProps({
   theme: {
     type: [String, Number],
     default: 'blue'
+  },
+  mode: {
+    type: String,
+    default: undefined
   },
   variants: {
     type: Array,
@@ -34,13 +38,14 @@ const emit = defineEmits([
   'update:modelValue',
   'update:heroVariant',
   'update:theme',
+  'update:mode',
   'changeVariant',
   'changeTheme',
   'changeThemeColor'
 ])
 
-const isDark = ref(false)
-const themeMode = ref('light')
+const themeMode = ref(props.mode || 'light')
+const isDark = ref(themeMode.value === 'dark')
 const activePopup = ref(null)
 const floatingBarRef = ref(null)
 const bottomOffset = ref(24)
@@ -65,12 +70,9 @@ function applyMode(mode) {
   try {
     localStorage.setItem('vb-mode', mode)
   } catch {}
-  if (mode === 'dark') {
-    isDark.value = true
-  } else {
-    isDark.value = false
-  }
+  isDark.value = mode === 'dark'
   applyThemeUtil({ theme: currentTheme.value, mode })
+  emit('update:mode', mode)
   emit('changeTheme', { mode, isDark: isDark.value })
 }
 
@@ -79,6 +81,26 @@ function toggleMode() {
   applyMode(nextMode)
   activePopup.value = null
 }
+
+watch(
+  () => props.mode,
+  (newMode) => {
+    if (newMode && newMode !== themeMode.value) {
+      themeMode.value = newMode
+      isDark.value = newMode === 'dark'
+      applyThemeUtil({ theme: currentTheme.value, mode: newMode })
+    }
+  }
+)
+
+watch(
+  () => props.theme,
+  (newTheme) => {
+    if (newTheme) {
+      applyThemeUtil({ theme: String(newTheme), mode: themeMode.value })
+    }
+  }
+)
 
 function selectVariant(v) {
   try {
@@ -137,17 +159,17 @@ function scrollToTop() {
 }
 
 onMounted(() => {
-  const savedMode = localStorage.getItem('vb-mode')
-  if (savedMode && ['light', 'dark'].includes(savedMode)) {
-    applyMode(savedMode)
+  const initialMode = props.mode || localStorage.getItem('vb-mode')
+  if (initialMode && ['light', 'dark'].includes(initialMode)) {
+    applyMode(initialMode)
   } else {
     const isDarkSys = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
     applyMode(isDarkSys ? 'dark' : 'light')
   }
 
-  const savedTheme = localStorage.getItem('vb-theme')
-  if (savedTheme) {
-    selectThemeColor(savedTheme)
+  const initialTheme = props.theme || localStorage.getItem('vb-theme')
+  if (initialTheme) {
+    selectThemeColor(initialTheme)
   }
 
   document.addEventListener('click', handleOutsideClick)

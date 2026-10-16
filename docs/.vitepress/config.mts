@@ -47,7 +47,8 @@ export default defineConfig({
           items: [
             { text: '安装指南', link: '/guide/install' },
             { text: '快速开始', link: '/guide/quickstart' },
-            { text: '架构与覆盖规范', link: '/guide/architecture' }
+            { text: '架构与覆盖规范', link: '/guide/architecture' },
+            { text: '可视化编辑器底座设计', link: '/guide/visual-editor-design' }
           ]
         }
       ],

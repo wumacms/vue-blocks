@@ -67,6 +67,15 @@ const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.
           </div>
         </div>
       </slot>
+      <div v-if="data.moreText" :class="styles.bottomMore || 'mt-12 text-center'">
+        <a
+          :href="data.moreLink || '#'"
+          :target="data.moreNewWindow ? '_blank' : '_self'"
+          :class="styles.moreButton || 'inline-flex items-center px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition shadow-sm'"
+        >
+          {{ data.moreText }}
+        </a>
+      </div>
     </div>
   </section>
 </template>

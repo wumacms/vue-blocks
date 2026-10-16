@@ -21,6 +21,8 @@ import CtaBlock from '../cta/CtaBlock.vue'
 import ContactFormBlock from '../contact-form/ContactFormBlock.vue'
 import FooterBlock from '../footer/FooterBlock.vue'
 
+import { blockRegistry } from '@vue-blocks/utils'
+
 export const builtInBlocks = {
   NavbarBlock,
   HeroBlock,
@@ -45,5 +47,15 @@ export const builtInBlocks = {
   ContactFormBlock,
   FooterBlock
 }
+
+// 自动注册所有内置区块至全局物料注册中心
+Object.entries(builtInBlocks).forEach(([type, component]) => {
+  if (!blockRegistry.has(type)) {
+    blockRegistry.register({
+      type,
+      component
+    })
+  }
+})
 
 export default builtInBlocks

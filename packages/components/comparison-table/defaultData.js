@@ -8,10 +8,12 @@ export const defaultData = {
       "isPrimary": true
     },
     {
-      "text": "竞品A"
+      "text": "竞品A",
+      "isPrimary": false
     },
     {
-      "text": "竞品B"
+      "text": "竞品B",
+      "isPrimary": false
     }
   ],
   "rows": [

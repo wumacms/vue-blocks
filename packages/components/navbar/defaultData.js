@@ -5,58 +5,69 @@ export const defaultData = {
     {
       "text": "产品",
       "link": "#",
+      "newWindow": false,
       "children": [
         {
           "text": "即时通讯",
           "link": "#",
-          "icon": "💬"
+          "icon": "💬",
+          "newWindow": false
         },
         {
           "text": "视频会议",
           "link": "#",
-          "icon": "📹"
+          "icon": "📹",
+          "newWindow": false
         },
         {
           "text": "AI 助手",
           "link": "#",
-          "icon": "🤖"
+          "icon": "🤖",
+          "newWindow": false
         },
         {
           "text": "数据洞察",
           "link": "#",
-          "icon": "📊"
+          "icon": "📊",
+          "newWindow": false
         }
       ]
     },
     {
       "text": "解决方案",
       "link": "#",
+      "newWindow": false,
       "children": [
         {
           "text": "大型企业",
           "link": "#",
-          "icon": "🏢"
+          "icon": "🏢",
+          "newWindow": false
         },
         {
           "text": "初创团队",
           "link": "#",
-          "icon": "🚀"
+          "icon": "🚀",
+          "newWindow": false
         },
         {
           "text": "电商零售",
           "link": "#",
-          "icon": "🛒"
+          "icon": "🛒",
+          "newWindow": false
         },
         {
           "text": "医疗健康",
           "link": "#",
-          "icon": "⚕️"
+          "icon": "⚕️",
+          "newWindow": false
         }
       ]
     },
     {
       "text": "资源",
       "link": "#",
+      "newWindow": false,
       "children": [
         {
           "text": "帮助文档",

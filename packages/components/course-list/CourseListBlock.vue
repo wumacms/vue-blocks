@@ -48,7 +48,7 @@ const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.
             <div :class="styles.imageWrapper">
               <img :src="crs.image" :alt="crs.imageAlt || crs.title" :class="styles.image" />
               <div v-if="crs.tags && crs.tags.length" :class="styles.tagsWrapper">
-                <span v-for="(t, tIdx) in crs.tags" :key="tIdx" :class="styles.tag">
+                <span v-for="(t, tIdx) in crs.tags" :key="tIdx" :class="[styles.tag, t.bgColor]">
                   {{ t.text }}
                 </span>
               </div>
@@ -61,15 +61,19 @@ const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.
                 <span :class="styles.instructorName">{{ crs.instructor }}</span>
               </div>
               <div :class="styles.meta">
-                <span v-if="crs.lessons">{{ crs.lessons }}</span>
+                <span v-if="crs.chapters || crs.lessons">{{ crs.chapters ? `${crs.chapters} 章节` : crs.lessons }}</span>
                 <span v-if="crs.duration">{{ crs.duration }}</span>
-                <span v-if="crs.level">{{ crs.level }}</span>
+                <span v-if="crs.ratingStars" class="text-amber-500 font-medium">
+                  {{ crs.ratingStars }}
+                  <span v-if="crs.ratingCount" class="text-muted-foreground ml-1">({{ crs.ratingCount }})</span>
+                </span>
+                <span v-else-if="crs.level">{{ crs.level }}</span>
               </div>
               <div :class="styles.footer">
                 <span v-if="crs.price" :class="styles.price">{{ crs.price }}</span>
                 <a
                   v-if="crs.btnText"
-                  :href="crs.btnLink || '#'"
+                  :href="crs.link || crs.btnLink || '#'"
                   :target="crs.newWindow ? '_blank' : '_self'"
                   :class="styles.button"
                 >
@@ -80,6 +84,15 @@ const styles = computed(() => resolveStyles(defaultStyles, props.variant, props.
           </div>
         </div>
       </slot>
+      <div v-if="data.moreText" :class="styles.bottomMore || 'mt-12 text-center'">
+        <a
+          :href="data.moreLink || '#'"
+          :target="data.moreNewWindow ? '_blank' : '_self'"
+          :class="styles.moreButton || styles.button || 'inline-flex items-center px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition shadow-sm'"
+        >
+          {{ data.moreText }}
+        </a>
+      </div>
     </div>
   </section>
 </template>
