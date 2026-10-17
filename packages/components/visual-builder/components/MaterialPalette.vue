@@ -1,34 +1,21 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { blockRegistry } from 'vue-blocks'
+import { blockRegistry } from '@vue-blocks/utils'
+import { CATEGORY_DEFINITIONS } from '../../manifests.js'
+import { useEditorState } from '../state/editorState.js'
 
-const props = defineProps({
-  allManifests: {
-    type: Array,
-    default: () => []
-  },
-  categoryDefinitions: {
-    type: Array,
-    default: () => []
-  },
-  blocks: {
-    type: Array,
-    default: () => []
-  },
-  selectedBlockId: {
-    type: String,
-    default: ''
-  }
-})
-
-defineEmits(['addBlock', 'selectBlock', 'moveBlock', 'duplicateBlock', 'removeBlock'])
+const editor = useEditorState()
 
 const leftTab = ref('materials') // 'materials' | 'outline'
 const activeCategory = ref('all')
 const searchQuery = ref('')
 
+const allManifests = computed(() => blockRegistry.getAllManifests())
+const blocks = computed(() => editor.activePage.value?.blocks || [])
+const selectedBlockId = computed(() => editor.selectedBlockId.value)
+
 const filteredMaterials = computed(() => {
-  return props.allManifests.filter((m) => {
+  return allManifests.value.filter((m) => {
     const matchCategory = activeCategory.value === 'all' || m.category === activeCategory.value
     const matchQuery =
       !searchQuery.value ||
@@ -37,14 +24,59 @@ const filteredMaterials = computed(() => {
     return matchCategory && matchQuery
   })
 })
+
+const emit = defineEmits([
+  'selectBlock',
+  'addBlock',
+  'moveBlock',
+  'duplicateBlock',
+  'removeBlock'
+])
+
+function handleAddBlock(manifest) {
+  const newId = editor.addBlock(manifest)
+  emit('addBlock', manifest, newId)
+}
+
+function handleSelectBlock(id) {
+  editor.selectBlock(id, { scroll: true })
+  emit('selectBlock', id)
+}
+
+function handleMoveBlock(index, direction) {
+  editor.moveBlock(index, direction)
+  emit('moveBlock', index, direction)
+}
+
+function handleDuplicateBlock(index) {
+  const newId = editor.duplicateBlock(index)
+  emit('duplicateBlock', index, newId)
+}
+
+function handleRemoveBlock(index) {
+  if (blocks.value.length <= 1) {
+    alert('页面至少需要保留一个区块！')
+    return
+  }
+  const targetBlock = blocks.value[index]
+  const blockTitle = blockRegistry.get(targetBlock?.type)?.manifest?.title || targetBlock?.type || '该区块'
+  if (confirm(`确认要删除区块【${blockTitle}】吗？`)) {
+    editor.removeBlock(index)
+    emit('removeBlock', index)
+  }
+}
+
 </script>
+
 
 <template>
   <aside
     class="w-80 h-full min-h-0 border-r border-zinc-200/80 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md flex flex-col z-30 select-none"
   >
     <!-- 切换 Tab: 物料库 vs 页面大纲 -->
-    <div class="flex border-b border-zinc-200/80 dark:border-zinc-800/80 p-1.5 gap-1 bg-zinc-50/50 dark:bg-zinc-900/50">
+    <div
+      class="flex border-b border-zinc-200/80 dark:border-zinc-800/80 p-1.5 gap-1 bg-zinc-50/50 dark:bg-zinc-900/50"
+    >
       <button
         type="button"
         @click="leftTab = 'materials'"
@@ -113,7 +145,7 @@ const filteredMaterials = computed(() => {
       <!-- 分类标签栏 -->
       <div class="flex px-3 py-2 gap-1 overflow-x-auto border-b border-zinc-100 dark:border-zinc-800/80 shrink-0">
         <button
-          v-for="cat in categoryDefinitions"
+          v-for="cat in CATEGORY_DEFINITIONS"
           :key="cat.id"
           type="button"
           @click="activeCategory = cat.id"
@@ -133,7 +165,7 @@ const filteredMaterials = computed(() => {
         <div
           v-for="item in filteredMaterials"
           :key="item.name"
-          class="p-3 rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-850 hover:border-indigo-500/50 hover:shadow-md transition-all group flex flex-col justify-between"
+          class="p-3 rounded-xl border border-zinc-200/80 dark:border-zinc-700/60 bg-white dark:bg-zinc-800/70 shadow-xs hover:border-indigo-500/50 dark:hover:border-indigo-500/60 hover:shadow-md dark:hover:bg-zinc-800 transition-all group flex flex-col justify-between"
         >
           <div>
             <div class="flex items-center justify-between mb-1.5">
@@ -141,7 +173,7 @@ const filteredMaterials = computed(() => {
                 <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
                 <span class="font-bold text-xs text-zinc-900 dark:text-zinc-100">{{ item.title }}</span>
               </div>
-              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-400">
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900/90 text-zinc-500 dark:text-zinc-400 border border-transparent dark:border-zinc-700/50">
                 {{ item.name }}
               </span>
             </div>
@@ -152,8 +184,8 @@ const filteredMaterials = computed(() => {
 
           <button
             type="button"
-            @click="$emit('addBlock', item)"
-            class="w-full py-1.5 rounded-lg text-xs font-semibold bg-zinc-100 hover:bg-indigo-600 hover:text-white dark:bg-zinc-800 dark:hover:bg-indigo-600 text-zinc-700 dark:text-zinc-300 transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+            @click="handleAddBlock(item)"
+            class="w-full py-1.5 rounded-lg text-xs font-semibold bg-zinc-100 hover:bg-indigo-600 hover:text-white dark:bg-zinc-700/60 dark:hover:bg-indigo-600 text-zinc-700 dark:text-zinc-200 dark:hover:text-white border border-transparent dark:border-zinc-700/40 transition-colors cursor-pointer flex items-center justify-center gap-1.5"
           >
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="12" y1="5" x2="12" y2="19" />
@@ -176,7 +208,7 @@ const filteredMaterials = computed(() => {
         <div
           v-for="(block, idx) in blocks"
           :key="block.id"
-          @click="$emit('selectBlock', block.id)"
+          @click="handleSelectBlock(block.id)"
           :class="[
             'p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between',
             selectedBlockId === block.id
@@ -200,7 +232,7 @@ const filteredMaterials = computed(() => {
           <div class="flex items-center gap-1 shrink-0" @click.stop>
             <button
               type="button"
-              @click="$emit('moveBlock', idx, -1)"
+              @click="handleMoveBlock(idx, -1)"
               :disabled="idx === 0"
               class="p-1 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded disabled:opacity-20 transition cursor-pointer"
               title="上移"
@@ -211,7 +243,7 @@ const filteredMaterials = computed(() => {
             </button>
             <button
               type="button"
-              @click="$emit('moveBlock', idx, 1)"
+              @click="handleMoveBlock(idx, 1)"
               :disabled="idx === blocks.length - 1"
               class="p-1 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded disabled:opacity-20 transition cursor-pointer"
               title="下移"
@@ -222,7 +254,7 @@ const filteredMaterials = computed(() => {
             </button>
             <button
               type="button"
-              @click="$emit('duplicateBlock', idx)"
+              @click="handleDuplicateBlock(idx)"
               class="p-1 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded transition cursor-pointer"
               title="复制"
             >
@@ -233,7 +265,7 @@ const filteredMaterials = computed(() => {
             </button>
             <button
               type="button"
-              @click="$emit('removeBlock', idx)"
+              @click="handleRemoveBlock(idx)"
               class="p-1 hover:bg-rose-100 hover:text-rose-600 dark:hover:bg-rose-950/50 dark:hover:text-rose-400 rounded transition cursor-pointer"
               title="删除"
             >

@@ -39,7 +39,9 @@ function copyJsonToClipboard() {
     <div
       class="w-full max-w-2xl bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-2xl flex flex-col overflow-hidden max-h-[85vh] animate-in fade-in zoom-in-95 duration-150"
     >
-      <div class="px-5 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+      <div
+        class="px-5 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between"
+      >
         <div class="flex items-center gap-2">
           <span class="font-bold text-sm text-zinc-900 dark:text-zinc-100">导出的 PageData 配置 (纯 JSON)</span>
           <span class="text-xs text-zinc-400">可直接存入后端数据库或用于静态发布</span>
@@ -68,7 +70,7 @@ function copyJsonToClipboard() {
           已成功复制到系统剪贴板！
         </span>
         <span v-else class="text-xs text-zinc-400">
-          包含 {{ pageData.blocks?.length || 0 }} 个区块配置
+          包含 {{ pageData?.blocks?.length || 0 }} 个区块配置
         </span>
 
         <div class="flex items-center gap-2">

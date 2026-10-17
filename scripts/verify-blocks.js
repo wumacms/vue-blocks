@@ -49,7 +49,8 @@ assert(resolved2.strokeWidth === 4, 'resolveStyles 数字属性覆盖正确')
 // 2. 验证所有 22 个区块组件的完整性与单模板规范
 const compDirs = fs
   .readdirSync(componentsDir, { withFileTypes: true })
-  .filter((d) => d.isDirectory() && !['node_modules', 'page-renderer', 'site-renderer'].includes(d.name))
+  .filter((d) => d.isDirectory() && !['node_modules', 'page-renderer', 'site-renderer', 'visual-builder'].includes(d.name))
+
   .map((d) => d.name)
 
 assert(compDirs.length === 22, `应具有 22 个核心区块组件，当前检测到 ${compDirs.length} 个`)

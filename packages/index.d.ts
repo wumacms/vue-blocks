@@ -174,6 +174,33 @@ export const SiteRenderer: SiteRendererComponentType
 export const SiteRendererComponent: SiteRendererComponentType
 export const siteRendererDefaultData: SiteData
 
+export type VisualBuilderComponentType = DefineComponent<
+  {
+    pages?: any[]
+    activePageId?: string
+    storageKey?: string | boolean
+    storageAdapter?: any
+    isSaving?: boolean
+  },
+  {},
+  any,
+  {},
+  {},
+  {},
+  {},
+  {
+    'update:activePageId': (pageId: string) => void
+    'update:pages': (pages: any[]) => void
+    'save': (payload: { pageId: string; pageData: any; allPages: any[] }) => void
+    'change': (payload: { pageId: string; pageData: any; allPages: any[] }) => void
+    'exit': () => void
+  }
+>
+
+export const VisualBuilder: VisualBuilderComponentType
+export const VisualBuilderComponent: VisualBuilderComponentType
+
+
 // 主题常量与工具函数
 export declare const THEME_HUES: Record<string, number>
 export declare const THEME_NAMES: Record<string, string>

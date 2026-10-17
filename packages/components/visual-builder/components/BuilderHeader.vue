@@ -1,81 +1,39 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useEditorState } from '../state/editorState.js'
 
-const props = defineProps({
-  currentDevice: {
-    type: String,
-    default: 'desktop'
-  },
-  isEditMode: {
-    type: Boolean,
-    default: true
-  },
-  canUndo: {
-    type: Boolean,
-    default: false
-  },
-  canRedo: {
-    type: Boolean,
-    default: false
-  },
-  blockCount: {
-    type: Number,
-    default: 0
-  },
-  isLeftSidebarOpen: {
-    type: Boolean,
-    default: true
-  },
-  isRightSidebarOpen: {
-    type: Boolean,
-    default: true
-  },
-  // 多页面配置与激活页面
-  pages: {
-    type: Array,
-    default: () => []
-  },
-  activePageId: {
-    type: String,
-    default: ''
-  },
-  // 保存与脏状态
-  isDirty: {
-    type: Boolean,
-    default: false
-  },
-  isSaving: {
-    type: Boolean,
-    default: false
-  }
-})
+const editor = useEditorState()
 
-const emit = defineEmits([
-  'update:currentDevice',
-  'update:isEditMode',
-  'update:isLeftSidebarOpen',
-  'update:isRightSidebarOpen',
-  'update:activePageId',
-  'undo',
-  'redo',
-  'save',
-  'exportJson',
-  'resetPage',
-  'exit'
-])
+defineEmits(['exportJson', 'resetPage', 'exit'])
 
 // 页面下拉菜单开关
 const isPageMenuOpen = ref(false)
 const pageMenuRef = ref(null)
 
-const activePage = computed(() => {
-  return props.pages.find((p) => p.id === props.activePageId) || props.pages[0] || null
+const pages = computed(() => editor.pages.value)
+const activePage = computed(() => editor.activePage.value)
+const activePageId = computed(() => editor.activePageId.value)
+const currentDevice = computed({
+  get: () => editor.device.value,
+  set: (val) => { editor.device.value = val }
+})
+const isEditMode = computed({
+  get: () => editor.isEditMode.value,
+  set: (val) => { editor.isEditMode.value = val }
+})
+const isLeftSidebarOpen = computed({
+  get: () => editor.isLeftSidebarOpen.value,
+  set: (val) => { editor.isLeftSidebarOpen.value = val }
+})
+const isRightSidebarOpen = computed({
+  get: () => editor.isRightSidebarOpen.value,
+  set: (val) => { editor.isRightSidebarOpen.value = val }
 })
 
 function handlePageSelect(pageId) {
   isPageMenuOpen.value = false
-  if (pageId !== props.activePageId) {
-    emit('update:activePageId', pageId)
+  if (pageId !== activePageId.value) {
+    editor.switchPage(pageId)
   }
 }
 
@@ -118,7 +76,9 @@ onUnmounted(() => {
         </div>
         <div class="hidden xl:block">
           <div class="flex items-center gap-1.5">
-            <span class="font-bold text-xs tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+            <span
+              class="font-bold text-xs tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors"
+            >
               WumaCMS
             </span>
             <span
@@ -138,7 +98,7 @@ onUnmounted(() => {
         <button
           type="button"
           @click.stop="isPageMenuOpen = !isPageMenuOpen"
-          class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-zinc-200/90 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-850/80 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs transition-colors cursor-pointer group"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-zinc-200/90 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs transition-colors cursor-pointer group"
           :title="`当前编辑: ${activePage?.title || '页面'} (${pages.length} 个页面可切换)`"
           aria-haspopup="listbox"
           :aria-expanded="isPageMenuOpen"
@@ -170,7 +130,9 @@ onUnmounted(() => {
           v-if="isPageMenuOpen"
           class="absolute left-0 top-full mt-1.5 w-64 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-2xl p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150"
         >
-          <div class="px-2 py-1 text-[10px] font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-100 dark:border-zinc-800/80 mb-1 flex items-center justify-between">
+          <div
+            class="px-2 py-1 text-[10px] font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-100 dark:border-zinc-800/80 mb-1 flex items-center justify-between"
+          >
             <span>切换编辑页面</span>
             <span class="font-mono">{{ pages.length }} 个页面</span>
           </div>
@@ -207,12 +169,12 @@ onUnmounted(() => {
 
       <div class="h-4 w-[1px] bg-zinc-200 dark:bg-zinc-800 mx-1 hidden sm:block"></div>
 
-      <!-- 撤销 / 重做 -->
+      <!-- 撤销 / 重做 (命令模式驱动) -->
       <div class="flex items-center gap-0.5 hidden sm:flex">
         <button
           type="button"
-          @click="$emit('undo')"
-          :disabled="!canUndo"
+          @click="editor.undo()"
+          :disabled="!editor.canUndo.value"
           class="p-1.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 disabled:pointer-events-none transition cursor-pointer"
           title="撤销 (Undo - Cmd+Z)"
         >
@@ -223,8 +185,8 @@ onUnmounted(() => {
         </button>
         <button
           type="button"
-          @click="$emit('redo')"
-          :disabled="!canRedo"
+          @click="editor.redo()"
+          :disabled="!editor.canRedo.value"
           class="p-1.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 disabled:pointer-events-none transition cursor-pointer"
           title="重做 (Redo - Cmd+Y)"
         >
@@ -237,7 +199,7 @@ onUnmounted(() => {
         <!-- 物料面板折叠切换 -->
         <button
           type="button"
-          @click="$emit('update:isLeftSidebarOpen', !isLeftSidebarOpen)"
+          @click="isLeftSidebarOpen = !isLeftSidebarOpen"
           :class="[
             'p-1.5 rounded-lg border transition cursor-pointer flex items-center gap-1 text-xs ml-1',
             isLeftSidebarOpen
@@ -261,7 +223,7 @@ onUnmounted(() => {
     >
       <button
         type="button"
-        @click="$emit('update:currentDevice', 'desktop')"
+        @click="currentDevice = 'desktop'"
         :class="[
           'px-2.5 py-1 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer',
           currentDevice === 'desktop'
@@ -280,7 +242,7 @@ onUnmounted(() => {
 
       <button
         type="button"
-        @click="$emit('update:currentDevice', 'tablet')"
+        @click="currentDevice = 'tablet'"
         :class="[
           'px-2.5 py-1 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer',
           currentDevice === 'tablet'
@@ -298,7 +260,7 @@ onUnmounted(() => {
 
       <button
         type="button"
-        @click="$emit('update:currentDevice', 'mobile')"
+        @click="currentDevice = 'mobile'"
         :class="[
           'px-2.5 py-1 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer',
           currentDevice === 'mobile'
@@ -317,41 +279,59 @@ onUnmounted(() => {
 
     <!-- 右侧：保存、编辑态切换与工具操作 -->
     <div class="flex items-center gap-2">
-      <!-- 核心升级：状态化保存按钮 -->
+      <!-- 状态化保存按钮 -->
       <button
         type="button"
-        @click="$emit('save')"
-        :disabled="isSaving"
+        @click="editor.save()"
+        :disabled="editor.isSaving.value"
         :class="[
           'px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer shadow-xs',
-          isSaving
+          editor.isSaving.value
             ? 'bg-indigo-400 text-white cursor-not-allowed opacity-80'
-            : isDirty
-              ? 'bg-indigo-600 hover:bg-indigo-500 text-white font-semibold ring-2 ring-indigo-500/30 animate-pulse-subtle'
+            : editor.isDirty.value
+              ? 'bg-indigo-600 hover:bg-indigo-500 text-white font-semibold ring-2 ring-indigo-500/30'
               : 'bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
         ]"
-        :title="isDirty ? '有未保存修改 (Cmd+S / Ctrl+S)' : '当前内容已保存'"
+        :title="editor.isDirty.value ? '有未保存修改 (Cmd+S / Ctrl+S)' : '当前内容已保存'"
       >
         <!-- 保存中状态 -->
-        <svg v-if="isSaving" class="w-3.5 h-3.5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <svg
+          v-if="editor.isSaving.value"
+          class="w-3.5 h-3.5 animate-spin"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
         </svg>
         <!-- 未保存脏状态小圆点 -->
-        <span v-else-if="isDirty" class="w-2 h-2 rounded-full bg-amber-300"></span>
+        <span v-else-if="editor.isDirty.value" class="w-2 h-2 rounded-full bg-amber-300"></span>
         <!-- 已保存对勾状态 -->
-        <svg v-else class="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <svg
+          v-else
+          class="w-3.5 h-3.5 text-emerald-500"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
           <polyline points="20 6 9 17 4 12" />
         </svg>
 
-        <span>{{ isSaving ? '保存中...' : isDirty ? '保存修改' : '已保存' }}</span>
+        <span>{{ editor.isSaving.value ? '保存中...' : editor.isDirty.value ? '保存修改' : '已保存' }}</span>
         <span class="text-[10px] opacity-60 hidden sm:inline font-mono">⌘S</span>
       </button>
 
       <!-- 编辑态 / 预览态切换 -->
       <button
         type="button"
-        @click="$emit('update:isEditMode', !isEditMode)"
+        @click="isEditMode = !isEditMode"
         :class="[
           'px-2.5 py-1.5 rounded-lg text-xs font-medium border flex items-center gap-1.5 transition cursor-pointer',
           isEditMode
@@ -359,7 +339,10 @@ onUnmounted(() => {
             : 'bg-emerald-500 text-white border-emerald-600 shadow-sm font-semibold'
         ]"
       >
-        <span class="w-2 h-2 rounded-full" :class="isEditMode ? 'bg-amber-500' : 'bg-white animate-pulse'"></span>
+        <span
+          class="w-2 h-2 rounded-full"
+          :class="isEditMode ? 'bg-amber-500' : 'bg-white animate-pulse'"
+        ></span>
         <span>{{ isEditMode ? '编辑态' : '预览中' }}</span>
       </button>
 
@@ -382,7 +365,7 @@ onUnmounted(() => {
       <!-- 属性面板折叠切换 -->
       <button
         type="button"
-        @click="$emit('update:isRightSidebarOpen', !isRightSidebarOpen)"
+        @click="isRightSidebarOpen = !isRightSidebarOpen"
         :class="[
           'p-1.5 rounded-lg border transition cursor-pointer flex items-center gap-1 text-xs',
           isRightSidebarOpen

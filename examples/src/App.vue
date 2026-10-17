@@ -5,11 +5,13 @@ import {
   PageRenderer,
   NavbarBlock,
   FooterBlock,
-  THEME_HUES
+  THEME_HUES,
+  VisualBuilder,
+  loadStoredPages,
+  saveStoredPages
 } from 'vue-blocks'
 import FloatingToolbar from './components/FloatingToolbar.vue'
-import VisualBuilder from './components/VisualBuilder.vue'
-import { loadStoredPages, saveStoredPages } from './utils/storage.js'
+
 
 // 1. 独立路由机制（解耦模式切换与全屏搭建界面）
 // 支持直接访问 http://localhost:5173/#/builder 或 http://localhost:5173/#/builder?page=pricing
